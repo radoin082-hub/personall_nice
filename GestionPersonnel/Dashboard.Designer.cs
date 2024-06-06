@@ -1,6 +1,6 @@
 ﻿namespace GestionPersonnel
 {
-    partial class Form1
+    partial class Dashboard
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -93,7 +93,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(998, 127);
+            panel1.Size = new Size(1006, 127);
             panel1.TabIndex = 0;
             // 
             // panel5
@@ -178,7 +178,7 @@
             panel2.Controls.Add(pictureBox2);
             panel2.Location = new Point(0, 117);
             panel2.Name = "panel2";
-            panel2.Size = new Size(146, 526);
+            panel2.Size = new Size(154, 526);
             panel2.TabIndex = 1;
             // 
             // pictureBox6
@@ -395,16 +395,16 @@
             panel4.Size = new Size(892, 101);
             panel4.TabIndex = 0;
             // 
-            // Form1
+            // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(998, 643);
+            ClientSize = new Size(1006, 643);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "Form1";
+            Name = "Dashboard";
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
