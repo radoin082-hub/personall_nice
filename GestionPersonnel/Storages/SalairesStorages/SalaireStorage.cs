@@ -30,7 +30,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
                 SalaireID = (int)row["SalaireID"],
                 EmployeID = (int)row["EmployeID"],
                 Mois = (DateTime)row["Mois"],
-                Salaire = (decimal)row["Salaire"],
+                Salairee = (decimal)row["Salaire"],
                 Primes = (decimal)row["Primes"],
                 Avances = (decimal)row["Avances"],
                 Dettes = (decimal)row["Dettes"],
@@ -75,7 +75,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
             SqlCommand cmd = new(_insertQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", salaire.EmployeID);
             cmd.Parameters.AddWithValue("@Mois", salaire.Mois);
-            cmd.Parameters.AddWithValue("@Salaire", salaire.Salaire);
+            cmd.Parameters.AddWithValue("@Salaire", salaire.Salairee);
             cmd.Parameters.AddWithValue("@Primes", salaire.Primes);
             cmd.Parameters.AddWithValue("@Avances", salaire.Avances);
             cmd.Parameters.AddWithValue("@Dettes", salaire.Dettes);
@@ -93,7 +93,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
             SqlCommand cmd = new(_updateQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", salaire.EmployeID);
             cmd.Parameters.AddWithValue("@Mois", salaire.Mois);
-            cmd.Parameters.AddWithValue("@Salaire", salaire.Salaire);
+            cmd.Parameters.AddWithValue("@Salaire", salaire.Salairee);
             cmd.Parameters.AddWithValue("@Primes", salaire.Primes);
             cmd.Parameters.AddWithValue("@Avances", salaire.Avances);
             cmd.Parameters.AddWithValue("@Dettes", salaire.Dettes);

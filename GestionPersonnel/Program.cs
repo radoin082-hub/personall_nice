@@ -12,6 +12,7 @@ namespace GestionPersonnel
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Employes());
+            /* Application.Run(new Dashboard());*/
         }
     }
 }

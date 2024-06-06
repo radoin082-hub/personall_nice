@@ -11,7 +11,7 @@ namespace GestionPersonnel.Models.Salaires
         public int SalaireID { get; set; }
         public int EmployeID { get; set; }
         public DateTime Mois { get; set; }
-        public decimal Salaire { get; set; }
+        public decimal Salairee { get; set; }
         public decimal Primes { get; set; }
         public decimal Avances { get; set; }
         public decimal Dettes { get; set; }
