@@ -1,3 +1,5 @@
+using GestionPersonnel.View;
+
 namespace GestionPersonnel
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace GestionPersonnel
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Employes());
+            Application.Run(new Mainpage());
             /* Application.Run(new Dashboard());*/
         }
     }

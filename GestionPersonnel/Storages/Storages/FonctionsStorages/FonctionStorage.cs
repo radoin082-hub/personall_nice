@@ -14,25 +14,25 @@ namespace GestionPersonnel.Storages.FonctionsStorages
   
     public class FonctionStorage
     {
-        private readonly string connectionString;
-        private const string selectAllQuery = "SELECT * FROM Fonction";
-        private const string selectByIdQuery = "SELECT * FROM Fonction WHERE FonctionID = @id";
+        private readonly string _connectionString = "Data Source=RADOIN_CR\\SQLEXPRESS;Initial Catalog=db_aa9d4f_gestionpersonnel;User ID=sa;Password=123456;Encrypt=False";
 
-        public FonctionStorage(IConfiguration configuration) =>
-            connectionString = configuration.GetConnectionString("YourConnectionString");
+        private const string selectAllQuery = "SELECT * FROM Fonctions";
+        private const string selectByIdQuery = "SELECT * FROM Fonctions WHERE FonctionID = @id";
+
 
         private static Fonction GetFonctionFromDataRow(DataRow row)
         {
             return new Fonction
             {
-                FonctionID = (int)row["FonctionID"],
+                FonctionID = (int)row["FonctionID"],  // Ensure this is an int
                 NomFonction = (string)row["NomFonction"]
             };
         }
 
+
         public async Task<List<Fonction>> GetAll()
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(selectAllQuery, connection);
 
             DataTable dataTable = new();
@@ -46,7 +46,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
 
         public async Task<Fonction?> GetById(int id)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
 
             SqlCommand cmd = new(selectByIdQuery, connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -61,7 +61,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
         }
         public async Task Add(Fonction fonction)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new("INSERT INTO Fonction (NomFonction) VALUES (@NomFonction); SELECT SCOPE_IDENTITY();", connection);
             cmd.Parameters.AddWithValue("@NomFonction", fonction.NomFonction);
 
@@ -72,18 +72,19 @@ namespace GestionPersonnel.Storages.FonctionsStorages
 
         public async Task Update(Fonction fonction)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new("UPDATE Fonction SET NomFonction = @NomFonction WHERE FonctionID = @FonctionID;", connection);
             cmd.Parameters.AddWithValue("@NomFonction", fonction.NomFonction);
             cmd.Parameters.AddWithValue("@FonctionID", fonction.FonctionID);
 
             connection.Open();
             await cmd.ExecuteNonQueryAsync();
+           
         }
 
         public async Task Delete(int id)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new("DELETE FROM Fonction WHERE FonctionID = @FonctionID;", connection);
             cmd.Parameters.AddWithValue("@FonctionID", id);
 

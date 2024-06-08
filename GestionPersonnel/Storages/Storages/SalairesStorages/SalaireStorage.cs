@@ -13,7 +13,8 @@ namespace GestionPersonnel.Storages.SalairesStorages
 
     public class SalaireStorage
     {
-        private readonly string _connectionString;
+        private readonly string connectionString = ("Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234");
+
         private const string _selectAllQuery = "SELECT * FROM Salaire";
         private const string _selectByIdQuery = "SELECT * FROM Salaire WHERE SalaireID = @id";
         private const string _insertQuery = "INSERT INTO Salaire (EmployeID, Mois, Salaire, Primes, Avances, Dettes, SalaireNet, TypePaiementID) VALUES (@EmployeID, @Mois, @Salaire, @Primes, @Avances, @Dettes, @SalaireNet, @TypePaiementID); SELECT SCOPE_IDENTITY();";
@@ -21,7 +22,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
         private const string _deleteQuery = "DELETE FROM Salaire WHERE SalaireID = @SalaireID;";
 
         public SalaireStorage(IConfiguration configuration) =>
-            _connectionString = configuration.GetConnectionString("YourConnectionString");
+            connectionString = configuration.GetConnectionString("Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234");
 
         private static Salaire GetSalaireFromDataRow(DataRow row)
         {
@@ -41,7 +42,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
 
         public async Task<List<Salaire>> GetAll()
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_selectAllQuery, connection);
 
             DataTable dataTable = new();
@@ -55,7 +56,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
 
         public async Task<Salaire?> GetById(int id)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
 
             SqlCommand cmd = new(_selectByIdQuery, connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -71,7 +72,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
 
         public async Task Add(Salaire salaire)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_insertQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", salaire.EmployeID);
             cmd.Parameters.AddWithValue("@Mois", salaire.Mois);
@@ -89,7 +90,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
 
         public async Task Update(Salaire salaire)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_updateQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", salaire.EmployeID);
             cmd.Parameters.AddWithValue("@Mois", salaire.Mois);
@@ -107,7 +108,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
 
         public async Task Delete(int id)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_deleteQuery, connection);
             cmd.Parameters.AddWithValue("@SalaireID", id);
 

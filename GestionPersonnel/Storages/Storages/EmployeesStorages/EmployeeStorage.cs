@@ -12,15 +12,13 @@ namespace GestionPersonnel.Storages.EmployeesStorages
 {
     public class EmployeStorage
     {
-        private readonly string _connectionString;
-        private const string _selectAllQuery = "SELECT * FROM Employe";
-        private const string _selectByIdQuery = "SELECT * FROM Employe WHERE EmployeID = @id";
-        private const string _insertQuery = "INSERT INTO Employe (Nom, Prenom, DateDeNaissance, NSecuriteSocial, Adresse, GroupSanguin, NTelephone, FonctionID, DateEntree, DateSortie, SitiationFamiliale, Photo) VALUES (@Nom, @Prenom, @DateDeNaissance, @NSecuriteSocial, @Adresse, @GroupSanguin, @NTelephone, @FonctionID, @DateEntree, @DateSortie, @SitiationFamiliale, @Photo); SELECT SCOPE_IDENTITY();";
-        private const string _updateQuery = "UPDATE Employe SET Nom = @Nom, Prenom = @Prenom, DateDeNaissance = @DateDeNaissance, NSecuriteSocial = @NSecuriteSocial, Adresse = @Adresse, GroupSanguin = @GroupSanguin, NTelephone = @NTelephone, FonctionID = @FonctionID, DateEntree = @DateEntree, DateSortie = @DateSortie, SitiationFamiliale = @SitiationFamiliale, Photo = @Photo WHERE EmployeID = @EmployeID;";
-        private const string _deleteQuery = "DELETE FROM Employe WHERE EmployeID = @EmployeID;";
+        private readonly string _connectionString = "Data Source=RADOIN_CR\\SQLEXPRESS;Initial Catalog=db_aa9d4f_gestionpersonnel;User ID=sa;Password=123456;Encrypt=False";
 
-        public EmployeStorage(IConfiguration configuration) =>
-            _connectionString = configuration.GetConnectionString("YourConnectionString");
+        private const string _selectAllQuery = "SELECT * FROM Employes WHERE status = 1";
+        private const string _selectByIdQuery = "SELECT * FROM Employes WHERE EmployeID = @id";
+        private const string _insertQuery = "INSERT INTO Employes (Nom, Prenom, DateDeNaissance, NSecuriteSocial, Adresse, GroupSanguin, NTelephone, FonctionID, DateEntree, DateSortie, SitiationFamiliale, Photo) VALUES (@Nom, @Prenom, @DateDeNaissance, @NSecuriteSocial, @Adresse, @GroupSanguin, @NTelephone, @FonctionID, @DateEntree, @DateSortie, @SitiationFamiliale, @Photo); SELECT SCOPE_IDENTITY();";
+        private const string _updateQuery = "UPDATE Employes SET Nom = @Nom, Prenom = @Prenom, DateDeNaissance = @DateDeNaissance, NSecuriteSocial = @NSecuriteSocial, Adresse = @Adresse, GroupSanguin = @GroupSanguin, NTelephone = @NTelephone, FonctionID = @FonctionID, DateEntree = @DateEntree, DateSortie = @DateSortie, SitiationFamiliale = @SitiationFamiliale, Photo = @Photo WHERE EmployeID = @EmployeID;";
+        private const string _deleteQuery = "UPDATE Employes SET status = 0 WHERE EmployeID = @EmployeID;";
 
         private static Employee GetEmployeFromDataRow(DataRow row)
         {
@@ -34,7 +32,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
                 Adresse = (string)row["Adresse"],
                 GroupSanguin = (string)row["GroupSanguin"],
                 NTelephone = (string)row["NTelephone"],
-                FonctionID = (int)row["FonctionID"],
+                FonctionID = Convert.ToInt32(row["FonctionID"]),
                 DateEntree = (DateTime)row["DateEntree"],
                 DateSortie = row["DateSortie"] != DBNull.Value ? (DateTime)row["DateSortie"] : (DateTime?)null,
                 SitiationFamiliale = (string)row["SitiationFamiliale"],

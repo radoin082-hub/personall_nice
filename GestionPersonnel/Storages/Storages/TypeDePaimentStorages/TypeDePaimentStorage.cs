@@ -12,7 +12,8 @@ namespace GestionPersonnel.Storages.TypeDePaimentStorages
 {
     public class TypeDePaiementStorage
     {
-        private readonly string _connectionString;
+        private readonly string connectionString = ("Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234");
+
         private const string _selectAllQuery = "SELECT * FROM TypeDePaiement";
         private const string _selectByIdQuery = "SELECT * FROM TypeDePaiement WHERE TypePaiementID = @id";
         private const string _insertQuery = "INSERT INTO TypeDePaiement (NomTypePaiement) VALUES (@NomTypePaiement); SELECT SCOPE_IDENTITY();";
@@ -20,7 +21,7 @@ namespace GestionPersonnel.Storages.TypeDePaimentStorages
         private const string _deleteQuery = "DELETE FROM TypeDePaiement WHERE TypePaiementID = @TypePaiementID;";
 
         public TypeDePaiementStorage(IConfiguration configuration) =>
-            _connectionString = configuration.GetConnectionString("YourConnectionString");
+            connectionString = configuration.GetConnectionString("Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234");
 
         private static TypeDePaiement GetTypeDePaiementFromDataRow(DataRow row)
         {
@@ -33,7 +34,7 @@ namespace GestionPersonnel.Storages.TypeDePaimentStorages
 
         public async Task<List<TypeDePaiement>> GetAll()
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_selectAllQuery, connection);
 
             DataTable dataTable = new();
@@ -47,7 +48,7 @@ namespace GestionPersonnel.Storages.TypeDePaimentStorages
 
         public async Task<TypeDePaiement?> GetById(int id)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
 
             SqlCommand cmd = new(_selectByIdQuery, connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -63,7 +64,7 @@ namespace GestionPersonnel.Storages.TypeDePaimentStorages
 
         public async Task Add(TypeDePaiement typeDePaiement)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_insertQuery, connection);
             cmd.Parameters.AddWithValue("@NomTypePaiement", typeDePaiement.NomTypePaiement);
 
@@ -74,7 +75,7 @@ namespace GestionPersonnel.Storages.TypeDePaimentStorages
 
         public async Task Update(TypeDePaiement typeDePaiement)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_updateQuery, connection);
             cmd.Parameters.AddWithValue("@NomTypePaiement", typeDePaiement.NomTypePaiement);
             cmd.Parameters.AddWithValue("@TypePaiementID", typeDePaiement.TypePaiementID);
@@ -85,7 +86,7 @@ namespace GestionPersonnel.Storages.TypeDePaimentStorages
 
         public async Task Delete(int id)
         {
-            await using var connection = new SqlConnection(_connectionString);
+            await using var connection = new SqlConnection(connectionString);
             SqlCommand cmd = new(_deleteQuery, connection);
             cmd.Parameters.AddWithValue("@TypePaiementID", id);
 
