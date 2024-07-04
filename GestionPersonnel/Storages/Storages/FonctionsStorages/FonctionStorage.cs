@@ -14,7 +14,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
   
     public class FonctionStorage
     {
-        private readonly string _connectionString = "Data Source=RADOIN_CR\\SQLEXPRESS;Initial Catalog=db_aa9d4f_gestionpersonnel;User ID=sa;Password=123456;Encrypt=False";
+        private readonly string _connectionString = "put local cnx string";
 
         private const string selectAllQuery = "SELECT * FROM Fonctions";
         private const string selectByIdQuery = "SELECT * FROM Fonctions WHERE FonctionID = @id";

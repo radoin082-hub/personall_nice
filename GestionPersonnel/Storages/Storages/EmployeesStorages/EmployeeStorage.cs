@@ -12,7 +12,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
 {
     public class EmployeStorage
     {
-        private readonly string _connectionString = "Data Source=RADOIN_CR\\SQLEXPRESS;Initial Catalog=db_aa9d4f_gestionpersonnel;User ID=sa;Password=123456;Encrypt=False";
+        private readonly string _connectionString = "put local cnx string";
 
         private const string _selectAllQuery = "SELECT * FROM Employes WHERE status = 1";
         private const string _selectByIdQuery = "SELECT * FROM Employes WHERE EmployeID = @id";
