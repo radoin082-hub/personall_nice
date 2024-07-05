@@ -41,8 +41,9 @@ namespace GestionPersonnel.View
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NSecuriteSociale", HeaderText = "N° Sécurité Sociale" });
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction" });
 
-            string modifierIconPath = @"C:\Users\radoi\RiderProjects\red\GestionPersonnel\Icon\icons8-edit-64.png";
-            string supprimerIconPath = @"C:\Users\radoi\Downloads\icons8-delete-48.png";
+            string modifierIconPath = @"C:\Users\Dali Raki\source\repos\gestion-personal\GestionPersonnel\Icon\icons8-edit-64.png";
+            string supprimerIconPath = @"C:\Users\Dali Raki\source\repos\gestion-personal\GestionPersonnel\Icon\icons8-delete-64.png";
+
 
             DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
             {
@@ -157,7 +158,7 @@ namespace GestionPersonnel.View
         private async void UEmployes_Load(object sender, EventArgs e)
         {
             InitializeDataGridView();
-            await LoadFonctionsData();  
+            await LoadFonctionsData();
             await LoadEmployees();
         }
 
@@ -223,7 +224,7 @@ namespace GestionPersonnel.View
 
         private void PopulateEmployeeDetails(Employee employee)
         {
-            
+
             nomEmployes.Text = employee.Nom;
             prenomEmployes.Text = employee.Prenom;
             DateNaissanceEmployes.Value = employee.DateDeNaissance;
@@ -239,7 +240,7 @@ namespace GestionPersonnel.View
             }
             else
             {
-                FonctionEmployes.Text = "Unknown";  
+                FonctionEmployes.Text = "Unknown";
             }
 
             DateEntrerEmployes.Value = employee.DateEntree;
@@ -267,6 +268,8 @@ namespace GestionPersonnel.View
         {
             ClearInputFields();
             panelajouteremploye.Visible = true;
+            panelajouterfonction.Visible = false;
+            ClearInputFields();
         }
 
         private void photoProfileBtn_Click_1(object sender, EventArgs e)
@@ -295,12 +298,12 @@ namespace GestionPersonnel.View
                 MessageBox.Show($"An error occurred while selecting the photo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private async void ajouteremploye_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
                 if (string.IsNullOrEmpty(nomEmployes.Text) || string.IsNullOrEmpty(prenomEmployes.Text) ||
                     string.IsNullOrEmpty(NSecuriteSocialeEmployes.Text) || string.IsNullOrEmpty(AdresseEmployes.Text) ||
                     string.IsNullOrEmpty(NTelephoneEmployes.Text) || string.IsNullOrEmpty(SituationFamilialeEmployes.Text) ||
@@ -310,7 +313,7 @@ namespace GestionPersonnel.View
                     MessageBox.Show("Entrer les informations manquantes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                
+
                 int fonctionId = (int)FonctionEmployes.SelectedValue;
                 Employee employee = new Employee
                 {
@@ -350,7 +353,7 @@ namespace GestionPersonnel.View
             {
                 MessageBox.Show($"An error occurred while adding/updating the employee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void ClearInputFields()
@@ -362,7 +365,7 @@ namespace GestionPersonnel.View
             NTelephoneEmployes.Clear();
             SituationFamilialeEmployes.SelectedIndex = -1;
             GroupeSanguinEmployes.SelectedIndex = -1;
-            FonctionEmployes.SelectedIndex = -1; 
+            FonctionEmployes.SelectedIndex = -1;
             DateNaissanceEmployes.Value = DateTime.Now;
             DateEntrerEmployes.Value = DateTime.Now;
             photoProfileEmployes.Image = null;
@@ -379,14 +382,14 @@ namespace GestionPersonnel.View
         private Dictionary<int, string> _fonctionsDictionary;
 
         private async Task LoadFonctions()
-        {   
+        {
             try
             {
                 var fonctions = await _fonctionStorage.GetAll();
                 _fonctionsDictionary = fonctions.ToDictionary(f => f.FonctionID, f => f.NomFonction);
                 FonctionEmployes.DataSource = fonctions;
-                FonctionEmployes.DisplayMember = "NomFonction"; 
-                FonctionEmployes.ValueMember = "FonctionID";   
+                FonctionEmployes.DisplayMember = "NomFonction";
+                FonctionEmployes.ValueMember = "FonctionID";
             }
             catch (Exception ex)
             {
@@ -415,7 +418,7 @@ namespace GestionPersonnel.View
                 }
 
                 FonctionEmployes.DataSource = fonctions;
-                FonctionEmployes.DisplayMember = "NomFonction"; 
+                FonctionEmployes.DisplayMember = "NomFonction";
                 FonctionEmployes.ValueMember = "FonctionID";
                 FonctionEmployes.SelectedIndex = -1;
             }
@@ -453,5 +456,39 @@ namespace GestionPersonnel.View
         private void labelDateNaissance_Click(object sender, EventArgs e) { }
 
         private void GroupeSanguinEmployes_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void photoProfileEmployes_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            ClearInputFields();
+            panelajouterfonction.Visible = true;
+            panelajouteremploye.Visible = false;
+            ClearInputFields();
+        }
+
+        private void guna2DataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            panelajouterfonction.Visible = false;
+            ClearInputFields();
+        }
     }
 }

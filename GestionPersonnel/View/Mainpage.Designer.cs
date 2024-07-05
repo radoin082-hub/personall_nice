@@ -219,6 +219,7 @@
             guna2Button4.TextAlign = HorizontalAlignment.Left;
             guna2Button4.TextOffset = new Point(10, 0);
             guna2Button4.Click += guna2Button4_Click;
+            guna2Button4.DragDrop += guna2Button4_DragDrop;
             // 
             // guna2Button1
             // 
@@ -244,6 +245,7 @@
             guna2Button1.Text = "Pointage";
             guna2Button1.TextAlign = HorizontalAlignment.Left;
             guna2Button1.TextOffset = new Point(10, 0);
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // guna2Button2
             // 
@@ -301,7 +303,7 @@
             Mainpanel.BackColor = SystemColors.WindowFrame;
             Mainpanel.Location = new Point(175, 84);
             Mainpanel.Name = "Mainpanel";
-            Mainpanel.Size = new Size(1182, 740);
+            Mainpanel.Size = new Size(1182, 817);
             Mainpanel.TabIndex = 2;
             Mainpanel.Paint += Mainpanel_Paint;
             // 

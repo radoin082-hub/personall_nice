@@ -14,7 +14,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
   
     public class FonctionStorage
     {
-        private readonly string _connectionString = "put local cnx string";
+        private readonly string _connectionString = "Data Source=DESKTOP-U8VPS30;Initial Catalog=db_aa9d4f_gestionpersonnel;Integrated Security=True;Encrypt=False";
 
         private const string selectAllQuery = "SELECT * FROM Fonctions";
         private const string selectByIdQuery = "SELECT * FROM Fonctions WHERE FonctionID = @id";

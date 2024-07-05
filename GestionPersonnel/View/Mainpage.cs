@@ -14,6 +14,7 @@ namespace GestionPersonnel.View
     {
         View.Udashboard ucdashboard = new View.Udashboard();
         View.UEmployes ucemployes = new View.UEmployes();
+        View.Controls.UPointage ucpointage = new View.Controls.UPointage();
 
 
         public Mainpage()
@@ -174,16 +175,15 @@ namespace GestionPersonnel.View
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
-            Mainpanel.Controls.Remove(ucdashboard);
+            Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucemployes);
             ucemployes.Dock = DockStyle.Fill;
-
 
         }
 
         private void ajouteremploye_Click(object sender, EventArgs e)
         {
-            Mainpanel.Controls.Remove(ucemployes);
+            Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucdashboard);
             ucdashboard.Dock = DockStyle.Fill;
 
@@ -227,6 +227,18 @@ namespace GestionPersonnel.View
         private void sidebar_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void guna2Button4_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            Mainpanel.Controls.Clear();
+            Mainpanel.Controls.Add(ucpointage);
+            ucpointage.Dock = DockStyle.Fill;
         }
     }
 }
