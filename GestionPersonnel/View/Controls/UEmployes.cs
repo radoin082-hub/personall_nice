@@ -41,9 +41,8 @@ namespace GestionPersonnel.View
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NSecuriteSociale", HeaderText = "N° Sécurité Sociale" });
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction" });
 
-            string modifierIconPath = @"C:\Users\Dali Raki\source\repos\gestion-personal\GestionPersonnel\Icon\icons8-edit-64.png";
-            string supprimerIconPath = @"C:\Users\Dali Raki\source\repos\gestion-personal\GestionPersonnel\Icon\icons8-delete-64.png";
-
+            string modifierIconPath = @"F:\GestionPersonnel\GestionPersonnel\Icon\icons8-edit-64.png";
+            string supprimerIconPath = @"F:\GestionPersonnel\GestionPersonnel\Icon\icons8-delete-64.png";
 
             DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
             {
@@ -489,6 +488,11 @@ namespace GestionPersonnel.View
         {
             panelajouterfonction.Visible = false;
             ClearInputFields();
+        }
+
+        private void guna2TextBox6_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

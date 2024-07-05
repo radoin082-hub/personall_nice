@@ -12,17 +12,15 @@ namespace GestionPersonnel.Storages.PointagesStorages
 {
     public class PointageStorage
     {
-        private readonly string connectionString = ("Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234");
+        private readonly string connectionString = "Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234";
 
         private const string _selectAllQuery = "SELECT * FROM Pointage";
-        private const string _selectByIdQuery = "SELECT * FROM Pointage WHERE PointageID = @id";
+        private const string _selectByIdAndDateQuery = "SELECT * FROM Pointage WHERE EmployeID = @id AND Date = @date";
         private const string _insertQuery = "INSERT INTO Pointage (EmployeID, Date, HeureEntree, HeureSortie, HeuresTravaillees) VALUES (@EmployeID, @Date, @HeureEntree, @HeureSortie, @HeuresTravaillees); SELECT SCOPE_IDENTITY();";
         private const string _updateQuery = "UPDATE Pointage SET EmployeID = @EmployeID, Date = @Date, HeureEntree = @HeureEntree, HeureSortie = @HeureSortie, HeuresTravaillees = @HeuresTravaillees WHERE PointageID = @PointageID;";
         private const string _deleteQuery = "DELETE FROM Pointage WHERE PointageID = @PointageID;";
 
-        public PointageStorage(IConfiguration configuration) =>
-            connectionString = configuration.GetConnectionString("Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234");
-
+      
         private static Pointage GetPointageFromDataRow(DataRow row)
         {
             return new Pointage
@@ -50,12 +48,14 @@ namespace GestionPersonnel.Storages.PointagesStorages
             return (from DataRow row in dataTable.Rows select GetPointageFromDataRow(row)).ToList();
         }
 
-        public async Task<Pointage?> GetById(int id)
+       
+        public async Task<Pointage?> GetByIdAndDate(int id, DateTime date)
         {
             await using var connection = new SqlConnection(connectionString);
 
-            SqlCommand cmd = new(_selectByIdQuery, connection);
+            SqlCommand cmd = new(_selectByIdAndDateQuery, connection);
             cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@date", date);
 
             DataTable dataTable = new();
             SqlDataAdapter da = new(cmd);

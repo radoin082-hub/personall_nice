@@ -14,7 +14,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
   
     public class FonctionStorage
     {
-        private readonly string _connectionString = "Data Source=DESKTOP-U8VPS30;Initial Catalog=db_aa9d4f_gestionpersonnel;Integrated Security=True;Encrypt=False";
+        private readonly string _connectionString = "Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234";
 
         private const string selectAllQuery = "SELECT * FROM Fonctions";
         private const string selectByIdQuery = "SELECT * FROM Fonctions WHERE FonctionID = @id";

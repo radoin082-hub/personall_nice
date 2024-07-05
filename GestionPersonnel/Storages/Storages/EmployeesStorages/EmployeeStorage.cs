@@ -12,7 +12,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
 {
     public class EmployeStorage
     {
-        private readonly string _connectionString = "Data Source=DESKTOP-U8VPS30;Initial Catalog=db_aa9d4f_gestionpersonnel;Integrated Security=True;Encrypt=False";
+        private readonly string _connectionString = "Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234";
 
         private const string _selectAllQuery = "SELECT * FROM Employes WHERE status = 1";
         private const string _selectByIdQuery = "SELECT * FROM Employes WHERE EmployeID = @id";
