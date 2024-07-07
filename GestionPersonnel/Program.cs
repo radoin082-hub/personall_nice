@@ -1,20 +1,19 @@
 using GestionPersonnel.View;
+using System;
+using System.Configuration;
+using System.Windows.Forms;
 
 namespace GestionPersonnel
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Mainpage());
-            /* Application.Run(new Dashboard());*/
+            string connectionString = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
+            //MessageBox.Show(connectionString); l3alamia
+            Application.Run(new Mainpage(connectionString));
         }
     }
 }

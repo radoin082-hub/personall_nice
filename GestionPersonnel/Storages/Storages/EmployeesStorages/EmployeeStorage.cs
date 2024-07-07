@@ -12,7 +12,12 @@ namespace GestionPersonnel.Storages.EmployeesStorages
 {
     public class EmployeStorage
     {
-        private readonly string _connectionString = "Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234";
+        private readonly string _connectionString;
+
+        public EmployeStorage(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         private const string _selectAllQuery = "SELECT * FROM Employes WHERE status = 1";
         private const string _selectByIdQuery = "SELECT * FROM Employes WHERE EmployeID = @id";
@@ -39,6 +44,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
                 Photo = row["Photo"] != DBNull.Value ? (byte[])row["Photo"] : null
             };
         }
+         
 
         public async Task<List<Employee>> GetAll()
         {
@@ -142,20 +148,39 @@ namespace GestionPersonnel.Storages.EmployeesStorages
 
         public async Task<decimal> GetTotalSalaryForMonth(DateTime month)
         {
-            await using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new("CalculerTotalSalairesDansUnMois", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@mois", month);
+            try
+            {
+                await using var connection = new SqlConnection(_connectionString);
+                SqlCommand cmd = new("CalculerTotalSalairesDansUnMois", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            var param = new SqlParameter("@totalSalaires", SqlDbType.Decimal);
-            param.Direction = ParameterDirection.Output;
-            cmd.Parameters.Add(param);
+                cmd.Parameters.AddWithValue("@mois", month);
 
-            connection.Open();
-            await cmd.ExecuteNonQueryAsync();
+                var param = new SqlParameter("@totalSalaires", SqlDbType.Decimal);
+                param.Direction = ParameterDirection.Output;
+                param.Precision = 10;
+                param.Scale = 2;
+                cmd.Parameters.Add(param);
 
-            return (decimal)cmd.Parameters["@totalSalaires"].Value;
+                connection.Open();
+                await cmd.ExecuteNonQueryAsync();
+
+                // Check if the output parameter value is DBNull or NULL
+                if (cmd.Parameters["@totalSalaires"].Value == DBNull.Value || cmd.Parameters["@totalSalaires"].Value == null)
+                {
+                    return 0; // Or handle DBNull/NULL case as per your application logic
+                }
+
+                return Convert.ToDecimal(cmd.Parameters["@totalSalaires"].Value);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching the total salary for the month.", ex);
+            }
         }
+
+
+
 
     }
 

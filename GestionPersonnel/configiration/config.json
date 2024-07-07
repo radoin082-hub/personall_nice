@@ -1,0 +1,6 @@
+{
+
+    "ConnectionStrings": {
+        "DB": "Data Source=RADOIN_CR\\SQLEXPRESS;Initial Catalog=db_aa9d4f_gestionpersonnel;Persist Security Info=True;User ID=sa;Password=123456;Encrypt=False"
+    }
+}

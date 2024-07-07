@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,24 +8,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts;
+using GestionPersonnel.View.Controls;
 
 namespace GestionPersonnel.View
 {
     public partial class Mainpage : Form
     {
-        View.Udashboard ucdashboard = new View.Udashboard();
-        View.UEmployes ucemployes = new View.UEmployes();
-        View.Controls.UPointage ucpointage = new View.Controls.UPointage();
+        private readonly string _connectionString;
+        private readonly Udashboard ucdashboard;
+        private readonly UEmployes ucemployes;
+        private readonly UPointage ucpointage;
 
-
-        public Mainpage()
+        public Mainpage(string connectionString)
         {
+            _connectionString = connectionString;
 
             InitializeComponent();
-
-
-
+            ucdashboard = new Udashboard(connectionString);
+            ucemployes = new UEmployes(connectionString);
+            ucpointage = new UPointage(connectionString);
         }
+
 
         private void udashboard1_Load(object sender, EventArgs e)
         {
@@ -43,14 +48,7 @@ namespace GestionPersonnel.View
 
         private void label1_Click(object sender, EventArgs e)
         {
-            //show & hide underlines
 
-            //hide lines of text
-
-
-
-
-            //show & hide palens
             Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucdashboard);
             ucdashboard.Dock = DockStyle.Fill;
@@ -58,13 +56,7 @@ namespace GestionPersonnel.View
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            //show & hide underlines
 
-            //hide lines of text
-
-
-
-            //show & hide palens
             Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucdashboard);
             ucdashboard.Dock = DockStyle.Fill;
@@ -73,13 +65,6 @@ namespace GestionPersonnel.View
         private void label5_Click(object sender, EventArgs e)
         {
 
-            //show & hide underlines
-
-            //hide lines of text
-
-
-
-            //show & hide palens
             Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucemployes);
             ucemployes.Dock = DockStyle.Fill;
@@ -87,14 +72,6 @@ namespace GestionPersonnel.View
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            //show & hide underlines
-
-            //hide lines of text
-
-
-
-
-            //show & hide palens
 
             Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucemployes);
@@ -178,6 +155,7 @@ namespace GestionPersonnel.View
             Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucemployes);
             ucemployes.Dock = DockStyle.Fill;
+            ucemployes.RefreshData(); 
 
         }
 
@@ -193,31 +171,32 @@ namespace GestionPersonnel.View
         {
 
         }
-        bool a;  // This indicates if the sidebar is expanding or collapsing
+         
         private void guna2Button5_Click(object sender, EventArgs e)
         {
             sidebarTimer.Start();
         }
 
+        bool a; 
         private void sidebartiker(object sender, EventArgs e)
         {
-            if (a) // If expanding
+            if (a) 
             {
-                sidebar.Width += 300;
+                sidebar.Width += 70;
                 if (sidebar.Width >= sidebar.MaximumSize.Width)
                 {
-                    sidebar.Width = sidebar.MaximumSize.Width; // Ensure exact size match
-                    a = false; // Switch to collapsing
+                    sidebar.Width = sidebar.MaximumSize.Width; 
+                    a = false; 
                     sidebarTimer.Stop();
                 }
             }
-            else // If collapsing
+            else 
             {
-                sidebar.Width -= 300;
+                sidebar.Width -= 70;
                 if (sidebar.Width <= sidebar.MinimumSize.Width)
                 {
-                    sidebar.Width = sidebar.MinimumSize.Width; // Ensure exact size match
-                    a = true; // Switch to expanding
+                    sidebar.Width = sidebar.MinimumSize.Width; 
+                    a = true; 
                     sidebarTimer.Stop();
                 }
             }

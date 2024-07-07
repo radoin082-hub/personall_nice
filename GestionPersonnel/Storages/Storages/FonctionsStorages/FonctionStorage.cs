@@ -14,12 +14,17 @@ namespace GestionPersonnel.Storages.FonctionsStorages
   
     public class FonctionStorage
     {
-        private readonly string _connectionString = "Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234";
+        private readonly string _connectionString;
+
+        public FonctionStorage(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         private const string selectAllQuery = "SELECT * FROM Fonctions";
         private const string selectByIdQuery = "SELECT * FROM Fonctions WHERE FonctionID = @id";
 
-
+        
         private static Fonction GetFonctionFromDataRow(DataRow row)
         {
             return new Fonction
@@ -62,7 +67,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
         public async Task Add(Fonction fonction)
         {
             await using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new("INSERT INTO Fonction (NomFonction) VALUES (@NomFonction); SELECT SCOPE_IDENTITY();", connection);
+            SqlCommand cmd = new("INSERT INTO Fonctions (NomFonction) VALUES (@NomFonction); SELECT SCOPE_IDENTITY();", connection);
             cmd.Parameters.AddWithValue("@NomFonction", fonction.NomFonction);
 
             connection.Open();
@@ -91,6 +96,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
             connection.Open();
             await cmd.ExecuteNonQueryAsync();
         }
+
 
 
     }

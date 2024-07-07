@@ -4,28 +4,35 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestionPersonnel.Models.Employees;
+using GestionPersonnel.Models.Fonctions;
+using GestionPersonnel.Properties;
 using GestionPersonnel.Storages.EmployeesStorages;
 using GestionPersonnel.Storages.FonctionsStorages;
 using Guna.UI2.WinForms;
+using Microsoft.Extensions.Configuration;
 
 namespace GestionPersonnel.View
 {
     public partial class UEmployes : UserControl
     {
+        private readonly IConfiguration _configuration;
         private readonly EmployeStorage _employeStorage;
         private readonly FonctionStorage _fonctionStorage;
         private List<Employee> _allEmployees;
         private byte[] photo;
         private int? editingEmployeeId = null;
-
-        public UEmployes()
+        private Dictionary<int, string> _fonctionsDictionary;
+        private readonly string _connectionString;
+        public UEmployes(string connectionString)
         {
+            _connectionString = connectionString;
             InitializeComponent();
-            _employeStorage = new EmployeStorage();
-            _fonctionStorage = new FonctionStorage();
+            _employeStorage = new EmployeStorage(connectionString);
+            _fonctionStorage = new FonctionStorage(connectionString);
             Load += UEmployes_Load;
             guna2TextBox1.TextChanged += guna2TextBox1_TextChanged;
             guna2DataGridView1.CellFormatting += guna2DataGridView1_CellFormatting;
@@ -34,48 +41,7 @@ namespace GestionPersonnel.View
 
         private void InitializeDataGridView()
         {
-            guna2DataGridView1.Columns.Clear();
 
-            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nom", HeaderText = "Nom" });
-            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Prenom", HeaderText = "Prénom" });
-            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NSecuriteSociale", HeaderText = "N° Sécurité Sociale" });
-            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction" });
-
-            string modifierIconPath = @"C:\Users\radoi\source\repos\YES\GestionPersonnel\Icon\icons8-edit-64.png";
-            string supprimerIconPath = @"C:\Users\radoi\source\repos\YES\GestionPersonnel\Icon\icons8-delete-64.png";
-
-            DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
-            {
-                Name = "ModifierColumn",
-                HeaderText = "",
-                Tag = modifierIconPath,
-                FillWeight = 23,
-                DefaultCellStyle = new DataGridViewCellStyle()
-                {
-                    Padding = new Padding(0),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter
-                }
-            };
-
-            DataGridViewButtonColumn supprimerColumn = new DataGridViewButtonColumn
-            {
-                Name = "SupprimerColumn",
-                HeaderText = "",
-                Tag = supprimerIconPath,
-                FillWeight = 23,
-                DefaultCellStyle = new DataGridViewCellStyle()
-                {
-                    Padding = new Padding(0),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter
-                }
-            };
-
-            guna2DataGridView1.Columns.Add(modifierColumn);
-            guna2DataGridView1.Columns.Add(supprimerColumn);
-            guna2DataGridView1.CellPainting += Guna2DataGridView1_CellPainting;
-            guna2DataGridView1.RowTemplate.Height = 50;
-            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            guna2DataGridView1.AllowUserToAddRows = false;
         }
 
         private void Guna2DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -85,15 +51,17 @@ namespace GestionPersonnel.View
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
 
                 DataGridViewButtonColumn buttonColumn = (DataGridViewButtonColumn)guna2DataGridView1.Columns[e.ColumnIndex];
-                string iconPath = buttonColumn.Tag.ToString();
-                Image icon = Image.FromFile(iconPath);
+                Image icon = buttonColumn.Tag as Image;
 
-                int iconWidth = 30; // Adjust as needed
-                int iconHeight = 30; // Adjust as needed
-                int iconX = e.CellBounds.X + (e.CellBounds.Width - iconWidth) / 2;
-                int iconY = e.CellBounds.Y + (e.CellBounds.Height - iconHeight) / 2;
+                if (icon != null)
+                {
+                    int iconWidth = 30; // Adjust as needed
+                    int iconHeight = 30; // Adjust as needed
+                    int iconX = e.CellBounds.X + (e.CellBounds.Width - iconWidth) / 2;
+                    int iconY = e.CellBounds.Y + (e.CellBounds.Height - iconHeight) / 2;
 
-                e.Graphics.DrawImage(icon, new Rectangle(iconX, iconY, iconWidth, iconHeight));
+                    e.Graphics.DrawImage(icon, new Rectangle(iconX, iconY, iconWidth, iconHeight));
+                }
 
                 using (Pen pen = new Pen(guna2DataGridView1.GridColor, 0))
                 {
@@ -173,8 +141,6 @@ namespace GestionPersonnel.View
             UpdateDataGridView(filteredEmployees);
         }
 
-
-
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
             search(sender, e);
@@ -223,7 +189,6 @@ namespace GestionPersonnel.View
 
         private void PopulateEmployeeDetails(Employee employee)
         {
-
             nomEmployes.Text = employee.Nom;
             prenomEmployes.Text = employee.Prenom;
             DateNaissanceEmployes.Value = employee.DateDeNaissance;
@@ -302,7 +267,6 @@ namespace GestionPersonnel.View
         {
             try
             {
-
                 if (string.IsNullOrEmpty(nomEmployes.Text) || string.IsNullOrEmpty(prenomEmployes.Text) ||
                     string.IsNullOrEmpty(NSecuriteSocialeEmployes.Text) || string.IsNullOrEmpty(AdresseEmployes.Text) ||
                     string.IsNullOrEmpty(NTelephoneEmployes.Text) || string.IsNullOrEmpty(SituationFamilialeEmployes.Text) ||
@@ -372,13 +336,10 @@ namespace GestionPersonnel.View
             editingEmployeeId = null;
         }
 
-
         private void reste(object sender, EventArgs e)
         {
             ClearInputFields();
         }
-
-        private Dictionary<int, string> _fonctionsDictionary;
 
         private async Task LoadFonctions()
         {
@@ -419,6 +380,9 @@ namespace GestionPersonnel.View
                 FonctionEmployes.DataSource = fonctions;
                 FonctionEmployes.DisplayMember = "NomFonction";
                 FonctionEmployes.ValueMember = "FonctionID";
+                display_function.DataSource = fonctions;
+                display_function.DisplayMember = "NomFonction";
+                display_function.ValueMember = "FonctionID";
                 FonctionEmployes.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -427,6 +391,60 @@ namespace GestionPersonnel.View
             }
         }
 
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            ClearInputFields();
+            panelajouterfonction.Visible = true;
+            panelajouteremploye.Visible = false;
+            ClearInputFields();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            panelajouterfonction.Visible = false;
+            ClearInputFields();
+            addfonction.Clear();
+
+        }
+
+        private async void guna2Button4_Click(object sender, EventArgs e)
+        {
+
+            string nomFonction = addfonction.Text;
+
+            if (string.IsNullOrEmpty(nomFonction))
+            {
+                MessageBox.Show("Please enter a function name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Fonction newFonction = new Fonction
+            {
+                NomFonction = nomFonction
+            };
+
+            try
+            {
+                await _fonctionStorage.Add(newFonction);
+                MessageBox.Show("Function added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                addfonction.Clear();
+                await LoadFonctionsData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while adding the function: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            addfonction.Clear();
+        }
+        public async Task RefreshData()
+        {
+            await LoadEmployees();
+        }
 
         private void labelNom_Click(object sender, EventArgs e) { }
 
@@ -456,41 +474,28 @@ namespace GestionPersonnel.View
 
         private void GroupeSanguinEmployes_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void photoProfileEmployes_Click_1(object sender, EventArgs e)
+        private void photoProfileEmployes_Click_1(object sender, EventArgs e) { }
+
+        private void label7_Click(object sender, EventArgs e) { }
+
+        private void guna2DataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e) { }
+
+        private void label2_Click(object sender, EventArgs e) { }
+
+        private void guna2TextBox6_TextChanged(object sender, EventArgs e) { }
+
+        private void label4_Click(object sender, EventArgs e) { }
+
+        private void guna2DataGridView1_CellContentClick_3(object sender, DataGridViewCellEventArgs e) { }
+
+        private void guna2Button5_Click(object sender, EventArgs e) { }
+
+        private void ModifierFunction_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-            ClearInputFields();
-            panelajouterfonction.Visible = true;
-            panelajouteremploye.Visible = false;
-            ClearInputFields();
-        }
-
-        private void guna2DataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            panelajouterfonction.Visible = false;
-            ClearInputFields();
-        }
-
-        private void guna2TextBox6_TextChanged(object sender, EventArgs e)
+        private void display_function_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

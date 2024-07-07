@@ -85,6 +85,7 @@
             label6.Size = new Size(224, 36);
             label6.TabIndex = 2;
             label6.Text = "0000000.00 DA";
+            label6.Click += label6_Click;
             // 
             // label7
             // 

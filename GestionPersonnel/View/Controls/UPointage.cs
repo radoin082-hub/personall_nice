@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,12 @@ namespace GestionPersonnel.View.Controls
 {
     public partial class UPointage : UserControl
     {
-        public UPointage()
+        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
+        public UPointage(string connectionString)
         {
+            _connectionString = connectionString;
+
             InitializeComponent();
         }
 
@@ -38,6 +43,11 @@ namespace GestionPersonnel.View.Controls
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

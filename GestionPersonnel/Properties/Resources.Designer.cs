@@ -59,5 +59,71 @@ namespace GestionPersonnel.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] a {
+            get {
+                object obj = ResourceManager.GetObject("a", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] config {
+            get {
+                object obj = ResourceManager.GetObject("config", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;configuration&gt;
+        ///	&lt;connectionStrings&gt;
+        ///		&lt;add name=&quot;db&quot; connectionString= &quot;Data Source=RADOIN_CR\\SQLEXPRESS;Initial Catalog=db_aa9d4f_gestionpersonnel;Persist Security Info=True;User ID=sa;Password=123456;Encrypt=False&quot; /&gt;
+        ///
+        ///	&lt;/connectionStrings&gt;
+        ///&lt;/configuration&gt;
+        ///.
+        /// </summary>
+        internal static string configxml {
+            get {
+                return ResourceManager.GetString("configxml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_delete_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_delete_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_edit_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_edit_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] jsconfig1 {
+            get {
+                object obj = ResourceManager.GetObject("jsconfig1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

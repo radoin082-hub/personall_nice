@@ -1,4 +1,6 @@
-﻿namespace GestionPersonnel.View
+﻿using GestionPersonnel.Properties;
+
+namespace GestionPersonnel.View
 {
     partial class UEmployes
     {
@@ -70,6 +72,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges43 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges44 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             nomT = new DataGridViewTextBoxColumn();
             prenomT = new DataGridViewTextBoxColumn();
@@ -78,6 +86,14 @@
             editT = new DataGridViewTextBoxColumn();
             supprimerT = new DataGridViewTextBoxColumn();
             guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             photoProfileEmployes = new PictureBox();
             photoProfileBtn = new Guna.UI2.WinForms.Guna2Button();
@@ -106,11 +122,17 @@
             rest = new Guna.UI2.WinForms.Guna2Button();
             panelajouteremploye = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panelajouterfonction = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            label4 = new Label();
+            label3 = new Label();
+            modifier_fuction = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
+            label2 = new Label();
+            display_function = new Guna.UI2.WinForms.Guna2ComboBox();
             label7 = new Label();
             guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             pictureBox2 = new PictureBox();
-            guna2TextBox6 = new Guna.UI2.WinForms.Guna2TextBox();
+            addfonction = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
@@ -136,13 +158,14 @@
             guna2TextBox1.ForeColor = Color.Black;
             guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox1.IconLeft = (Image)resources.GetObject("guna2TextBox1.IconLeft");
-            guna2TextBox1.Location = new Point(74, 10);
+            guna2TextBox1.Location = new Point(85, 13);
+            guna2TextBox1.Margin = new Padding(3, 5, 3, 5);
             guna2TextBox1.Name = "guna2TextBox1";
             guna2TextBox1.PasswordChar = '\0';
             guna2TextBox1.PlaceholderText = "Search Here";
             guna2TextBox1.SelectedText = "";
             guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.Size = new Size(296, 34);
+            guna2TextBox1.Size = new Size(338, 45);
             guna2TextBox1.TabIndex = 0;
             guna2TextBox1.TextChanged += guna2TextBox1_TextChanged_1;
             // 
@@ -193,6 +216,7 @@
             // 
             // guna2DataGridView1
             // 
+            guna2DataGridView1.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -215,13 +239,12 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(16, 59);
-            guna2DataGridView1.Margin = new Padding(3, 2, 3, 2);
+            guna2DataGridView1.Location = new Point(18, 79);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
-            guna2DataGridView1.RowTemplate.Height = 29;
-            guna2DataGridView1.Size = new Size(1060, 607);
+            guna2DataGridView1.RowTemplate.Height = 50;
+            guna2DataGridView1.Size = new Size(1211, 809);
             guna2DataGridView1.TabIndex = 1;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -241,9 +264,49 @@
             guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             guna2DataGridView1.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            guna2DataGridView1.ThemeStyle.RowsStyle.Height = 29;
+            guna2DataGridView1.ThemeStyle.RowsStyle.Height = 50;
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick_3;
+            guna2DataGridView1.CellPainting += Guna2DataGridView1_CellPainting;
+            guna2DataGridView1.Columns.Clear();
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nom", HeaderText = "Nom" });
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Prenom", HeaderText = "Prénom" });
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NSecuriteSociale", HeaderText = "N° Sécurité Sociale" });
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction" });
+
+            Image modifierIconPath = Properties.Resources.icons8_edit_64;
+            DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
+            {
+                Name = "ModifierColumn",
+                HeaderText = "",
+                Tag = modifierIconPath,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            Image supprimerIconPath = Properties.Resources.icons8_delete_48;
+            DataGridViewButtonColumn supprimerColumn = new DataGridViewButtonColumn
+            {
+                Name = "SupprimerColumn",
+                HeaderText = "",
+                Tag = supprimerIconPath,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            guna2DataGridView1.Columns.Add(modifierColumn);
+            guna2DataGridView1.Columns.Add(supprimerColumn);
+            guna2DataGridView1.CellPainting += Guna2DataGridView1_CellPainting;
+            guna2DataGridView1.RowTemplate.Height = 50;
+            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            guna2DataGridView1.AllowUserToAddRows = false;
             // 
             // guna2Button1
             // 
@@ -256,11 +319,10 @@
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(864, 10);
-            guna2Button1.Margin = new Padding(3, 2, 3, 2);
+            guna2Button1.Location = new Point(987, 13);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2Button1.Size = new Size(191, 34);
+            guna2Button1.Size = new Size(218, 45);
             guna2Button1.TabIndex = 2;
             guna2Button1.Text = "Ajouter Employe";
             guna2Button1.Click += guna2Button1_Click;
@@ -268,10 +330,9 @@
             // photoProfileEmployes
             // 
             photoProfileEmployes.Image = (Image)resources.GetObject("photoProfileEmployes.Image");
-            photoProfileEmployes.Location = new Point(210, 21);
-            photoProfileEmployes.Margin = new Padding(3, 2, 3, 2);
+            photoProfileEmployes.Location = new Point(240, 28);
             photoProfileEmployes.Name = "photoProfileEmployes";
-            photoProfileEmployes.Size = new Size(138, 112);
+            photoProfileEmployes.Size = new Size(158, 149);
             photoProfileEmployes.SizeMode = PictureBoxSizeMode.Zoom;
             photoProfileEmployes.TabIndex = 72;
             photoProfileEmployes.TabStop = false;
@@ -288,11 +349,10 @@
             photoProfileBtn.FillColor = Color.FromArgb(45, 81, 210);
             photoProfileBtn.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             photoProfileBtn.ForeColor = Color.White;
-            photoProfileBtn.Location = new Point(210, 137);
-            photoProfileBtn.Margin = new Padding(3, 2, 3, 2);
+            photoProfileBtn.Location = new Point(240, 183);
             photoProfileBtn.Name = "photoProfileBtn";
             photoProfileBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            photoProfileBtn.Size = new Size(138, 26);
+            photoProfileBtn.Size = new Size(158, 35);
             photoProfileBtn.TabIndex = 73;
             photoProfileBtn.Text = " photo profile";
             photoProfileBtn.Click += photoProfileBtn_Click_1;
@@ -302,9 +362,9 @@
             labelNom.AutoSize = true;
             labelNom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelNom.ForeColor = Color.Black;
-            labelNom.Location = new Point(33, 180);
+            labelNom.Location = new Point(38, 240);
             labelNom.Name = "labelNom";
-            labelNom.Size = new Size(34, 15);
+            labelNom.Size = new Size(44, 20);
             labelNom.TabIndex = 74;
             labelNom.Text = "Nom";
             labelNom.Click += labelNom_Click;
@@ -323,13 +383,14 @@
             nomEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             nomEmployes.ForeColor = Color.Black;
             nomEmployes.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            nomEmployes.Location = new Point(30, 187);
+            nomEmployes.Location = new Point(34, 249);
+            nomEmployes.Margin = new Padding(3, 5, 3, 5);
             nomEmployes.Name = "nomEmployes";
             nomEmployes.PasswordChar = '\0';
             nomEmployes.PlaceholderText = "";
             nomEmployes.SelectedText = "";
             nomEmployes.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            nomEmployes.Size = new Size(243, 27);
+            nomEmployes.Size = new Size(278, 36);
             nomEmployes.TabIndex = 75;
             // 
             // labelPrenom
@@ -337,9 +398,9 @@
             labelPrenom.AutoSize = true;
             labelPrenom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelPrenom.ForeColor = Color.Black;
-            labelPrenom.Location = new Point(309, 180);
+            labelPrenom.Location = new Point(353, 240);
             labelPrenom.Name = "labelPrenom";
-            labelPrenom.Size = new Size(51, 15);
+            labelPrenom.Size = new Size(64, 20);
             labelPrenom.TabIndex = 76;
             labelPrenom.Text = "Prenom";
             labelPrenom.Click += labelPrenom_Click;
@@ -358,7 +419,8 @@
             prenomEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             prenomEmployes.ForeColor = Color.Black;
             prenomEmployes.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            prenomEmployes.Location = new Point(303, 187);
+            prenomEmployes.Location = new Point(346, 249);
+            prenomEmployes.Margin = new Padding(3, 5, 3, 5);
             prenomEmployes.Name = "prenomEmployes";
             prenomEmployes.PasswordChar = '\0';
             prenomEmployes.PlaceholderForeColor = Color.FromArgb(217, 217, 217);
@@ -366,7 +428,7 @@
             prenomEmployes.SelectedText = "";
             prenomEmployes.ShadowDecoration.BorderRadius = 5;
             prenomEmployes.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            prenomEmployes.Size = new Size(242, 27);
+            prenomEmployes.Size = new Size(277, 36);
             prenomEmployes.TabIndex = 77;
             // 
             // DateNaissanceEmployes
@@ -380,13 +442,12 @@
             DateNaissanceEmployes.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DateNaissanceEmployes.ForeColor = Color.White;
             DateNaissanceEmployes.Format = DateTimePickerFormat.Long;
-            DateNaissanceEmployes.Location = new Point(30, 246);
-            DateNaissanceEmployes.Margin = new Padding(3, 2, 3, 2);
+            DateNaissanceEmployes.Location = new Point(34, 328);
             DateNaissanceEmployes.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             DateNaissanceEmployes.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             DateNaissanceEmployes.Name = "DateNaissanceEmployes";
             DateNaissanceEmployes.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            DateNaissanceEmployes.Size = new Size(243, 27);
+            DateNaissanceEmployes.Size = new Size(278, 36);
             DateNaissanceEmployes.TabIndex = 78;
             DateNaissanceEmployes.Value = new DateTime(2024, 6, 6, 11, 37, 0, 603);
             // 
@@ -395,9 +456,9 @@
             labelDateNaissance.AutoSize = true;
             labelDateNaissance.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelDateNaissance.ForeColor = Color.Black;
-            labelDateNaissance.Location = new Point(33, 229);
+            labelDateNaissance.Location = new Point(38, 305);
             labelDateNaissance.Name = "labelDateNaissance";
-            labelDateNaissance.Size = new Size(108, 15);
+            labelDateNaissance.Size = new Size(137, 20);
             labelDateNaissance.TabIndex = 79;
             labelDateNaissance.Text = "Date de Naissance";
             labelDateNaissance.Click += labelDateNaissance_Click;
@@ -407,9 +468,9 @@
             labelAdresse.AutoSize = true;
             labelAdresse.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelAdresse.ForeColor = Color.Black;
-            labelAdresse.Location = new Point(38, 293);
+            labelAdresse.Location = new Point(43, 391);
             labelAdresse.Name = "labelAdresse";
-            labelAdresse.Size = new Size(51, 15);
+            labelAdresse.Size = new Size(65, 20);
             labelAdresse.TabIndex = 80;
             labelAdresse.Text = "Adresse";
             // 
@@ -427,13 +488,14 @@
             AdresseEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             AdresseEmployes.ForeColor = Color.Black;
             AdresseEmployes.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            AdresseEmployes.Location = new Point(30, 301);
+            AdresseEmployes.Location = new Point(34, 401);
+            AdresseEmployes.Margin = new Padding(3, 5, 3, 5);
             AdresseEmployes.Name = "AdresseEmployes";
             AdresseEmployes.PasswordChar = '\0';
             AdresseEmployes.PlaceholderText = "";
             AdresseEmployes.SelectedText = "";
             AdresseEmployes.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            AdresseEmployes.Size = new Size(243, 27);
+            AdresseEmployes.Size = new Size(278, 36);
             AdresseEmployes.TabIndex = 81;
             AdresseEmployes.TextChanged += AdresseEmployes_TextChanged;
             // 
@@ -443,9 +505,9 @@
             labelNtelephone.BackColor = Color.Transparent;
             labelNtelephone.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelNtelephone.ForeColor = Color.Black;
-            labelNtelephone.Location = new Point(309, 293);
+            labelNtelephone.Location = new Point(353, 391);
             labelNtelephone.Name = "labelNtelephone";
-            labelNtelephone.Size = new Size(85, 15);
+            labelNtelephone.Size = new Size(107, 20);
             labelNtelephone.TabIndex = 82;
             labelNtelephone.Text = " N° Telephone";
             // 
@@ -463,13 +525,14 @@
             NTelephoneEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NTelephoneEmployes.ForeColor = Color.Black;
             NTelephoneEmployes.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            NTelephoneEmployes.Location = new Point(303, 301);
+            NTelephoneEmployes.Location = new Point(346, 401);
+            NTelephoneEmployes.Margin = new Padding(3, 5, 3, 5);
             NTelephoneEmployes.Name = "NTelephoneEmployes";
             NTelephoneEmployes.PasswordChar = '\0';
             NTelephoneEmployes.PlaceholderText = "";
             NTelephoneEmployes.SelectedText = "";
             NTelephoneEmployes.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            NTelephoneEmployes.Size = new Size(246, 27);
+            NTelephoneEmployes.Size = new Size(281, 36);
             NTelephoneEmployes.TabIndex = 83;
             // 
             // GroupeSanguinEmployes
@@ -488,11 +551,10 @@
             GroupeSanguinEmployes.ForeColor = Color.FromArgb(20, 157, 213);
             GroupeSanguinEmployes.ItemHeight = 30;
             GroupeSanguinEmployes.Items.AddRange(new object[] { "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-" });
-            GroupeSanguinEmployes.Location = new Point(303, 389);
-            GroupeSanguinEmployes.Margin = new Padding(3, 2, 3, 2);
+            GroupeSanguinEmployes.Location = new Point(346, 519);
             GroupeSanguinEmployes.Name = "GroupeSanguinEmployes";
             GroupeSanguinEmployes.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            GroupeSanguinEmployes.Size = new Size(246, 36);
+            GroupeSanguinEmployes.Size = new Size(281, 36);
             GroupeSanguinEmployes.TabIndex = 84;
             GroupeSanguinEmployes.SelectedIndexChanged += GroupeSanguinEmployes_SelectedIndexChanged;
             // 
@@ -501,9 +563,9 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Black;
-            label9.Location = new Point(309, 382);
+            label9.Location = new Point(353, 509);
             label9.Name = "label9";
-            label9.Size = new Size(96, 15);
+            label9.Size = new Size(121, 20);
             label9.TabIndex = 85;
             label9.Text = "Groupe Sanguin";
             // 
@@ -512,9 +574,9 @@
             labelNSecuriteSociale.AutoSize = true;
             labelNSecuriteSociale.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelNSecuriteSociale.ForeColor = Color.Black;
-            labelNSecuriteSociale.Location = new Point(38, 440);
+            labelNSecuriteSociale.Location = new Point(43, 587);
             labelNSecuriteSociale.Name = "labelNSecuriteSociale";
-            labelNSecuriteSociale.Size = new Size(113, 15);
+            labelNSecuriteSociale.Size = new Size(139, 20);
             labelNSecuriteSociale.TabIndex = 88;
             labelNSecuriteSociale.Text = "N° Securite Sociale";
             // 
@@ -533,13 +595,14 @@
             NSecuriteSocialeEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NSecuriteSocialeEmployes.ForeColor = Color.Black;
             NSecuriteSocialeEmployes.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            NSecuriteSocialeEmployes.Location = new Point(30, 448);
+            NSecuriteSocialeEmployes.Location = new Point(34, 597);
+            NSecuriteSocialeEmployes.Margin = new Padding(3, 5, 3, 5);
             NSecuriteSocialeEmployes.Name = "NSecuriteSocialeEmployes";
             NSecuriteSocialeEmployes.PasswordChar = '\0';
             NSecuriteSocialeEmployes.PlaceholderText = "";
             NSecuriteSocialeEmployes.SelectedText = "";
             NSecuriteSocialeEmployes.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            NSecuriteSocialeEmployes.Size = new Size(243, 27);
+            NSecuriteSocialeEmployes.Size = new Size(278, 36);
             NSecuriteSocialeEmployes.TabIndex = 89;
             NSecuriteSocialeEmployes.TextChanged += NSecuriteSocialeEmployes_TextChanged;
             // 
@@ -559,32 +622,29 @@
             SituationFamilialeEmployes.ForeColor = Color.FromArgb(20, 157, 213);
             SituationFamilialeEmployes.ItemHeight = 30;
             SituationFamilialeEmployes.Items.AddRange(new object[] { "Celibataire", "Marie", "Divorce" });
-            SituationFamilialeEmployes.Location = new Point(303, 448);
-            SituationFamilialeEmployes.Margin = new Padding(3, 2, 3, 2);
+            SituationFamilialeEmployes.Location = new Point(346, 597);
             SituationFamilialeEmployes.Name = "SituationFamilialeEmployes";
             SituationFamilialeEmployes.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            SituationFamilialeEmployes.Size = new Size(246, 36);
+            SituationFamilialeEmployes.Size = new Size(281, 36);
             SituationFamilialeEmployes.TabIndex = 90;
-            SituationFamilialeEmployes.UseWaitCursor = true;
             // 
             // labelSituationFamiliale
             // 
             labelSituationFamiliale.AutoSize = true;
             labelSituationFamiliale.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelSituationFamiliale.ForeColor = Color.Black;
-            labelSituationFamiliale.Location = new Point(309, 440);
+            labelSituationFamiliale.Location = new Point(353, 587);
             labelSituationFamiliale.Name = "labelSituationFamiliale";
-            labelSituationFamiliale.Size = new Size(108, 15);
+            labelSituationFamiliale.Size = new Size(138, 20);
             labelSituationFamiliale.TabIndex = 91;
             labelSituationFamiliale.Text = "Situation Familiale";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(30, 21);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(34, 28);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(38, 34);
+            pictureBox1.Size = new Size(43, 45);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 92;
             pictureBox1.TabStop = false;
@@ -601,11 +661,10 @@
             ajouteremploye.FillColor = Color.FromArgb(45, 81, 210);
             ajouteremploye.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ajouteremploye.ForeColor = Color.White;
-            ajouteremploye.Location = new Point(405, 494);
-            ajouteremploye.Margin = new Padding(3, 2, 3, 2);
+            ajouteremploye.Location = new Point(463, 659);
             ajouteremploye.Name = "ajouteremploye";
             ajouteremploye.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            ajouteremploye.Size = new Size(131, 28);
+            ajouteremploye.Size = new Size(150, 37);
             ajouteremploye.TabIndex = 93;
             ajouteremploye.Text = "Confirmation";
             ajouteremploye.Click += ajouteremploye_Click;
@@ -621,13 +680,12 @@
             DateEntrerEmployes.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DateEntrerEmployes.ForeColor = Color.White;
             DateEntrerEmployes.Format = DateTimePickerFormat.Long;
-            DateEntrerEmployes.Location = new Point(303, 246);
-            DateEntrerEmployes.Margin = new Padding(3, 2, 3, 2);
+            DateEntrerEmployes.Location = new Point(346, 328);
             DateEntrerEmployes.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             DateEntrerEmployes.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             DateEntrerEmployes.Name = "DateEntrerEmployes";
             DateEntrerEmployes.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            DateEntrerEmployes.Size = new Size(243, 27);
+            DateEntrerEmployes.Size = new Size(278, 36);
             DateEntrerEmployes.TabIndex = 94;
             DateEntrerEmployes.Value = new DateTime(2024, 6, 6, 11, 37, 0, 603);
             // 
@@ -636,9 +694,9 @@
             labelDateEntrer.AutoSize = true;
             labelDateEntrer.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelDateEntrer.ForeColor = Color.Black;
-            labelDateEntrer.Location = new Point(306, 229);
+            labelDateEntrer.Location = new Point(350, 305);
             labelDateEntrer.Name = "labelDateEntrer";
-            labelDateEntrer.Size = new Size(89, 15);
+            labelDateEntrer.Size = new Size(110, 20);
             labelDateEntrer.TabIndex = 95;
             labelDateEntrer.Text = "Date de Entrer";
             // 
@@ -657,13 +715,11 @@
             FonctionEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             FonctionEmployes.ForeColor = Color.FromArgb(20, 157, 213);
             FonctionEmployes.ItemHeight = 30;
-            FonctionEmployes.Location = new Point(30, 389);
-            FonctionEmployes.Margin = new Padding(3, 2, 3, 2);
+            FonctionEmployes.Location = new Point(34, 519);
             FonctionEmployes.Name = "FonctionEmployes";
             FonctionEmployes.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            FonctionEmployes.Size = new Size(244, 36);
+            FonctionEmployes.Size = new Size(278, 36);
             FonctionEmployes.TabIndex = 96;
-            FonctionEmployes.UseWaitCursor = true;
             FonctionEmployes.SelectedIndexChanged += FonctionEmployes_SelectedIndexChanged;
             // 
             // label1
@@ -671,9 +727,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(33, 382);
+            label1.Location = new Point(38, 509);
             label1.Name = "label1";
-            label1.Size = new Size(55, 15);
+            label1.Size = new Size(70, 20);
             label1.TabIndex = 97;
             label1.Text = "Fonction";
             // 
@@ -688,13 +744,12 @@
             rest.FillColor = Color.Red;
             rest.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rest.ForeColor = Color.White;
-            rest.Location = new Point(246, 494);
-            rest.Margin = new Padding(3, 2, 3, 2);
+            rest.Location = new Point(281, 659);
             rest.Name = "rest";
             rest.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            rest.Size = new Size(131, 28);
+            rest.Size = new Size(150, 37);
             rest.TabIndex = 98;
-            rest.Text = "Rester";
+            rest.Text = "Reset";
             rest.Click += reste;
             // 
             // panelajouteremploye
@@ -726,12 +781,11 @@
             panelajouteremploye.Controls.Add(photoProfileBtn);
             panelajouteremploye.Controls.Add(photoProfileEmployes);
             panelajouteremploye.FillColor = Color.White;
-            panelajouteremploye.Location = new Point(486, 42);
-            panelajouteremploye.Margin = new Padding(3, 2, 3, 2);
+            panelajouteremploye.Location = new Point(555, 56);
             panelajouteremploye.Name = "panelajouteremploye";
             panelajouteremploye.Radius = 14;
             panelajouteremploye.ShadowColor = Color.Black;
-            panelajouteremploye.Size = new Size(557, 600);
+            panelajouteremploye.Size = new Size(637, 800);
             panelajouteremploye.TabIndex = 3;
             panelajouteremploye.Visible = false;
             panelajouteremploye.Paint += guna2ShadowPanel1_Paint;
@@ -739,29 +793,132 @@
             // panelajouterfonction
             // 
             panelajouterfonction.BackColor = Color.Transparent;
+            panelajouterfonction.Controls.Add(label4);
+            panelajouterfonction.Controls.Add(label3);
+            panelajouterfonction.Controls.Add(modifier_fuction);
+            panelajouterfonction.Controls.Add(guna2Button5);
+            panelajouterfonction.Controls.Add(label2);
+            panelajouterfonction.Controls.Add(display_function);
             panelajouterfonction.Controls.Add(label7);
             panelajouterfonction.Controls.Add(guna2Button3);
             panelajouterfonction.Controls.Add(guna2Button4);
             panelajouterfonction.Controls.Add(pictureBox2);
-            panelajouterfonction.Controls.Add(guna2TextBox6);
+            panelajouterfonction.Controls.Add(addfonction);
             panelajouterfonction.FillColor = Color.White;
-            panelajouterfonction.Location = new Point(486, 42);
-            panelajouterfonction.Margin = new Padding(3, 2, 3, 2);
+            panelajouterfonction.Location = new Point(555, 56);
             panelajouterfonction.Name = "panelajouterfonction";
             panelajouterfonction.Radius = 14;
             panelajouterfonction.ShadowColor = Color.Black;
-            panelajouterfonction.Size = new Size(557, 380);
+            panelajouterfonction.Size = new Size(637, 507);
             panelajouterfonction.TabIndex = 99;
             panelajouterfonction.Visible = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = SystemColors.ControlDarkDark;
+            label4.Location = new Point(16, 210);
+            label4.Name = "label4";
+            label4.Size = new Size(597, 20);
+            label4.TabIndex = 104;
+            label4.Text = "__________________________________________________________________________________________________";
+            label4.Click += label4_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Black;
+            label3.Location = new Point(43, 307);
+            label3.Name = "label3";
+            label3.Size = new Size(138, 20);
+            label3.TabIndex = 102;
+            label3.Text = "Fonction Modifier ";
+            // 
+            // modifier_fuction
+            // 
+            modifier_fuction.BorderRadius = 10;
+            modifier_fuction.CustomizableEdges = customizableEdges31;
+            modifier_fuction.DefaultText = "";
+            modifier_fuction.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            modifier_fuction.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            modifier_fuction.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            modifier_fuction.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            modifier_fuction.FillColor = Color.FromArgb(232, 251, 253);
+            modifier_fuction.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            modifier_fuction.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            modifier_fuction.ForeColor = Color.Black;
+            modifier_fuction.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            modifier_fuction.Location = new Point(34, 317);
+            modifier_fuction.Margin = new Padding(3, 5, 3, 5);
+            modifier_fuction.Name = "modifier_fuction";
+            modifier_fuction.PasswordChar = '\0';
+            modifier_fuction.PlaceholderText = "";
+            modifier_fuction.SelectedText = "";
+            modifier_fuction.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            modifier_fuction.Size = new Size(297, 36);
+            modifier_fuction.TabIndex = 103;
+            // 
+            // guna2Button5
+            // 
+            guna2Button5.BorderRadius = 10;
+            guna2Button5.CustomizableEdges = customizableEdges33;
+            guna2Button5.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button5.FillColor = Color.MediumSeaGreen;
+            guna2Button5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2Button5.ForeColor = Color.White;
+            guna2Button5.Location = new Point(450, 416);
+            guna2Button5.Name = "guna2Button5";
+            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            guna2Button5.Size = new Size(150, 37);
+            guna2Button5.TabIndex = 101;
+            guna2Button5.Text = "Modifier";
+            guna2Button5.Click += ModifierFunction_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(38, 240);
+            label2.Name = "label2";
+            label2.Size = new Size(70, 20);
+            label2.TabIndex = 100;
+            label2.Text = "Fonction";
+            // 
+            // display_function
+            // 
+            display_function.AccessibleDescription = "";
+            display_function.BackColor = Color.White;
+            display_function.BorderColor = Color.FromArgb(213, 218, 223);
+            display_function.BorderRadius = 10;
+            display_function.CustomizableEdges = customizableEdges35;
+            display_function.DrawMode = DrawMode.OwnerDrawFixed;
+            display_function.DropDownStyle = ComboBoxStyle.DropDownList;
+            display_function.FillColor = Color.FromArgb(232, 251, 253);
+            display_function.FocusedColor = Color.FromArgb(94, 148, 255);
+            display_function.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            display_function.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            display_function.ForeColor = Color.FromArgb(20, 157, 213);
+            display_function.ItemHeight = 30;
+            display_function.Location = new Point(34, 249);
+            display_function.Name = "display_function";
+            display_function.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            display_function.Size = new Size(297, 36);
+            display_function.TabIndex = 99;
+            display_function.SelectedIndexChanged += display_function_SelectedIndexChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(47, 110);
+            label7.Location = new Point(43, 96);
             label7.Name = "label7";
-            label7.Size = new Size(102, 15);
+            label7.Size = new Size(130, 20);
             label7.TabIndex = 74;
             label7.Text = "Nom de Fonction";
             label7.Click += label7_Click;
@@ -769,7 +926,7 @@
             // guna2Button3
             // 
             guna2Button3.BorderRadius = 10;
-            guna2Button3.CustomizableEdges = customizableEdges31;
+            guna2Button3.CustomizableEdges = customizableEdges37;
             guna2Button3.DisabledState.BorderColor = Color.DarkGray;
             guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -777,18 +934,18 @@
             guna2Button3.FillColor = Color.Red;
             guna2Button3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button3.ForeColor = Color.White;
-            guna2Button3.Location = new Point(246, 202);
-            guna2Button3.Margin = new Padding(3, 2, 3, 2);
+            guna2Button3.Location = new Point(248, 416);
             guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            guna2Button3.Size = new Size(131, 28);
+            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            guna2Button3.Size = new Size(150, 37);
             guna2Button3.TabIndex = 98;
-            guna2Button3.Text = "Rester";
+            guna2Button3.Text = "Supprimer";
+            guna2Button3.Click += guna2Button3_Click;
             // 
             // guna2Button4
             // 
             guna2Button4.BorderRadius = 10;
-            guna2Button4.CustomizableEdges = customizableEdges33;
+            guna2Button4.CustomizableEdges = customizableEdges39;
             guna2Button4.DisabledState.BorderColor = Color.DarkGray;
             guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -796,73 +953,72 @@
             guna2Button4.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button4.ForeColor = Color.White;
-            guna2Button4.Location = new Point(405, 202);
-            guna2Button4.Margin = new Padding(3, 2, 3, 2);
+            guna2Button4.Location = new Point(404, 157);
             guna2Button4.Name = "guna2Button4";
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges34;
-            guna2Button4.Size = new Size(131, 28);
+            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            guna2Button4.Size = new Size(196, 37);
             guna2Button4.TabIndex = 93;
-            guna2Button4.Text = "Confirmation";
+            guna2Button4.Text = "New Confirmation";
+            guna2Button4.Click += guna2Button4_Click;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(30, 21);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
+            pictureBox2.Location = new Point(34, 28);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(38, 34);
+            pictureBox2.Size = new Size(43, 45);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 92;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
             // 
-            // guna2TextBox6
+            // addfonction
             // 
-            guna2TextBox6.BorderRadius = 10;
-            guna2TextBox6.CustomizableEdges = customizableEdges35;
-            guna2TextBox6.DefaultText = "";
-            guna2TextBox6.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox6.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox6.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox6.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox6.FillColor = Color.FromArgb(232, 251, 253);
-            guna2TextBox6.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2TextBox6.ForeColor = Color.Black;
-            guna2TextBox6.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox6.Location = new Point(26, 117);
-            guna2TextBox6.Name = "guna2TextBox6";
-            guna2TextBox6.PasswordChar = '\0';
-            guna2TextBox6.PlaceholderText = "";
-            guna2TextBox6.SelectedText = "";
-            guna2TextBox6.ShadowDecoration.CustomizableEdges = customizableEdges36;
-            guna2TextBox6.Size = new Size(515, 27);
-            guna2TextBox6.TabIndex = 75;
-            guna2TextBox6.TextChanged += guna2TextBox6_TextChanged;
+            addfonction.BorderRadius = 10;
+            addfonction.CustomizableEdges = customizableEdges41;
+            addfonction.DefaultText = "";
+            addfonction.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            addfonction.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            addfonction.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            addfonction.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            addfonction.FillColor = Color.FromArgb(232, 251, 253);
+            addfonction.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            addfonction.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addfonction.ForeColor = Color.Black;
+            addfonction.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            addfonction.Location = new Point(34, 106);
+            addfonction.Margin = new Padding(3, 5, 3, 5);
+            addfonction.Name = "addfonction";
+            addfonction.PasswordChar = '\0';
+            addfonction.PlaceholderText = "";
+            addfonction.SelectedText = "";
+            addfonction.ShadowDecoration.CustomizableEdges = customizableEdges42;
+            addfonction.Size = new Size(297, 36);
+            addfonction.TabIndex = 75;
+            addfonction.TextChanged += guna2TextBox6_TextChanged;
             // 
             // guna2Button2
             // 
             guna2Button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2Button2.BorderRadius = 10;
-            guna2Button2.CustomizableEdges = customizableEdges37;
+            guna2Button2.CustomizableEdges = customizableEdges43;
             guna2Button2.DisabledState.BorderColor = Color.DarkGray;
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button2.ForeColor = Color.White;
-            guna2Button2.Location = new Point(655, 10);
-            guna2Button2.Margin = new Padding(3, 2, 3, 2);
+            guna2Button2.Location = new Point(749, 13);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges38;
-            guna2Button2.Size = new Size(191, 34);
+            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges44;
+            guna2Button2.Size = new Size(218, 45);
             guna2Button2.TabIndex = 4;
             guna2Button2.Text = "Ajouter Fonction";
             guna2Button2.Click += guna2Button2_Click;
             // 
             // UEmployes
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(panelajouterfonction);
@@ -871,9 +1027,8 @@
             Controls.Add(guna2Button1);
             Controls.Add(guna2DataGridView1);
             Controls.Add(guna2TextBox1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "UEmployes";
-            Size = new Size(1086, 676);
+            Size = new Size(1241, 901);
             Load += UEmployes_Load_1;
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).EndInit();
@@ -924,11 +1079,27 @@
         private Guna.UI2.WinForms.Guna2Button rest;
         private Guna.UI2.WinForms.Guna2ShadowPanel panelajouteremploye;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox6;
+        private Guna.UI2.WinForms.Guna2TextBox addfonction;
         private PictureBox pictureBox2;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Label label7;
         private Guna.UI2.WinForms.Guna2ShadowPanel panelajouterfonction;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewButtonColumn modifierColumn;
+        private DataGridViewButtonColumn supprimerColumn;
+        private Label label2;
+        private Guna.UI2.WinForms.Guna2ComboBox display_function;
+        private Guna.UI2.WinForms.Guna2Button guna2Button5;
+        private Label label3;
+        private Guna.UI2.WinForms.Guna2TextBox modifier_fuction;
+        private Label label4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
     }
 }

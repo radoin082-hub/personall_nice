@@ -12,8 +12,12 @@ namespace GestionPersonnel.Storages.PointagesStorages
 {
     public class PointageStorage
     {
-        private readonly string connectionString = "Data Source=SQL6032.site4now.net;Initial Catalog=db_aa9d4f_gestionpersonnel;User Id=db_aa9d4f_gestionpersonnel_admin;Password=IAGE1234";
+        private readonly string _connectionString;
 
+        public PointageStorage(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
         private const string _selectAllQuery = "SELECT * FROM Pointage";
         private const string _selectByIdAndDateQuery = "SELECT * FROM Pointage WHERE EmployeID = @id AND Date = @date";
         private const string _insertQuery = "INSERT INTO Pointage (EmployeID, Date, HeureEntree, HeureSortie, HeuresTravaillees) VALUES (@EmployeID, @Date, @HeureEntree, @HeureSortie, @HeuresTravaillees); SELECT SCOPE_IDENTITY();";
@@ -36,7 +40,7 @@ namespace GestionPersonnel.Storages.PointagesStorages
 
         public async Task<List<Pointage>> GetAll()
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(_selectAllQuery, connection);
 
             DataTable dataTable = new();
@@ -51,7 +55,7 @@ namespace GestionPersonnel.Storages.PointagesStorages
        
         public async Task<Pointage?> GetByIdAndDate(int id, DateTime date)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
 
             SqlCommand cmd = new(_selectByIdAndDateQuery, connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -68,7 +72,7 @@ namespace GestionPersonnel.Storages.PointagesStorages
 
         public async Task Add(Pointage pointage)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(_insertQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", pointage.EmployeID);
             cmd.Parameters.AddWithValue("@Date", pointage.Date);
@@ -83,7 +87,7 @@ namespace GestionPersonnel.Storages.PointagesStorages
 
         public async Task Update(Pointage pointage)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(_updateQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", pointage.EmployeID);
             cmd.Parameters.AddWithValue("@Date", pointage.Date);
@@ -98,7 +102,7 @@ namespace GestionPersonnel.Storages.PointagesStorages
 
         public async Task Delete(int id)
         {
-            await using var connection = new SqlConnection(connectionString);
+            await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(_deleteQuery, connection);
             cmd.Parameters.AddWithValue("@PointageID", id);
 
