@@ -307,7 +307,6 @@ namespace GestionPersonnel.View.Controls
             tabpointage.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpointage.ColumnHeadersHeight = 29;
             tabpointage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tabpointage.Columns.AddRange(new DataGridViewColumn[] { Nom, Prenom, Fonction, Status, Heur, Pourcentage, Remarque, Modifier });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -346,57 +345,16 @@ namespace GestionPersonnel.View.Controls
             tabpointage.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tabpointage.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             tabpointage.CellContentClick += guna2DataGridView1_CellContentClick_2;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            // 
-            // Prenom
-            // 
-            Prenom.HeaderText = "Prenom";
-            Prenom.MinimumWidth = 6;
-            Prenom.Name = "Prenom";
-            // 
-            // Fonction
-            // 
-            Fonction.HeaderText = "Fonction";
-            Fonction.MinimumWidth = 6;
-            Fonction.Name = "Fonction";
-            // 
-            // Status
-            // 
-            Status.HeaderText = "Status";
-            Status.MinimumWidth = 6;
-            Status.Name = "Status";
-            // 
-            // Heur
-            // 
-            Heur.HeaderText = "Heur";
-            Heur.MinimumWidth = 6;
-            Heur.Name = "Heur";
-            // 
-            // Pourcentage
-            // 
-            Pourcentage.HeaderText = "Pourcentage";
-            Pourcentage.MinimumWidth = 6;
-            Pourcentage.Name = "Pourcentage";
-            // 
-            // Remarque
-            // 
-            Remarque.HeaderText = "Remarque";
-            Remarque.MinimumWidth = 6;
-            Remarque.Name = "Remarque";
-            // 
-            // Modifier
-            // 
-            Modifier.HeaderText = "Modifier";
-            Modifier.MinimumWidth = 6;
-            Modifier.Name = "Modifier";
-            // 
-            // panelaupdpointage
-            // 
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nom", HeaderText = "Nom",MinimumWidth = 6});
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Prenom", HeaderText = "Prenom", MinimumWidth = 6 });
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction", MinimumWidth = 6 });
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Status", HeaderText = "Status", MinimumWidth = 6 });
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Heur", HeaderText = "Heur", MinimumWidth = 6 });
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Pourcentage", HeaderText = "Pourcentage", MinimumWidth = 6 });
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Remarque", HeaderText = "Remarque", MinimumWidth = 6 });
+            tabpointage.RowTemplate.Height = 50;
+
+            //
             panelaupdpointage.BackColor = Color.Transparent;
             panelaupdpointage.Controls.Add(photoProfileEmployes);
             panelaupdpointage.Controls.Add(labprenom);

@@ -282,7 +282,7 @@ namespace GestionPersonnel.View
                 HeaderText = "",
                 Tag = modifierIconPath,
                 FillWeight = 23,
-                
+
                 DefaultCellStyle = new DataGridViewCellStyle()
                 {
                     Padding = new Padding(0),
