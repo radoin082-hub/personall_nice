@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bunifu.UI.WinForms.Helpers.Transitions;
 using GestionPersonnel.Models.Employees;
 using GestionPersonnel.Models.Fonctions;
 using GestionPersonnel.Properties;
@@ -56,15 +57,15 @@ namespace GestionPersonnel.View
 
                 if (icon != null)
                 {
-                    int iconWidth = 30; // Adjust as needed
-                    int iconHeight = 30; // Adjust as needed
+                    int iconWidth = 24; // Adjust as needed
+                    int iconHeight = 24; // Adjust as needed
                     int iconX = e.CellBounds.X + (e.CellBounds.Width - iconWidth) / 2;
                     int iconY = e.CellBounds.Y + (e.CellBounds.Height - iconHeight) / 2;
 
                     e.Graphics.DrawImage(icon, new Rectangle(iconX, iconY, iconWidth, iconHeight));
                 }
 
-                using (Pen pen = new Pen(guna2DataGridView1.GridColor, 0))
+                using (Pen pen = new Pen(guna2DataGridView1.GridColor, -4))
                 {
                     e.Graphics.DrawRectangle(pen, e.CellBounds);
                 }

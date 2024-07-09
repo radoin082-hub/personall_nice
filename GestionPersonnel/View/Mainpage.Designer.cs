@@ -43,7 +43,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel2 = new Panel();
-            label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             pictureBox1 = new PictureBox();
@@ -64,34 +63,22 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(232, 251, 253);
-            panel2.Controls.Add(label7);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(pictureBox1);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1357, 84);
+            panel2.Size = new Size(1432, 84);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.DimGray;
-            label7.Location = new Point(70, 42);
-            label7.Name = "label7";
-            label7.Size = new Size(79, 15);
-            label7.TabIndex = 82;
-            label7.Text = "Zone-chetma";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.DimGray;
-            label6.Location = new Point(68, 22);
+            label6.Location = new Point(91, 41);
             label6.Name = "label6";
             label6.Size = new Size(70, 20);
             label6.TabIndex = 81;
@@ -103,7 +90,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(579, 22);
+            label5.Location = new Point(572, 41);
             label5.Name = "label5";
             label5.Size = new Size(213, 20);
             label5.TabIndex = 80;
@@ -113,9 +100,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(0, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(50, 50);
+            pictureBox1.Size = new Size(85, 81);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
@@ -303,7 +290,7 @@
             Mainpanel.BackColor = SystemColors.WindowFrame;
             Mainpanel.Location = new Point(175, 84);
             Mainpanel.Name = "Mainpanel";
-            Mainpanel.Size = new Size(1182, 817);
+            Mainpanel.Size = new Size(1257, 817);
             Mainpanel.TabIndex = 2;
             Mainpanel.Paint += Mainpanel_Paint;
             // 
@@ -316,12 +303,12 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1357, 903);
+            ClientSize = new Size(1432, 903);
             Controls.Add(Mainpanel);
             Controls.Add(sidebar);
             Controls.Add(panel2);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(1350, 950);
+            MinimumSize = new Size(1450, 950);
             Name = "Mainpage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestion Personnel";
@@ -337,7 +324,6 @@
         private Panel panel2;
         private PictureBox pictureBox1;
         private Label label5;
-        private Label label7;
         private Label label6;
         private FlowLayoutPanel sidebar;
         private Panel Mainpanel;
