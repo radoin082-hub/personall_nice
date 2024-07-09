@@ -21,6 +21,35 @@ namespace GestionPersonnel.View.Controls
 
             InitializeComponent();
         }
+        
+
+        private void showiconedit(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && (tabpointage.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
+
+                DataGridViewButtonColumn buttonColumn = (DataGridViewButtonColumn)tabpointage.Columns[e.ColumnIndex];
+                Image icon = buttonColumn.Tag as Image;
+
+                if (icon != null)
+                {
+                    int iconWidth = 30; // Adjust as needed
+                    int iconHeight = 30; // Adjust as needed
+                    int iconX = e.CellBounds.X + (e.CellBounds.Width - iconWidth) / 2;
+                    int iconY = e.CellBounds.Y + (e.CellBounds.Height - iconHeight) / 2;
+
+                    e.Graphics.DrawImage(icon, new Rectangle(iconX, iconY, iconWidth, iconHeight));
+                }
+
+                using (Pen pen = new Pen(tabpointage.GridColor, 0))
+                {
+                    e.Graphics.DrawRectangle(pen, e.CellBounds);
+                }
+
+                e.Handled = true;
+            }
+        }
 
         private void TabPointage_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
