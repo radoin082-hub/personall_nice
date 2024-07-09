@@ -19,12 +19,12 @@ namespace GestionPersonnel.View
 {
     public partial class UEmployes : UserControl
     {
-        private readonly IConfiguration _configuration;
         private readonly EmployeStorage _employeStorage;
         private readonly FonctionStorage _fonctionStorage;
         private List<Employee> _allEmployees;
         private byte[] photo;
         private int? editingEmployeeId = null;
+        private int? editingFunctionId = null; 
         private Dictionary<int, string> _fonctionsDictionary;
         private readonly string _connectionString;
         public UEmployes(string connectionString)
@@ -37,6 +37,7 @@ namespace GestionPersonnel.View
             guna2TextBox1.TextChanged += guna2TextBox1_TextChanged;
             guna2DataGridView1.CellFormatting += guna2DataGridView1_CellFormatting;
             guna2DataGridView1.CellClick += Guna2DataGridView1_CellClick;
+            guna2Button3.Click += guna2Button3_Click;
         }
 
         private void InitializeDataGridView()
@@ -384,6 +385,7 @@ namespace GestionPersonnel.View
                 display_function.DisplayMember = "NomFonction";
                 display_function.ValueMember = "FonctionID";
                 FonctionEmployes.SelectedIndex = -1;
+                display_function.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -403,13 +405,14 @@ namespace GestionPersonnel.View
         {
             panelajouterfonction.Visible = false;
             ClearInputFields();
+            modifier_fuction.Clear();
             addfonction.Clear();
+            display_function.SelectedItem = -1;
 
         }
 
         private async void guna2Button4_Click(object sender, EventArgs e)
         {
-
             string nomFonction = addfonction.Text;
 
             if (string.IsNullOrEmpty(nomFonction))
@@ -418,29 +421,58 @@ namespace GestionPersonnel.View
                 return;
             }
 
-            Fonction newFonction = new Fonction
-            {
-                NomFonction = nomFonction
-            };
-
             try
             {
-                await _fonctionStorage.Add(newFonction);
-                MessageBox.Show("Function added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (editingFunctionId.HasValue)
+                {
+                    var functionToUpdate = await _fonctionStorage.GetById(editingFunctionId.Value);
+                    functionToUpdate.NomFonction = nomFonction;
+                    await _fonctionStorage.Update(functionToUpdate);
+                    MessageBox.Show("Function updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    editingFunctionId = null;
+                }
+                else
+                {
+                    Fonction newFonction = new Fonction { NomFonction = nomFonction };
+                    await _fonctionStorage.Add(newFonction);
+                    MessageBox.Show("Function added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 addfonction.Clear();
                 await LoadFonctionsData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while adding the function: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while adding/updating the function: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void guna2Button3_Click(object sender, EventArgs e)
+        private async void guna2Button3_Click(object sender, EventArgs e)
         {
-            addfonction.Clear();
+            if (display_function.SelectedItem is Fonction selectedFunction)
+            {
+                try
+                {
+                    await _fonctionStorage.Delete(selectedFunction.FonctionID);
+                    MessageBox.Show("Function deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await LoadFonctionsData();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while deleting the function: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a function to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
+
         public async Task RefreshData()
         {
             await LoadEmployees();
@@ -490,14 +522,49 @@ namespace GestionPersonnel.View
 
         private void guna2Button5_Click(object sender, EventArgs e) { }
 
-        private void ModifierFunction_Click(object sender, EventArgs e)
+        private async void ModifierFunction_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (display_function.SelectedItem != null)
+                {
+                    var selectedFunction = (Fonction)display_function.SelectedItem;
+                    selectedFunction.NomFonction = modifier_fuction.Text; 
+                    await _fonctionStorage.Update(selectedFunction);
 
+                    MessageBox.Show("Function updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    panelajouterfonction.Visible = false;
+                    panelajouteremploye.Visible = true;
+
+                    await LoadFonctionsData();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a function to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void display_function_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+        {   modifier_fuction.Clear();
+            display_function.SelectedItem = -1;
+            if (display_function.SelectedItem != null)
+            {
+                // Assuming SelectedItem is of type Fonction
+                Fonction selectedFonction = display_function.SelectedItem as Fonction;
+                if (selectedFonction != null)
+                {
+                    modifier_fuction.Text = selectedFonction.NomFonction;
+                }
+            }
+            
         }
+
+
+
     }
 }

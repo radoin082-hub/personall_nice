@@ -1,17 +1,11 @@
-﻿using GestionPersonnel.Models.Fonctions;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using GestionPersonnel.Models.Fonctions;
 
 namespace GestionPersonnel.Storages.FonctionsStorages
 {
-  
     public class FonctionStorage
     {
         private readonly string _connectionString;
@@ -21,83 +15,115 @@ namespace GestionPersonnel.Storages.FonctionsStorages
             _connectionString = connectionString;
         }
 
-        private const string selectAllQuery = "SELECT * FROM Fonctions";
-        private const string selectByIdQuery = "SELECT * FROM Fonctions WHERE FonctionID = @id";
-
-        
-        private static Fonction GetFonctionFromDataRow(DataRow row)
-        {
-            return new Fonction
-            {
-                FonctionID = (int)row["FonctionID"],  // Ensure this is an int
-                NomFonction = (string)row["NomFonction"]
-            };
-        }
-
-
         public async Task<List<Fonction>> GetAll()
         {
-            await using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new(selectAllQuery, connection);
+            var fonctions = new List<Fonction>();
+            string query = "SELECT FonctionID, NomFonction FROM Fonctions"; // Ensure this matches your table name
 
-            DataTable dataTable = new();
-            SqlDataAdapter da = new(cmd);
-
-            connection.Open();
-            da.Fill(dataTable);
-
-            return (from DataRow row in dataTable.Rows select GetFonctionFromDataRow(row)).ToList();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                await connection.OpenAsync();
+                using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        fonctions.Add(new Fonction
+                        {
+                            FonctionID = reader.GetInt32(0),
+                            NomFonction = reader.GetString(1)
+                        });
+                    }
+                }
+            }
+            return fonctions;
         }
 
-        public async Task<Fonction?> GetById(int id)
-        {
-            await using var connection = new SqlConnection(_connectionString);
-
-            SqlCommand cmd = new(selectByIdQuery, connection);
-            cmd.Parameters.AddWithValue("@id", id);
-
-            DataTable dataTable = new();
-            SqlDataAdapter da = new(cmd);
-
-            connection.Open();
-            da.Fill(dataTable);
-
-            return dataTable.Rows.Count == 0 ? null : GetFonctionFromDataRow(dataTable.Rows[0]);
-        }
         public async Task Add(Fonction fonction)
         {
-            await using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new("INSERT INTO Fonctions (NomFonction) VALUES (@NomFonction); SELECT SCOPE_IDENTITY();", connection);
-            cmd.Parameters.AddWithValue("@NomFonction", fonction.NomFonction);
+            string query = "INSERT INTO Fonctions (NomFonction) VALUES (@NomFonction)"; // Ensure this matches your table name
 
-            connection.Open();
-            var id = await cmd.ExecuteScalarAsync();
-            fonction.FonctionID = Convert.ToInt32(id);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NomFonction", fonction.NomFonction);
+                await connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
+            }
         }
 
         public async Task Update(Fonction fonction)
         {
-            await using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new("UPDATE Fonction SET NomFonction = @NomFonction WHERE FonctionID = @FonctionID;", connection);
-            cmd.Parameters.AddWithValue("@NomFonction", fonction.NomFonction);
-            cmd.Parameters.AddWithValue("@FonctionID", fonction.FonctionID);
+            string query = "UPDATE Fonctions SET NomFonction = @NomFonction WHERE FonctionID = @FonctionID"; // Ensure this matches your table name
 
-            connection.Open();
-            await cmd.ExecuteNonQueryAsync();
-           
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NomFonction", fonction.NomFonction);
+                command.Parameters.AddWithValue("@FonctionID", fonction.FonctionID);
+                await connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
+            }
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int fonctionId)
         {
-            await using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new("DELETE FROM Fonction WHERE FonctionID = @FonctionID;", connection);
-            cmd.Parameters.AddWithValue("@FonctionID", id);
+            try
+            {
+                // Check if the Fonction is referenced by any employee
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
 
-            connection.Open();
-            await cmd.ExecuteNonQueryAsync();
+                    // Count employees referencing this function
+                    string checkQuery = "SELECT COUNT(*) FROM Employes WHERE FonctionID = @FonctionID";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@FonctionID", fonctionId);
+                    int count = (int)await checkCommand.ExecuteScalarAsync();
+
+                    if (count > 0)
+                    {
+                        throw new InvalidOperationException("The function cannot be deleted because it is referenced by employees.");
+                    }
+
+                    // Delete the Fonction
+                    string deleteQuery = "DELETE FROM Fonctions WHERE FonctionID = @FonctionID";
+                    SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+                    deleteCommand.Parameters.AddWithValue("@FonctionID", fonctionId);
+                    await deleteCommand.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"An error occurred while deleting the function: {ex.Message}");
+            }
         }
 
 
 
+        public async Task<Fonction> GetById(int fonctionId)
+        {
+            Fonction fonction = null;
+            string query = "SELECT FonctionID, NomFonction FROM Fonctions WHERE FonctionID = @FonctionID"; // Ensure this matches your table name
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@FonctionID", fonctionId);
+                await connection.OpenAsync();
+                using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        fonction = new Fonction
+                        {
+                            FonctionID = reader.GetInt32(0),
+                            NomFonction = reader.GetString(1)
+                        };
+                    }
+                }
+            }
+            return fonction;
+        }
     }
 }
