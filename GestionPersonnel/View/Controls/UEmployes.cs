@@ -290,7 +290,7 @@ namespace GestionPersonnel.View
                     NTelephone = NTelephoneEmployes.Text,
                     SitiationFamiliale = SituationFamilialeEmployes.Text,
                     GroupSanguin = GroupeSanguinEmployes.Text,
-                    FonctionID = fonctionId, // Correctly assign the selected value
+                    FonctionID = fonctionId, 
                     DateEntree = DateEntrerEmployes.Value,
                     DateSortie = null,
                     Photo = photo

@@ -19,9 +19,11 @@ namespace GestionPersonnel.Storages.PointagesStorages
             _connectionString = connectionString;
         }
         private const string _selectAllQuery = "SELECT * FROM Pointage";
+
         private const string _selectByIdAndDateQuery = "SELECT * FROM Pointage WHERE EmployeID = @id AND Date = @date";
+
         private const string _insertQuery = "INSERT INTO Pointage (EmployeID, Date, HeureEntree, HeureSortie, HeuresTravaillees) VALUES (@EmployeID, @Date, @HeureEntree, @HeureSortie, @HeuresTravaillees); SELECT SCOPE_IDENTITY();";
-        private const string _updateQuery = "UPDATE Pointage SET EmployeID = @EmployeID, Date = @Date, HeureEntree = @HeureEntree, HeureSortie = @HeureSortie, HeuresTravaillees = @HeuresTravaillees WHERE PointageID = @PointageID;";
+        private const string _updateQuery = "UPDATE Pointage SET HeuresTravaillees = @HeuresTravaillees WHERE PointageID = @PointageID;";
         private const string _deleteQuery = "DELETE FROM Pointage WHERE PointageID = @PointageID;";
 
       
@@ -52,23 +54,25 @@ namespace GestionPersonnel.Storages.PointagesStorages
             return (from DataRow row in dataTable.Rows select GetPointageFromDataRow(row)).ToList();
         }
 
-       
-        public async Task<Pointage?> GetByIdAndDate(int id, DateTime date)
+
+        public async Task<Pointage?> GetByIdAndDate(int id, DateOnly date)
         {
             await using var connection = new SqlConnection(_connectionString);
 
             SqlCommand cmd = new(_selectByIdAndDateQuery, connection);
             cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("@date", date);
+            cmd.Parameters.AddWithValue("@date", date.ToDateTime(TimeOnly.MinValue));
 
             DataTable dataTable = new();
             SqlDataAdapter da = new(cmd);
 
-            connection.Open();
+            await connection.OpenAsync().ConfigureAwait(false);
             da.Fill(dataTable);
 
             return dataTable.Rows.Count == 0 ? null : GetPointageFromDataRow(dataTable.Rows[0]);
         }
+
+
 
         public async Task Add(Pointage pointage)
         {
@@ -89,16 +93,15 @@ namespace GestionPersonnel.Storages.PointagesStorages
         {
             await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(_updateQuery, connection);
-            cmd.Parameters.AddWithValue("@EmployeID", pointage.EmployeID);
-            cmd.Parameters.AddWithValue("@Date", pointage.Date);
-            cmd.Parameters.AddWithValue("@HeureEntree", pointage.HeureEntree);
-            cmd.Parameters.AddWithValue("@HeureSortie", pointage.HeureSortie);
+
             cmd.Parameters.AddWithValue("@HeuresTravaillees", pointage.HeuresTravaillees);
             cmd.Parameters.AddWithValue("@PointageID", pointage.PointageID);
 
-            connection.Open();
+            await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
         }
+
+
 
         public async Task Delete(int id)
         {
@@ -109,5 +112,6 @@ namespace GestionPersonnel.Storages.PointagesStorages
             connection.Open();
             await cmd.ExecuteNonQueryAsync();
         }
+
     }
 }

@@ -19,8 +19,20 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             _connectionString = connectionString;
         }
 
-        private const string _selectAllQuery = "SELECT * FROM Employes WHERE status = 1";
-        private const string _selectByIdQuery = "SELECT * FROM Employes WHERE EmployeID = @id";
+        private const string _selectAllQuery = @"
+            SELECT E.EmployeID, E.Nom, E.Prenom, E.DateDeNaissance, E.NSecuriteSocial, E.Adresse, E.GroupSanguin, 
+                   E.NTelephone, E.FonctionID, E.DateEntree, E.DateSortie, E.SitiationFamiliale, 
+                   E.Photo, F.NomFonction
+            FROM Employes E
+            INNER JOIN Fonctions F ON E.FonctionID = F.FonctionID
+            WHERE E.status = 1";
+        private const string _selectByIdQuery = @"
+            SELECT E.EmployeID, E.Nom, E.Prenom, E.DateDeNaissance, E.NSecuriteSocial, E.Adresse, E.GroupSanguin, 
+                   E.NTelephone, E.FonctionID, E.DateEntree, E.DateSortie, E.SitiationFamiliale, 
+                   E.Photo, F.NomFonction
+            FROM Employes E
+            INNER JOIN Fonctions F ON E.FonctionID = F.FonctionID
+            WHERE E.EmployeID = @id";
         private const string _insertQuery = "INSERT INTO Employes (Nom, Prenom, DateDeNaissance, NSecuriteSocial, Adresse, GroupSanguin, NTelephone, FonctionID, DateEntree, DateSortie, SitiationFamiliale, Photo) VALUES (@Nom, @Prenom, @DateDeNaissance, @NSecuriteSocial, @Adresse, @GroupSanguin, @NTelephone, @FonctionID, @DateEntree, @DateSortie, @SitiationFamiliale, @Photo); SELECT SCOPE_IDENTITY();";
         private const string _updateQuery = "UPDATE Employes SET Nom = @Nom, Prenom = @Prenom, DateDeNaissance = @DateDeNaissance, NSecuriteSocial = @NSecuriteSocial, Adresse = @Adresse, GroupSanguin = @GroupSanguin, NTelephone = @NTelephone, FonctionID = @FonctionID, DateEntree = @DateEntree, DateSortie = @DateSortie, SitiationFamiliale = @SitiationFamiliale, Photo = @Photo WHERE EmployeID = @EmployeID;";
         private const string _deleteQuery = "UPDATE Employes SET status = 0 WHERE EmployeID = @EmployeID;";
@@ -41,10 +53,13 @@ namespace GestionPersonnel.Storages.EmployeesStorages
                 DateEntree = (DateTime)row["DateEntree"],
                 DateSortie = row["DateSortie"] != DBNull.Value ? (DateTime)row["DateSortie"] : (DateTime?)null,
                 SitiationFamiliale = (string)row["SitiationFamiliale"],
-                Photo = row["Photo"] != DBNull.Value ? (byte[])row["Photo"] : null
+                Photo = row["Photo"] as byte[],
+              
+                FonctionName = row["NomFonction"].ToString()
+
             };
         }
-         
+
 
         public async Task<List<Employee>> GetAll()
         {
@@ -178,6 +193,57 @@ namespace GestionPersonnel.Storages.EmployeesStorages
                 throw new Exception("An error occurred while fetching the total salary for the month.", ex);
             }
         }
+
+        public async Task<List<Employee>> GetEmployeesByDate(/*DateTime date*/)
+        {
+            string query = @"
+        SELECT E.EmployeID, E.Nom, E.Prenom, E.DateDeNaissance, E.NSecuriteSocial, E.Adresse, E.GroupSanguin, E.NTelephone, E.FonctionID, E.DateEntree, E.DateSortie, E.SitiationFamiliale, E.Photo, F.NomFonction
+        FROM Employes E
+        INNER JOIN Fonctions F ON E.FonctionID = F.FonctionID
+        
+    "; 
+
+            List<Employee> employees = new List<Employee>();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, connection);
+               
+                await connection.OpenAsync();
+
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (reader.Read())
+                    {
+                        Employee employee = new Employee
+                        {
+                            EmployeID = (int)reader["EmployeID"],
+                            Nom = (string)reader["Nom"],
+                            Prenom = (string)reader["Prenom"],
+                            DateDeNaissance = (DateTime)reader["DateDeNaissance"],
+                            NSecuriteSocial = (string)reader["NSecuriteSocial"],
+                            Adresse = (string)reader["Adresse"],
+                            GroupSanguin = (string)reader["GroupSanguin"],
+                            NTelephone = (string)reader["NTelephone"],
+                            FonctionID = (int)reader["FonctionID"],
+                            DateEntree = (DateTime)reader["DateEntree"],
+                            DateSortie = reader["DateSortie"] != DBNull.Value ? (DateTime)reader["DateSortie"] : (DateTime?)null,
+                            SitiationFamiliale = (string)reader["SitiationFamiliale"],
+                            Photo = reader["Photo"] != DBNull.Value ? (byte[])reader["Photo"] : null,
+                            FonctionName = (string)reader["NomFonction"] ,// Assign the function name
+                            
+
+                        };
+
+                        // Add employee to the list
+                        employees.Add(employee);
+                    }
+                }
+            }
+
+            return employees;
+        }
+
 
 
 

@@ -275,7 +275,7 @@ namespace GestionPersonnel.View
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NSecuriteSociale", HeaderText = "N° Sécurité Sociale" });
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction" });
 
-            Image modifierIconPath = Properties.Resources.icons8_edit_64;
+            Image modifierIconPath = Properties.Resources.icons8_edit_24;
             DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
             {
                 Name = "ModifierColumn",

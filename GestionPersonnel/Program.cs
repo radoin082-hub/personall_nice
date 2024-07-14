@@ -1,3 +1,6 @@
+
+
+
 using GestionPersonnel.View;
 using System;
 using System.Configuration;
@@ -11,9 +14,22 @@ namespace GestionPersonnel
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            string connectionString = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
-            //MessageBox.Show(connectionString); l3alamia
-            Application.Run(new Mainpage(connectionString));
+            string connectionStringLocal = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
+            string connectionStringOnline = ConfigurationManager.ConnectionStrings["online"].ConnectionString;
+
+            // Show the connection selection form
+            using (var selectionForm = new ConnectionSelectionForm(connectionStringLocal, connectionStringOnline))
+            {
+                if (selectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedConnectionString = selectionForm.SelectedConnectionString;
+                    Application.Run(new Mainpage(selectedConnectionString));
+                }
+                else
+                {
+                       MessageBox.Show("no connection selected");
+                }
+            }
         }
     }
 }

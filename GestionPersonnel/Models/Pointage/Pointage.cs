@@ -15,5 +15,10 @@ namespace GestionPersonnel.Models.Pointage
         public TimeSpan HeureEntree { get; set; }
         public TimeSpan HeureSortie { get; set; }
         public decimal HeuresTravaillees { get; set; }
+
+        public string Stat => HeuresTravaillees > 1 ? "Présent" : "Absent";
+        public int persontage => (int)Math.Floor((HeuresTravaillees / 8m) * 100);
+
+
     }
 }

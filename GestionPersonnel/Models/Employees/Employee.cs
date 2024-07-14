@@ -21,6 +21,10 @@ namespace GestionPersonnel.Models.Employees
         public DateTime DateEntree { get; set; }
         public DateTime? DateSortie { get; set; }
         public byte[] Photo { get; set; }
+        
+        public string FonctionName { get; set; } 
+        public string Status { get; set; }
+        
     }
 
 }
