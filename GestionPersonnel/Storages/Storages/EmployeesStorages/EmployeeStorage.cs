@@ -35,7 +35,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             WHERE E.EmployeID = @id";
         private const string _insertQuery = "INSERT INTO Employes (Nom, Prenom, DateDeNaissance, NSecuriteSocial, Adresse, GroupSanguin, NTelephone, FonctionID, DateEntree, DateSortie, SitiationFamiliale, Photo) VALUES (@Nom, @Prenom, @DateDeNaissance, @NSecuriteSocial, @Adresse, @GroupSanguin, @NTelephone, @FonctionID, @DateEntree, @DateSortie, @SitiationFamiliale, @Photo); SELECT SCOPE_IDENTITY();";
         private const string _updateQuery = "UPDATE Employes SET Nom = @Nom, Prenom = @Prenom, DateDeNaissance = @DateDeNaissance, NSecuriteSocial = @NSecuriteSocial, Adresse = @Adresse, GroupSanguin = @GroupSanguin, NTelephone = @NTelephone, FonctionID = @FonctionID, DateEntree = @DateEntree, DateSortie = @DateSortie, SitiationFamiliale = @SitiationFamiliale, Photo = @Photo WHERE EmployeID = @EmployeID;";
-        private const string _deleteQuery = "UPDATE Employes SET status = 0 WHERE EmployeID = @EmployeID;";
+        private const string _deleteQuery = "UPDATE Employes SET status = 0, DateSortie = @DateSortie WHERE EmployeID = @EmployeID;";
 
         private static Employee GetEmployeFromDataRow(DataRow row)
         {
@@ -54,7 +54,6 @@ namespace GestionPersonnel.Storages.EmployeesStorages
                 DateSortie = row["DateSortie"] != DBNull.Value ? (DateTime)row["DateSortie"] : (DateTime?)null,
                 SitiationFamiliale = (string)row["SitiationFamiliale"],
                 Photo = row["Photo"] as byte[],
-              
                 FonctionName = row["NomFonction"].ToString()
 
             };
@@ -140,6 +139,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(_deleteQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", id);
+            cmd.Parameters.AddWithValue("@DateSortie", DateTime.Now);
 
             connection.Open();
             await cmd.ExecuteNonQueryAsync();

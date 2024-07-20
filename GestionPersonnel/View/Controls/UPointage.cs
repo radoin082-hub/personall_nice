@@ -86,8 +86,8 @@ namespace GestionPersonnel.View.Controls
                         pointage.Stat,
                         pointage.HeuresTravaillees,
                         pointage.persontage + " %",
-                        "N/A",
-                        employee.EmployeID, // Add the EmployeID here
+                        pointage.Remarque,
+                        employee.EmployeID, 
                         pointage.PointageID
                     );
                 }
@@ -95,7 +95,6 @@ namespace GestionPersonnel.View.Controls
                 {
                     if (!noPointageShown)
                     {
-                        MessageBox.Show("Aucun pointage pour cet employé");
                         noPointageShown = true;
                     }
                 }
@@ -181,6 +180,7 @@ namespace GestionPersonnel.View.Controls
                     guna2TextBox2.Text = heur;
                     guna2TextBox3.Text = pourcentage;
                     guna2TextBox4.Text = remarque;
+                    
                 }
             }
         }
@@ -215,7 +215,8 @@ namespace GestionPersonnel.View.Controls
                 var pointageToUpdate = new Pointage
                 {
                     PointageID = pointageId,
-                    HeuresTravaillees = heuresTravaillees
+                    HeuresTravaillees = heuresTravaillees,
+                    Remarque = guna2TextBox4.Text
                 };
 
                 try
@@ -257,7 +258,7 @@ namespace GestionPersonnel.View.Controls
                         pointage.Stat,
                         pointage.HeuresTravaillees,
                         pointage.persontage + " %",
-                        "N/A",
+                        pointage.Remarque,
                         employee.EmployeID,
                         pointage.PointageID
                     );

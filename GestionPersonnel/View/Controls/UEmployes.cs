@@ -177,7 +177,7 @@ namespace GestionPersonnel.View
             {
                 DialogResult result = MessageBox.Show("Are you sure you want to delete this employee?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
-                {
+                {    
                     await _employeStorage.Delete(employeeId);
                     MessageBox.Show("Employee deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await LoadEmployees();

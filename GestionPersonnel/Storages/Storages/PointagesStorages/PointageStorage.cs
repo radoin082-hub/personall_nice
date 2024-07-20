@@ -23,7 +23,7 @@ namespace GestionPersonnel.Storages.PointagesStorages
         private const string _selectByIdAndDateQuery = "SELECT * FROM Pointage WHERE EmployeID = @id AND Date = @date";
 
         private const string _insertQuery = "INSERT INTO Pointage (EmployeID, Date, HeureEntree, HeureSortie, HeuresTravaillees) VALUES (@EmployeID, @Date, @HeureEntree, @HeureSortie, @HeuresTravaillees); SELECT SCOPE_IDENTITY();";
-        private const string _updateQuery = "UPDATE Pointage SET HeuresTravaillees = @HeuresTravaillees WHERE PointageID = @PointageID;";
+        private const string _updateQuery = "UPDATE Pointage SET HeuresTravaillees = @HeuresTravaillees, Remarque = @Remarque WHERE PointageID = @PointageID;";
         private const string _deleteQuery = "DELETE FROM Pointage WHERE PointageID = @PointageID;";
 
       
@@ -36,7 +36,8 @@ namespace GestionPersonnel.Storages.PointagesStorages
                 Date = (DateTime)row["Date"],
                 HeureEntree = (TimeSpan)row["HeureEntree"],
                 HeureSortie = (TimeSpan)row["HeureSortie"],
-                HeuresTravaillees = (decimal)row["HeuresTravaillees"]
+                HeuresTravaillees = (decimal)row["HeuresTravaillees"],
+                Remarque = row["Remarque"] == DBNull.Value ? null : (string)row["Remarque"]
             };
         }
 
@@ -95,6 +96,7 @@ namespace GestionPersonnel.Storages.PointagesStorages
             SqlCommand cmd = new(_updateQuery, connection);
 
             cmd.Parameters.AddWithValue("@HeuresTravaillees", pointage.HeuresTravaillees);
+            cmd.Parameters.AddWithValue("@Remarque", pointage.Remarque);
             cmd.Parameters.AddWithValue("@PointageID", pointage.PointageID);
 
             await connection.OpenAsync();
