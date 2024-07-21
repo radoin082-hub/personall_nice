@@ -19,13 +19,13 @@ namespace GestionPersonnel.Storages.RapportPointageStorages
 
         private const string SelectAllQuery = "SELECT * FROM RapportPointage";
         private const string SelectByIdQuery = "SELECT * FROM RapportPointage WHERE RapportID = @id";
-        private const string InsertQuery = "INSERT INTO RapportPointage (EmployeID, EquipeID, Mois, HeuresTotales, CoffecientsTotales) " +
-                                           "VALUES (@EmployeID, @EquipeID, @Mois, @HeuresTotales, @CoffecientsTotales); SELECT SCOPE_IDENTITY();";
+        private const string InsertQuery = "INSERT INTO RapportPointage (EmployeID, EquipeID, Mois, HeuresTotales, CofficientsTotales) " +
+                                           "VALUES (@EmployeID, @EquipeID, @Mois, @HeuresTotales, @CofficientsTotales); SELECT SCOPE_IDENTITY();";
         private const string UpdateQuery = "UPDATE RapportPointage SET EmployeID = @EmployeID, EquipeID = @EquipeID, " +
-                                           "Mois = @Mois, HeuresTotales = @HeuresTotales, CoffecientsTotales = @CoffecientsTotales " +
+                                           "Mois = @Mois, HeuresTotales = @HeuresTotales, CofficientsTotales = @CofficientsTotales " +
                                            "WHERE RapportID = @RapportID;";
         private const string DeleteQuery = "DELETE FROM RapportPointage WHERE RapportID = @RapportID;";
-
+        
         private static RapportPointage GetRapportPointageFromDataRow(DataRow row)
         {
             return new RapportPointage
@@ -35,7 +35,7 @@ namespace GestionPersonnel.Storages.RapportPointageStorages
                 EquipeID = (int)row["EquipeID"],
                 Mois = (DateTime)row["Mois"],
                 HeuresTotales = (decimal)row["HeuresTotales"],
-                CofficientsTotales = (decimal)row["CoffecientsTotales"]
+                CofficientsTotales = (decimal)row["CofficientsTotales"]
             };
         }
 
@@ -80,7 +80,7 @@ namespace GestionPersonnel.Storages.RapportPointageStorages
             cmd.Parameters.AddWithValue("@EquipeID", rapportPointage.EquipeID);
             cmd.Parameters.AddWithValue("@Mois", rapportPointage.Mois);
             cmd.Parameters.AddWithValue("@HeuresTotales", rapportPointage.HeuresTotales);
-            cmd.Parameters.AddWithValue("@CoffecientsTotales", rapportPointage.CofficientsTotales);
+            cmd.Parameters.AddWithValue("@CofficientsTotales", rapportPointage.CofficientsTotales);
 
             await connection.OpenAsync();
             var id = await cmd.ExecuteScalarAsync();
@@ -96,7 +96,7 @@ namespace GestionPersonnel.Storages.RapportPointageStorages
             cmd.Parameters.AddWithValue("@EquipeID", rapportPointage.EquipeID);
             cmd.Parameters.AddWithValue("@Mois", rapportPointage.Mois);
             cmd.Parameters.AddWithValue("@HeuresTotales", rapportPointage.HeuresTotales);
-            cmd.Parameters.AddWithValue("@CoffecientsTotales", rapportPointage.CofficientsTotales);
+            cmd.Parameters.AddWithValue("@CofficientsTotales", rapportPointage.CofficientsTotales);
             cmd.Parameters.AddWithValue("@RapportID", rapportPointage.RapportID);
 
             await connection.OpenAsync();
