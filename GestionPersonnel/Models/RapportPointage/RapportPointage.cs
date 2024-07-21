@@ -14,5 +14,7 @@ namespace GestionPersonnel.Models.RapportPointage
         public int EquipeID { get; set; }
         public DateTime Mois { get; set; }
         public decimal HeuresTotales { get; set; }
+        public decimal CofficientsTotales { get; set; }
+
     }
 }
