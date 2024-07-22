@@ -47,10 +47,6 @@ namespace GestionPersonnel.View.Controls
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2TextBox1 = new Guna2TextBox();
             DateEntrerEmployes = new Guna2DateTimePicker();
             searchBtn = new Guna2Button();
@@ -73,7 +69,7 @@ namespace GestionPersonnel.View.Controls
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             tabpointage = new Guna2DataGridView();
-            
+ 
             Nom = new DataGridViewTextBoxColumn();
             Prenom = new DataGridViewTextBoxColumn();
             Fonction = new DataGridViewTextBoxColumn();
@@ -83,6 +79,8 @@ namespace GestionPersonnel.View.Controls
             Remarque = new DataGridViewTextBoxColumn();
             Modifier = new DataGridViewButtonColumn();
             panelaupdpointage = new Guna2ShadowPanel();
+            guna2TextBox3 = new Label();
+            addfonction = new Label();
             photoProfileEmployes = new PictureBox();
             labprenom = new Label();
             labname = new Label();
@@ -93,13 +91,11 @@ namespace GestionPersonnel.View.Controls
             Premarque = new Label();
             guna2TextBox4 = new Guna2TextBox();
             Ppourcentage = new Label();
-            guna2TextBox3 = new Guna2TextBox();
             Phuer = new Label();
             guna2TextBox2 = new Guna2TextBox();
             Pstatus = new Label();
             guna2Button4 = new Guna2Button();
             pictureBox2 = new PictureBox();
-            addfonction = new Guna2TextBox();
             dataGridViewTextBoxColumn19 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn20 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn21 = new DataGridViewTextBoxColumn();
@@ -115,6 +111,22 @@ namespace GestionPersonnel.View.Controls
             dataGridViewTextBoxColumn31 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn32 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn33 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn34 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn35 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn36 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn37 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn38 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn39 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn40 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn41 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn42 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn43 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn44 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn45 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn46 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn47 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn48 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn49 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)tabpointage).BeginInit();
             panelaupdpointage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
@@ -170,24 +182,22 @@ namespace GestionPersonnel.View.Controls
             // 
             // searchBtn
             // 
-            // Configure the search button
-            searchBtn.BorderRadius = 10; // Set rounded corners
-            searchBtn.CustomizableEdges = customizableEdges5; // Custom edge configuration
-            searchBtn.DisabledState.BorderColor = Color.DarkGray; // Border color when disabled
-            searchBtn.DisabledState.CustomBorderColor = Color.DarkGray; // Custom border color when disabled
-            searchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169); // Fill color when disabled
-            searchBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141); // Foreground color when disabled
-            searchBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold); // Font style with better visibility
-            searchBtn.ForeColor = Color.White; // Text color
-            searchBtn.Image = (Image)resources.GetObject("searchBtn.Image"); // Set button image
-            searchBtn.Location = new Point(1131, 13); // Position of the button
-            searchBtn.Name = "searchBtn"; // Name of the button
-            searchBtn.PressedColor = Color.White; // Color when pressed
-            searchBtn.ShadowDecoration.CustomizableEdges = customizableEdges6; // Shadow effects
-            searchBtn.Size = new Size(51, 45); // Size of the button
-            searchBtn.TabIndex = 96; // Tab index for keyboard navigation
-            searchBtn.Click += searchBtn_Click; // Event handler for click event
-
+            searchBtn.BorderRadius = 10;
+            searchBtn.CustomizableEdges = customizableEdges5;
+            searchBtn.DisabledState.BorderColor = Color.DarkGray;
+            searchBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            searchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            searchBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            searchBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            searchBtn.ForeColor = Color.White;
+            searchBtn.Image = (Image)resources.GetObject("searchBtn.Image");
+            searchBtn.Location = new Point(1131, 13);
+            searchBtn.Name = "searchBtn";
+            searchBtn.PressedColor = Color.White;
+            searchBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            searchBtn.Size = new Size(51, 45);
+            searchBtn.TabIndex = 96;
+            searchBtn.Click += searchBtn_Click;
             // 
             // dataGridViewTextBoxColumn12
             // 
@@ -311,8 +321,8 @@ namespace GestionPersonnel.View.Controls
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             tabpointage.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpointage.ColumnHeadersHeight = 29;
-            tabpointage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            tabpointage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing; 
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
@@ -395,6 +405,8 @@ namespace GestionPersonnel.View.Controls
             // panelaupdpointage
             // 
             panelaupdpointage.BackColor = Color.Transparent;
+            panelaupdpointage.Controls.Add(guna2TextBox3);
+            panelaupdpointage.Controls.Add(addfonction);
             panelaupdpointage.Controls.Add(photoProfileEmployes);
             panelaupdpointage.Controls.Add(labprenom);
             panelaupdpointage.Controls.Add(labname);
@@ -405,13 +417,11 @@ namespace GestionPersonnel.View.Controls
             panelaupdpointage.Controls.Add(Premarque);
             panelaupdpointage.Controls.Add(guna2TextBox4);
             panelaupdpointage.Controls.Add(Ppourcentage);
-            panelaupdpointage.Controls.Add(guna2TextBox3);
             panelaupdpointage.Controls.Add(Phuer);
             panelaupdpointage.Controls.Add(guna2TextBox2);
             panelaupdpointage.Controls.Add(Pstatus);
             panelaupdpointage.Controls.Add(guna2Button4);
             panelaupdpointage.Controls.Add(pictureBox2);
-            panelaupdpointage.Controls.Add(addfonction);
             panelaupdpointage.FillColor = Color.White;
             panelaupdpointage.Location = new Point(629, 113);
             panelaupdpointage.Name = "panelaupdpointage";
@@ -420,6 +430,26 @@ namespace GestionPersonnel.View.Controls
             panelaupdpointage.Size = new Size(601, 669);
             panelaupdpointage.TabIndex = 100;
             panelaupdpointage.Visible = false;
+            // 
+            // guna2TextBox3
+            // 
+            guna2TextBox3.AutoSize = true;
+            guna2TextBox3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2TextBox3.Location = new Point(371, 246);
+            guna2TextBox3.Name = "guna2TextBox3";
+            guna2TextBox3.Size = new Size(65, 20);
+            guna2TextBox3.TabIndex = 108;
+            guna2TextBox3.Text = "put info";
+            // 
+            // addfonction
+            // 
+            addfonction.AutoSize = true;
+            addfonction.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addfonction.Location = new Point(371, 197);
+            addfonction.Name = "addfonction";
+            addfonction.Size = new Size(65, 20);
+            addfonction.TabIndex = 107;
+            addfonction.Text = "put info";
             // 
             // photoProfileEmployes
             // 
@@ -501,7 +531,7 @@ namespace GestionPersonnel.View.Controls
             Premarque.AutoSize = true;
             Premarque.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Premarque.ForeColor = Color.Black;
-            Premarque.Location = new Point(26, 431);
+            Premarque.Location = new Point(35, 428);
             Premarque.Name = "Premarque";
             Premarque.Size = new Size(81, 20);
             Premarque.TabIndex = 98;
@@ -521,14 +551,14 @@ namespace GestionPersonnel.View.Controls
             guna2TextBox4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2TextBox4.ForeColor = Color.Black;
             guna2TextBox4.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox4.Location = new Point(17, 441);
+            guna2TextBox4.Location = new Point(26, 438);
             guna2TextBox4.Margin = new Padding(3, 5, 3, 5);
             guna2TextBox4.Name = "guna2TextBox4";
             guna2TextBox4.PasswordChar = '\0';
             guna2TextBox4.PlaceholderText = "";
             guna2TextBox4.SelectedText = "";
             guna2TextBox4.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2TextBox4.Size = new Size(567, 36);
+            guna2TextBox4.Size = new Size(558, 119);
             guna2TextBox4.TabIndex = 99;
             // 
             // Ppourcentage
@@ -536,42 +566,18 @@ namespace GestionPersonnel.View.Controls
             Ppourcentage.AutoSize = true;
             Ppourcentage.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Ppourcentage.ForeColor = Color.Black;
-            Ppourcentage.Location = new Point(408, 362);
+            Ppourcentage.Location = new Point(258, 246);
             Ppourcentage.Name = "Ppourcentage";
-            Ppourcentage.Size = new Size(97, 20);
+            Ppourcentage.Size = new Size(105, 20);
             Ppourcentage.TabIndex = 96;
-            Ppourcentage.Text = "Pourcentage";
-            // 
-            // guna2TextBox3
-            // 
-            guna2TextBox3.BorderRadius = 10;
-            guna2TextBox3.CustomizableEdges = customizableEdges9;
-            guna2TextBox3.DefaultText = "";
-            guna2TextBox3.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox3.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox3.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox3.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox3.FillColor = Color.FromArgb(232, 251, 253);
-            guna2TextBox3.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2TextBox3.ForeColor = Color.Black;
-            guna2TextBox3.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox3.Location = new Point(399, 372);
-            guna2TextBox3.Margin = new Padding(3, 5, 3, 5);
-            guna2TextBox3.Name = "guna2TextBox3";
-            guna2TextBox3.PasswordChar = '\0';
-            guna2TextBox3.PlaceholderText = "";
-            guna2TextBox3.SelectedText = "";
-            guna2TextBox3.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2TextBox3.Size = new Size(185, 36);
-            guna2TextBox3.TabIndex = 97;
+            Ppourcentage.Text = "Pourcentage :";
             // 
             // Phuer
             // 
             Phuer.AutoSize = true;
             Phuer.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Phuer.ForeColor = Color.Black;
-            Phuer.Location = new Point(217, 362);
+            Phuer.Location = new Point(35, 363);
             Phuer.Name = "Phuer";
             Phuer.Size = new Size(43, 20);
             Phuer.TabIndex = 94;
@@ -580,7 +586,7 @@ namespace GestionPersonnel.View.Controls
             // guna2TextBox2
             // 
             guna2TextBox2.BorderRadius = 10;
-            guna2TextBox2.CustomizableEdges = customizableEdges11;
+            guna2TextBox2.CustomizableEdges = customizableEdges9;
             guna2TextBox2.DefaultText = "";
             guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -591,13 +597,13 @@ namespace GestionPersonnel.View.Controls
             guna2TextBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2TextBox2.ForeColor = Color.Black;
             guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Location = new Point(208, 372);
+            guna2TextBox2.Location = new Point(26, 373);
             guna2TextBox2.Margin = new Padding(3, 5, 3, 5);
             guna2TextBox2.Name = "guna2TextBox2";
             guna2TextBox2.PasswordChar = '\0';
             guna2TextBox2.PlaceholderText = "";
             guna2TextBox2.SelectedText = "";
-            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2TextBox2.Size = new Size(185, 36);
             guna2TextBox2.TabIndex = 95;
             // 
@@ -606,17 +612,17 @@ namespace GestionPersonnel.View.Controls
             Pstatus.AutoSize = true;
             Pstatus.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Pstatus.ForeColor = Color.Black;
-            Pstatus.Location = new Point(26, 362);
+            Pstatus.Location = new Point(258, 196);
             Pstatus.Name = "Pstatus";
-            Pstatus.Size = new Size(53, 20);
+            Pstatus.Size = new Size(61, 20);
             Pstatus.TabIndex = 74;
-            Pstatus.Text = "Status";
+            Pstatus.Text = "Status :";
             Pstatus.Click += label7_Click;
             // 
             // guna2Button4
             // 
             guna2Button4.BorderRadius = 10;
-            guna2Button4.CustomizableEdges = customizableEdges13;
+            guna2Button4.CustomizableEdges = customizableEdges11;
             guna2Button4.DisabledState.BorderColor = Color.DarkGray;
             guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -626,7 +632,7 @@ namespace GestionPersonnel.View.Controls
             guna2Button4.ForeColor = Color.White;
             guna2Button4.Location = new Point(434, 585);
             guna2Button4.Name = "guna2Button4";
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges12;
             guna2Button4.Size = new Size(150, 37);
             guna2Button4.TabIndex = 93;
             guna2Button4.Text = "Confirmation";
@@ -642,30 +648,6 @@ namespace GestionPersonnel.View.Controls
             pictureBox2.TabIndex = 92;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
-            // 
-            // addfonction
-            // 
-            addfonction.BorderRadius = 10;
-            addfonction.CustomizableEdges = customizableEdges15;
-            addfonction.DefaultText = "";
-            addfonction.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            addfonction.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            addfonction.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            addfonction.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            addfonction.FillColor = Color.FromArgb(232, 251, 253);
-            addfonction.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            addfonction.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            addfonction.ForeColor = Color.Black;
-            addfonction.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            addfonction.Location = new Point(17, 372);
-            addfonction.Margin = new Padding(3, 5, 3, 5);
-            addfonction.Name = "addfonction";
-            addfonction.PasswordChar = '\0';
-            addfonction.PlaceholderText = "";
-            addfonction.SelectedText = "";
-            addfonction.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            addfonction.Size = new Size(185, 36);
-            addfonction.TabIndex = 75;
             // 
             // dataGridViewTextBoxColumn19
             // 
@@ -713,41 +695,137 @@ namespace GestionPersonnel.View.Controls
             // 
             dataGridViewTextBoxColumn26.MinimumWidth = 6;
             dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            dataGridViewTextBoxColumn26.Width = 125;
             // 
             // dataGridViewTextBoxColumn27
             // 
             dataGridViewTextBoxColumn27.MinimumWidth = 6;
             dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            dataGridViewTextBoxColumn27.Width = 125;
             // 
             // dataGridViewTextBoxColumn28
             // 
             dataGridViewTextBoxColumn28.MinimumWidth = 6;
             dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
+            dataGridViewTextBoxColumn28.Width = 125;
             // 
             // dataGridViewTextBoxColumn29
             // 
             dataGridViewTextBoxColumn29.MinimumWidth = 6;
             dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
+            dataGridViewTextBoxColumn29.Width = 125;
             // 
             // dataGridViewTextBoxColumn30
             // 
             dataGridViewTextBoxColumn30.MinimumWidth = 6;
             dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
+            dataGridViewTextBoxColumn30.Width = 125;
             // 
             // dataGridViewTextBoxColumn31
             // 
             dataGridViewTextBoxColumn31.MinimumWidth = 6;
             dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
+            dataGridViewTextBoxColumn31.Width = 125;
             // 
             // dataGridViewTextBoxColumn32
             // 
             dataGridViewTextBoxColumn32.MinimumWidth = 6;
             dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
+            dataGridViewTextBoxColumn32.Width = 125;
             // 
             // dataGridViewTextBoxColumn33
             // 
             dataGridViewTextBoxColumn33.MinimumWidth = 6;
             dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
+            dataGridViewTextBoxColumn33.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn34
+            // 
+            dataGridViewTextBoxColumn34.MinimumWidth = 6;
+            dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
+            dataGridViewTextBoxColumn34.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn35
+            // 
+            dataGridViewTextBoxColumn35.MinimumWidth = 6;
+            dataGridViewTextBoxColumn35.Name = "dataGridViewTextBoxColumn35";
+            dataGridViewTextBoxColumn35.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn36
+            // 
+            dataGridViewTextBoxColumn36.MinimumWidth = 6;
+            dataGridViewTextBoxColumn36.Name = "dataGridViewTextBoxColumn36";
+            dataGridViewTextBoxColumn36.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn37
+            // 
+            dataGridViewTextBoxColumn37.MinimumWidth = 6;
+            dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
+            dataGridViewTextBoxColumn37.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn38
+            // 
+            dataGridViewTextBoxColumn38.MinimumWidth = 6;
+            dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
+            dataGridViewTextBoxColumn38.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn39
+            // 
+            dataGridViewTextBoxColumn39.MinimumWidth = 6;
+            dataGridViewTextBoxColumn39.Name = "dataGridViewTextBoxColumn39";
+            dataGridViewTextBoxColumn39.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn40
+            // 
+            dataGridViewTextBoxColumn40.MinimumWidth = 6;
+            dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
+            dataGridViewTextBoxColumn40.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn41
+            // 
+            dataGridViewTextBoxColumn41.MinimumWidth = 6;
+            dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
+            dataGridViewTextBoxColumn41.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn42
+            // 
+            dataGridViewTextBoxColumn42.MinimumWidth = 6;
+            dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
+            // 
+            // dataGridViewTextBoxColumn43
+            // 
+            dataGridViewTextBoxColumn43.MinimumWidth = 6;
+            dataGridViewTextBoxColumn43.Name = "dataGridViewTextBoxColumn43";
+            // 
+            // dataGridViewTextBoxColumn44
+            // 
+            dataGridViewTextBoxColumn44.MinimumWidth = 6;
+            dataGridViewTextBoxColumn44.Name = "dataGridViewTextBoxColumn44";
+            // 
+            // dataGridViewTextBoxColumn45
+            // 
+            dataGridViewTextBoxColumn45.MinimumWidth = 6;
+            dataGridViewTextBoxColumn45.Name = "dataGridViewTextBoxColumn45";
+            // 
+            // dataGridViewTextBoxColumn46
+            // 
+            dataGridViewTextBoxColumn46.MinimumWidth = 6;
+            dataGridViewTextBoxColumn46.Name = "dataGridViewTextBoxColumn46";
+            // 
+            // dataGridViewTextBoxColumn47
+            // 
+            dataGridViewTextBoxColumn47.MinimumWidth = 6;
+            dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
+            // 
+            // dataGridViewTextBoxColumn48
+            // 
+            dataGridViewTextBoxColumn48.MinimumWidth = 6;
+            dataGridViewTextBoxColumn48.Name = "dataGridViewTextBoxColumn48";
+            // 
+            // dataGridViewTextBoxColumn49
+            // 
+            dataGridViewTextBoxColumn49.MinimumWidth = 6;
+            dataGridViewTextBoxColumn49.Name = "dataGridViewTextBoxColumn49";
             // 
             // UPointage
             // 
@@ -807,9 +885,7 @@ namespace GestionPersonnel.View.Controls
         private Label Pstatus;
         private Guna2Button guna2Button4;
         private PictureBox pictureBox2;
-        private Guna2TextBox addfonction;
         private Label Ppourcentage;
-        private Guna2TextBox guna2TextBox3;
         private Label Phuer;
         private Guna2TextBox guna2TextBox2;
         private Label Premarque;
@@ -837,5 +913,24 @@ namespace GestionPersonnel.View.Controls
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn36;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn39;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
+        private DataGridViewTextBoxColumn pointageIdColumn;
+        private Label guna2TextBox3;
+        private Label addfonction;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn42;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn43;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn44;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn45;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn46;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn47;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn48;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn49;
     }
 }

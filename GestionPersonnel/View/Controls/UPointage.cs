@@ -86,8 +86,8 @@ namespace GestionPersonnel.View.Controls
                         pointage.Stat,
                         pointage.HeuresTravaillees,
                         pointage.persontage + " %",
-                        pointage.Remarque,
-                        employee.EmployeID, 
+                        string.IsNullOrEmpty(pointage.Remarque) ? "N/A" : pointage.Remarque,
+                        employee.EmployeID,
                         pointage.PointageID
                     );
                 }
@@ -138,14 +138,14 @@ namespace GestionPersonnel.View.Controls
 
         private async void guna2DataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
         {
-              if (e.ColumnIndex == tabpointage.Columns["ModifierColumn"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == tabpointage.Columns["ModifierColumn"].Index && e.RowIndex >= 0)
             {
-                
+
                 panelaupdpointage.Visible = true;
 
                 var row = tabpointage.Rows[e.RowIndex];
 
-                
+
 
                 string nom = row.Cells["Nom"].Value?.ToString() ?? string.Empty;
                 string prenom = row.Cells["Prenom"].Value?.ToString() ?? string.Empty;
@@ -155,14 +155,14 @@ namespace GestionPersonnel.View.Controls
                 string pourcentage = row.Cells["Pourcentage"].Value?.ToString() ?? string.Empty;
                 string remarque = row.Cells["Remarque"].Value?.ToString() ?? string.Empty;
 
-               
+
                 int employeId = Convert.ToInt32(row.Cells["EmployeID"].Value);
 
-         
+
                 var employee = await _employeStorage.GetById(employeId);
                 if (employee != null)
                 {
-                     if (employee.Photo != null)
+                    if (employee.Photo != null)
                     {
                         using (var ms = new System.IO.MemoryStream(employee.Photo))
                         {
@@ -171,7 +171,8 @@ namespace GestionPersonnel.View.Controls
                     }
                     else
                     {
-                        photoProfileEmployes.Image = Properties.Resources.icons8_delete_48; }
+                        photoProfileEmployes.Image = Properties.Resources.icons8_delete_48;
+                    }
 
                     labname.Text = nom;
                     labprenom.Text = prenom;
@@ -180,7 +181,7 @@ namespace GestionPersonnel.View.Controls
                     guna2TextBox2.Text = heur;
                     guna2TextBox3.Text = pourcentage;
                     guna2TextBox4.Text = remarque;
-                    
+
                 }
             }
         }
@@ -223,7 +224,7 @@ namespace GestionPersonnel.View.Controls
                 {
                     await _pointageStorage.Update(pointageToUpdate);
                     MessageBox.Show("Mise à jour réussie !");
-                    await LoadPointages(); 
+                    await LoadPointages();
                 }
                 catch (Exception ex)
                 {
@@ -262,7 +263,7 @@ namespace GestionPersonnel.View.Controls
                         employee.EmployeID,
                         pointage.PointageID
                     );
-                 
+
                 }
                 else
                 {
@@ -275,7 +276,9 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
+        private void guna2TextBox3_TextChanged(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

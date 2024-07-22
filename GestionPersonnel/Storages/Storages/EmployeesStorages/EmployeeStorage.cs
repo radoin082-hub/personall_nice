@@ -140,7 +140,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             SqlCommand cmd = new(_deleteQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", id);
             cmd.Parameters.AddWithValue("@DateSortie", DateTime.Now);
-
+            
             connection.Open();
             await cmd.ExecuteNonQueryAsync();
         }
