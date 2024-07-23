@@ -116,5 +116,45 @@ namespace GestionPersonnel.Storages.SalairesStorages
             connection.Open();
             await cmd.ExecuteNonQueryAsync();
         }
+
+        public async Task<List<SalaireDetail>> GetSalariesByMonth(DateTime mois)
+        {
+            List<SalaireDetail> salaires = new List<SalaireDetail>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("GetSalariesByMonth", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Mois", mois);
+
+                    await connection.OpenAsync();
+
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                    {
+                        while (reader.Read())
+                        {
+                            SalaireDetail salaireDetails = new SalaireDetail
+                            {
+                                NomEmploye = reader["NomEmploye"].ToString(),
+                                PrenomEmploye = reader["PrenomEmploye"].ToString(),
+                                NomFonction = reader["NomFonction"].ToString(),
+                                Salaire = Convert.ToDecimal(reader["Salaire"]),
+                                Primes = Convert.ToDecimal(reader["Primes"]),
+                                Avances = Convert.ToDecimal(reader["Avances"]),
+                                Dettes = Convert.ToDecimal(reader["Dettes"]),
+                                SalaireNet = Convert.ToDecimal(reader["SalaireNet"]),
+                                TypePaiement = reader["TypePaiement"].ToString()
+                            };
+
+                            salaires.Add(salaireDetails);
+                        }
+                    }
+                }
+            }
+
+            return salaires;
+        }
+
     }
 }
