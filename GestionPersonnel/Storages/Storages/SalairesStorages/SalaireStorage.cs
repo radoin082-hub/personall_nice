@@ -19,11 +19,11 @@ namespace GestionPersonnel.Storages.SalairesStorages
         {
             _connectionString = connectionString;
         }
-        private const string _selectAllQuery = "SELECT * FROM Salaire";
-        private const string _selectByIdQuery = "SELECT * FROM Salaire WHERE SalaireID = @id";
-        private const string _insertQuery = "INSERT INTO Salaire (EmployeID, Mois, Salaire, Primes, Avances, Dettes, SalaireNet, TypePaiementID) VALUES (@EmployeID, @Mois, @Salaire, @Primes, @Avances, @Dettes, @SalaireNet, @TypePaiementID); SELECT SCOPE_IDENTITY();";
-        private const string _updateQuery = "UPDATE Salaire SET EmployeID = @EmployeID, Mois = @Mois, Salaire = @Salaire, Primes = @Primes, Avances = @Avances, Dettes = @Dettes, SalaireNet = @SalaireNet, TypePaiementID = @TypePaiementID WHERE SalaireID = @SalaireID;";
-        private const string _deleteQuery = "DELETE FROM Salaire WHERE SalaireID = @SalaireID;";
+        private const string _selectAllQuery = "SELECT * FROM Salaires";
+        private const string _selectByIdQuery = "SELECT * FROM Salaires WHERE SalaireID = @id";
+        private const string _insertQuery = "INSERT INTO Salaires (EmployeID, Mois, Salaire, Primes, Avances, Dettes, SalaireNet, TypePaiementID) VALUES (@EmployeID, @Mois, @Salaire, @Primes, @Avances, @Dettes, @SalaireNet, @TypePaiementID); SELECT SCOPE_IDENTITY();";
+        private const string _updateQuery = "UPDATE Salaires SET EmployeID = @EmployeID, Mois = @Mois, Salaire = @Salaire, Primes = @Primes, Avances = @Avances, Dettes = @Dettes, SalaireNet = @SalaireNet, TypePaiementID = @TypePaiementID WHERE SalaireID = @SalaireID;";
+        private const string _deleteQuery = "DELETE FROM Salaires WHERE SalaireID = @SalaireID;";
 
           private static Salaire GetSalaireFromDataRow(DataRow row)
         {
