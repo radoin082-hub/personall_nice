@@ -14,9 +14,6 @@ namespace GestionPersonnel.Models.SalairesBase
             public decimal SalaireBase { get; set; }
             public int TypePaiementID { get; set; }
            public int EmplyeId { get; set; }
-
-
-        // Propriété de navigation vers TypesDePaiement
         public TypeDePaiement TypePaiement { get; set; }
         
 

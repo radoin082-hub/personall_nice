@@ -269,7 +269,7 @@ namespace GestionPersonnel.View.Controls
                 {
                     if (!noPointageShown)
                     {
-                        MessageBox.Show("Aucun pointage pour cet employé");
+                        //MessageBox.Show("Aucun pointage pour cet employé");
                         noPointageShown = true;
                     }
                 }

@@ -24,7 +24,8 @@ namespace GestionPersonnel.Models.Employees
         
         public string FonctionName { get; set; } 
         public string Status { get; set; }
-        
+        public string FullName => $"{Nom} {Prenom}";
+
     }
 
 }

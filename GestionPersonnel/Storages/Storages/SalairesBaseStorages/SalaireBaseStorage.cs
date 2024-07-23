@@ -18,12 +18,17 @@ namespace GestionPersonnel.Storages.SalairesBaseStorages
         }
 
         private const string SelectAllQuery = "SELECT * FROM SalairesBase";
+
         private const string SelectByIdQuery = "SELECT * FROM SalairesBase WHERE IdSalaireBase = @id";
-        private const string InsertQuery = "INSERT INTO SalairesBase (SalaireBase, TypePaiementID, EmplyeId) " +
+       
+        private const string InsertQuery = "INSERT INTO SalairesBase (SalaireBase, TypePaiementID, EmployeID) " +
                                            "VALUES (@SalaireBase, @TypePaiementID, @EmplyeId); SELECT SCOPE_IDENTITY();";
+       
         private const string UpdateQuery = "UPDATE SalairesBase SET SalaireBase = @SalaireBase, TypePaiementID = @TypePaiementID, " +
                                            "EmplyeId = @EmplyeId WHERE IdSalaireBase = @IdSalaireBase;";
+        
         private const string DeleteQuery = "DELETE FROM SalairesBase WHERE IdSalaireBase = @IdSalaireBase;";
+        
         private const string SelectByEmployeeIdQuery = "SELECT * FROM SalairesBase WHERE EmplyeId = @employeeId";
 
         private static SalairesBase GetSalairesBaseFromDataRow(DataRow row)
@@ -33,7 +38,7 @@ namespace GestionPersonnel.Storages.SalairesBaseStorages
                 IdSalaireBase = (int)row["IdSalaireBase"],
                 SalaireBase = (decimal)row["SalaireBase"],
                 TypePaiementID = (int)row["TypePaiementID"],
-                EmplyeId = (int)row["EmplyeId"]
+                EmplyeId = (int)row["EmployeId"]
             };
         }
 
@@ -97,6 +102,8 @@ namespace GestionPersonnel.Storages.SalairesBaseStorages
             var id = await cmd.ExecuteScalarAsync();
             return Convert.ToInt32(id);
         }
+
+
 
         public async Task Update(SalairesBase salairesBase)
         {

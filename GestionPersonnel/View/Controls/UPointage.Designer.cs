@@ -69,8 +69,7 @@ namespace GestionPersonnel.View.Controls
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             tabpointage = new Guna2DataGridView();
- 
-            Nom = new DataGridViewTextBoxColumn();
+             Nom = new DataGridViewTextBoxColumn();
             Prenom = new DataGridViewTextBoxColumn();
             Fonction = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
@@ -127,6 +126,14 @@ namespace GestionPersonnel.View.Controls
             dataGridViewTextBoxColumn47 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn48 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn49 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn50 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn51 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn52 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn53 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn54 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn55 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn56 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn57 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)tabpointage).BeginInit();
             panelaupdpointage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
@@ -321,8 +328,8 @@ namespace GestionPersonnel.View.Controls
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             tabpointage.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpointage.ColumnHeadersHeight = 29;
-            tabpointage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing; 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            tabpointage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
@@ -336,7 +343,7 @@ namespace GestionPersonnel.View.Controls
             tabpointage.RowHeadersVisible = false;
             tabpointage.RowHeadersWidth = 51;
             tabpointage.RowTemplate.Height = 50;
-            tabpointage.Size = new Size(1211, 809);
+            tabpointage.Size = new Size(1335, 809);
             tabpointage.TabIndex = 1;
             tabpointage.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tabpointage.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -423,7 +430,7 @@ namespace GestionPersonnel.View.Controls
             panelaupdpointage.Controls.Add(guna2Button4);
             panelaupdpointage.Controls.Add(pictureBox2);
             panelaupdpointage.FillColor = Color.White;
-            panelaupdpointage.Location = new Point(629, 113);
+            panelaupdpointage.Location = new Point(311, 122);
             panelaupdpointage.Name = "panelaupdpointage";
             panelaupdpointage.Radius = 14;
             panelaupdpointage.ShadowColor = Color.Black;
@@ -791,41 +798,89 @@ namespace GestionPersonnel.View.Controls
             // 
             dataGridViewTextBoxColumn42.MinimumWidth = 6;
             dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
+            dataGridViewTextBoxColumn42.Width = 125;
             // 
             // dataGridViewTextBoxColumn43
             // 
             dataGridViewTextBoxColumn43.MinimumWidth = 6;
             dataGridViewTextBoxColumn43.Name = "dataGridViewTextBoxColumn43";
+            dataGridViewTextBoxColumn43.Width = 125;
             // 
             // dataGridViewTextBoxColumn44
             // 
             dataGridViewTextBoxColumn44.MinimumWidth = 6;
             dataGridViewTextBoxColumn44.Name = "dataGridViewTextBoxColumn44";
+            dataGridViewTextBoxColumn44.Width = 125;
             // 
             // dataGridViewTextBoxColumn45
             // 
             dataGridViewTextBoxColumn45.MinimumWidth = 6;
             dataGridViewTextBoxColumn45.Name = "dataGridViewTextBoxColumn45";
+            dataGridViewTextBoxColumn45.Width = 125;
             // 
             // dataGridViewTextBoxColumn46
             // 
             dataGridViewTextBoxColumn46.MinimumWidth = 6;
             dataGridViewTextBoxColumn46.Name = "dataGridViewTextBoxColumn46";
+            dataGridViewTextBoxColumn46.Width = 125;
             // 
             // dataGridViewTextBoxColumn47
             // 
             dataGridViewTextBoxColumn47.MinimumWidth = 6;
             dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
+            dataGridViewTextBoxColumn47.Width = 125;
             // 
             // dataGridViewTextBoxColumn48
             // 
             dataGridViewTextBoxColumn48.MinimumWidth = 6;
             dataGridViewTextBoxColumn48.Name = "dataGridViewTextBoxColumn48";
+            dataGridViewTextBoxColumn48.Width = 125;
             // 
             // dataGridViewTextBoxColumn49
             // 
             dataGridViewTextBoxColumn49.MinimumWidth = 6;
             dataGridViewTextBoxColumn49.Name = "dataGridViewTextBoxColumn49";
+            dataGridViewTextBoxColumn49.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn50
+            // 
+            dataGridViewTextBoxColumn50.MinimumWidth = 6;
+            dataGridViewTextBoxColumn50.Name = "dataGridViewTextBoxColumn50";
+            // 
+            // dataGridViewTextBoxColumn51
+            // 
+            dataGridViewTextBoxColumn51.MinimumWidth = 6;
+            dataGridViewTextBoxColumn51.Name = "dataGridViewTextBoxColumn51";
+            // 
+            // dataGridViewTextBoxColumn52
+            // 
+            dataGridViewTextBoxColumn52.MinimumWidth = 6;
+            dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
+            // 
+            // dataGridViewTextBoxColumn53
+            // 
+            dataGridViewTextBoxColumn53.MinimumWidth = 6;
+            dataGridViewTextBoxColumn53.Name = "dataGridViewTextBoxColumn53";
+            // 
+            // dataGridViewTextBoxColumn54
+            // 
+            dataGridViewTextBoxColumn54.MinimumWidth = 6;
+            dataGridViewTextBoxColumn54.Name = "dataGridViewTextBoxColumn54";
+            // 
+            // dataGridViewTextBoxColumn55
+            // 
+            dataGridViewTextBoxColumn55.MinimumWidth = 6;
+            dataGridViewTextBoxColumn55.Name = "dataGridViewTextBoxColumn55";
+            // 
+            // dataGridViewTextBoxColumn56
+            // 
+            dataGridViewTextBoxColumn56.MinimumWidth = 6;
+            dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
+            // 
+            // dataGridViewTextBoxColumn57
+            // 
+            dataGridViewTextBoxColumn57.MinimumWidth = 6;
+            dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
             // 
             // UPointage
             // 
@@ -838,7 +893,7 @@ namespace GestionPersonnel.View.Controls
             Controls.Add(DateEntrerEmployes);
             Controls.Add(guna2TextBox1);
             Name = "UPointage";
-            Size = new Size(1275, 819);
+            Size = new Size(1369, 819);
             Load += UPointage_Load;
             ((System.ComponentModel.ISupportInitialize)tabpointage).EndInit();
             panelaupdpointage.ResumeLayout(false);
@@ -932,5 +987,13 @@ namespace GestionPersonnel.View.Controls
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn47;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn48;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn49;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn51;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn52;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn53;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn54;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn55;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn56;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;
     }
 }
