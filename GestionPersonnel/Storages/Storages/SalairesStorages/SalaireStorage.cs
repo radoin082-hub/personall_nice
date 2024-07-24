@@ -121,7 +121,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
         {
             List<SalaireDetail> salaires = new List<SalaireDetail>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = new SqlCommand("GetSalariesByMonth", connection))
                 {
