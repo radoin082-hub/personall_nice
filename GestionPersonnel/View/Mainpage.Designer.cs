@@ -69,7 +69,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1432, 84);
+            panel2.Size = new Size(1598, 84);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             // 
@@ -258,6 +258,7 @@
             guna2Button2.Text = "Payment";
             guna2Button2.TextAlign = HorizontalAlignment.Left;
             guna2Button2.TextOffset = new Point(10, 0);
+            guna2Button2.Click += guna2Button2_Click;
             // 
             // guna2Button3
             // 
@@ -290,7 +291,7 @@
             Mainpanel.BackColor = SystemColors.WindowFrame;
             Mainpanel.Location = new Point(175, 84);
             Mainpanel.Name = "Mainpanel";
-            Mainpanel.Size = new Size(1257, 817);
+            Mainpanel.Size = new Size(1423, 817);
             Mainpanel.TabIndex = 2;
             Mainpanel.Paint += Mainpanel_Paint;
             // 
@@ -303,7 +304,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1432, 903);
+            ClientSize = new Size(1598, 903);
             Controls.Add(Mainpanel);
             Controls.Add(sidebar);
             Controls.Add(panel2);

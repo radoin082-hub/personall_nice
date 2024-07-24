@@ -19,6 +19,7 @@ namespace GestionPersonnel.View
         private readonly Udashboard ucdashboard;
         private readonly UEmployes ucemployes;
         private readonly UPointage ucpointage;
+        private readonly UPaiement aa;
 
         public Mainpage(string connectionString)
         {
@@ -28,6 +29,8 @@ namespace GestionPersonnel.View
             ucdashboard = new Udashboard(connectionString);
             ucemployes = new UEmployes(connectionString);
             ucpointage = new UPointage(connectionString);
+            aa = new UPaiement(connectionString);
+
         }
 
 
@@ -155,7 +158,7 @@ namespace GestionPersonnel.View
             Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucemployes);
             ucemployes.Dock = DockStyle.Fill;
-            ucemployes.RefreshData(); 
+            ucemployes.RefreshData();
 
         }
 
@@ -171,32 +174,32 @@ namespace GestionPersonnel.View
         {
 
         }
-         
+
         private void guna2Button5_Click(object sender, EventArgs e)
         {
             sidebarTimer.Start();
         }
 
-        bool a; 
+        bool a;
         private void sidebartiker(object sender, EventArgs e)
         {
-            if (a) 
+            if (a)
             {
                 sidebar.Width += 70;
                 if (sidebar.Width >= sidebar.MaximumSize.Width)
                 {
-                    sidebar.Width = sidebar.MaximumSize.Width; 
-                    a = false; 
+                    sidebar.Width = sidebar.MaximumSize.Width;
+                    a = false;
                     sidebarTimer.Stop();
                 }
             }
-            else 
+            else
             {
                 sidebar.Width -= 70;
                 if (sidebar.Width <= sidebar.MinimumSize.Width)
                 {
-                    sidebar.Width = sidebar.MinimumSize.Width; 
-                    a = true; 
+                    sidebar.Width = sidebar.MinimumSize.Width;
+                    a = true;
                     sidebarTimer.Stop();
                 }
             }
@@ -218,6 +221,19 @@ namespace GestionPersonnel.View
             Mainpanel.Controls.Clear();
             Mainpanel.Controls.Add(ucpointage);
             ucpointage.Dock = DockStyle.Fill;
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            Mainpanel.Controls.Clear();
+            Mainpanel.Controls.Add(aa);
+            aa.Dock = DockStyle.Fill;
         }
     }
 }
