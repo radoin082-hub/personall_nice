@@ -11,27 +11,58 @@ using GestionPersonnel.Models.TypeDePaiment;
 using GestionPersonnel.Models.SalairesBase;
 using GestionPersonnel.Storages.SalairesBaseStorages;
 
+using GestionPersonnel.Models.Salaires;
+using GestionPersonnel.Storages.SalairesStorages;
+using Guna.UI2.WinForms;
+
 namespace GestionPersonnel.View.Controls
 {
     public partial class UPaiement : UserControl
     {
         private readonly string _connectionString;
         private readonly EmployeStorage _employeStorage;
-        private readonly TypeDePaiementStorage _paiementStorage; 
+        private readonly TypeDePaiementStorage _paiementStorage;
         private readonly SalaireBaseStorage _salaireBaseStorage;
+        private readonly SalaireStorage _salaireDetailsStorage;
+
         public UPaiement(string connectionString)
         {
             _connectionString = connectionString;
             _employeStorage = new EmployeStorage(connectionString);
             _paiementStorage = new TypeDePaiementStorage(connectionString);
-            _salaireBaseStorage=new SalaireBaseStorage(connectionString);
+            _salaireBaseStorage = new SalaireBaseStorage(connectionString);
+            _salaireDetailsStorage = new SalaireStorage(connectionString);
             InitializeComponent();
         }
 
-        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void showiconedit(object? sender, DataGridViewCellPaintingEventArgs e)
         {
+            if (e.RowIndex >= 0 && (tabpaiement.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
 
+                DataGridViewButtonColumn buttonColumn = (DataGridViewButtonColumn)tabpaiement.Columns[e.ColumnIndex];
+                Image icon = buttonColumn.Tag as Image;
+
+                if (icon != null)
+                {
+                    int iconWidth = 30;
+                    int iconHeight = 30;
+                    int iconX = e.CellBounds.X + (e.CellBounds.Width - iconWidth) / 2;
+                    int iconY = e.CellBounds.Y + (e.CellBounds.Height - iconHeight) / 2;
+
+                    e.Graphics.DrawImage(icon, new Rectangle(iconX, iconY, iconWidth, iconHeight));
+                }
+
+                using (Pen pen = new Pen(tabpaiement.GridColor, 0))
+                {
+                    e.Graphics.DrawRectangle(pen, e.CellBounds);
+                }
+
+                e.Handled = true;
+            }
         }
+
 
         private async void guna2Button2_Click(object sender, EventArgs e)
         {
@@ -67,7 +98,7 @@ namespace GestionPersonnel.View.Controls
                 label6.Text = selectedEmployee.FullName;
                 label7.Text = selectedEmployee.FonctionName;
 
-                  if (selectedEmployee.Photo != null)
+                if (selectedEmployee.Photo != null)
                 {
                     using (var ms = new System.IO.MemoryStream(selectedEmployee.Photo))
                     {
@@ -77,7 +108,6 @@ namespace GestionPersonnel.View.Controls
                 else
                 {
                     photoProfileEmployes.Image = null;
-
                 }
             }
         }
@@ -87,7 +117,7 @@ namespace GestionPersonnel.View.Controls
             List<Employee> employees = await _employeStorage.GetAll();
 
             guna2ComboBox1.DataSource = employees;
-            guna2ComboBox1.DisplayMember = "FullName"; 
+            guna2ComboBox1.DisplayMember = "FullName";
             guna2ComboBox1.ValueMember = "EmployeID";
             guna2ComboBox1.SelectedIndex = -1;
         }
@@ -107,15 +137,13 @@ namespace GestionPersonnel.View.Controls
             {
                 if (guna2ComboBox1.SelectedItem is Employee selectedEmployee && guna2ComboBox2.SelectedItem is TypeDePaiement selectedTypePaiement)
                 {
-                     decimal salaireBase = decimal.Parse(guna2TextBox2.Text);
-                     var salairesBase = new SalairesBase
-                     {
-                         SalaireBase = salaireBase,
-                         TypePaiementID = selectedTypePaiement.TypePaiementID,
-                         EmplyeId = selectedEmployee.EmployeID
-                     };
-
-
+                    decimal salaireBase = decimal.Parse(guna2TextBox2.Text);
+                    var salairesBase = new SalairesBase
+                    {
+                        SalaireBase = salaireBase,
+                        TypePaiementID = selectedTypePaiement.TypePaiementID,
+                        EmplyeId = selectedEmployee.EmployeID
+                    };
 
                     int newId = await _salaireBaseStorage.Add(salairesBase);
                     MessageBox.Show($"Record added successfully with ID {newId}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -131,5 +159,36 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
+        private async void searchBtn_Click(object sender, EventArgs e)
+        {
+            await LoadSalaireDetailsByDate();
+        }
+
+        private async Task LoadSalaireDetailsByDate()
+        {
+            DateTime selectedDateTime = DateEntrerEmployes.Value.Date;
+           
+            List<SalaireDetail> salaires = await _salaireDetailsStorage.GetSalariesByMonth(selectedDateTime);
+
+            tabpaiement.Rows.Clear();
+
+            foreach (var salaireDetails in salaires)
+            {
+                tabpaiement.Rows.Add(
+                    salaireDetails.NomEmploye,
+                    salaireDetails.PrenomEmploye,
+                    salaireDetails.NomFonction,
+                    salaireDetails.TypePaiement,
+                    salaireDetails.Salaire,
+                    salaireDetails.Primes,
+                    salaireDetails.Avances,
+                    salaireDetails.Dettes,
+                    salaireDetails.SalaireNet
+                    
+                );
+            }
+        }
+
+        
     }
 }

@@ -123,6 +123,7 @@ namespace GestionPersonnel.View.Controls
             searchBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
             searchBtn.Size = new Size(51, 45);
             searchBtn.TabIndex = 99;
+            searchBtn.Click += searchBtn_Click;
             // 
             // DateEntrerEmployes
             // 
@@ -182,9 +183,7 @@ namespace GestionPersonnel.View.Controls
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             tabpaiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpaiement.ColumnHeadersHeight = 29;
-            tabpaiement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tabpaiement.Columns.AddRange(new DataGridViewColumn[] { Nom, Prenom, Fonction, Type_Paiement, porcentage_de_mois, Salaire_Total, Dette, Avance, Salaire_Net, Fiche_de_Paie });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
@@ -221,76 +220,93 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.ThemeStyle.RowsStyle.Height = 50;
             tabpaiement.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tabpaiement.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            tabpaiement.CellContentClick += guna2DataGridView1_CellContentClick;
+           // tabpaiement.CellContentClick += guna2DataGridView1_CellContentClick;
             // 
             // Nom
             // 
-            Nom.FillWeight = 70.70706F;
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            // 
-            // Prenom
-            // 
-            Prenom.FillWeight = 70.70706F;
-            Prenom.HeaderText = "Prenom";
-            Prenom.MinimumWidth = 6;
-            Prenom.Name = "Prenom";
-            // 
-            // Fonction
-            // 
-            Fonction.FillWeight = 70.70706F;
-            Fonction.HeaderText = "Fonction";
-            Fonction.MinimumWidth = 6;
-            Fonction.Name = "Fonction";
-            // 
-            // Type_Paiement
-            // 
-            Type_Paiement.FillWeight = 70.70706F;
-            Type_Paiement.HeaderText = "Type_Paiement";
-            Type_Paiement.MinimumWidth = 6;
-            Type_Paiement.Name = "Type_Paiement";
-            // 
-            // porcentage_de_mois
-            // 
-            porcentage_de_mois.HeaderText = "porcentage_de_mois";
-            porcentage_de_mois.MinimumWidth = 6;
-            porcentage_de_mois.Name = "porcentage_de_mois";
-            // 
-            // Salaire_Total
-            // 
-            Salaire_Total.FillWeight = 70.70706F;
-            Salaire_Total.HeaderText = "Salaire_Total";
-            Salaire_Total.MinimumWidth = 6;
-            Salaire_Total.Name = "Salaire_Total";
-            // 
-            // Dette
-            // 
-            Dette.FillWeight = 70.70706F;
-            Dette.HeaderText = "Dette";
-            Dette.MinimumWidth = 6;
-            Dette.Name = "Dette";
-            // 
-            // Avance
-            // 
-            Avance.FillWeight = 70.70706F;
-            Avance.HeaderText = "Avance";
-            Avance.MinimumWidth = 6;
-            Avance.Name = "Avance";
-            // 
-            // Salaire_Net
-            // 
-            Salaire_Net.FillWeight = 70.70706F;
-            Salaire_Net.HeaderText = "Salaire_Net";
-            Salaire_Net.MinimumWidth = 6;
-            Salaire_Net.Name = "Salaire_Net";
-            // 
-            // Fiche_de_Paie
-            // 
-            Fiche_de_Paie.FillWeight = 70.70706F;
-            Fiche_de_Paie.HeaderText = "Fiche_de_Paie";
-            Fiche_de_Paie.MinimumWidth = 6;
-            Fiche_de_Paie.Name = "Fiche_de_Paie";
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Nom",
+                HeaderText = "Nom",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Prenom",
+                HeaderText = "Prenom",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Fonction",
+                HeaderText = "Fonction",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Type_Paiement",
+                HeaderText = "Type_Paiement",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "porcentage_de_mois",
+                HeaderText = "porcentage_de_mois",
+                MinimumWidth = 6
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Salaire_Total",
+                HeaderText = "Salaire_Total",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Dette",
+                HeaderText = "Dette",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Avance",
+                HeaderText = "Avance",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Salaire_Net",
+                HeaderText = "Salaire_Net",
+                MinimumWidth = 6,
+                FillWeight = 70.70706F
+            });
+
+            // Add edit button column
+            Image printicon = Properties.Resources.icons8_print_50;
+            DataGridViewButtonColumn displayprint = new DataGridViewButtonColumn
+            {
+                Name = "ModifierColumn",
+                HeaderText = "",
+                Tag = printicon,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            tabpaiement.Columns.Add(displayprint);
+            tabpaiement.CellPainting += showiconedit;
+            // Additional configurations
+            tabpaiement.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tabpaiement.RowTemplate.Height = 50;
+            tabpaiement.AllowUserToAddRows = false;
             // 
             // panelPaiement
             // 
