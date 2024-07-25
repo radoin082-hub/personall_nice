@@ -30,6 +30,7 @@ namespace GestionPersonnel.View.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -220,78 +221,26 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.ThemeStyle.RowsStyle.Height = 50;
             tabpaiement.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tabpaiement.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-           // tabpaiement.CellContentClick += guna2DataGridView1_CellContentClick;
+            // tabpaiement.CellContentClick += guna2DataGridView1_CellContentClick;
             // 
             // Nom
             // 
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Nom",
-                HeaderText = "Nom",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Prenom",
-                HeaderText = "Prenom",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Fonction",
-                HeaderText = "Fonction",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Type_Paiement",
-                HeaderText = "Type_Paiement",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "porcentage_de_mois",
-                HeaderText = "porcentage_de_mois",
-                MinimumWidth = 6
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Salaire_Total",
-                HeaderText = "Salaire_Total",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Dette",
-                HeaderText = "Dette",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Avance",
-                HeaderText = "Avance",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Salaire_Net",
-                HeaderText = "Salaire_Net",
-                MinimumWidth = 6,
-                FillWeight = 70.70706F
-            });
+            // Add columns
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "NomEmploye", HeaderText = "Nom Employe" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrenomEmploye", HeaderText = "Prenom Employe" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "NomFonction", HeaderText = "Fonction" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "TypePaiement", HeaderText = "Type Paiement" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Salaire", HeaderText = "Salaire" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Primes", HeaderText = "Primes" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Avances", HeaderText = "Avances" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Dettes", HeaderText = "Dettes" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalaireNet", HeaderText = "Salaire Net" });
 
-            // Add edit button column
+            // Add button column
             Image printicon = Properties.Resources.icons8_print_50;
-            DataGridViewButtonColumn displayprint = new DataGridViewButtonColumn
+            var displayprint = new DataGridViewButtonColumn
             {
-                Name = "ModifierColumn",
+                Name = "GeneratePdf",
                 HeaderText = "",
                 Tag = printicon,
                 FillWeight = 23,
@@ -302,11 +251,16 @@ namespace GestionPersonnel.View.Controls
                 }
             };
             tabpaiement.Columns.Add(displayprint);
+
+            // Set event handlers
             tabpaiement.CellPainting += showiconedit;
-            // Additional configurations
+            tabpaiement.CellContentClick += tabpaiement_CellContentClick;
+
+            // Configure DataGridView appearance
             tabpaiement.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             tabpaiement.RowTemplate.Height = 50;
             tabpaiement.AllowUserToAddRows = false;
+
             // 
             // panelPaiement
             // 
@@ -567,6 +521,7 @@ namespace GestionPersonnel.View.Controls
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
+
         }
 
         #endregion
