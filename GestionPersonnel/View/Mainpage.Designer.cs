@@ -68,8 +68,9 @@
             panel2.Controls.Add(pictureBox1);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1598, 84);
+            panel2.Size = new Size(1404, 63);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             // 
@@ -78,9 +79,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.DimGray;
-            label6.Location = new Point(91, 41);
+            label6.Location = new Point(80, 31);
             label6.Name = "label6";
-            label6.Size = new Size(70, 20);
+            label6.Size = new Size(53, 15);
             label6.TabIndex = 81;
             label6.Text = "FABELEC";
             label6.Click += label6_Click;
@@ -90,9 +91,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(572, 41);
+            label5.Location = new Point(500, 31);
             label5.Name = "label5";
-            label5.Size = new Size(213, 20);
+            label5.Size = new Size(170, 15);
             label5.TabIndex = 80;
             label5.Text = "welcom to Gestion Personnel";
             label5.Click += label5_Click_1;
@@ -100,9 +101,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 3);
+            pictureBox1.Location = new Point(0, 2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(85, 81);
+            pictureBox1.Size = new Size(74, 61);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
@@ -116,11 +118,12 @@
             sidebar.Controls.Add(guna2Button1);
             sidebar.Controls.Add(guna2Button2);
             sidebar.Controls.Add(guna2Button3);
-            sidebar.Location = new Point(0, 84);
-            sidebar.MaximumSize = new Size(176, 817);
-            sidebar.MinimumSize = new Size(62, 817);
+            sidebar.Location = new Point(0, 63);
+            sidebar.Margin = new Padding(3, 2, 3, 2);
+            sidebar.MaximumSize = new Size(154, 613);
+            sidebar.MinimumSize = new Size(54, 613);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(176, 817);
+            sidebar.Size = new Size(154, 613);
             sidebar.TabIndex = 0;
             sidebar.Paint += sidebar_Paint;
             // 
@@ -141,11 +144,12 @@
             menubutton.Image = (Image)resources.GetObject("menubutton.Image");
             menubutton.ImageAlign = HorizontalAlignment.Left;
             menubutton.ImageSize = new Size(30, 30);
-            menubutton.Location = new Point(3, 3);
+            menubutton.Location = new Point(3, 2);
+            menubutton.Margin = new Padding(3, 2, 3, 2);
             menubutton.Name = "menubutton";
             menubutton.PressedColor = Color.FromArgb(26, 178, 255);
             menubutton.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            menubutton.Size = new Size(173, 68);
+            menubutton.Size = new Size(151, 51);
             menubutton.TabIndex = 99;
             menubutton.Text = "Menu";
             menubutton.TextAlign = HorizontalAlignment.Left;
@@ -169,11 +173,12 @@
             ajouteremploye.Image = (Image)resources.GetObject("ajouteremploye.Image");
             ajouteremploye.ImageAlign = HorizontalAlignment.Left;
             ajouteremploye.ImageSize = new Size(30, 30);
-            ajouteremploye.Location = new Point(3, 77);
+            ajouteremploye.Location = new Point(3, 57);
+            ajouteremploye.Margin = new Padding(3, 2, 3, 2);
             ajouteremploye.Name = "ajouteremploye";
             ajouteremploye.PressedColor = Color.FromArgb(26, 178, 255);
             ajouteremploye.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            ajouteremploye.Size = new Size(173, 68);
+            ajouteremploye.Size = new Size(151, 51);
             ajouteremploye.TabIndex = 94;
             ajouteremploye.Text = "Dashboard";
             ajouteremploye.TextAlign = HorizontalAlignment.Left;
@@ -196,11 +201,12 @@
             guna2Button4.Image = (Image)resources.GetObject("guna2Button4.Image");
             guna2Button4.ImageAlign = HorizontalAlignment.Left;
             guna2Button4.ImageSize = new Size(30, 30);
-            guna2Button4.Location = new Point(3, 151);
+            guna2Button4.Location = new Point(3, 112);
+            guna2Button4.Margin = new Padding(3, 2, 3, 2);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.PressedColor = Color.FromArgb(26, 178, 255);
             guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Button4.Size = new Size(173, 68);
+            guna2Button4.Size = new Size(151, 51);
             guna2Button4.TabIndex = 98;
             guna2Button4.Text = "Employees";
             guna2Button4.TextAlign = HorizontalAlignment.Left;
@@ -224,10 +230,11 @@
             guna2Button1.Image = (Image)resources.GetObject("guna2Button1.Image");
             guna2Button1.ImageAlign = HorizontalAlignment.Left;
             guna2Button1.ImageSize = new Size(33, 33);
-            guna2Button1.Location = new Point(3, 225);
+            guna2Button1.Location = new Point(3, 167);
+            guna2Button1.Margin = new Padding(3, 2, 3, 2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2Button1.Size = new Size(173, 68);
+            guna2Button1.Size = new Size(151, 51);
             guna2Button1.TabIndex = 95;
             guna2Button1.Text = "Pointage";
             guna2Button1.TextAlign = HorizontalAlignment.Left;
@@ -250,10 +257,11 @@
             guna2Button2.Image = (Image)resources.GetObject("guna2Button2.Image");
             guna2Button2.ImageAlign = HorizontalAlignment.Left;
             guna2Button2.ImageSize = new Size(34, 34);
-            guna2Button2.Location = new Point(3, 299);
+            guna2Button2.Location = new Point(3, 222);
+            guna2Button2.Margin = new Padding(3, 2, 3, 2);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2Button2.Size = new Size(173, 68);
+            guna2Button2.Size = new Size(151, 51);
             guna2Button2.TabIndex = 96;
             guna2Button2.Text = "Payment";
             guna2Button2.TextAlign = HorizontalAlignment.Left;
@@ -276,10 +284,11 @@
             guna2Button3.Image = (Image)resources.GetObject("guna2Button3.Image");
             guna2Button3.ImageAlign = HorizontalAlignment.Left;
             guna2Button3.ImageSize = new Size(30, 30);
-            guna2Button3.Location = new Point(3, 373);
+            guna2Button3.Location = new Point(3, 277);
+            guna2Button3.Margin = new Padding(3, 2, 3, 2);
             guna2Button3.Name = "guna2Button3";
             guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2Button3.Size = new Size(166, 68);
+            guna2Button3.Size = new Size(145, 51);
             guna2Button3.TabIndex = 97;
             guna2Button3.Text = "Dette";
             guna2Button3.TextAlign = HorizontalAlignment.Left;
@@ -289,9 +298,10 @@
             // Mainpanel
             // 
             Mainpanel.BackColor = SystemColors.WindowFrame;
-            Mainpanel.Location = new Point(175, 84);
+            Mainpanel.Location = new Point(153, 63);
+            Mainpanel.Margin = new Padding(3, 2, 3, 2);
             Mainpanel.Name = "Mainpanel";
-            Mainpanel.Size = new Size(1423, 817);
+            Mainpanel.Size = new Size(1245, 613);
             Mainpanel.TabIndex = 2;
             Mainpanel.Paint += Mainpanel_Paint;
             // 
@@ -301,15 +311,17 @@
             // 
             // Mainpage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1598, 903);
+            ClientSize = new Size(1404, 661);
             Controls.Add(Mainpanel);
             Controls.Add(sidebar);
             Controls.Add(panel2);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(1450, 950);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimizeBox = false;
+            MinimumSize = new Size(1420, 700);
             Name = "Mainpage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestion Personnel";
