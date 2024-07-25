@@ -28,50 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Udettes));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DettesGrid = new Guna.UI2.WinForms.Guna2DataGridView();
             Nom = new DataGridViewTextBoxColumn();
             Prenom = new DataGridViewTextBoxColumn();
             Fonction = new DataGridViewTextBoxColumn();
             TotaleDette = new DataGridViewTextBoxColumn();
-            MontantDeMois = new DataGridViewTextBoxColumn();
-            Remarque = new DataGridViewTextBoxColumn();
-            button1 = new Button();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            MontantRetiree = new DataGridViewTextBoxColumn();
+            TotalAvances = new DataGridViewTextBoxColumn();
+            AddButton = new Button();
+            DettesSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            RemoveButton = new Button();
+            Modifier = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)DettesGrid).BeginInit();
             SuspendLayout();
             // 
             // DettesGrid
             // 
-            dataGridViewCellStyle7.BackColor = Color.White;
-            DettesGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            DettesGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            DettesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { Nom, Prenom, Fonction, TotaleDette, MontantDeMois, Remarque });
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.White;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            DettesGrid.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            DettesGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            DettesGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            DettesGrid.ColumnHeadersHeight = 17;
+            DettesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, Modifier });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            DettesGrid.DefaultCellStyle = dataGridViewCellStyle3;
             DettesGrid.GridColor = Color.White;
-            DettesGrid.Location = new Point(3, 83);
+            DettesGrid.Location = new Point(3, 98);
             DettesGrid.Name = "DettesGrid";
             DettesGrid.RowHeadersVisible = false;
-            DettesGrid.Size = new Size(1060, 593);
+            DettesGrid.Size = new Size(1244, 578);
             DettesGrid.TabIndex = 0;
             DettesGrid.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             DettesGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -84,7 +88,7 @@
             DettesGrid.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             DettesGrid.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             DettesGrid.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            DettesGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DettesGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             DettesGrid.ThemeStyle.HeaderStyle.Height = 17;
             DettesGrid.ThemeStyle.ReadOnly = false;
             DettesGrid.ThemeStyle.RowsStyle.BackColor = Color.White;
@@ -113,61 +117,88 @@
             // 
             // TotaleDette
             // 
-            TotaleDette.HeaderText = "TotaleDette";
+            TotaleDette.HeaderText = "Totale Dette";
             TotaleDette.Name = "TotaleDette";
             // 
-            // MontantDeMois
+            // MontantRetiree
             // 
-            MontantDeMois.HeaderText = "MontantDeMois";
-            MontantDeMois.Name = "MontantDeMois";
+            MontantRetiree.HeaderText = "Montant Retiree";
+            MontantRetiree.Name = "MontantRetiree";
             // 
-            // Remarque
+            // TotalAvances
             // 
-            Remarque.HeaderText = "Remarque";
-            Remarque.Name = "Remarque";
+            TotalAvances.HeaderText = "Totale Avances";
+            TotalAvances.Name = "TotalAvances";
             // 
-            // button1
+            // AddButton
             // 
-            button1.BackColor = Color.FromArgb(100, 88, 255);
-            button1.ForeColor = Color.Lime;
-            button1.Location = new Point(752, 18);
-            button1.Name = "button1";
-            button1.Size = new Size(146, 46);
-            button1.TabIndex = 1;
-            button1.Text = "Ajouter Dette";
-            button1.UseVisualStyleBackColor = false;
+            AddButton.BackColor = Color.Green;
+            AddButton.ForeColor = Color.White;
+            AddButton.Location = new Point(934, 26);
+            AddButton.Name = "AddButton";
+            AddButton.Size = new Size(227, 46);
+            AddButton.TabIndex = 1;
+            AddButton.Text = "Ajouter Dette ou Avance";
+            AddButton.UseVisualStyleBackColor = false;
             // 
-            // guna2TextBox1
+            // DettesSearch
             // 
-            guna2TextBox1.CustomizableEdges = customizableEdges1;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(96, 18);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PasswordChar = '\0';
-            guna2TextBox1.PlaceholderText = "";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.Size = new Size(200, 36);
-            guna2TextBox1.TabIndex = 2;
+            DettesSearch.BackColor = Color.White;
+            DettesSearch.BorderRadius = 10;
+            DettesSearch.CustomizableEdges = customizableEdges1;
+            DettesSearch.DefaultText = "";
+            DettesSearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            DettesSearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            DettesSearch.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            DettesSearch.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            DettesSearch.FillColor = Color.FromArgb(232, 251, 253);
+            DettesSearch.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            DettesSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DettesSearch.ForeColor = Color.Black;
+            DettesSearch.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            DettesSearch.IconLeft = (Image)resources.GetObject("DettesSearch.IconLeft");
+            DettesSearch.Location = new Point(22, 26);
+            DettesSearch.Margin = new Padding(3, 4, 3, 4);
+            DettesSearch.Name = "DettesSearch";
+            DettesSearch.PasswordChar = '\0';
+            DettesSearch.PlaceholderText = "Search Here";
+            DettesSearch.SelectedText = "";
+            DettesSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            DettesSearch.Size = new Size(296, 34);
+            DettesSearch.TabIndex = 2;
+            DettesSearch.TextChanged += DettesSearch_TextChanged;
+            // 
+            // RemoveButton
+            // 
+            RemoveButton.BackColor = Color.Red;
+            RemoveButton.ForeColor = SystemColors.Window;
+            RemoveButton.Location = new Point(656, 26);
+            RemoveButton.Name = "RemoveButton";
+            RemoveButton.Size = new Size(227, 46);
+            RemoveButton.TabIndex = 4;
+            RemoveButton.Text = "Retrait Mensuel";
+            RemoveButton.UseVisualStyleBackColor = false;
+            // 
+            // Modifier
+            // 
+            Modifier.HeaderText = "Modifier";
+            Modifier.Name = "Modifier";
             // 
             // Udettes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(guna2TextBox1);
-            Controls.Add(button1);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BackColor = Color.White;
+            Controls.Add(RemoveButton);
+            Controls.Add(DettesSearch);
+            Controls.Add(AddButton);
             Controls.Add(DettesGrid);
             Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Udettes";
-            Size = new Size(1086, 676);
+            Size = new Size(1250, 679);
             Load += Udettes_Load;
             ((System.ComponentModel.ISupportInitialize)DettesGrid).EndInit();
             ResumeLayout(false);
@@ -176,13 +207,16 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2DataGridView DettesGrid;
+        private DataGridViewTextBoxColumn MontantDeMois;
+        private Button AddButton;
+        private Guna.UI2.WinForms.Guna2TextBox DettesSearch;
+        private Button RemoveButton;
         private DataGridViewTextBoxColumn Nom;
         private DataGridViewTextBoxColumn Prenom;
         private DataGridViewTextBoxColumn Fonction;
         private DataGridViewTextBoxColumn TotaleDette;
-        private DataGridViewTextBoxColumn MontantDeMois;
-        private DataGridViewTextBoxColumn Remarque;
-        private Button button1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private DataGridViewTextBoxColumn MontantRetiree;
+        private DataGridViewTextBoxColumn TotalAvances;
+        private DataGridViewTextBoxColumn Modifier;
     }
 }

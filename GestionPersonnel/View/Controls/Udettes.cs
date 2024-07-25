@@ -31,5 +31,15 @@ namespace GestionPersonnel.View.Controls
         {
 
         }
+
+        private void DettesSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

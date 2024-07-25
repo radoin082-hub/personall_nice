@@ -105,5 +105,43 @@ namespace GestionPersonnel.Storages.DettesStorages
             await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
         }
+
+
+        public async Task<List<PaimentsInfo>> GetEmployeeDebtDetails()
+        {
+            List<PaimentsInfo> paimentsInfos = new List<PaimentsInfo>();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var cmd = new SqlCommand("GetEmployeeDebtDetails", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    await connection.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var paimentinfo = new PaimentsInfo
+                            {
+                                EmployeID = Convert.ToInt32(reader["EmployeID"]),
+                                Nom = reader["Nom"].ToString(),
+                                Prenom = reader["Prenom"].ToString(),
+                                NomFonction = reader["NomFonction"].ToString(),
+                                TotaleDette = Convert.ToDecimal(reader["TotaleDette"]),
+                                MontantRetrait = Convert.ToDecimal(reader["MontantRetrait"]),
+                                TotaleAvances = Convert.ToDecimal(reader["TotaleAvances"])
+                            };
+
+                            paimentsInfos.Add(paimentinfo);
+                        }
+                    }
+                }
+            }
+
+            return paimentsInfos;
+        }
+
     }
 }
