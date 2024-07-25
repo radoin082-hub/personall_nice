@@ -98,7 +98,6 @@
             DettesGrid.ThemeStyle.RowsStyle.Height = 25;
             DettesGrid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DettesGrid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            DettesGrid.CellContentClick += DettesGrid_CellContentClick;
             // 
             // Nom
             // 
@@ -166,7 +165,6 @@
             DettesSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
             DettesSearch.Size = new Size(296, 34);
             DettesSearch.TabIndex = 2;
-            DettesSearch.TextChanged += DettesSearch_TextChanged;
             // 
             // RemoveButton
             // 

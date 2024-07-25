@@ -30,7 +30,7 @@ namespace GestionPersonnel.View
             InitializeComponent();
             ucdashboard = new Udashboard(connectionString);
             ucemployes = new UEmployes(connectionString);
-            ucdettes = new Udettes();
+            ucdettes = new Udettes(connectionString);
             ucpointage = new UPointage(connectionString);
             aa = new UPaiement(connectionString);
 
