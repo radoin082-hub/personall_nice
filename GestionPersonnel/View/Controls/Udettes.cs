@@ -40,8 +40,13 @@ namespace GestionPersonnel.View.Controls
             DettesGrid.Rows.Clear();
             foreach (var paiment in paimentsInfos)
             {
-                DettesGrid.Rows.Add( paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
+                DettesGrid.Rows.Add(paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
             }
+        }
+
+        private void DettesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
