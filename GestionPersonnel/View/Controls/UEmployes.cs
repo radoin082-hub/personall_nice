@@ -108,9 +108,12 @@ namespace GestionPersonnel.View
         private void UpdateDataGridView(List<Employee> employees)
         {
             guna2DataGridView1.Rows.Clear();
+            int count=0;
             foreach (var employee in employees)
             {
+                count++;
                 if (employee != null &&
+
                     !string.IsNullOrEmpty(employee.Nom) &&
                     !string.IsNullOrEmpty(employee.Prenom) &&
                     !string.IsNullOrEmpty(employee.NSecuriteSocial))
@@ -119,7 +122,7 @@ namespace GestionPersonnel.View
                                           ? _fonctionsDictionary[employee.FonctionID]
                                           : "Unknown";
 
-                    guna2DataGridView1.Rows.Add(employee.Nom, employee.Prenom, employee.NSecuriteSocial, fonctionName);
+                    guna2DataGridView1.Rows.Add(count,employee.Nom, employee.Prenom, employee.NSecuriteSocial, fonctionName);
                 }
             }
         }

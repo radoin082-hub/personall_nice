@@ -270,11 +270,12 @@ namespace GestionPersonnel.View
             guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick_3;
             guna2DataGridView1.CellPainting += Guna2DataGridView1_CellPainting;
             guna2DataGridView1.Columns.Clear();
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ID",HeaderText = "N°" });
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nom", HeaderText = "Nom" });
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Prenom", HeaderText = "Prénom" });
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NSecuriteSociale", HeaderText = "N° Sécurité Sociale" });
             guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction" });
-
+            guna2DataGridView1.Columns["ID"].Width=75;
             Image modifierIconPath = Properties.Resources.icons8_edit_24;
             DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
             {
