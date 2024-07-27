@@ -33,7 +33,8 @@ namespace GestionPersonnel.View.Controls
             {
                 MessageBox.Show($"An error occurred while loading debt details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } 
+
 
         private void UpdateDataGridView(List<PaimentsInfo> paimentsInfos)
         {
@@ -42,6 +43,11 @@ namespace GestionPersonnel.View.Controls
             {
                 DettesGrid.Rows.Add(paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
             }
+        }
+
+        private void DettesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
     }
 }

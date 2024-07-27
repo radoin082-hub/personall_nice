@@ -76,6 +76,7 @@ namespace GestionPersonnel.Storages.DettesStorages
             cmd.Parameters.AddWithValue("@EmployeID", dette.EmployeID);
             cmd.Parameters.AddWithValue("@Montant", dette.Montant);
             cmd.Parameters.AddWithValue("@Date", dette.Date);
+         
 
             await connection.OpenAsync();
             var id = await cmd.ExecuteScalarAsync();
@@ -132,6 +133,7 @@ namespace GestionPersonnel.Storages.DettesStorages
                                 TotaleDette = Convert.ToDecimal(reader["TotaleDette"]),
                                 MontantRetrait = Convert.ToDecimal(reader["MontantRetrait"]),
                                 TotaleAvances = Convert.ToDecimal(reader["TotaleAvances"])
+
                             };
 
                             paimentsInfos.Add(paimentinfo);

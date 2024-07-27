@@ -82,7 +82,7 @@
             DettesSearch.PlaceholderText = "Search Here";
             DettesSearch.SelectedText = "";
             DettesSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            DettesSearch.Size = new Size(296, 34);
+            DettesSearch.Size = new Size(295, 34);
             DettesSearch.TabIndex = 2;
             // 
             // RemoveButton
