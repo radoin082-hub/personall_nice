@@ -21,11 +21,12 @@ using iText.Layout.Properties;
 using Image = System.Drawing.Image;
 using System.IO;
 using PdfSharp.Drawing;
-using System.Drawing.Imaging;
-using PdfSharp.Pdf;
 using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
-using System.Drawing.Imaging;
+using PdfSharp.Pdf;
+using System;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using PdfDocument = PdfSharp.Pdf.PdfDocument;
 using PdfPage = PdfSharp.Pdf.PdfPage;
 
@@ -46,7 +47,7 @@ namespace GestionPersonnel.View.Controls
             _paiementStorage = new TypeDePaiementStorage(connectionString);
             _salaireBaseStorage = new SalaireBaseStorage(connectionString);
             _salaireDetailsStorage = new SalaireStorage(connectionString);
-            
+
 
             InitializeComponent();
             tabpaiement.CellContentClick += tabpaiement_CellContentClick;
@@ -107,125 +108,99 @@ namespace GestionPersonnel.View.Controls
         }
 
 
-        private async Task GeneratePdfForEmployee(string nom, string prenom, string fonction, string typePaiement,
-      decimal salaire, decimal primes, decimal avances, decimal dettes, decimal salaireNet)
+        private async Task GeneratePdfForEmployee(string nom, string prenom, string fonction, string typePaiement, decimal salaire, decimal primes, decimal avances, decimal dettes, decimal salaireNet)
         {
             try
             {
+                // Créer un nouveau document PDF
                 using (PdfDocument document = new PdfDocument())
                 {
-                    // Create an empty page
                     PdfPage page = document.AddPage();
                     XGraphics gfx = XGraphics.FromPdfPage(page);
 
-                    // Draw the title
-                    XFont titleFont = new XFont("Verdana", 20);
-                    gfx.DrawString("Bulletin de Paie", titleFont, XBrushes.Black,
+                    // Définir les polices
+                    XFont titleFont = new XFont("Arial", 14, XFontStyleEx.Bold);
+                    XFont headerFont = new XFont("Arial", 10, XFontStyleEx.Bold);
+                    XFont contentFont = new XFont("Arial", 10);
+
+                    // Titre
+                    gfx.DrawString("Bulletin de salaire", titleFont, XBrushes.Black,
                         new XRect(0, 20, page.Width, page.Height),
                         XStringFormats.TopCenter);
 
-                    // Create fonts for content and headers
-                    XFont contentFont = new XFont("Verdana", 12);
-                    XFont headerFont = new XFont("Verdana", 12);
+                    // Informations sur l'employé et l'employeur
+                    int yPos = 60;
+                    gfx.DrawString("Nom: " + nom, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
+                    yPos += 15;
+                    gfx.DrawString("Prénom: " + prenom, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
+                    yPos += 15;
+                    gfx.DrawString("Fonction: " + fonction, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
+                    yPos += 15;
+                    gfx.DrawString("Type de paiement: " + typePaiement, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
 
-                    // Table settings
+                    // Titre des détails du salaire
+                    yPos += 30;
+                    gfx.DrawRectangle(XBrushes.LightGray, 20, yPos, page.Width - 40, 20);
+                    gfx.DrawString("Détails du salaire", headerFont, XBrushes.Black, new XRect(20, yPos, page.Width - 40, 20), XStringFormats.Center);
+
+                    // Tableau des détails du salaire
+                    yPos += 20;
                     int tableX = 20;
                     int tableWidth = (int)(page.Width - 40);
                     int rowHeight = 20;
-                    int columnWidth1 = 150; // Adjust as needed
-                    int columnWidth2 = tableWidth - columnWidth1;
+                    int columnWidth1 = tableWidth / 3;
+                    int columnWidth2 = tableWidth / 3;
+                    int columnWidth3 = tableWidth / 3;
 
-                    // Draw table header for employee details
-                    int yPos = 60;
-                    gfx.DrawRectangle(XBrushes.LightGray, tableX, yPos, tableWidth, rowHeight);
-                    gfx.DrawString("Détails", headerFont, XBrushes.Black,
-                        new XRect(tableX, yPos, tableWidth, rowHeight),
-                        XStringFormats.TopCenter);
+                    gfx.DrawRectangle(XPens.Black, tableX, yPos, columnWidth1, rowHeight);
+                    gfx.DrawRectangle(XPens.Black, tableX + columnWidth1, yPos, columnWidth2, rowHeight);
+                    gfx.DrawRectangle(XPens.Black, tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight);
+                    gfx.DrawString("Détails", contentFont, XBrushes.Black, new XRect(tableX, yPos, columnWidth1, rowHeight), XStringFormats.CenterLeft);
+                    gfx.DrawString("Montant", contentFont, XBrushes.Black, new XRect(tableX + columnWidth1, yPos, columnWidth2, rowHeight), XStringFormats.Center);
+                    gfx.DrawString("Déduction", contentFont, XBrushes.Black, new XRect(tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight), XStringFormats.Center);
 
                     yPos += rowHeight;
 
-                    // Function to draw table rows
-                    void DrawTableRow(string label, string value)
+                    // Méthode auxiliaire pour dessiner les lignes de salaire
+                    void DrawSalaryRow(string label, decimal value)
                     {
-                        gfx.DrawRectangle(XBrushes.White, tableX, yPos, tableWidth, rowHeight);
-                        gfx.DrawRectangle(XPens.Black, tableX, yPos, tableWidth, rowHeight);
-                        gfx.DrawString(label, contentFont, XBrushes.Black,
-                            new XRect(tableX, yPos, columnWidth1, rowHeight),
-                            XStringFormats.TopLeft);
-                        gfx.DrawString(value, contentFont, XBrushes.Black,
-                            new XRect(tableX + columnWidth1, yPos, columnWidth2, rowHeight),
-                            XStringFormats.TopLeft);
+                        gfx.DrawRectangle(XPens.Black, tableX, yPos, columnWidth1, rowHeight);
+                        gfx.DrawRectangle(XPens.Black, tableX + columnWidth1, yPos, columnWidth2, rowHeight);
+                        gfx.DrawRectangle(XPens.Black, tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight);
+                        gfx.DrawString(label, contentFont, XBrushes.Black, new XRect(tableX, yPos, columnWidth1, rowHeight), XStringFormats.CenterLeft);
+                        gfx.DrawString(value.ToString("C"), contentFont, XBrushes.Black, new XRect(tableX + columnWidth1, yPos, columnWidth2, rowHeight), XStringFormats.Center);
+                        gfx.DrawString("", contentFont, XBrushes.Black, new XRect(tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight), XStringFormats.Center);
                         yPos += rowHeight;
                     }
 
-                    // Draw employee details
-                    DrawTableRow("Nom:", nom);
-                    DrawTableRow("Prénom:", prenom);
-                    DrawTableRow("Fonction:", fonction);
-                    DrawTableRow("Type de Paiement:", typePaiement);
+                    // Ajouter les détails du salaire
+                    DrawSalaryRow("Salaire:", salaire);
+                    DrawSalaryRow("Primes:", primes);
+                    DrawSalaryRow("Avances:", avances);
+                    DrawSalaryRow("Dettes:", dettes);
+                    DrawSalaryRow("Salaire Net:", salaireNet);
 
-                    // Add spacing before salary details
-                    yPos += 10;
-
-                    // Draw table header for salary details
-                    gfx.DrawRectangle(XBrushes.LightGray, tableX, yPos, tableWidth, rowHeight);
-                    gfx.DrawString("Salaire et Primes", headerFont, XBrushes.Black,
-                        new XRect(tableX, yPos, tableWidth, rowHeight),
-                        XStringFormats.TopCenter);
-
-                    yPos += rowHeight;
-
-                    // Draw salary details
-                    DrawTableRow("Salaire:", salaire.ToString("C"));
-                    DrawTableRow("Primes:", primes.ToString("C"));
-                    DrawTableRow("Avances:", avances.ToString("C"));
-                    DrawTableRow("Dettes:", dettes.ToString("C"));
-                    DrawTableRow("Salaire Net:", salaireNet.ToString("C"));
-
-                    yPos += 20;
-
-                    // Add employee photo if available
-                    if (photoProfileEmployes.Image != null)
-                    {
-                        using (MemoryStream photoStream = new MemoryStream())
-                        {
-                            photoProfileEmployes.Image.Save(photoStream, ImageFormat.Png);
-                            XImage image = XImage.FromStream(photoStream);
-                            gfx.DrawImage(image, 20, yPos, 150, 150);
-                        }
-                    }
-
-                    // Show SaveFileDialog to choose path
+                    // Enregistrer le fichier PDF
                     using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                     {
-                        saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
-                        saveFileDialog.Title = "Save PDF File";
-                        saveFileDialog.FileName = $"{nom}_{prenom}_BulletinDePaie.pdf";
+                        saveFileDialog.Filter = "Fichiers PDF (*.pdf)|*.pdf";
+                        saveFileDialog.Title = "Enregistrer le fichier PDF";
+                        saveFileDialog.FileName = $"{nom}_{prenom}_BulletinDeSalaire.pdf";
 
+                        // Afficher la boîte de dialogue et enregistrer le fichier si l'utilisateur appuie sur OK
                         if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
-                            // Save the document
                             document.Save(saveFileDialog.FileName);
-                            MessageBox.Show($"PDF generated successfully: {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"PDF généré avec succès: {saveFileDialog.FileName}", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while generating PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors de la génération du PDF: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -354,6 +329,6 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
-        
+
     }
 }

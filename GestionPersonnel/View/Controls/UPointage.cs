@@ -72,14 +72,15 @@ namespace GestionPersonnel.View.Controls
             bool noPointageShown = false;
 
             tabpointage.Rows.Clear();
-
+            int i = 0;
             foreach (var employee in employees)
             {
                 Pointage? pointage = await _pointageStorage.GetByIdAndDate(employee.EmployeID, selectedDate);
 
                 if (pointage != null)
-                {
+                {i++;
                     tabpointage.Rows.Add(
+                        i,
                         employee.Nom,
                         employee.Prenom,
                         employee.FonctionName,
@@ -186,10 +187,6 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
-
-
-
-
         private void label7_Click(object sender, EventArgs e)
         {
 
@@ -245,6 +242,7 @@ namespace GestionPersonnel.View.Controls
 
             bool noPointageShown = false;
             tabpointage.Rows.Clear();
+            int i = 0;
 
             foreach (var employee in employees)
             {
@@ -252,7 +250,10 @@ namespace GestionPersonnel.View.Controls
 
                 if (pointage != null)
                 {
+                    i++;
+                   
                     tabpointage.Rows.Add(
+                        i,
                         employee.Nom,
                         employee.Prenom,
                         employee.FonctionName,
@@ -264,17 +265,20 @@ namespace GestionPersonnel.View.Controls
                         pointage.PointageID
                     );
 
+                
                 }
                 else
                 {
                     if (!noPointageShown)
                     {
-                        //MessageBox.Show("Aucun pointage pour cet employé");
+   
                         noPointageShown = true;
                     }
                 }
             }
         }
+
+
 
         private void guna2TextBox3_TextChanged(object sender, EventArgs e)
         {
