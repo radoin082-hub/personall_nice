@@ -76,9 +76,10 @@ namespace GestionPersonnel.View.Controls
             foreach (var employee in employees)
             {
                 Pointage? pointage = await _pointageStorage.GetByIdAndDate(employee.EmployeID, selectedDate);
-
+               
                 if (pointage != null)
-                {i++;
+                { 
+                    i++;
                     tabpointage.Rows.Add(
                         i,
                         employee.Nom,
@@ -87,7 +88,7 @@ namespace GestionPersonnel.View.Controls
                         pointage.Stat,
                         pointage.HeuresTravaillees,
                         pointage.persontage + " %",
-                        string.IsNullOrEmpty(pointage.Remarque) ? "N/A" : pointage.Remarque,
+                        pointage.Remarque,
                         employee.EmployeID,
                         pointage.PointageID
                     );
@@ -243,15 +244,13 @@ namespace GestionPersonnel.View.Controls
             bool noPointageShown = false;
             tabpointage.Rows.Clear();
             int i = 0;
-
             foreach (var employee in employees)
             {
                 Pointage? pointage = await _pointageStorage.GetByIdAndDate(employee.EmployeID, selectedDate);
-
+                
                 if (pointage != null)
                 {
                     i++;
-                   
                     tabpointage.Rows.Add(
                         i,
                         employee.Nom,
@@ -263,6 +262,7 @@ namespace GestionPersonnel.View.Controls
                         pointage.Remarque,
                         employee.EmployeID,
                         pointage.PointageID
+                        
                     );
 
                 
