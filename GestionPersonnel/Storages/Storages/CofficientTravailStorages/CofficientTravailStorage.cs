@@ -19,6 +19,8 @@ namespace GestionPersonnel.Storages.CoefficientTravailStorages
         {
             _connectionString = connectionString;
         }
+        private const string SelectByEmployeIdAndDateQuery =
+    "SELECT * FROM CoefficientTravail WHERE EmployeID = @EmployeID AND Date = @Date";
 
         private const string SelectAllQuery = "SELECT * FROM CoefficientTravail";
         private const string SelectByIdQuery = "SELECT * FROM CoefficientTravail WHERE CoefficientID = @id";
@@ -112,5 +114,22 @@ namespace GestionPersonnel.Storages.CoefficientTravailStorages
             await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
         }
+        public async Task<List<CoefficientTravail>> GetByEmployeIdAndDate(int employeId, DateTime date)
+        {
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand(SelectByEmployeIdAndDateQuery, connection);
+
+            cmd.Parameters.AddWithValue("@EmployeID", employeId);
+            cmd.Parameters.AddWithValue("@Date", date);
+
+            var dataTable = new DataTable();
+            var da = new SqlDataAdapter(cmd);
+
+            await connection.OpenAsync();
+            da.Fill(dataTable);
+
+            return (from DataRow row in dataTable.Rows select GetCoefficientTravailFromDataRow(row)).ToList();
+        }
+
     }
 }

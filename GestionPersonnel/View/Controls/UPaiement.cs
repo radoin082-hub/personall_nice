@@ -13,11 +13,9 @@ using GestionPersonnel.Storages.SalairesBaseStorages;
 using GestionPersonnel.Models.Salaires;
 using GestionPersonnel.Storages.SalairesStorages;
 using Guna.UI2.WinForms;
-using iText.IO.Image;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
+using MigraDocCore.DocumentObjectModel; // Pour MigraDoc
+using System.Drawing;
+
 using Image = System.Drawing.Image;
 using System.IO;
 using PdfSharp.Drawing;
@@ -28,6 +26,9 @@ using PdfSharp.Drawing.Layout;
 using System.Drawing.Imaging;
 using PdfDocument = PdfSharp.Pdf.PdfDocument;
 using PdfPage = PdfSharp.Pdf.PdfPage;
+using PdfSharp.UniversalAccessibility.Drawing;
+using MigraDocCore.DocumentObjectModel;
+using MigraDocCore.Rendering;
 
 namespace GestionPersonnel.View.Controls
 {
@@ -105,109 +106,53 @@ namespace GestionPersonnel.View.Controls
                 }
             }
         }
-
-
         private async Task GeneratePdfForEmployee(string nom, string prenom, string fonction, string typePaiement,
-      decimal salaire, decimal primes, decimal avances, decimal dettes, decimal salaireNet)
+    decimal salaire, decimal primes, decimal avances, decimal dettes, decimal salaireNet)
         {
             try
             {
-                using (PdfDocument document = new PdfDocument())
+                // Create a new PDF document
+                PdfDocument document = new PdfDocument();
+                PdfPage page = document.AddPage();
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                // Use Arial Unicode MS font for Arabic text
+                XFont titleFont = new XFont("Arial Unicode MS", 20); // No style parameter for regular
+                XFont bodyFont = new XFont("Arial Unicode MS", 12); // No style parameter for regular
+
+                // Define the margins
+                double margin = 40;
+                XRect layoutRectangle = new XRect(margin, margin, page.Width - 2 * margin, page.Height - 2 * margin);
+
+                // Draw the title
+                XTextFormatter titleFormatter = new XTextFormatter(gfx);
+                titleFormatter.Alignment = XParagraphAlignment.Center;
+                titleFormatter.DrawString("كشف الراتب", titleFont, XBrushes.Black, layoutRectangle);
+
+                // Draw the details
+                DrawText(gfx, $"Nom: {nom}", bodyFont, layoutRectangle);
+                DrawText(gfx, $"Prénom: {prenom}", bodyFont, layoutRectangle);
+                DrawText(gfx, $"Fonction: {fonction}", bodyFont, layoutRectangle);
+                DrawText(gfx, $"Type de Paiement: {typePaiement}", bodyFont, layoutRectangle);
+
+                // Draw salary details
+                DrawText(gfx, $"Salaire: {salaire:C}", bodyFont, layoutRectangle);
+                DrawText(gfx, $"Primes: {primes:C}", bodyFont, layoutRectangle);
+                DrawText(gfx, $"Avances: {avances:C}", bodyFont, layoutRectangle);
+                DrawText(gfx, $"Dettes: {dettes:C}", bodyFont, layoutRectangle);
+                DrawText(gfx, $"Salaire Net: {salaireNet:C}", bodyFont, layoutRectangle);
+
+                // Save the document
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    // Create an empty page
-                    PdfPage page = document.AddPage();
-                    XGraphics gfx = XGraphics.FromPdfPage(page);
+                    saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                    saveFileDialog.Title = "Save PDF File";
+                    saveFileDialog.FileName = $"{nom}_{prenom}_BulletinDePaie.pdf";
 
-                    // Draw the title
-                    XFont titleFont = new XFont("Verdana", 20);
-                    gfx.DrawString("Bulletin de Paie", titleFont, XBrushes.Black,
-                        new XRect(0, 20, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-
-                    // Create fonts for content and headers
-                    XFont contentFont = new XFont("Verdana", 12);
-                    XFont headerFont = new XFont("Verdana", 12);
-
-                    // Table settings
-                    int tableX = 20;
-                    int tableWidth = (int)(page.Width - 40);
-                    int rowHeight = 20;
-                    int columnWidth1 = 150; // Adjust as needed
-                    int columnWidth2 = tableWidth - columnWidth1;
-
-                    // Draw table header for employee details
-                    int yPos = 60;
-                    gfx.DrawRectangle(XBrushes.LightGray, tableX, yPos, tableWidth, rowHeight);
-                    gfx.DrawString("Détails", headerFont, XBrushes.Black,
-                        new XRect(tableX, yPos, tableWidth, rowHeight),
-                        XStringFormats.TopCenter);
-
-                    yPos += rowHeight;
-
-                    // Function to draw table rows
-                    void DrawTableRow(string label, string value)
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        gfx.DrawRectangle(XBrushes.White, tableX, yPos, tableWidth, rowHeight);
-                        gfx.DrawRectangle(XPens.Black, tableX, yPos, tableWidth, rowHeight);
-                        gfx.DrawString(label, contentFont, XBrushes.Black,
-                            new XRect(tableX, yPos, columnWidth1, rowHeight),
-                            XStringFormats.TopLeft);
-                        gfx.DrawString(value, contentFont, XBrushes.Black,
-                            new XRect(tableX + columnWidth1, yPos, columnWidth2, rowHeight),
-                            XStringFormats.TopLeft);
-                        yPos += rowHeight;
-                    }
-
-                    // Draw employee details
-                    DrawTableRow("Nom:", nom);
-                    DrawTableRow("Prénom:", prenom);
-                    DrawTableRow("Fonction:", fonction);
-                    DrawTableRow("Type de Paiement:", typePaiement);
-
-                    // Add spacing before salary details
-                    yPos += 10;
-
-                    // Draw table header for salary details
-                    gfx.DrawRectangle(XBrushes.LightGray, tableX, yPos, tableWidth, rowHeight);
-                    gfx.DrawString("Salaire et Primes", headerFont, XBrushes.Black,
-                        new XRect(tableX, yPos, tableWidth, rowHeight),
-                        XStringFormats.TopCenter);
-
-                    yPos += rowHeight;
-
-                    // Draw salary details
-                    DrawTableRow("Salaire:", salaire.ToString("C"));
-                    DrawTableRow("Primes:", primes.ToString("C"));
-                    DrawTableRow("Avances:", avances.ToString("C"));
-                    DrawTableRow("Dettes:", dettes.ToString("C"));
-                    DrawTableRow("Salaire Net:", salaireNet.ToString("C"));
-
-                    yPos += 20;
-
-                    // Add employee photo if available
-                    if (photoProfileEmployes.Image != null)
-                    {
-                        using (MemoryStream photoStream = new MemoryStream())
-                        {
-                            photoProfileEmployes.Image.Save(photoStream, ImageFormat.Png);
-                            XImage image = XImage.FromStream(photoStream);
-                            gfx.DrawImage(image, 20, yPos, 150, 150);
-                        }
-                    }
-
-                    // Show SaveFileDialog to choose path
-                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-                    {
-                        saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
-                        saveFileDialog.Title = "Save PDF File";
-                        saveFileDialog.FileName = $"{nom}_{prenom}_BulletinDePaie.pdf";
-
-                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            // Save the document
-                            document.Save(saveFileDialog.FileName);
-                            MessageBox.Show($"PDF generated successfully: {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        document.Save(saveFileDialog.FileName);
+                        MessageBox.Show($"PDF generated successfully: {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -216,6 +161,24 @@ namespace GestionPersonnel.View.Controls
                 MessageBox.Show($"An error occurred while generating PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void DrawText(XGraphics gfx, string text, XFont font, XRect layoutRectangle)
+        {
+            XTextFormatter formatter = new XTextFormatter(gfx);
+            formatter.Alignment = XParagraphAlignment.Right; // Right-to-left alignment
+            formatter.DrawString(text, font, XBrushes.Black, layoutRectangle);
+        }
+
+
+        private void AddParagraph(Section section, string text, MigraDocCore.DocumentObjectModel.Font font)
+        {
+            var paragraph = section.AddParagraph(text);
+            // Create a new Font instance for each paragraph to avoid the issue
+            paragraph.Format.Font = new MigraDocCore.DocumentObjectModel.Font(font.Name, font.Size);
+        }
+
+
+
 
 
 
