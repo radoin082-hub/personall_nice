@@ -226,6 +226,8 @@ namespace GestionPersonnel.View.Controls
             // Nom
             // 
             // Add columns
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Num", HeaderText = "N°" });
+            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Number", HeaderText = "N°" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "NomEmploye", HeaderText = "Nom Employe" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrenomEmploye", HeaderText = "Prenom Employe" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "NomFonction", HeaderText = "Fonction" });

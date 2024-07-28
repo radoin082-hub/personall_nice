@@ -208,112 +208,7 @@ namespace GestionPersonnel.View.Controls
             // 
             // dataGridViewTextBoxColumn12
             // 
-            dataGridViewTextBoxColumn12.MinimumWidth = 6;
-            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            dataGridViewTextBoxColumn12.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            dataGridViewTextBoxColumn13.MinimumWidth = 6;
-            dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            dataGridViewTextBoxColumn13.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            dataGridViewTextBoxColumn14.MinimumWidth = 6;
-            dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            dataGridViewTextBoxColumn14.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            dataGridViewTextBoxColumn15.MinimumWidth = 6;
-            dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            dataGridViewTextBoxColumn15.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            dataGridViewTextBoxColumn16.MinimumWidth = 6;
-            dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            dataGridViewTextBoxColumn16.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            dataGridViewTextBoxColumn17.MinimumWidth = 6;
-            dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            dataGridViewTextBoxColumn17.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            dataGridViewTextBoxColumn18.MinimumWidth = 6;
-            dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            dataGridViewTextBoxColumn18.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            dataGridViewTextBoxColumn7.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            dataGridViewTextBoxColumn8.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            dataGridViewTextBoxColumn9.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            dataGridViewTextBoxColumn10.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            dataGridViewTextBoxColumn11.MinimumWidth = 6;
-            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            dataGridViewTextBoxColumn11.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 125;
-            // 
+          
             // tabpointage
             // 
             tabpointage.AllowUserToAddRows = false;
@@ -368,6 +263,8 @@ namespace GestionPersonnel.View.Controls
             tabpointage.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             tabpointage.CellContentClick += guna2DataGridView1_CellContentClick_2;
             tabpointage.CellPainting += showiconedit;
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Number", HeaderText = "N°" });
+            tabpointage.Columns["Number"].Width = 75;
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nom", HeaderText = "Nom", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Prenom", HeaderText = "Prenom", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction", MinimumWidth = 6 });
@@ -375,6 +272,8 @@ namespace GestionPersonnel.View.Controls
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Heur", HeaderText = "Heur", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Pourcentage", HeaderText = "Pourcentage", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Remarque", HeaderText = "Remarque", MinimumWidth = 6 });
+          
+
             Image modifierIconPathpointage = Properties.Resources.icons8_edit_64;
             DataGridViewButtonColumn modifierColumnpointage = new DataGridViewButtonColumn
             {
@@ -382,32 +281,20 @@ namespace GestionPersonnel.View.Controls
                 HeaderText = "",
                 Tag = modifierIconPathpointage,
                 FillWeight = 23,
-
-                DefaultCellStyle = new DataGridViewCellStyle()
+                DefaultCellStyle = new DataGridViewCellStyle
                 {
                     Padding = new Padding(0),
                     Alignment = DataGridViewContentAlignment.MiddleCenter
                 }
             };
-            tabpointage.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "EmployeID",
-                HeaderText = "Employe ID",
-                MinimumWidth = 6,
-                Visible = false // Hide the column from the user
-            });
-            var pointageIdColumn = new DataGridViewTextBoxColumn
-            {
-                Name = "PointageID",
-                HeaderText = "Pointage ID",
-                Visible = false // If you don't want it visible, just keep it in the background
-            };
-            tabpointage.Columns.Add(pointageIdColumn);
-
             tabpointage.Columns.Add(modifierColumnpointage);
+
             tabpointage.CellPainting += showiconedit;
+
+           
             tabpointage.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             tabpointage.RowTemplate.Height = 50;
+
             // 
             // panelaupdpointage
             // 
@@ -658,229 +545,7 @@ namespace GestionPersonnel.View.Controls
             // 
             // dataGridViewTextBoxColumn19
             // 
-            dataGridViewTextBoxColumn19.MinimumWidth = 6;
-            dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
-            dataGridViewTextBoxColumn19.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            dataGridViewTextBoxColumn20.MinimumWidth = 6;
-            dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            dataGridViewTextBoxColumn20.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            dataGridViewTextBoxColumn21.MinimumWidth = 6;
-            dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            dataGridViewTextBoxColumn21.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            dataGridViewTextBoxColumn22.MinimumWidth = 6;
-            dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            dataGridViewTextBoxColumn22.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            dataGridViewTextBoxColumn23.MinimumWidth = 6;
-            dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            dataGridViewTextBoxColumn23.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewTextBoxColumn24.MinimumWidth = 6;
-            dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            dataGridViewTextBoxColumn24.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            dataGridViewTextBoxColumn25.MinimumWidth = 6;
-            dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            dataGridViewTextBoxColumn25.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            dataGridViewTextBoxColumn26.MinimumWidth = 6;
-            dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            dataGridViewTextBoxColumn26.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn27
-            // 
-            dataGridViewTextBoxColumn27.MinimumWidth = 6;
-            dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            dataGridViewTextBoxColumn27.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn28
-            // 
-            dataGridViewTextBoxColumn28.MinimumWidth = 6;
-            dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
-            dataGridViewTextBoxColumn28.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn29
-            // 
-            dataGridViewTextBoxColumn29.MinimumWidth = 6;
-            dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
-            dataGridViewTextBoxColumn29.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn30
-            // 
-            dataGridViewTextBoxColumn30.MinimumWidth = 6;
-            dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
-            dataGridViewTextBoxColumn30.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn31
-            // 
-            dataGridViewTextBoxColumn31.MinimumWidth = 6;
-            dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
-            dataGridViewTextBoxColumn31.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn32
-            // 
-            dataGridViewTextBoxColumn32.MinimumWidth = 6;
-            dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
-            dataGridViewTextBoxColumn32.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn33
-            // 
-            dataGridViewTextBoxColumn33.MinimumWidth = 6;
-            dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
-            dataGridViewTextBoxColumn33.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn34
-            // 
-            dataGridViewTextBoxColumn34.MinimumWidth = 6;
-            dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
-            dataGridViewTextBoxColumn34.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn35
-            // 
-            dataGridViewTextBoxColumn35.MinimumWidth = 6;
-            dataGridViewTextBoxColumn35.Name = "dataGridViewTextBoxColumn35";
-            dataGridViewTextBoxColumn35.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn36
-            // 
-            dataGridViewTextBoxColumn36.MinimumWidth = 6;
-            dataGridViewTextBoxColumn36.Name = "dataGridViewTextBoxColumn36";
-            dataGridViewTextBoxColumn36.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn37
-            // 
-            dataGridViewTextBoxColumn37.MinimumWidth = 6;
-            dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
-            dataGridViewTextBoxColumn37.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn38
-            // 
-            dataGridViewTextBoxColumn38.MinimumWidth = 6;
-            dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
-            dataGridViewTextBoxColumn38.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn39
-            // 
-            dataGridViewTextBoxColumn39.MinimumWidth = 6;
-            dataGridViewTextBoxColumn39.Name = "dataGridViewTextBoxColumn39";
-            dataGridViewTextBoxColumn39.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn40
-            // 
-            dataGridViewTextBoxColumn40.MinimumWidth = 6;
-            dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
-            dataGridViewTextBoxColumn40.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn41
-            // 
-            dataGridViewTextBoxColumn41.MinimumWidth = 6;
-            dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
-            dataGridViewTextBoxColumn41.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn42
-            // 
-            dataGridViewTextBoxColumn42.MinimumWidth = 6;
-            dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
-            dataGridViewTextBoxColumn42.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn43
-            // 
-            dataGridViewTextBoxColumn43.MinimumWidth = 6;
-            dataGridViewTextBoxColumn43.Name = "dataGridViewTextBoxColumn43";
-            dataGridViewTextBoxColumn43.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn44
-            // 
-            dataGridViewTextBoxColumn44.MinimumWidth = 6;
-            dataGridViewTextBoxColumn44.Name = "dataGridViewTextBoxColumn44";
-            dataGridViewTextBoxColumn44.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn45
-            // 
-            dataGridViewTextBoxColumn45.MinimumWidth = 6;
-            dataGridViewTextBoxColumn45.Name = "dataGridViewTextBoxColumn45";
-            dataGridViewTextBoxColumn45.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn46
-            // 
-            dataGridViewTextBoxColumn46.MinimumWidth = 6;
-            dataGridViewTextBoxColumn46.Name = "dataGridViewTextBoxColumn46";
-            dataGridViewTextBoxColumn46.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn47
-            // 
-            dataGridViewTextBoxColumn47.MinimumWidth = 6;
-            dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
-            dataGridViewTextBoxColumn47.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn48
-            // 
-            dataGridViewTextBoxColumn48.MinimumWidth = 6;
-            dataGridViewTextBoxColumn48.Name = "dataGridViewTextBoxColumn48";
-            dataGridViewTextBoxColumn48.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn49
-            // 
-            dataGridViewTextBoxColumn49.MinimumWidth = 6;
-            dataGridViewTextBoxColumn49.Name = "dataGridViewTextBoxColumn49";
-            dataGridViewTextBoxColumn49.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn50
-            // 
-            dataGridViewTextBoxColumn50.MinimumWidth = 6;
-            dataGridViewTextBoxColumn50.Name = "dataGridViewTextBoxColumn50";
-            // 
-            // dataGridViewTextBoxColumn51
-            // 
-            dataGridViewTextBoxColumn51.MinimumWidth = 6;
-            dataGridViewTextBoxColumn51.Name = "dataGridViewTextBoxColumn51";
-            // 
-            // dataGridViewTextBoxColumn52
-            // 
-            dataGridViewTextBoxColumn52.MinimumWidth = 6;
-            dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
-            // 
-            // dataGridViewTextBoxColumn53
-            // 
-            dataGridViewTextBoxColumn53.MinimumWidth = 6;
-            dataGridViewTextBoxColumn53.Name = "dataGridViewTextBoxColumn53";
-            // 
-            // dataGridViewTextBoxColumn54
-            // 
-            dataGridViewTextBoxColumn54.MinimumWidth = 6;
-            dataGridViewTextBoxColumn54.Name = "dataGridViewTextBoxColumn54";
-            // 
-            // dataGridViewTextBoxColumn55
-            // 
-            dataGridViewTextBoxColumn55.MinimumWidth = 6;
-            dataGridViewTextBoxColumn55.Name = "dataGridViewTextBoxColumn55";
-            // 
-            // dataGridViewTextBoxColumn56
-            // 
-            dataGridViewTextBoxColumn56.MinimumWidth = 6;
-            dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
-            // 
-            // dataGridViewTextBoxColumn57
-            // 
-            dataGridViewTextBoxColumn57.MinimumWidth = 6;
-            dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
+            
             // 
             // UPointage
             // 
