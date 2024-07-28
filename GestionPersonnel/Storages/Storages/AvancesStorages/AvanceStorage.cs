@@ -17,13 +17,13 @@ namespace GestionPersonnel.Storages.AvancesStorages
             _connectionString = connectionString;
         }
 
-        private const string SelectAllQuery = "SELECT * FROM Avance";
-        private const string SelectByIdQuery = "SELECT * FROM Avance WHERE AvanceID = @id";
-        private const string InsertQuery = "INSERT INTO Avance (EmployeID, Montant, Date) " +
+        private const string SelectAllQuery = "SELECT * FROM Avances";
+        private const string SelectByIdQuery = "SELECT * FROM Avances WHERE AvanceID = @id";
+        private const string InsertQuery = "INSERT INTO Avances (EmployeID, Montant, Date) " +
                                            "VALUES (@EmployeID, @Montant, @Date); SELECT SCOPE_IDENTITY();";
-        private const string UpdateQuery = "UPDATE Avance SET EmployeID = @EmployeID, Montant = @Montant, " +
+        private const string UpdateQuery = "UPDATE Avances SET EmployeID = @EmployeID, Montant = @Montant, " +
                                            "Date = @Date WHERE AvanceID = @AvanceID;";
-        private const string DeleteQuery = "DELETE FROM Avance WHERE AvanceID = @AvanceID;";
+        private const string DeleteQuery = "DELETE FROM Avances WHERE AvanceID = @AvanceID;";
 
         private static Avance GetAvanceFromDataRow(DataRow row)
         {

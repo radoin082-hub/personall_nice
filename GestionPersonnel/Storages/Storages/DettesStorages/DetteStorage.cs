@@ -5,6 +5,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using GestionPersonnel.Models.Dettes;
+using GestionPersonnel.Models.Avances;
+using GestionPersonnel.Storages.DettesStorages;
+using GestionPersonnel.Storages.AvancesStorages;
 
 namespace GestionPersonnel.Storages.DettesStorages
 {
@@ -17,13 +21,13 @@ namespace GestionPersonnel.Storages.DettesStorages
             _connectionString = connectionString;
         }
 
-        private const string SelectAllQuery = "SELECT * FROM Dette";
-        private const string SelectByIdQuery = "SELECT * FROM Dette WHERE DetteID = @id";
-        private const string InsertQuery = "INSERT INTO Dette (EmployeID, Montant, Date) " +
+        private const string SelectAllQuery = "SELECT * FROM Dettes";
+        private const string SelectByIdQuery = "SELECT * FROM Dettes WHERE DetteID = @id";
+        private const string InsertQuery = "INSERT INTO Dettes (EmployeID, Montant, Date) " +
                                            "VALUES (@EmployeID, @Montant, @Date); SELECT SCOPE_IDENTITY();";
-        private const string UpdateQuery = "UPDATE Dette SET EmployeID = @EmployeID, Montant = @Montant, " +
+        private const string UpdateQuery = "UPDATE Dettes SET EmployeID = @EmployeID, Montant = @Montant, " +
                                            "Date = @Date WHERE DetteID = @DetteID;";
-        private const string DeleteQuery = "DELETE FROM Dette WHERE DetteID = @DetteID;";
+        private const string DeleteQuery = "DELETE FROM Dettes WHERE DetteID = @DetteID;";
 
         private static Dette GetDetteFromDataRow(DataRow row)
         {

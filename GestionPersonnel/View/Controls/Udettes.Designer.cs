@@ -47,6 +47,14 @@
             AddButton = new Button();
             DettesSearch = new Guna.UI2.WinForms.Guna2TextBox();
             DettesGrid = new Guna.UI2.WinForms.Guna2DataGridView();
+            N = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Prenom = new DataGridViewTextBoxColumn();
+            Fonction = new DataGridViewTextBoxColumn();
+            TotaleDette = new DataGridViewTextBoxColumn();
+            MontantRetiree = new DataGridViewTextBoxColumn();
+            TotalAvances = new DataGridViewTextBoxColumn();
+            Modifier = new DataGridViewButtonColumn();
             panelDetteAvance = new Guna.UI2.WinForms.Guna2ShadowPanel();
             label1 = new Label();
             guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
@@ -60,14 +68,6 @@
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             pictureBox2 = new PictureBox();
-            N = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Prenom = new DataGridViewTextBoxColumn();
-            Fonction = new DataGridViewTextBoxColumn();
-            TotaleDette = new DataGridViewTextBoxColumn();
-            MontantRetiree = new DataGridViewTextBoxColumn();
-            TotalAvances = new DataGridViewTextBoxColumn();
-            Modifier = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)DettesGrid).BeginInit();
             panelDetteAvance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -172,6 +172,72 @@
             DettesGrid.ThemeStyle.RowsStyle.Height = 25;
             DettesGrid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DettesGrid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
+            // N
+            // 
+            N.HeaderText = "N°";
+            N.MinimumWidth = 6;
+            N.Name = "N";
+            N.ReadOnly = true;
+            N.Width = 75;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 178;
+            // 
+            // Prenom
+            // 
+            Prenom.HeaderText = "Prenom";
+            Prenom.MinimumWidth = 6;
+            Prenom.Name = "Prenom";
+            Prenom.ReadOnly = true;
+            Prenom.Width = 177;
+            // 
+            // Fonction
+            // 
+            Fonction.HeaderText = "Fonction";
+            Fonction.MinimumWidth = 6;
+            Fonction.Name = "Fonction";
+            Fonction.ReadOnly = true;
+            Fonction.Width = 178;
+            // 
+            // TotaleDette
+            // 
+            TotaleDette.HeaderText = "Totale Dette";
+            TotaleDette.MinimumWidth = 6;
+            TotaleDette.Name = "TotaleDette";
+            TotaleDette.ReadOnly = true;
+            TotaleDette.Width = 178;
+            // 
+            // MontantRetiree
+            // 
+            MontantRetiree.HeaderText = "Montant Retiree";
+            MontantRetiree.MinimumWidth = 6;
+            MontantRetiree.Name = "MontantRetiree";
+            MontantRetiree.ReadOnly = true;
+            MontantRetiree.Width = 178;
+            // 
+            // TotalAvances
+            // 
+            TotalAvances.HeaderText = "Totale Avances";
+            TotalAvances.MinimumWidth = 6;
+            TotalAvances.Name = "TotalAvances";
+            TotalAvances.ReadOnly = true;
+            TotalAvances.Width = 177;
+            // 
+            // Modifier
+            // 
+            Modifier.HeaderText = "Modifier";
+            Modifier.MinimumWidth = 6;
+            Modifier.Name = "Modifier";
+            Modifier.ReadOnly = true;
+            Modifier.Resizable = DataGridViewTriState.True;
+            Modifier.SortMode = DataGridViewColumnSortMode.Automatic;
+            Modifier.Width = 178;
             // 
             // panelDetteAvance
             // 
@@ -370,6 +436,7 @@
             guna2Button4.Size = new Size(150, 37);
             guna2Button4.TabIndex = 93;
             guna2Button4.Text = "Confirmation";
+            guna2Button4.Click += guna2Button4_Click;
             // 
             // pictureBox2
             // 
@@ -381,64 +448,6 @@
             pictureBox2.TabIndex = 92;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
-            // 
-            // N
-            // 
-            N.HeaderText = "N°";
-            N.MinimumWidth = 6;
-            N.Name = "N";
-            N.Width = 75;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.Width = 178;
-            // 
-            // Prenom
-            // 
-            Prenom.HeaderText = "Prenom";
-            Prenom.MinimumWidth = 6;
-            Prenom.Name = "Prenom";
-            Prenom.Width = 177;
-            // 
-            // Fonction
-            // 
-            Fonction.HeaderText = "Fonction";
-            Fonction.MinimumWidth = 6;
-            Fonction.Name = "Fonction";
-            Fonction.Width = 178;
-            // 
-            // TotaleDette
-            // 
-            TotaleDette.HeaderText = "Totale Dette";
-            TotaleDette.MinimumWidth = 6;
-            TotaleDette.Name = "TotaleDette";
-            TotaleDette.Width = 178;
-            // 
-            // MontantRetiree
-            // 
-            MontantRetiree.HeaderText = "Montant Retiree";
-            MontantRetiree.MinimumWidth = 6;
-            MontantRetiree.Name = "MontantRetiree";
-            MontantRetiree.Width = 178;
-            // 
-            // TotalAvances
-            // 
-            TotalAvances.HeaderText = "Totale Avances";
-            TotalAvances.MinimumWidth = 6;
-            TotalAvances.Name = "TotalAvances";
-            TotalAvances.Width = 177;
-            // 
-            // Modifier
-            // 
-            Modifier.HeaderText = "Modifier";
-            Modifier.MinimumWidth = 6;
-            Modifier.Name = "Modifier";
-            Modifier.Resizable = DataGridViewTriState.True;
-            Modifier.SortMode = DataGridViewColumnSortMode.Automatic;
-            Modifier.Width = 178;
             // 
             // Udettes
             // 

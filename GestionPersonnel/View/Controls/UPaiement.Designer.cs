@@ -227,7 +227,6 @@ namespace GestionPersonnel.View.Controls
             // 
             // Add columns
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Num", HeaderText = "N°" });
-            tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Number", HeaderText = "N°" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "NomEmploye", HeaderText = "Nom Employe" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrenomEmploye", HeaderText = "Prenom Employe" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "NomFonction", HeaderText = "Fonction" });
@@ -237,7 +236,7 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Avances", HeaderText = "Avances" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "Dettes", HeaderText = "Dettes" });
             tabpaiement.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalaireNet", HeaderText = "Salaire Net" });
-
+            tabpaiement.Columns["Num"].Width = 65;
             // Add button column
             Image printicon = Properties.Resources.icons8_print_50;
             var displayprint = new DataGridViewButtonColumn
