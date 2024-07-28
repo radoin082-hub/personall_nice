@@ -60,6 +60,7 @@
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             pictureBox2 = new PictureBox();
+            N = new DataGridViewTextBoxColumn();
             Nom = new DataGridViewTextBoxColumn();
             Prenom = new DataGridViewTextBoxColumn();
             Fonction = new DataGridViewTextBoxColumn();
@@ -74,9 +75,10 @@
             // 
             // AddButton
             // 
+            AddButton.Anchor = AnchorStyles.None;
             AddButton.BackColor = Color.Green;
             AddButton.ForeColor = Color.White;
-            AddButton.Location = new Point(1011, 26);
+            AddButton.Location = new Point(1095, 26);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(227, 46);
             AddButton.TabIndex = 1;
@@ -86,6 +88,7 @@
             // 
             // DettesSearch
             // 
+            DettesSearch.Anchor = AnchorStyles.None;
             DettesSearch.BackColor = Color.White;
             DettesSearch.BorderRadius = 10;
             DettesSearch.CustomizableEdges = customizableEdges1;
@@ -100,7 +103,7 @@
             DettesSearch.ForeColor = Color.Black;
             DettesSearch.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             DettesSearch.IconLeft = (Image)resources.GetObject("DettesSearch.IconLeft");
-            DettesSearch.Location = new Point(22, 26);
+            DettesSearch.Location = new Point(106, 26);
             DettesSearch.Margin = new Padding(3, 4, 3, 4);
             DettesSearch.Name = "DettesSearch";
             DettesSearch.PasswordChar = '\0';
@@ -112,9 +115,13 @@
             // 
             // DettesGrid
             // 
+            DettesGrid.AllowUserToAddRows = false;
+            DettesGrid.AllowUserToDeleteRows = false;
+            DettesGrid.AllowUserToResizeColumns = false;
+            DettesGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             DettesGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            DettesGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DettesGrid.Anchor = AnchorStyles.None;
             DettesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
@@ -126,7 +133,7 @@
             DettesGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             DettesGrid.ColumnHeadersHeight = 28;
             DettesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, Modifier });
+            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { N, Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, Modifier });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -136,7 +143,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             DettesGrid.DefaultCellStyle = dataGridViewCellStyle3;
             DettesGrid.GridColor = Color.White;
-            DettesGrid.Location = new Point(22, 78);
+            DettesGrid.Location = new Point(106, 78);
             DettesGrid.Name = "DettesGrid";
             DettesGrid.RowHeadersVisible = false;
             DettesGrid.RowHeadersWidth = 51;
@@ -167,6 +174,7 @@
             // 
             // panelDetteAvance
             // 
+            panelDetteAvance.Anchor = AnchorStyles.None;
             panelDetteAvance.BackColor = Color.Transparent;
             panelDetteAvance.Controls.Add(label1);
             panelDetteAvance.Controls.Add(guna2TextBox1);
@@ -181,7 +189,7 @@
             panelDetteAvance.Controls.Add(guna2Button4);
             panelDetteAvance.Controls.Add(pictureBox2);
             panelDetteAvance.FillColor = Color.White;
-            panelDetteAvance.Location = new Point(637, 107);
+            panelDetteAvance.Location = new Point(721, 107);
             panelDetteAvance.Name = "panelDetteAvance";
             panelDetteAvance.Radius = 14;
             panelDetteAvance.ShadowColor = Color.Black;
@@ -373,6 +381,13 @@
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
             // 
+            // N
+            // 
+            N.HeaderText = "N°";
+            N.MinimumWidth = 6;
+            N.Name = "N";
+            N.Width = 75;
+            // 
             // Nom
             // 
             Nom.HeaderText = "Nom";
@@ -437,7 +452,7 @@
             Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Udettes";
-            Size = new Size(1255, 853);
+            Size = new Size(1423, 853);
             Load += Udettes_Load;
             ((System.ComponentModel.ISupportInitialize)DettesGrid).EndInit();
             panelDetteAvance.ResumeLayout(false);
@@ -464,6 +479,7 @@
         private Label label3;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private DataGridViewTextBoxColumn N;
         private DataGridViewTextBoxColumn Nom;
         private DataGridViewTextBoxColumn Prenom;
         private DataGridViewTextBoxColumn Fonction;

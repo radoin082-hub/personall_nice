@@ -39,9 +39,11 @@ namespace GestionPersonnel.View.Controls
         private void UpdateDataGridView(List<PaimentsInfo> paimentsInfos)
         {
             DettesGrid.Rows.Clear();
+            int i=0;
             foreach (var paiment in paimentsInfos)
             {
-                DettesGrid.Rows.Add(paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
+                   i++;
+                DettesGrid.Rows.Add(i,paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
             }
         }
 

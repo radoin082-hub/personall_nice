@@ -368,6 +368,8 @@ namespace GestionPersonnel.View.Controls
             tabpointage.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             tabpointage.CellContentClick += guna2DataGridView1_CellContentClick_2;
             tabpointage.CellPainting += showiconedit;
+            tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Number", HeaderText = "N°" });
+            tabpointage.Columns["Number"].Width = 75;
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nom", HeaderText = "Nom", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Prenom", HeaderText = "Prenom", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Fonction", HeaderText = "Fonction", MinimumWidth = 6 });
@@ -375,6 +377,8 @@ namespace GestionPersonnel.View.Controls
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Heur", HeaderText = "Heur", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Pourcentage", HeaderText = "Pourcentage", MinimumWidth = 6 });
             tabpointage.Columns.Add(new DataGridViewTextBoxColumn { Name = "Remarque", HeaderText = "Remarque", MinimumWidth = 6 });
+          
+
             Image modifierIconPathpointage = Properties.Resources.icons8_edit_64;
             DataGridViewButtonColumn modifierColumnpointage = new DataGridViewButtonColumn
             {

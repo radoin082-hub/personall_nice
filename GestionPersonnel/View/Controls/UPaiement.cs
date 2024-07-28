@@ -337,10 +337,12 @@ namespace GestionPersonnel.View.Controls
             List<SalaireDetail> salaires = await _salaireDetailsStorage.GetSalariesByMonth(selectedDateTime);
 
             tabpaiement.Rows.Clear();
-
+            int i=0;
             foreach (var salaireDetails in salaires)
             {
+                i++;
                 tabpaiement.Rows.Add(
+                    i,
                     salaireDetails.NomEmploye,
                     salaireDetails.PrenomEmploye,
                     salaireDetails.NomFonction,
