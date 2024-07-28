@@ -13,6 +13,11 @@ using GestionPersonnel.Storages.SalairesBaseStorages;
 using GestionPersonnel.Models.Salaires;
 using GestionPersonnel.Storages.SalairesStorages;
 using Guna.UI2.WinForms;
+using iText.IO.Image;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 using Image = System.Drawing.Image;
 using System.IO;
 using PdfSharp.Drawing;
@@ -307,7 +312,7 @@ namespace GestionPersonnel.View.Controls
             List<SalaireDetail> salaires = await _salaireDetailsStorage.GetSalariesByMonth(selectedDateTime);
 
             tabpaiement.Rows.Clear();
-            int i = 0;
+            int i=0;
             foreach (var salaireDetails in salaires)
             {
                 i++;
