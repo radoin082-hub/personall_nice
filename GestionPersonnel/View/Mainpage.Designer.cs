@@ -288,6 +288,7 @@
             // 
             // Mainpanel
             // 
+            Mainpanel.Anchor = AnchorStyles.None;
             Mainpanel.BackColor = SystemColors.WindowFrame;
             Mainpanel.Location = new Point(175, 84);
             Mainpanel.Name = "Mainpanel";

@@ -33,21 +33,38 @@ namespace GestionPersonnel.View.Controls
             {
                 MessageBox.Show($"An error occurred while loading debt details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        } 
+        }
 
 
         private void UpdateDataGridView(List<PaimentsInfo> paimentsInfos)
         {
             DettesGrid.Rows.Clear();
+            int i=0;
             foreach (var paiment in paimentsInfos)
             {
-                DettesGrid.Rows.Add(paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
+                   i++;
+                DettesGrid.Rows.Add(i,paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
             }
         }
 
         private void DettesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            panelDetteAvance.Visible = false;
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            panelDetteAvance.Visible = true;
         }
     }
 }
