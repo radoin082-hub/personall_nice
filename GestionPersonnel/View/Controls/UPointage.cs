@@ -20,7 +20,7 @@ namespace GestionPersonnel.View.Controls
 {
     public partial class UPointage : UserControl
     {
-        private readonly IConfiguration _configuration;
+        
         private readonly string _connectionString;
         private readonly EmployeStorage _employeStorage;
         private readonly PointageStorage _pointageStorage;
