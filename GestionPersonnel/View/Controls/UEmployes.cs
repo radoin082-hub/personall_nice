@@ -101,7 +101,7 @@ namespace GestionPersonnel.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading the employees: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors du chargement des employés: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -178,17 +178,17 @@ namespace GestionPersonnel.View
         {
             try
             {
-                DialogResult result = MessageBox.Show("Are you sure you want to delete this employee?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cet employé?", "Confirmer la suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {    
                     await _employeStorage.Delete(employeeId);
-                    MessageBox.Show("Employee deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Employé supprimé avec succès", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await LoadEmployees();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while deleting the employee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors de la suppression de l'employé: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -264,7 +264,7 @@ namespace GestionPersonnel.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while selecting the photo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors de la sélection de la photo: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -278,7 +278,7 @@ namespace GestionPersonnel.View
                     string.IsNullOrEmpty(GroupeSanguinEmployes.Text) || FonctionEmployes.SelectedValue == null ||
                     DateEntrerEmployes.Value == null || photo == null)
                 {
-                    MessageBox.Show("Entrer les informations manquantes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Entrer les informations manquantes:", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -319,7 +319,7 @@ namespace GestionPersonnel.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while adding/updating the employee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors de l'ajout/mise à jour de l'employé: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -358,7 +358,7 @@ namespace GestionPersonnel.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading functions: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors du chargement des fonctions: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -370,7 +370,7 @@ namespace GestionPersonnel.View
 
                 if (fonctions == null)
                 {
-                    MessageBox.Show("Failed to load functions. The returned list is null.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Échec du chargement des fonctions. La liste renvoyée est nulle.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -378,7 +378,7 @@ namespace GestionPersonnel.View
 
                 if (_fonctionsDictionary == null || _fonctionsDictionary.Count == 0)
                 {
-                    MessageBox.Show("Failed to load functions. The dictionary is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Échec du chargement des fonctions. Le dictionnaire est vide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -393,7 +393,7 @@ namespace GestionPersonnel.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading functions: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors du chargement des fonctions: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -421,7 +421,7 @@ namespace GestionPersonnel.View
 
             if (string.IsNullOrEmpty(nomFonction))
             {
-                MessageBox.Show("Please enter a function name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Veuillez entrer un nom de fonction.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -432,14 +432,14 @@ namespace GestionPersonnel.View
                     var functionToUpdate = await _fonctionStorage.GetById(editingFunctionId.Value);
                     functionToUpdate.NomFonction = nomFonction;
                     await _fonctionStorage.Update(functionToUpdate);
-                    MessageBox.Show("Function updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Fonction mise à jour avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     editingFunctionId = null;
                 }
                 else
                 {
                     Fonction newFonction = new Fonction { NomFonction = nomFonction };
                     await _fonctionStorage.Add(newFonction);
-                    MessageBox.Show("Function added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Fonction ajoutée avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 addfonction.Clear();
@@ -447,7 +447,7 @@ namespace GestionPersonnel.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while adding/updating the function: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est produite lors de l'ajout/mise à jour de la fonction: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -458,21 +458,21 @@ namespace GestionPersonnel.View
                 try
                 {
                     await _fonctionStorage.Delete(selectedFunction.FonctionID);
-                    MessageBox.Show("Function deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Fonction supprimée avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await LoadFonctionsData();
                 }
                 catch (InvalidOperationException ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred while deleting the function: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Une erreur s'est produite lors de la suppression de la fonction: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Please select a function to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Veuillez sélectionner une fonction à supprimer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -536,7 +536,7 @@ namespace GestionPersonnel.View
                     selectedFunction.NomFonction = modifier_fuction.Text; 
                     await _fonctionStorage.Update(selectedFunction);
 
-                    MessageBox.Show("Function updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Fonction mise à jour avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     panelajouterfonction.Visible = false;
                     panelajouteremploye.Visible = true;
 
@@ -544,12 +544,12 @@ namespace GestionPersonnel.View
                 }
                 else
                 {
-                    MessageBox.Show("Please select a function to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Veuillez sélectionner une fonction à modifier.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est program: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -558,7 +558,6 @@ namespace GestionPersonnel.View
             display_function.SelectedItem = -1;
             if (display_function.SelectedItem != null)
             {
-                // Assuming SelectedItem is of type Fonction
                 Fonction selectedFonction = display_function.SelectedItem as Fonction;
                 if (selectedFonction != null)
                 {

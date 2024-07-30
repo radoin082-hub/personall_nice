@@ -1,58 +1,266 @@
-﻿using GestionPersonnel.Storages.EmployeesStorages;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestionPersonnel.Models.Employees;
-using System.Drawing;
-using GestionPersonnel.Storages.TypeDePaimentStorages;
-using GestionPersonnel.Models.TypeDePaiment;
-using GestionPersonnel.Models.SalairesBase;
-using GestionPersonnel.Storages.SalairesBaseStorages;
 using GestionPersonnel.Models.Salaires;
-using GestionPersonnel.Storages.SalairesStorages;
-using Guna.UI2.WinForms;
-using iText.IO.Image;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
-using Image = System.Drawing.Image;
-using System.IO;
-using PdfSharp.Drawing;
+using GestionPersonnel.Models.SalairesBase;
+using GestionPersonnel.Models.TypeDePaiment;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
-using System;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PdfDocument = PdfSharp.Pdf.PdfDocument;
-using PdfPage = PdfSharp.Pdf.PdfPage;
 
 namespace GestionPersonnel.View.Controls
 {
     public partial class UPaiement : UserControl
     {
-        private readonly string _connectionString;
-        private readonly EmployeStorage _employeStorage;
-        private readonly TypeDePaiementStorage _paiementStorage;
-        private readonly SalaireBaseStorage _salaireBaseStorage;
-        private readonly SalaireStorage _salaireDetailsStorage;
+        private readonly PaymentController _paymentController;
 
         public UPaiement(string connectionString)
         {
-            _connectionString = connectionString;
-            _employeStorage = new EmployeStorage(connectionString);
-            _paiementStorage = new TypeDePaiementStorage(connectionString);
-            _salaireBaseStorage = new SalaireBaseStorage(connectionString);
-            _salaireDetailsStorage = new SalaireStorage(connectionString);
-
-
+            _paymentController = new PaymentController(connectionString);
             InitializeComponent();
-            tabpaiement.CellContentClick += tabpaiement_CellContentClick;
         }
 
+        private async Task LoadEmployeesAsync()
+        {
+            var employees = await _paymentController.GetAllEmployeesAsync();
+            guna2ComboBox1.DataSource = employees;
+            guna2ComboBox1.DisplayMember = "FullName";
+            guna2ComboBox1.ValueMember = "EmployeID";
+            guna2ComboBox1.SelectedIndex = -1;
+        }
+
+        private async Task LoadPaymentTypesAsync()
+        {
+            var typesPaiement = await _paymentController.GetAllPaymentTypesAsync();
+            guna2ComboBox2.DataSource = typesPaiement;
+            guna2ComboBox2.DisplayMember = "NomTypePaiement";
+            guna2ComboBox2.ValueMember = "TypePaiementID";
+            guna2ComboBox2.SelectedIndex = -1;
+        }
+
+        private async void guna2Button2_Click(object sender, EventArgs e)
+        {
+            panelPaiement.Visible = true;
+            await LoadEmployeesAsync();
+            await LoadPaymentTypesAsync();
+        }
+
+        private async void guna2Button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (guna2ComboBox1.SelectedItem is Employee selectedEmployee && guna2ComboBox2.SelectedItem is TypeDePaiement selectedTypePaiement)
+                {
+                    decimal salaireBase = decimal.Parse(guna2TextBox2.Text);
+                    var salairesBase = new SalairesBase
+                    {
+                        SalaireBase = salaireBase,
+                        TypePaiementID = selectedTypePaiement.TypePaiementID,
+                        EmplyeId = selectedEmployee.EmployeID
+                    };
+
+                    await _paymentController.AddSalaryBaseAsync(salairesBase);
+                    MessageBox.Show($"Record added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Please select both an employee and a payment type.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (guna2ComboBox1.SelectedItem is Employee selectedEmployee)
+            {
+                label6.Text = selectedEmployee.FullName;
+                label7.Text = selectedEmployee.FonctionName;
+
+                if (selectedEmployee.Photo != null)
+                {
+                    using (var ms = new MemoryStream(selectedEmployee.Photo))
+                    {
+                        photoProfileEmployes.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    photoProfileEmployes.Image = null;
+                }
+            }
+        }
+
+        private async Task LoadSalaireDetailsByDate()
+        {
+            DateTime selectedDateTime = DateEntrerEmployes.Value.Date;
+
+            List<SalaireDetail> salaires = await _paymentController.GetSalariesByMonthAsync(selectedDateTime);
+
+            tabpaiement.Rows.Clear();
+            int i = 0;
+            foreach (var salaireDetails in salaires)
+            {
+                i++;
+                tabpaiement.Rows.Add(
+                    i,
+                    salaireDetails.NomEmploye,
+                    salaireDetails.PrenomEmploye,
+                    salaireDetails.NomFonction,
+                    salaireDetails.TypePaiement,
+                    salaireDetails.Salaire,
+                    salaireDetails.Primes,
+                    salaireDetails.Avances,
+                    salaireDetails.Dettes,
+                    salaireDetails.SalaireNet
+                );
+            }
+        }
+
+        private async void searchBtn_Click(object sender, EventArgs e)
+        {
+            await LoadSalaireDetailsByDate();
+        }
+
+        private async Task GeneratePdfForEmployee(
+    string nom, string prenom, string fonction, string typePaiement,
+    decimal salaire, decimal primes, decimal avances, decimal dettes,
+    decimal salaireNet)
+        {
+            try
+            {
+                using (PdfDocument document = new PdfDocument())
+                {
+                    PdfPage page = document.AddPage();
+                    XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                    XFont titleFont = new XFont("Arial", 14, XFontStyleEx.Bold);
+                    XFont contentFont = new XFont("Arial", 10);
+                    XFont headerFont = new XFont("Arial", 12, XFontStyleEx.Bold);
+                    XFont smallFont = new XFont("Arial", 8);
+
+                    gfx.DrawString("Fiche de Paie", titleFont, XBrushes.Black,
+                        new XRect(0, 20, page.Width, page.Height),
+                        XStringFormats.TopCenter);
+
+                    string generationTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+                    gfx.DrawString($"Date de génération : {generationTime}", contentFont, XBrushes.Black,
+                        new XRect(20, 20, page.Width - 40, 20),
+                        XStringFormats.TopLeft);
+
+                    int yPos = 60;
+                    gfx.DrawString($"Nom : {nom}", contentFont, XBrushes.Black, new XRect(20, yPos, page.Width - 40, 20), XStringFormats.TopLeft);
+                    yPos += 20;
+                    gfx.DrawString($"Prénom : {prenom}", contentFont, XBrushes.Black, new XRect(20, yPos, page.Width - 40, 20), XStringFormats.TopLeft);
+                    yPos += 20;
+                    gfx.DrawString($"Fonction : {fonction}", contentFont, XBrushes.Black, new XRect(20, yPos, page.Width - 40, 20), XStringFormats.TopLeft);
+                    yPos += 20;
+                    gfx.DrawString($"Type de paiement : {typePaiement}", contentFont, XBrushes.Black, new XRect(20, yPos, page.Width - 40, 20), XStringFormats.TopLeft);
+                    yPos += 20;
+
+                    int tableWidth = (int)page.Width - 40; 
+                    int columnWidth = tableWidth / 3; 
+
+                    // Draw header
+                    gfx.DrawRectangle(XBrushes.LightGray, 20, yPos, tableWidth, 20);
+                    gfx.DrawString("Description", headerFont, XBrushes.Black, new XRect(20, yPos, columnWidth, 20), XStringFormats.Center);
+                    gfx.DrawString("Montant", headerFont, XBrushes.Black, new XRect(20 + columnWidth, yPos, columnWidth, 20), XStringFormats.Center);
+                    gfx.DrawString("Total", headerFont, XBrushes.Black, new XRect(20 + 2 * columnWidth, yPos, columnWidth, 20), XStringFormats.Center);
+                    yPos += 20;
+
+                    string FormatCurrency(decimal amount) => $"{amount:N2} DA";
+
+                    gfx.DrawString("Salaire", contentFont, XBrushes.Black, new XRect(20, yPos, columnWidth, 15), XStringFormats.CenterLeft);
+                    gfx.DrawString(FormatCurrency(salaire), contentFont, XBrushes.Black, new XRect(20 + columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    gfx.DrawString(string.Empty, contentFont, XBrushes.Black, new XRect(20 + 2 * columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    yPos += 15;
+
+                    gfx.DrawString("Primes", contentFont, XBrushes.Black, new XRect(20, yPos, columnWidth, 15), XStringFormats.CenterLeft);
+                    gfx.DrawString(FormatCurrency(primes), contentFont, XBrushes.Black, new XRect(20 + columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    gfx.DrawString(string.Empty, contentFont, XBrushes.Black, new XRect(20 + 2 * columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    yPos += 15;
+
+                    gfx.DrawString("Avances", contentFont, XBrushes.Black, new XRect(20, yPos, columnWidth, 15), XStringFormats.CenterLeft);
+                    gfx.DrawString(FormatCurrency(avances), contentFont, XBrushes.Black, new XRect(20 + columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    gfx.DrawString(string.Empty, contentFont, XBrushes.Black, new XRect(20 + 2 * columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    yPos += 15;
+
+                    gfx.DrawString("Dettes", contentFont, XBrushes.Black, new XRect(20, yPos, columnWidth, 15), XStringFormats.CenterLeft);
+                    gfx.DrawString(FormatCurrency(dettes), contentFont, XBrushes.Black, new XRect(20 + columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    gfx.DrawString(string.Empty, contentFont, XBrushes.Black, new XRect(20 + 2 * columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    yPos += 15;
+
+                    gfx.DrawString("Salaire Net", contentFont, XBrushes.Black, new XRect(20, yPos, columnWidth, 15), XStringFormats.CenterLeft);
+                    gfx.DrawString(FormatCurrency(salaireNet), contentFont, XBrushes.Black, new XRect(20 + columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    gfx.DrawString(string.Empty, contentFont, XBrushes.Black, new XRect(20 + 2 * columnWidth, yPos, columnWidth, 15), XStringFormats.CenterRight);
+                    yPos += 20;
+
+                    gfx.DrawString("Ce document est destiné uniquement à l'usage du destinataire et ne doit pas être partagé avec d'autres personnes.", smallFont, XBrushes.Black,
+                        new XRect(20, page.Height - 30, page.Width - 40, 20), XStringFormats.BottomLeft);
+
+                    using (var ms = new MemoryStream())
+                    {
+                        Properties.Resources.FABELEC.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                        XImage image = XImage.FromStream(ms);
+                        gfx.DrawImage(image, page.Width - 120, 20, 75, 60); 
+                    }
+
+                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                    {
+                        saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                        saveFileDialog.Title = "Enregistrer le bulletin de salaire";
+                        saveFileDialog.FileName = $"{nom}_{prenom}_BulletinDeSalaire.pdf";
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            string filename = saveFileDialog.FileName;
+                            document.Save(filename);
+                            MessageBox.Show($"PDF généré avec succès : {filename}", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void generatePdfBtn_Click(object sender, EventArgs e)
+        {
+            if (tabpaiement.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow row in tabpaiement.SelectedRows)
+                {
+                    string nom = row.Cells[1].Value.ToString();
+                    string prenom = row.Cells[2].Value.ToString();
+                    string fonction = row.Cells[3].Value.ToString();
+                    string typePaiement = row.Cells[4].Value.ToString();
+                    decimal salaire = Convert.ToDecimal(row.Cells[5].Value);
+                    decimal primes = Convert.ToDecimal(row.Cells[6].Value);
+                    decimal avances = Convert.ToDecimal(row.Cells[7].Value);
+                    decimal dettes = Convert.ToDecimal(row.Cells[8].Value);
+                    decimal salaireNet = Convert.ToDecimal(row.Cells[9].Value);
+
+                    await GeneratePdfForEmployee(nom, prenom, fonction, typePaiement, salaire, primes, avances, dettes, salaireNet);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select at least one employee to generate the PDF.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            panelPaiement.Visible = false;
+        }
         private void showiconedit(object? sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex >= 0 && (tabpaiement.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
@@ -80,7 +288,6 @@ namespace GestionPersonnel.View.Controls
                 e.Handled = true;
             }
         }
-
         private async void tabpaiement_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && tabpaiement.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
@@ -106,231 +313,5 @@ namespace GestionPersonnel.View.Controls
                 }
             }
         }
-
-
-        private async Task GeneratePdfForEmployee(string nom, string prenom, string fonction, string typePaiement, decimal salaire, decimal primes, decimal avances, decimal dettes, decimal salaireNet)
-        {
-            try
-            {
-                // Créer un nouveau document PDF
-                using (PdfDocument document = new PdfDocument())
-                {
-                    PdfPage page = document.AddPage();
-                    XGraphics gfx = XGraphics.FromPdfPage(page);
-
-                    // Définir les polices
-                    XFont titleFont = new XFont("Arial", 14, XFontStyleEx.Bold);
-                    XFont headerFont = new XFont("Arial", 10, XFontStyleEx.Bold);
-                    XFont contentFont = new XFont("Arial", 10);
-
-                    // Titre
-                    gfx.DrawString("Bulletin de salaire", titleFont, XBrushes.Black,
-                        new XRect(0, 20, page.Width, page.Height),
-                        XStringFormats.TopCenter);
-
-                    // Informations sur l'employé et l'employeur
-                    int yPos = 60;
-                    gfx.DrawString("Nom: " + nom, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
-                    yPos += 15;
-                    gfx.DrawString("Prénom: " + prenom, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
-                    yPos += 15;
-                    gfx.DrawString("Fonction: " + fonction, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
-                    yPos += 15;
-                    gfx.DrawString("Type de paiement: " + typePaiement, contentFont, XBrushes.Black, new XRect(20, yPos, page.Width, page.Height), XStringFormats.TopLeft);
-
-                    // Titre des détails du salaire
-                    yPos += 30;
-                    gfx.DrawRectangle(XBrushes.LightGray, 20, yPos, page.Width - 40, 20);
-                    gfx.DrawString("Détails du salaire", headerFont, XBrushes.Black, new XRect(20, yPos, page.Width - 40, 20), XStringFormats.Center);
-
-                    // Tableau des détails du salaire
-                    yPos += 20;
-                    int tableX = 20;
-                    int tableWidth = (int)(page.Width - 40);
-                    int rowHeight = 20;
-                    int columnWidth1 = tableWidth / 3;
-                    int columnWidth2 = tableWidth / 3;
-                    int columnWidth3 = tableWidth / 3;
-
-                    gfx.DrawRectangle(XPens.Black, tableX, yPos, columnWidth1, rowHeight);
-                    gfx.DrawRectangle(XPens.Black, tableX + columnWidth1, yPos, columnWidth2, rowHeight);
-                    gfx.DrawRectangle(XPens.Black, tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight);
-                    gfx.DrawString("Détails", contentFont, XBrushes.Black, new XRect(tableX, yPos, columnWidth1, rowHeight), XStringFormats.CenterLeft);
-                    gfx.DrawString("Montant", contentFont, XBrushes.Black, new XRect(tableX + columnWidth1, yPos, columnWidth2, rowHeight), XStringFormats.Center);
-                    gfx.DrawString("Déduction", contentFont, XBrushes.Black, new XRect(tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight), XStringFormats.Center);
-
-                    yPos += rowHeight;
-
-                    // Méthode auxiliaire pour dessiner les lignes de salaire
-                    void DrawSalaryRow(string label, decimal value)
-                    {
-                        gfx.DrawRectangle(XPens.Black, tableX, yPos, columnWidth1, rowHeight);
-                        gfx.DrawRectangle(XPens.Black, tableX + columnWidth1, yPos, columnWidth2, rowHeight);
-                        gfx.DrawRectangle(XPens.Black, tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight);
-                        gfx.DrawString(label, contentFont, XBrushes.Black, new XRect(tableX, yPos, columnWidth1, rowHeight), XStringFormats.CenterLeft);
-                        gfx.DrawString(value.ToString("C"), contentFont, XBrushes.Black, new XRect(tableX + columnWidth1, yPos, columnWidth2, rowHeight), XStringFormats.Center);
-                        gfx.DrawString("", contentFont, XBrushes.Black, new XRect(tableX + columnWidth1 + columnWidth2, yPos, columnWidth3, rowHeight), XStringFormats.Center);
-                        yPos += rowHeight;
-                    }
-
-                    // Ajouter les détails du salaire
-                    DrawSalaryRow("Salaire:", salaire);
-                    DrawSalaryRow("Primes:", primes);
-                    DrawSalaryRow("Avances:", avances);
-                    DrawSalaryRow("Dettes:", dettes);
-                    DrawSalaryRow("Salaire Net:", salaireNet);
-
-                    // Enregistrer le fichier PDF
-                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-                    {
-                        saveFileDialog.Filter = "Fichiers PDF (*.pdf)|*.pdf";
-                        saveFileDialog.Title = "Enregistrer le fichier PDF";
-                        saveFileDialog.FileName = $"{nom}_{prenom}_BulletinDeSalaire.pdf";
-
-                        // Afficher la boîte de dialogue et enregistrer le fichier si l'utilisateur appuie sur OK
-                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            document.Save(saveFileDialog.FileName);
-                            MessageBox.Show($"PDF généré avec succès: {saveFileDialog.FileName}", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Une erreur s'est produite lors de la génération du PDF: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-
-
-        private async void guna2Button2_Click(object sender, EventArgs e)
-        {
-            panelPaiement.Visible = true;
-            await getall_employees();
-            await getall_types_paiement();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            panelPaiement.Visible = false;
-        }
-
-        private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labfonction_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (guna2ComboBox1.SelectedItem is Employee selectedEmployee)
-            {
-                label6.Text = selectedEmployee.FullName;
-                label7.Text = selectedEmployee.FonctionName;
-
-                if (selectedEmployee.Photo != null)
-                {
-                    using (var ms = new MemoryStream(selectedEmployee.Photo))
-                    {
-                        photoProfileEmployes.Image = Image.FromStream(ms);
-                    }
-                }
-                else
-                {
-                    photoProfileEmployes.Image = null;
-                }
-            }
-        }
-
-        private async Task getall_employees()
-        {
-            List<Employee> employees = await _employeStorage.GetAll();
-
-            guna2ComboBox1.DataSource = employees;
-            guna2ComboBox1.DisplayMember = "FullName";
-            guna2ComboBox1.ValueMember = "EmployeID";
-            guna2ComboBox1.SelectedIndex = -1;
-        }
-
-        private async Task getall_types_paiement()
-        {
-            List<TypeDePaiement> typesPaiement = await _paiementStorage.GetAll();
-            guna2ComboBox2.DataSource = typesPaiement;
-            guna2ComboBox2.DisplayMember = "NomTypePaiement";
-            guna2ComboBox2.ValueMember = "TypePaiementID";
-            guna2ComboBox2.SelectedIndex = -1;
-        }
-
-        private async void guna2Button4_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (guna2ComboBox1.SelectedItem is Employee selectedEmployee && guna2ComboBox2.SelectedItem is TypeDePaiement selectedTypePaiement)
-                {
-                    decimal salaireBase = decimal.Parse(guna2TextBox2.Text);
-                    var salairesBase = new SalairesBase
-                    {
-                        SalaireBase = salaireBase,
-                        TypePaiementID = selectedTypePaiement.TypePaiementID,
-                        EmplyeId = selectedEmployee.EmployeID
-                    };
-
-                    int newId = await _salaireBaseStorage.Add(salairesBase);
-                    MessageBox.Show($"Record added successfully with ID {newId}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Please select both an employee and a payment type.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private async void searchBtn_Click(object sender, EventArgs e)
-        {
-            await LoadSalaireDetailsByDate();
-        }
-
-        private async Task LoadSalaireDetailsByDate()
-        {
-            DateTime selectedDateTime = DateEntrerEmployes.Value.Date;
-
-            List<SalaireDetail> salaires = await _salaireDetailsStorage.GetSalariesByMonth(selectedDateTime);
-
-            tabpaiement.Rows.Clear();
-            int i=0;
-            foreach (var salaireDetails in salaires)
-            {
-                i++;
-                tabpaiement.Rows.Add(
-                    i,
-                    salaireDetails.NomEmploye,
-                    salaireDetails.PrenomEmploye,
-                    salaireDetails.NomFonction,
-                    salaireDetails.TypePaiement,
-                    salaireDetails.Salaire,
-                    salaireDetails.Primes,
-                    salaireDetails.Avances,
-                    salaireDetails.Dettes,
-                    salaireDetails.SalaireNet
-                );
-            }
-        }
-
-
     }
 }

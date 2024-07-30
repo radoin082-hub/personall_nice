@@ -1,37 +1,25 @@
-﻿using GestionPersonnel.Models.Employees;
-using GestionPersonnel.Models.Fonctions;
-using GestionPersonnel.Models.Pointage;
-using GestionPersonnel.Storages.EmployeesStorages;
-using GestionPersonnel.Storages.PointagesStorages;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using GestionPersonnel.Models.Employees;
+using GestionPersonnel.Models.Pointage;
+using GestionPersonnel.Services.EmployeeServices; // Correct namespace for EmployeeService
 
 namespace GestionPersonnel.View.Controls
 {
     public partial class UPointage : UserControl
     {
-        
-        private readonly string _connectionString;
-        private readonly EmployeStorage _employeStorage;
-        private readonly PointageStorage _pointageStorage;
+        private readonly EmployeeService _employeeService;
+        private readonly PointageService _pointageService;
+
         public UPointage(string connectionString)
         {
-            _connectionString = connectionString;
-            _employeStorage = new EmployeStorage(connectionString);
-            _pointageStorage = new PointageStorage(connectionString);
+            _employeeService = new EmployeeService(connectionString);
+            _pointageService = new PointageService(connectionString);
             InitializeComponent();
         }
-
 
         private void showiconedit(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -64,21 +52,19 @@ namespace GestionPersonnel.View.Controls
         private async void searchBtn_Click(object sender, EventArgs e)
         {
             DateTime selectedDateTime = DateEntrerEmployes.Value.Date;
-
             DateOnly selectedDate = DateOnly.FromDateTime(selectedDateTime);
 
-            List<Employee> employees = await _employeStorage.GetAll();
+            List<Employee> employees = await _employeeService.GetAllEmployees();
 
             bool noPointageShown = false;
-
             tabpointage.Rows.Clear();
             int i = 0;
             foreach (var employee in employees)
             {
-                Pointage? pointage = await _pointageStorage.GetByIdAndDate(employee.EmployeID, selectedDate);
-               
+                Pointage? pointage = await _pointageService.GetPointageByIdAndDate(employee.EmployeID, selectedDate);
+
                 if (pointage != null)
-                { 
+                {
                     i++;
                     tabpointage.Rows.Add(
                         i,
@@ -101,53 +87,14 @@ namespace GestionPersonnel.View.Controls
                     }
                 }
             }
-
-        }
-
-
-
-
-
-
-
-
-        private void TabPointage_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void DateEntrerEmployes_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void UPointage_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private async void guna2DataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == tabpointage.Columns["ModifierColumn"].Index && e.RowIndex >= 0)
             {
-
                 panelaupdpointage.Visible = true;
-
                 var row = tabpointage.Rows[e.RowIndex];
-
-
 
                 string nom = row.Cells["Nom"].Value?.ToString() ?? string.Empty;
                 string prenom = row.Cells["Prenom"].Value?.ToString() ?? string.Empty;
@@ -157,11 +104,9 @@ namespace GestionPersonnel.View.Controls
                 string pourcentage = row.Cells["Pourcentage"].Value?.ToString() ?? string.Empty;
                 string remarque = row.Cells["Remarque"].Value?.ToString() ?? string.Empty;
 
-
                 int employeId = Convert.ToInt32(row.Cells["EmployeID"].Value);
 
-
-                var employee = await _employeStorage.GetById(employeId);
+                var employee = await _employeeService.GetEmployeeById(employeId);
                 if (employee != null)
                 {
                     if (employee.Photo != null)
@@ -183,19 +128,8 @@ namespace GestionPersonnel.View.Controls
                     guna2TextBox2.Text = heur;
                     guna2TextBox3.Text = pourcentage;
                     guna2TextBox4.Text = remarque;
-
                 }
             }
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            panelaupdpointage.Visible = false;
         }
 
         private async void Guna2Button4_Click(object sender, EventArgs e)
@@ -220,7 +154,7 @@ namespace GestionPersonnel.View.Controls
 
                 try
                 {
-                    await _pointageStorage.Update(pointageToUpdate);
+                    await _pointageService.UpdatePointage(pointageToUpdate);
                     MessageBox.Show("Mise à jour réussie !");
                     await LoadPointages();
                 }
@@ -235,19 +169,23 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
+        private void DateEntrerEmployes_ValueChanged(object sender, EventArgs e) { }
+        private void label7_Click(object sender, EventArgs e) { }
+        private void UPointage_Load(object sender, EventArgs e) { }
+        private void pictureBox2_Click(object sender, EventArgs e) { }
         private async Task LoadPointages()
         {
             DateTime selectedDateTime = DateEntrerEmployes.Value.Date;
             DateOnly selectedDate = DateOnly.FromDateTime(selectedDateTime);
-            List<Employee> employees = await _employeStorage.GetAll();
+            List<Employee> employees = await _employeeService.GetAllEmployees();
 
             bool noPointageShown = false;
             tabpointage.Rows.Clear();
             int i = 0;
             foreach (var employee in employees)
             {
-                Pointage? pointage = await _pointageStorage.GetByIdAndDate(employee.EmployeID, selectedDate);
-                
+                Pointage? pointage = await _pointageService.GetPointageByIdAndDate(employee.EmployeID, selectedDate);
+
                 if (pointage != null)
                 {
                     i++;
@@ -262,27 +200,16 @@ namespace GestionPersonnel.View.Controls
                         pointage.Remarque,
                         employee.EmployeID,
                         pointage.PointageID
-                        
                     );
-
-                
                 }
                 else
                 {
                     if (!noPointageShown)
                     {
-   
                         noPointageShown = true;
                     }
                 }
             }
-        }
-
-
-
-        private void guna2TextBox3_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

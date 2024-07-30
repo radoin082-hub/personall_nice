@@ -99,14 +99,12 @@ namespace GestionPersonnel.View.Controls
         {
             try
             {
-                // Check if both text boxes are empty
                 if (string.IsNullOrWhiteSpace(guna2TextBox2.Text) && string.IsNullOrWhiteSpace(guna2TextBox1.Text))
                 {
                     MessageBox.Show("Veuillez saisir un montant de dette ou d'avance valide.", "erreur de validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Handle Dette
                 if (!string.IsNullOrWhiteSpace(guna2TextBox2.Text))
                 {
                     if (!decimal.TryParse(guna2TextBox2.Text, out decimal montantDette))
@@ -126,7 +124,6 @@ namespace GestionPersonnel.View.Controls
                     await _dettesStorage.Add(dette);
                 }
 
-                // Handle Avance
                 if (!string.IsNullOrWhiteSpace(guna2TextBox1.Text))
                 {
                     if (!decimal.TryParse(guna2TextBox1.Text, out decimal montantAvance))
@@ -146,7 +143,7 @@ namespace GestionPersonnel.View.Controls
                     await _avancesStorage.Add(avance);
                 }
 
-                MessageBox.Show("Dette et/ou avance ajoutées avec succès\u00a0!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Dette et/ou avance ajoutées avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 await LoadDebtDetails();
             }
             catch (FormatException)
