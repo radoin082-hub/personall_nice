@@ -48,7 +48,7 @@ namespace GestionPersonnel.View.Controls
         {
             try
             {
-                var employees = await _employeeStorage.GetAll(); 
+                var employees = await _employeeStorage.GetAll();
                 guna2ComboBox1.DataSource = employees;
                 guna2ComboBox1.DisplayMember = "FullName";
                 guna2ComboBox1.ValueMember = "EmployeID";
@@ -93,35 +93,17 @@ namespace GestionPersonnel.View.Controls
         private void AddButton_Click(object sender, EventArgs e)
         {
             panelDetteAvance.Visible = true;
+            panelMontant.Visible = false;
         }
-
+        //Avance Add
         private async void guna2Button4_Click(object sender, EventArgs e)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(guna2TextBox2.Text) && string.IsNullOrWhiteSpace(guna2TextBox1.Text))
+                if (string.IsNullOrWhiteSpace(guna2TextBox1.Text))
                 {
                     MessageBox.Show("Veuillez saisir un montant de dette ou d'avance valide.", "erreur de validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                }
-
-                if (!string.IsNullOrWhiteSpace(guna2TextBox2.Text))
-                {
-                    if (!decimal.TryParse(guna2TextBox2.Text, out decimal montantDette))
-                    {
-                        MessageBox.Show("Veuillez saisir une valeur numérique valide pour le montant de la Dette.", "erreur de validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    int employeeIdForDette = (int)guna2ComboBox1.SelectedValue;
-
-                    var dette = new Dette
-                    {
-                        EmployeID = employeeIdForDette,
-                        Montant = montantDette,
-                        Date = DateTime.Now
-                    };
-                    await _dettesStorage.Add(dette);
                 }
 
                 if (!string.IsNullOrWhiteSpace(guna2TextBox1.Text))
@@ -143,19 +125,82 @@ namespace GestionPersonnel.View.Controls
                     await _avancesStorage.Add(avance);
                 }
 
-                MessageBox.Show("Dette et/ou avance ajoutées avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Avance ajoutées avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 await LoadDebtDetails();
             }
             catch (FormatException)
             {
-                MessageBox.Show("Veuillez saisir des valeurs numériques valides pour les montants des dettes et des avances.", "Erreur d'entrée", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Veuillez saisir des valeurs numériques valides pour les montants des avances.", "Erreur d'entrée", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Une erreur s'est produite lors de l'ajout de la dette et de l'avance: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur s'est programm lors de l'ajout de l'avance: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        //Dette Add
+        private async void guna2Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(guna2TextBox2.Text))
+                {
+                    MessageBox.Show("Veuillez saisir un montant de dette ou d'avance valide.", "erreur de validation",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
+                if (!string.IsNullOrWhiteSpace(guna2TextBox2.Text))
+                {
+                    if (!decimal.TryParse(guna2TextBox2.Text, out decimal montantDette))
+                    {
+                        MessageBox.Show("Veuillez saisir une valeur numérique valide pour le montant de la Dette.",
+                            "erreur de validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    int employeeIdForDette = (int)guna2ComboBox1.SelectedValue;
+
+                    var dette = new Dette
+                    {
+                        EmployeID = employeeIdForDette,
+                        Montant = montantDette,
+                        Date = DateTime.Now
+                    };
+                    await _dettesStorage.Add(dette);
+                }
+                MessageBox.Show("Dette ajoutées avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await LoadDebtDetails();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(
+                    "Veuillez saisir des valeurs numériques valides pour les montants des dettes et des avances.",
+                    "Erreur d'entrée", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur s'est programm lors de l'ajout de la dette et de l'avance: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
+
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panelDetteAvance.Visible = false;
+            panelMontant.Visible = true;
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            panelMontant.Visible = false;
+        }
+
+        private void DettesGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        
     }
 }

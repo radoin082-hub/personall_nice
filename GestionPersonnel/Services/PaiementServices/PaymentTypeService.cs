@@ -3,7 +3,11 @@ using System.Threading.Tasks;
 using GestionPersonnel.Models.TypeDePaiment;
 using GestionPersonnel.Storages.TypeDePaimentStorages;
 
-public class PaymentTypeService
+
+
+namespace GestionPersonnel.Services.PaymentTypeServices
+{
+    public class PaymentTypeService
 {
     private readonly TypeDePaiementStorage _paiementStorage;
 
@@ -16,4 +20,5 @@ public class PaymentTypeService
     {
         return await _paiementStorage.GetAll();
     }
+}
 }

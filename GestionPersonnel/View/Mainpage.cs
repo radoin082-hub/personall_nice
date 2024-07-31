@@ -19,8 +19,10 @@ namespace GestionPersonnel.View
         private readonly Udashboard ucdashboard;
         private readonly UEmployes ucemployes;
         private readonly UPointage ucpointage;
-        private readonly UPaiement aa;
+        private readonly UPaiement ucpaiement;
         private readonly Udettes ucdettes;
+        private readonly Uequipe ucequipe;
+
 
 
         public Mainpage(string connectionString)
@@ -32,7 +34,8 @@ namespace GestionPersonnel.View
             ucemployes = new UEmployes(connectionString);
             ucdettes = new Udettes(connectionString);
             ucpointage = new UPointage(connectionString);
-            aa = new UPaiement(connectionString);
+            ucpaiement = new UPaiement(connectionString);
+            ucequipe = new Uequipe();
 
         }
 
@@ -238,8 +241,17 @@ namespace GestionPersonnel.View
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             Mainpanel.Controls.Clear();
-            Mainpanel.Controls.Add(aa);
-            aa.Dock = DockStyle.Fill;
+            Mainpanel.Controls.Add(ucpaiement);
+            ucpaiement.Dock = DockStyle.Fill;
+        }
+
+
+
+        private void guna2Button5_Click_2(object sender, EventArgs e)
+        {
+            Mainpanel.Controls.Clear();
+            Mainpanel.Controls.Add(ucequipe);
+            ucequipe.Dock = DockStyle.Fill;
         }
     }
 }

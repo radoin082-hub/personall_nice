@@ -62,8 +62,24 @@ namespace GestionPersonnel.View.Controls
                         EmplyeId = selectedEmployee.EmployeID
                     };
 
-                    await _paymentController.AddSalaryBaseAsync(salairesBase);
-                    MessageBox.Show($"Record added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Check if there is already a salary base record for the selected employee
+                    var existingSalaryBases = await _paymentController.GetSalaryBasesByEmployeeIdAsync(selectedEmployee.EmployeID);
+                    if (existingSalaryBases.Count > 0)
+                    {
+                        // If a record exists, update it
+                        var existingSalairesBase = existingSalaryBases[0];
+                        existingSalairesBase.SalaireBase = salaireBase;
+                        existingSalairesBase.TypePaiementID = selectedTypePaiement.TypePaiementID;
+
+                        await _paymentController.UpdateSalaryBaseAsync(existingSalairesBase);
+                        MessageBox.Show("Record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // If no record exists, add a new one
+                        await _paymentController.AddSalaryBaseAsync(salairesBase);
+                        MessageBox.Show("Record added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -75,6 +91,7 @@ namespace GestionPersonnel.View.Controls
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private async void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

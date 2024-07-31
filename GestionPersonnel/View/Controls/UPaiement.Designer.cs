@@ -30,7 +30,7 @@ namespace GestionPersonnel.View.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            
+
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -184,7 +184,7 @@ namespace GestionPersonnel.View.Controls
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             tabpaiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpaiement.ColumnHeadersHeight = 29;
-             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
@@ -494,7 +494,7 @@ namespace GestionPersonnel.View.Controls
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.pictureBox1_Image;
+            pictureBox2.Image = Properties.Resources.pictureBox1;
             pictureBox2.Location = new Point(34, 28);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(43, 45);

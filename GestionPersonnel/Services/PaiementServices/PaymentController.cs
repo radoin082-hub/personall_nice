@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GestionPersonnel.Services.EmployeeServices; 
+using GestionPersonnel.Services.EmployeeServices;
 using GestionPersonnel.Models.Employees;
-using GestionPersonnel.Models.TypeDePaiment;
+
 using GestionPersonnel.Models.SalairesBase;
 using GestionPersonnel.Models.Salaires;
+using GestionPersonnel.Models.TypeDePaiment;
+using GestionPersonnel.Services.PaymentTypeServices;
 
 public class PaymentController
 {
@@ -24,7 +26,7 @@ public class PaymentController
 
     public async Task<List<Employee>> GetAllEmployeesAsync()
     {
-        return await _employeeService.GetAllEmployees();
+        return await _employeeService.GetAllEmployees(); 
     }
 
     public async Task<List<TypeDePaiement>> GetAllPaymentTypesAsync()
@@ -37,8 +39,20 @@ public class PaymentController
         await _salaryBaseService.AddAsync(salairesBase);
     }
 
+    public async Task UpdateSalaryBaseAsync(SalairesBase salairesBase)
+    {
+        await _salaryBaseService.UpdateAsync(salairesBase);
+    }
+
     public async Task<List<SalaireDetail>> GetSalariesByMonthAsync(DateTime date)
     {
         return await _salaryDetailsService.GetSalariesByMonthAsync(date);
     }
+    public async Task<List<SalairesBase>> GetSalaryBasesByEmployeeIdAsync(int employeeId)
+    {
+        return await _salaryBaseService.GetByEmployeeId(employeeId);
+    }
+
+
+
 }

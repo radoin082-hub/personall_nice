@@ -25,11 +25,11 @@ namespace GestionPersonnel.Storages.SalairesBaseStorages
                                            "VALUES (@SalaireBase, @TypePaiementID, @EmplyeId); SELECT SCOPE_IDENTITY();";
        
         private const string UpdateQuery = "UPDATE SalairesBase SET SalaireBase = @SalaireBase, TypePaiementID = @TypePaiementID, " +
-                                           "EmplyeId = @EmplyeId WHERE IdSalaireBase = @IdSalaireBase;";
+                                           "EmployeID = @EmplyeId WHERE IdSalaireBase = @IdSalaireBase;";
         
         private const string DeleteQuery = "DELETE FROM SalairesBase WHERE IdSalaireBase = @IdSalaireBase;";
         
-        private const string SelectByEmployeeIdQuery = "SELECT * FROM SalairesBase WHERE EmplyeId = @employeeId";
+        private const string SelectByEmployeeIdQuery = "SELECT * FROM SalairesBase WHERE EmployeID = @employeeId";
 
         private static SalairesBase GetSalairesBaseFromDataRow(DataRow row)
         {
@@ -38,7 +38,7 @@ namespace GestionPersonnel.Storages.SalairesBaseStorages
                 IdSalaireBase = (int)row["IdSalaireBase"],
                 SalaireBase = (decimal)row["SalaireBase"],
                 TypePaiementID = (int)row["TypePaiementID"],
-                EmplyeId = (int)row["EmployeId"]
+                EmplyeId = (int)row["EmployeID"]
             };
         }
 
@@ -128,5 +128,10 @@ namespace GestionPersonnel.Storages.SalairesBaseStorages
             await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
         }
+
+
+        
+
+
     }
 }

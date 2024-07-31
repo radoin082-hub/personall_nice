@@ -127,8 +127,23 @@
   <data name="configxml" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\configiration\configxml.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="debt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\debt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="engineer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\engineer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="engineers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\engineers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FABELEC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FABELEC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\home_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\home_1_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_delete_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-delete-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,7 +163,19 @@
   <data name="jsconfig1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\configiration\jsconfig1.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pictureBox1_Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="list__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\list_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="money" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\money.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pictureBox1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pictureBox1.Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="to_do_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\to-do-list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

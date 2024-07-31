@@ -69,7 +69,7 @@ namespace GestionPersonnel.View.Controls
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             tabpointage = new Guna2DataGridView();
-             Nom = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
             Prenom = new DataGridViewTextBoxColumn();
             Fonction = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
@@ -208,7 +208,7 @@ namespace GestionPersonnel.View.Controls
             // 
             // dataGridViewTextBoxColumn12
             // 
-          
+
             // tabpointage
             // 
             tabpointage.AllowUserToAddRows = false;
@@ -224,7 +224,7 @@ namespace GestionPersonnel.View.Controls
             tabpointage.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpointage.ColumnHeadersHeight = 29;
             tabpointage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
@@ -536,7 +536,7 @@ namespace GestionPersonnel.View.Controls
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Resources.pictureBox1_Image;
+            pictureBox2.Image = Resources.pictureBox1;
             pictureBox2.Location = new Point(34, 28);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(43, 45);
@@ -547,7 +547,7 @@ namespace GestionPersonnel.View.Controls
             // 
             // dataGridViewTextBoxColumn19
             // 
-            
+
             // 
             // UPointage
             // 
