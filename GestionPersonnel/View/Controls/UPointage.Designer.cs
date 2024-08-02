@@ -139,7 +139,6 @@ namespace GestionPersonnel.View.Controls
             Remarque = new DataGridViewTextBoxColumn();
             EmployeID = new DataGridViewTextBoxColumn();
             PointageID = new DataGridViewTextBoxColumn();
-            modifierColumnpointage = new DataGridViewButtonColumn();
             panelaupdpointage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -352,7 +351,7 @@ namespace GestionPersonnel.View.Controls
             panelaupdpointage.Controls.Add(guna2Button4);
             panelaupdpointage.Controls.Add(pictureBox2);
             panelaupdpointage.FillColor = Color.FromArgb(239, 239, 208);
-            panelaupdpointage.Location = new Point(741, 84);
+            panelaupdpointage.Location = new Point(696, 94);
             panelaupdpointage.Name = "panelaupdpointage";
             panelaupdpointage.Radius = 3;
             panelaupdpointage.ShadowColor = Color.Black;
@@ -840,6 +839,7 @@ namespace GestionPersonnel.View.Controls
             // 
             // tabpointage
             // 
+            tabpointage.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             tabpointage.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -852,7 +852,7 @@ namespace GestionPersonnel.View.Controls
             tabpointage.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpointage.ColumnHeadersHeight = 46;
             tabpointage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tabpointage.Columns.AddRange(new DataGridViewColumn[] { Num, Nom, Prenom, Fonction, Status, Heur, Pourcentage, Remarque, EmployeID, PointageID, modifierColumnpointage });
+            tabpointage.Columns.AddRange(new DataGridViewColumn[] { Num, Nom, Prenom, Fonction, Status, Heur, Pourcentage, Remarque, EmployeID, PointageID });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
@@ -862,12 +862,12 @@ namespace GestionPersonnel.View.Controls
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             tabpointage.DefaultCellStyle = dataGridViewCellStyle3;
             tabpointage.GridColor = Color.Gray;
-            tabpointage.Location = new Point(16, 75);
+            tabpointage.Location = new Point(3, 84);
             tabpointage.Name = "tabpointage";
             tabpointage.RowHeadersVisible = false;
             tabpointage.RowHeadersWidth = 51;
             tabpointage.RowTemplate.Height = 50;
-            tabpointage.Size = new Size(1326, 679);
+            tabpointage.Size = new Size(1326, 743);
             tabpointage.TabIndex = 101;
             tabpointage.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tabpointage.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -954,9 +954,6 @@ namespace GestionPersonnel.View.Controls
             PointageID.MinimumWidth = 6;
             PointageID.Name = "PointageID";
             PointageID.Visible = false;
-            // 
-            // modifierColumnpointage
-            // 
             Image modifierIconPathpointage = Properties.Resources.icons8_edit_64;
             DataGridViewButtonColumn modifierColumnpointage = new DataGridViewButtonColumn
             {
@@ -976,7 +973,6 @@ namespace GestionPersonnel.View.Controls
 
             tabpointage.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             tabpointage.RowTemplate.Height = 50;
-            tabpointage.AllowUserToAddRows = false;
             // 
             // UPointage
             // 
@@ -1096,6 +1092,5 @@ namespace GestionPersonnel.View.Controls
         private DataGridViewTextBoxColumn Remarque;
         private DataGridViewTextBoxColumn EmployeID;
         private DataGridViewTextBoxColumn PointageID;
-        private DataGridViewButtonColumn modifierColumnpointage;
     }
 }
