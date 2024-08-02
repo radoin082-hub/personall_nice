@@ -145,8 +145,6 @@ namespace GestionPersonnel.View
             dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
-            modifierColumn = new DataGridViewButtonColumn();
-            supprimerColumn = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelajouteremploye.SuspendLayout();
@@ -794,7 +792,7 @@ namespace GestionPersonnel.View
             panelajouterfonction.Controls.Add(pictureBox2);
             panelajouterfonction.Controls.Add(addfonction);
             panelajouterfonction.FillColor = Color.FromArgb(239, 239, 208);
-            panelajouterfonction.Location = new Point(810, 163);
+            panelajouterfonction.Location = new Point(807, 166);
             panelajouterfonction.Name = "panelajouterfonction";
             panelajouterfonction.Radius = 3;
             panelajouterfonction.ShadowColor = Color.Black;
@@ -1046,6 +1044,7 @@ namespace GestionPersonnel.View
             // 
             // guna2DataGridView1
             // 
+            guna2DataGridView1.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -1058,7 +1057,7 @@ namespace GestionPersonnel.View
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView1.ColumnHeadersHeight = 46;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn10, dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12, dataGridViewTextBoxColumn13, modifierColumn, supprimerColumn });
+            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn10, dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12, dataGridViewTextBoxColumn13 });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -1072,8 +1071,8 @@ namespace GestionPersonnel.View
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
-            guna2DataGridView1.RowTemplate.Height = 55;
-            guna2DataGridView1.Size = new Size(1437, 188);
+            guna2DataGridView1.RowTemplate.Height = 50;
+            guna2DataGridView1.Size = new Size(1437, 877);
             guna2DataGridView1.TabIndex = 100;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -1093,10 +1092,11 @@ namespace GestionPersonnel.View
             guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             guna2DataGridView1.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            guna2DataGridView1.ThemeStyle.RowsStyle.Height = 55;
+            guna2DataGridView1.ThemeStyle.RowsStyle.Height = 50;
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick_4;
+            guna2DataGridView1.CellPainting += Guna2DataGridView1_CellPainting;
             // 
             // dataGridViewTextBoxColumn9
             // 
@@ -1130,25 +1130,49 @@ namespace GestionPersonnel.View
             // 
             // modifierColumn
             // 
-            modifierColumn.HeaderText = "";
-            modifierColumn.MinimumWidth = 6;
-            modifierColumn.Name = "modifierColumn";
-            // 
-            // supprimerColumn
-            // 
-            supprimerColumn.HeaderText = "";
-            supprimerColumn.MinimumWidth = 6;
-            supprimerColumn.Name = "supprimerColumn";
+            Image modifierIconPath = Properties.Resources.icons8_edit_24;
+            DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
+            {
+                Name = "ModifierColumn",
+                HeaderText = "",
+                Tag = modifierIconPath,
+                FillWeight = 23,
+
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            Image supprimerIconPath = Properties.Resources.icons8_delete_48;
+            DataGridViewButtonColumn supprimerColumn = new DataGridViewButtonColumn
+            {
+                Name = "SupprimerColumn",
+                HeaderText = "",
+                Tag = supprimerIconPath,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            guna2DataGridView1.Columns.Add(modifierColumn);
+            guna2DataGridView1.Columns.Add(supprimerColumn);
+            guna2DataGridView1.CellPainting += Guna2DataGridView1_CellPainting;
+            guna2DataGridView1.RowTemplate.Height = 50;
+            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            guna2DataGridView1.AllowUserToAddRows = false;
             // 
             // UEmployes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(guna2DataGridView1);
-            Controls.Add(panelajouterfonction);
-            Controls.Add(guna2Button2);
             Controls.Add(panelajouteremploye);
+            Controls.Add(panelajouterfonction);
+            Controls.Add(guna2DataGridView1);
+            Controls.Add(guna2Button2);
             Controls.Add(guna2Button1);
             Controls.Add(guna2TextBox1);
             Name = "UEmployes";

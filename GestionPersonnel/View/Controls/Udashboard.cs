@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionPersonnel.Storages.DettesStorages;
 
 namespace GestionPersonnel.View
 {
@@ -14,11 +15,13 @@ namespace GestionPersonnel.View
 
         private System.Windows.Forms.Timer refreshTimer;
         private readonly EmployeStorage _employeeStorage;
+        private readonly DetteStorage _detteStorage;
 
         public Udashboard(string connectionString)
         {
             _connectionString = connectionString;
             InitializeComponent();
+            _detteStorage = new DetteStorage(connectionString);
             _employeeStorage = new EmployeStorage(connectionString);
         }
 
@@ -40,13 +43,14 @@ namespace GestionPersonnel.View
         {
             try
             {
-                DateTime specificDate = new DateTime(2024, 6, 7);
+                DateTime specificDate = new DateTime(2024, 8, 1);
                 
                 int totalEmployees = await _employeeStorage.GetTotalNumberOfEmployees();
                 label11.Text = totalEmployees.ToString();
 
                 decimal totalSalary = await _employeeStorage.GetTotalSalaryForMonth(specificDate);
                 label6.Text = $"{totalSalary}"+" DA";
+                decimal totalAdvances = await _detteStorage.GetTotalDettes();
             }
             catch (Exception ex)
             {

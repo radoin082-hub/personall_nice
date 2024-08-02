@@ -13,7 +13,6 @@ namespace GestionPersonnel.Services.EmployeeServices
         {
             _employeStorage = new EmployeStorage(connectionString);
         }
-
         public Task<List<Employee>> GetAllEmployees() => _employeStorage.GetAll();
         public Task<Employee?> GetEmployeeById(int employeId) => _employeStorage.GetById(employeId);
     }

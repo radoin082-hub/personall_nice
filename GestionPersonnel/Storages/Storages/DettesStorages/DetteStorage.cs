@@ -148,6 +148,25 @@ namespace GestionPersonnel.Storages.DettesStorages
 
             return paimentsInfos;
         }
+        public async Task<decimal> GetTotalDettes()
+        {
+            decimal totalDettes = 0;
 
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("GetTotalDettes", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            await connection.OpenAsync();
+
+            var result = await cmd.ExecuteScalarAsync();
+            if (result != DBNull.Value)
+            {
+                totalDettes = Convert.ToDecimal(result);
+            }
+
+            return totalDettes;
+        }
     }
 }
