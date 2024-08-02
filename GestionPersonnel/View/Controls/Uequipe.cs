@@ -21,5 +21,15 @@ namespace GestionPersonnel.View.Controls
         {
 
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            paneladdpost.Visible = false;
+        }
+
+        private void paneladdpost_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

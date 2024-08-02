@@ -25,7 +25,7 @@ namespace GestionPersonnel.View
         private List<Employee> _allEmployees;
         private byte[] photo;
         private int? editingEmployeeId = null;
-        private int? editingFunctionId = null; 
+        private int? editingFunctionId = null;
         private Dictionary<int, string> _fonctionsDictionary;
         private readonly string _connectionString;
         public UEmployes(string connectionString)
@@ -108,7 +108,7 @@ namespace GestionPersonnel.View
         private void UpdateDataGridView(List<Employee> employees)
         {
             guna2DataGridView1.Rows.Clear();
-            int count=0;
+            int count = 0;
             foreach (var employee in employees)
             {
                 count++;
@@ -122,7 +122,7 @@ namespace GestionPersonnel.View
                                           ? _fonctionsDictionary[employee.FonctionID]
                                           : "Unknown";
 
-                    guna2DataGridView1.Rows.Add(count,employee.Nom, employee.Prenom, employee.NSecuriteSocial, fonctionName);
+                    guna2DataGridView1.Rows.Add(count, employee.Nom, employee.Prenom, employee.NSecuriteSocial, fonctionName);
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace GestionPersonnel.View
             {
                 DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cet employé?", "Confirmer la suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
-                {    
+                {
                     await _employeStorage.Delete(employeeId);
                     MessageBox.Show("Employé supprimé avec succès", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await LoadEmployees();
@@ -293,7 +293,7 @@ namespace GestionPersonnel.View
                     NTelephone = NTelephoneEmployes.Text,
                     SitiationFamiliale = SituationFamilialeEmployes.Text,
                     GroupSanguin = GroupeSanguinEmployes.Text,
-                    FonctionID = fonctionId, 
+                    FonctionID = fonctionId,
                     DateEntree = DateEntrerEmployes.Value,
                     DateSortie = null,
                     Photo = photo
@@ -502,7 +502,11 @@ namespace GestionPersonnel.View
 
         private void AdresseEmployes_TextChanged(object sender, EventArgs e) { }
 
-        private void guna2ShadowPanel1_Paint(object sender, PaintEventArgs e) { }
+        private void guna2ShadowPanel1_Paint(object sender, PaintEventArgs e) 
+        {
+            this.panelajouteremploye.BringToFront();
+
+        }
 
         private void UEmployes_Load_1(object sender, EventArgs e) { }
 
@@ -533,7 +537,7 @@ namespace GestionPersonnel.View
                 if (display_function.SelectedItem != null)
                 {
                     var selectedFunction = (Fonction)display_function.SelectedItem;
-                    selectedFunction.NomFonction = modifier_fuction.Text; 
+                    selectedFunction.NomFonction = modifier_fuction.Text;
                     await _fonctionStorage.Update(selectedFunction);
 
                     MessageBox.Show("Fonction mise à jour avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -554,7 +558,8 @@ namespace GestionPersonnel.View
         }
 
         private void display_function_SelectedIndexChanged(object sender, EventArgs e)
-        {   modifier_fuction.Clear();
+        {
+            modifier_fuction.Clear();
             display_function.SelectedItem = -1;
             if (display_function.SelectedItem != null)
             {
@@ -564,10 +569,17 @@ namespace GestionPersonnel.View
                     modifier_fuction.Text = selectedFonction.NomFonction;
                 }
             }
-            
+
         }
 
+        private void guna2DataGridView1_CellContentClick_4(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
 
+        private void panelajouterfonction_Paint(object sender, PaintEventArgs e)
+        {
+            this.panelajouterfonction.BringToFront();
+        }
     }
 }

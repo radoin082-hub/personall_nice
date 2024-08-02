@@ -22,6 +22,10 @@ namespace GestionPersonnel.View.Controls
             _paymentController = new PaymentController(connectionString);
             InitializeComponent();
         }
+        private void panelPaiement_Paint(object sender, PaintEventArgs e)
+        {
+            this.panelPaiement.BringToFront();
+        }
 
         private async Task LoadEmployeesAsync()
         {
@@ -181,8 +185,8 @@ namespace GestionPersonnel.View.Controls
                     gfx.DrawString($"Type de paiement : {typePaiement}", contentFont, XBrushes.Black, new XRect(20, yPos, page.Width - 40, 20), XStringFormats.TopLeft);
                     yPos += 20;
 
-                    int tableWidth = (int)page.Width - 40; 
-                    int columnWidth = tableWidth / 3; 
+                    int tableWidth = (int)page.Width - 40;
+                    int columnWidth = tableWidth / 3;
 
                     // Draw header
                     gfx.DrawRectangle(XBrushes.LightGray, 20, yPos, tableWidth, 20);
@@ -225,7 +229,7 @@ namespace GestionPersonnel.View.Controls
                     {
                         Properties.Resources.FABELEC.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                         XImage image = XImage.FromStream(ms);
-                        gfx.DrawImage(image, page.Width - 120, 20, 75, 60); 
+                        gfx.DrawImage(image, page.Width - 120, 20, 75, 60);
                     }
 
                     using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -329,6 +333,41 @@ namespace GestionPersonnel.View.Controls
                     MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void tabpaiement_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void UPaiement_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DateEntrerEmployes_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

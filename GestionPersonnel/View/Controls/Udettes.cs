@@ -181,7 +181,7 @@ namespace GestionPersonnel.View.Controls
             catch (Exception ex)
             {
                 MessageBox.Show($"Une erreur s'est programm lors de l'ajout de la dette et de l'avance: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
 
         }
 
@@ -201,6 +201,54 @@ namespace GestionPersonnel.View.Controls
         {
         }
 
-        
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CustomGradientPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void guna2DataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            palenHistoriqueAetD.Visible = false;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DettesSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

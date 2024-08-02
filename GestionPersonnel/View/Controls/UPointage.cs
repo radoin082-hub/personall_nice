@@ -211,5 +211,50 @@ namespace GestionPersonnel.View.Controls
                 }
             }
         }
+
+        private void tabpointage_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Premarque_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Phuer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addfonction_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void photoProfileEmployes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelaupdpointage_Paint(object sender, PaintEventArgs e)
+        {
+            this.panelaupdpointage.BringToFront();
+        }
     }
 }
