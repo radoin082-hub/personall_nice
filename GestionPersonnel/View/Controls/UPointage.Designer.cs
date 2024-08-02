@@ -866,8 +866,8 @@ namespace GestionPersonnel.View.Controls
             tabpointage.Name = "tabpointage";
             tabpointage.RowHeadersVisible = false;
             tabpointage.RowHeadersWidth = 51;
-            tabpointage.RowTemplate.Height = 55;
-            tabpointage.Size = new Size(1326, 473);
+            tabpointage.RowTemplate.Height = 50;
+            tabpointage.Size = new Size(1326, 679);
             tabpointage.TabIndex = 101;
             tabpointage.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tabpointage.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -887,7 +887,7 @@ namespace GestionPersonnel.View.Controls
             tabpointage.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             tabpointage.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             tabpointage.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            tabpointage.ThemeStyle.RowsStyle.Height = 55;
+            tabpointage.ThemeStyle.RowsStyle.Height = 50;
             tabpointage.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tabpointage.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             tabpointage.CellContentClick += tabpointage_CellContentClick;
@@ -957,17 +957,34 @@ namespace GestionPersonnel.View.Controls
             // 
             // modifierColumnpointage
             // 
-            modifierColumnpointage.HeaderText = "Edit";
-            modifierColumnpointage.MinimumWidth = 6;
-            modifierColumnpointage.Name = "modifierColumnpointage";
+            Image modifierIconPathpointage = Properties.Resources.icons8_edit_64;
+            DataGridViewButtonColumn modifierColumnpointage = new DataGridViewButtonColumn
+            {
+                Name = "ModifierColumn",
+                HeaderText = "",
+                Tag = modifierIconPathpointage,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            tabpointage.Columns.Add(modifierColumnpointage);
+
+            tabpointage.CellPainting += new DataGridViewCellPaintingEventHandler(showiconedit);
+
+            tabpointage.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tabpointage.RowTemplate.Height = 50;
+            tabpointage.AllowUserToAddRows = false;
             // 
             // UPointage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(tabpointage);
             Controls.Add(panelaupdpointage);
+            Controls.Add(tabpointage);
             Controls.Add(searchBtn);
             Controls.Add(DateEntrerEmployes);
             Controls.Add(guna2TextBox1);

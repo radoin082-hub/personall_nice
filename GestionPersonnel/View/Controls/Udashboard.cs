@@ -51,6 +51,7 @@ namespace GestionPersonnel.View
                 decimal totalSalary = await _employeeStorage.GetTotalSalaryForMonth(specificDate);
                 label6.Text = $"{totalSalary}"+" DA";
                 decimal totalAdvances = await _detteStorage.GetTotalDettes();
+                label1.Text = $"{totalAdvances}" + " DA";
             }
             catch (Exception ex)
             {
