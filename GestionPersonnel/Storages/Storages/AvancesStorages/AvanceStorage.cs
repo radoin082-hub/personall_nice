@@ -35,6 +35,27 @@ namespace GestionPersonnel.Storages.AvancesStorages
                 Date = (DateTime)row["Date"]
             };
         }
+        public async Task<List<Avance>> GetByEmployeId(int employeId)
+        {
+            var avances = new List<Avance>();
+
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("SELECT * FROM Avances WHERE EmployeID = @EmployeID", connection);
+            cmd.Parameters.AddWithValue("@EmployeID", employeId);
+
+            var dataTable = new DataTable();
+            var da = new SqlDataAdapter(cmd);
+
+            await connection.OpenAsync();
+            da.Fill(dataTable);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                avances.Add(GetAvanceFromDataRow(row));
+            }
+
+            return avances;
+        }
 
         public async Task<List<Avance>> GetAll()
         {

@@ -54,11 +54,16 @@ namespace GestionPersonnel.Storages.DettesStorages
             return (from DataRow row in dataTable.Rows select GetDetteFromDataRow(row)).ToList();
         }
 
-        public async Task<Dette> GetById(int detteId)
+        public async Task<List<Dette>> GetByEmployeId(int employeId)
         {
+            if (employeId <= 0)
+                throw new ArgumentException("Invalid employee ID.", nameof(employeId));
+
+            var dettes = new List<Dette>();
+
             await using var connection = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(SelectByIdQuery, connection);
-            cmd.Parameters.AddWithValue("@id", detteId);
+            using var cmd = new SqlCommand("SELECT * FROM Dettes WHERE EmployeID = @EmployeID", connection);
+            cmd.Parameters.AddWithValue("@EmployeID", employeId);
 
             var dataTable = new DataTable();
             var da = new SqlDataAdapter(cmd);
@@ -66,11 +71,15 @@ namespace GestionPersonnel.Storages.DettesStorages
             await connection.OpenAsync();
             da.Fill(dataTable);
 
-            if (dataTable.Rows.Count == 0)
-                throw new KeyNotFoundException($"Dette with ID {detteId} not found.");
+            foreach (DataRow row in dataTable.Rows)
+            {
+                dettes.Add(GetDetteFromDataRow(row));
+            }
 
-            return GetDetteFromDataRow(dataTable.Rows[0]);
+            return dettes;
         }
+
+
 
         public async Task<int> Add(Dette dette)
         {

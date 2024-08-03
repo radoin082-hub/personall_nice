@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema
+    Microsoft ResX Schema 
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -121,7 +121,7 @@
   <data name="searchBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADLnSURBVHhe7d0J
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADLnSURBVHhe7d0J
         2O/1nP/xOUv7poUihYi0UdkiGjL2LSaM5SA0loxlDIUZWTPGlj27oiakDIWarBX9B0koLaIkJe2L1vN/
         vn+f99F2zvnd55zffd/f7/v7fFzX67rmMtT92d7fz++7/p00FAsXLtyQbEseT55H9iR7k3eRj5EDyeHk
         GPITcjo582b5HbloCfkTif/Oz8kJ5GgS/6xDyP5kP7IveTV5Dnkk2ZrE3zQ3/0RJkrQsOIhuQB5MFpC9
@@ -345,7 +345,7 @@
   <data name="guna2TextBox1.IconRight" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADsBSURBVHhe7d0J
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADsBSURBVHhe7d0J
         mB1Vmf/xhFUWRZYR3BAxQPDWrU5oNxQlLhON2N1Vdeeq44KImnGUGZRxDOAWVxhnXHAFVwSFIS7gIKAw
         GFSI+p+WdFWlk0iAKMgqhH3N0v/3dF6kOX1Cbie91Dn1/TzP7+kYFPtsb52qW7dqGlAXUW+5d9Qq4ygr
         j4jT/G3NpDgmSsoTmmlxsvznr8vPMyXnSS6V9DezYpX8vOaRyH/nT/JzzSZys8T89waitPy9/LsvkT+b

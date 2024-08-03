@@ -63,13 +63,6 @@
             AddButton = new Button();
             DettesSearch = new Guna.UI2.WinForms.Guna2TextBox();
             DettesGrid = new Guna.UI2.WinForms.Guna2DataGridView();
-            N = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Prenom = new DataGridViewTextBoxColumn();
-            Fonction = new DataGridViewTextBoxColumn();
-            TotaleDette = new DataGridViewTextBoxColumn();
-            MontantRetiree = new DataGridViewTextBoxColumn();
-            TotalAvances = new DataGridViewTextBoxColumn();
             Modifier = new DataGridViewButtonColumn();
             panelDetteAvance = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panel5 = new Panel();
@@ -117,6 +110,13 @@
             pictureBox3 = new PictureBox();
             label7 = new Label();
             label6 = new Label();
+            N = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Prenom = new DataGridViewTextBoxColumn();
+            Fonction = new DataGridViewTextBoxColumn();
+            TotaleDette = new DataGridViewTextBoxColumn();
+            MontantRetiree = new DataGridViewTextBoxColumn();
+            TotalAvances = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)DettesGrid).BeginInit();
             panelDetteAvance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -180,7 +180,6 @@
             dataGridViewCellStyle1.BackColor = Color.White;
             DettesGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             DettesGrid.Anchor = AnchorStyles.None;
-            DettesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 81, 210);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
@@ -191,7 +190,7 @@
             DettesGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             DettesGrid.ColumnHeadersHeight = 46;
             DettesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { N, Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, Modifier });
+            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { N, Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -206,9 +205,9 @@
             DettesGrid.ReadOnly = true;
             DettesGrid.RowHeadersVisible = false;
             DettesGrid.RowHeadersWidth = 51;
-            DettesGrid.RowTemplate.Height = 55;
+            DettesGrid.RowTemplate.Height = 50;
             DettesGrid.ScrollBars = ScrollBars.Vertical;
-            DettesGrid.Size = new Size(1507, 741);
+            DettesGrid.Size = new Size(1390, 741);
             DettesGrid.TabIndex = 0;
             DettesGrid.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             DettesGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -228,76 +227,17 @@
             DettesGrid.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             DettesGrid.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             DettesGrid.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            DettesGrid.ThemeStyle.RowsStyle.Height = 55;
+            DettesGrid.ThemeStyle.RowsStyle.Height = 50;
             DettesGrid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DettesGrid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             DettesGrid.CellContentClick += DettesGrid_CellContentClick_1;
-            // 
-            // N
-            // 
-            N.HeaderText = "N°";
-            N.MinimumWidth = 6;
-            N.Name = "N";
-            N.ReadOnly = true;
-            N.Width = 75;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            Nom.Width = 178;
-            // 
-            // Prenom
-            // 
-            Prenom.HeaderText = "Prenom";
-            Prenom.MinimumWidth = 6;
-            Prenom.Name = "Prenom";
-            Prenom.ReadOnly = true;
-            Prenom.Width = 177;
-            // 
-            // Fonction
-            // 
-            Fonction.HeaderText = "Fonction";
-            Fonction.MinimumWidth = 6;
-            Fonction.Name = "Fonction";
-            Fonction.ReadOnly = true;
-            Fonction.Width = 178;
-            // 
-            // TotaleDette
-            // 
-            TotaleDette.HeaderText = "Totale Dette";
-            TotaleDette.MinimumWidth = 6;
-            TotaleDette.Name = "TotaleDette";
-            TotaleDette.ReadOnly = true;
-            TotaleDette.Width = 178;
-            // 
-            // MontantRetiree
-            // 
-            MontantRetiree.HeaderText = "Montant Retiree";
-            MontantRetiree.MinimumWidth = 6;
-            MontantRetiree.Name = "MontantRetiree";
-            MontantRetiree.ReadOnly = true;
-            MontantRetiree.Width = 178;
-            // 
-            // TotalAvances
-            // 
-            TotalAvances.HeaderText = "Totale Avances";
-            TotalAvances.MinimumWidth = 6;
-            TotalAvances.Name = "TotalAvances";
-            TotalAvances.ReadOnly = true;
-            TotalAvances.Width = 177;
+            DettesGrid.CellPainting += showiconedit;
             // 
             // Modifier
             // 
-            Modifier.HeaderText = "Modifier";
             Modifier.MinimumWidth = 6;
             Modifier.Name = "Modifier";
-            Modifier.ReadOnly = true;
-            Modifier.Resizable = DataGridViewTriState.True;
-            Modifier.SortMode = DataGridViewColumnSortMode.Automatic;
-            Modifier.Width = 178;
+            Modifier.Width = 125;
             // 
             // panelDetteAvance
             // 
@@ -799,6 +739,10 @@
             // 
             // guna2DataGridView1
             // 
+            guna2DataGridView1.AllowUserToAddRows = false;
+            guna2DataGridView1.AllowUserToDeleteRows = false;
+            guna2DataGridView1.AllowUserToResizeColumns = false;
+            guna2DataGridView1.AllowUserToResizeRows = false;
             dataGridViewCellStyle4.BackColor = Color.White;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -870,6 +814,10 @@
             // 
             // guna2DataGridView2
             // 
+            guna2DataGridView2.AllowUserToAddRows = false;
+            guna2DataGridView2.AllowUserToDeleteRows = false;
+            guna2DataGridView2.AllowUserToResizeColumns = false;
+            guna2DataGridView2.AllowUserToResizeRows = false;
             dataGridViewCellStyle7.BackColor = Color.White;
             guna2DataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -987,6 +935,82 @@
             label6.Text = "Avance";
             label6.Click += label6_Click;
             // 
+            // N
+            // 
+            N.HeaderText = "N°";
+            N.MinimumWidth = 6;
+            N.Name = "N";
+            N.ReadOnly = true;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            // 
+            // Prenom
+            // 
+            Prenom.HeaderText = "Prenom";
+            Prenom.MinimumWidth = 6;
+            Prenom.Name = "Prenom";
+            Prenom.ReadOnly = true;
+            // 
+            // Fonction
+            // 
+            Fonction.HeaderText = "Fonction";
+            Fonction.MinimumWidth = 6;
+            Fonction.Name = "Fonction";
+            Fonction.ReadOnly = true;
+            // 
+            // TotaleDette
+            // 
+            TotaleDette.HeaderText = "Totale Dette";
+            TotaleDette.MinimumWidth = 6;
+            TotaleDette.Name = "TotaleDette";
+            TotaleDette.ReadOnly = true;
+            // 
+            // MontantRetiree
+            // 
+            MontantRetiree.HeaderText = "Montant Retiree";
+            MontantRetiree.MinimumWidth = 6;
+            MontantRetiree.Name = "MontantRetiree";
+            MontantRetiree.ReadOnly = true;
+            // 
+            // TotalAvances
+            // 
+            TotalAvances.HeaderText = "Totale Avances";
+            TotalAvances.MinimumWidth = 6;
+            TotalAvances.Name = "TotalAvances";
+            TotalAvances.ReadOnly = true;
+            Image supprimerIconPath = Properties.Resources.icons8_show_100;
+            DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
+            {
+                Name = "ModifierColumn",
+                HeaderText = "",
+                Tag = supprimerIconPath,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            DettesGrid.Columns.Add(modifierColumn);
+       
+            DataGridViewTextBoxColumn employeIDColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "EmployeIDColumn",
+                Visible = false
+            };
+            DettesGrid.Columns.Add(employeIDColumn);
+
+            DettesGrid.CellPainting += showiconedit;
+            
+            DettesGrid.RowTemplate.Height = 50;
+            DettesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DettesGrid.AllowUserToAddRows = false;
+            // 
             // Udettes
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -1026,13 +1050,6 @@
         private Guna.UI2.WinForms.Guna2TextBox DettesSearch;
         private Guna.UI2.WinForms.Guna2DataGridView DettesGrid;
         private Guna.UI2.WinForms.Guna2ShadowPanel panelDetteAvance;
-        private DataGridViewTextBoxColumn N;
-        private DataGridViewTextBoxColumn Nom;
-        private DataGridViewTextBoxColumn Prenom;
-        private DataGridViewTextBoxColumn Fonction;
-        private DataGridViewTextBoxColumn TotaleDette;
-        private DataGridViewTextBoxColumn MontantRetiree;
-        private DataGridViewTextBoxColumn TotalAvances;
         private DataGridViewButtonColumn Modifier;
         private Button button1;
         private Guna.UI2.WinForms.Guna2ShadowPanel panelMontant;
@@ -1079,5 +1096,12 @@
         private Panel panel4;
         private Panel panel5;
         private Panel panel6;
+        private DataGridViewTextBoxColumn N;
+        private DataGridViewTextBoxColumn Nom;
+        private DataGridViewTextBoxColumn Prenom;
+        private DataGridViewTextBoxColumn Fonction;
+        private DataGridViewTextBoxColumn TotaleDette;
+        private DataGridViewTextBoxColumn MontantRetiree;
+        private DataGridViewTextBoxColumn TotalAvances;
     }
 }

@@ -30,6 +30,33 @@ namespace GestionPersonnel.View.Controls
             await LoadDebtDetails();
             await LoadEmployees();
         }
+        private void showiconedit(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && (DettesGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
+
+                DataGridViewButtonColumn buttonColumn = (DataGridViewButtonColumn)DettesGrid.Columns[e.ColumnIndex];
+                Image icon = buttonColumn.Tag as Image;
+
+                if (icon != null)
+                {
+                    int iconWidth = 30;
+                    int iconHeight = 30;
+                    int iconX = e.CellBounds.X + (e.CellBounds.Width - iconWidth) / 2;
+                    int iconY = e.CellBounds.Y + (e.CellBounds.Height - iconHeight) / 2;
+
+                    e.Graphics.DrawImage(icon, new Rectangle(iconX, iconY, iconWidth, iconHeight));
+                }
+
+                using (Pen pen = new Pen(DettesGrid.GridColor, 0))
+                {
+                    e.Graphics.DrawRectangle(pen, e.CellBounds);
+                }
+
+                e.Handled = true;
+            }
+        }
 
         private async Task LoadDebtDetails()
         {
@@ -70,10 +97,15 @@ namespace GestionPersonnel.View.Controls
             int i = 0;
             foreach (var paiment in paimentsInfos)
             {
+                var row = new DataGridViewRow();
+                row.CreateCells(DettesGrid);
+                row.SetValues(i, paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances, paiment.EmployeID);
+                row.Tag = paiment.EmployeID; 
+                DettesGrid.Rows.Add(row);
                 i++;
-                DettesGrid.Rows.Add(i, paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances);
             }
         }
+
 
         private void DettesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -184,6 +216,74 @@ namespace GestionPersonnel.View.Controls
             }
 
         }
+        private async void DettesGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == DettesGrid.Columns["ModifierColumn"].Index)
+            {
+                try
+                {
+              
+                    var row = DettesGrid.Rows[e.RowIndex];
+                    int employeID = (int)row.Tag;
+
+             
+                    palenHistoriqueAetD.Visible = true;
+
+                    await DisplayEmployeeDebtAndAdvances(employeID);
+
+                    var employee = await _employeeStorage.GetById(employeID); 
+                    if (employee != null)
+                    {
+                        label11.Text = employee.Nom; 
+                        label12.Text = employee.Prenom; 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Employee details not found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error in DettesGrid_CellContentClick_1: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+
+        private async Task DisplayEmployeeDebtAndAdvances(int employeID)
+        {
+            try
+            {
+                var debts = await _dettesStorage.GetByEmployeId(employeID);
+                var advances = await _avancesStorage.GetByEmployeId(employeID);
+
+                if (guna2DataGridView1 == null || guna2DataGridView2 == null)
+                {
+                    MessageBox.Show("DataGridView controls are not initialized.", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                guna2DataGridView1.Rows.Clear();
+                guna2DataGridView2.Rows.Clear();
+
+                foreach (var debt in debts)
+                {
+                    guna2DataGridView1.Rows.Add(debt.DetteID, debt.Montant, debt.Date);
+                }
+
+                foreach (var advance in advances)
+                {
+                    guna2DataGridView2.Rows.Add( advance.AvanceID, advance.Montant, advance.Date);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur s'est produite lors du chargement des dettes et des avances: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -195,10 +295,6 @@ namespace GestionPersonnel.View.Controls
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             panelMontant.Visible = false;
-        }
-
-        private void DettesGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
         }
 
         private void label7_Click(object sender, EventArgs e)

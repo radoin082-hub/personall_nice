@@ -85,6 +85,7 @@ namespace GestionPersonnel.View.Controls
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             pictureBox2 = new PictureBox();
             tabpaiement = new Guna.UI2.WinForms.Guna2DataGridView();
+            GeneratePdf = new DataGridViewButtonColumn();
             Num = new DataGridViewTextBoxColumn();
             NomEmploye = new DataGridViewTextBoxColumn();
             PrenomEmploye = new DataGridViewTextBoxColumn();
@@ -95,8 +96,6 @@ namespace GestionPersonnel.View.Controls
             Avances = new DataGridViewTextBoxColumn();
             Dettes = new DataGridViewTextBoxColumn();
             SalaireNet = new DataGridViewTextBoxColumn();
-            displayprint = new DataGridViewButtonColumn();
-            GeneratePdf = new DataGridViewButtonColumn();
             panelPaiement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -530,7 +529,7 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpaiement.ColumnHeadersHeight = 46;
             tabpaiement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tabpaiement.Columns.AddRange(new DataGridViewColumn[] { Num, NomEmploye, PrenomEmploye, NomFonction, TypePaiement, Salaire, Primes, Avances, Dettes, SalaireNet, displayprint });
+            tabpaiement.Columns.AddRange(new DataGridViewColumn[] { Num, NomEmploye, PrenomEmploye, NomFonction, TypePaiement, Salaire, Primes, Avances, Dettes, SalaireNet });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
@@ -571,12 +570,18 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.CellContentClick += tabpaiement_CellContentClick;
             tabpaiement.CellPainting += showiconedit;
             // 
+            // GeneratePdf
+            // 
+            GeneratePdf.HeaderText = "";
+            GeneratePdf.MinimumWidth = 6;
+            GeneratePdf.Name = "GeneratePdf";
+            GeneratePdf.Width = 125;
+            // 
             // Num
             // 
             Num.HeaderText = "N°";
             Num.MinimumWidth = 6;
             Num.Name = "Num";
-            Num.Width = 30;
             // 
             // NomEmploye
             // 
@@ -631,19 +636,29 @@ namespace GestionPersonnel.View.Controls
             SalaireNet.HeaderText = "SalaireNet";
             SalaireNet.MinimumWidth = 6;
             SalaireNet.Name = "SalaireNet";
-            // 
-            // displayprint
-            // 
-            displayprint.HeaderText = "Fiche de Paie";
-            displayprint.MinimumWidth = 6;
-            displayprint.Name = "displayprint";
-            // 
-            // GeneratePdf
-            // 
-            GeneratePdf.HeaderText = "";
-            GeneratePdf.MinimumWidth = 6;
-            GeneratePdf.Name = "GeneratePdf";
-            GeneratePdf.Width = 125;
+            Image printicon = Properties.Resources.icons8_print_50;
+            var displayprint = new DataGridViewButtonColumn
+            {
+                Name = "GeneratePdf",
+                HeaderText = "",
+                Tag = printicon,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            tabpaiement.Columns.Add(displayprint);
+
+            // Set event handlers
+            tabpaiement.CellPainting += showiconedit;
+            tabpaiement.CellContentClick += tabpaiement_CellContentClick;
+
+            // Configure DataGridView appearance
+            tabpaiement.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tabpaiement.RowTemplate.Height = 50;
+            tabpaiement.AllowUserToAddRows = false;
             // 
             // UPaiement
             // 
@@ -702,6 +717,8 @@ namespace GestionPersonnel.View.Controls
         private DataGridViewButtonColumn Fiche_de_Paie;
         private Guna.UI2.WinForms.Guna2DataGridView tabpaiement;
         private DataGridViewButtonColumn GeneratePdf;
+        private Panel panel1;
+        private Label label10;
         private DataGridViewTextBoxColumn Num;
         private DataGridViewTextBoxColumn NomEmploye;
         private DataGridViewTextBoxColumn PrenomEmploye;
@@ -712,8 +729,5 @@ namespace GestionPersonnel.View.Controls
         private DataGridViewTextBoxColumn Avances;
         private DataGridViewTextBoxColumn Dettes;
         private DataGridViewTextBoxColumn SalaireNet;
-        private DataGridViewButtonColumn displayprint;
-        private Panel panel1;
-        private Label label10;
     }
 }

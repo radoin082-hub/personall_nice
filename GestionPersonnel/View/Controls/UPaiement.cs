@@ -8,6 +8,7 @@ using GestionPersonnel.Models.Employees;
 using GestionPersonnel.Models.Salaires;
 using GestionPersonnel.Models.SalairesBase;
 using GestionPersonnel.Models.TypeDePaiment;
+using iText.Kernel.Events;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 
@@ -21,10 +22,6 @@ namespace GestionPersonnel.View.Controls
         {
             _paymentController = new PaymentController(connectionString);
             InitializeComponent();
-        }
-        private void panelPaiement_Paint(object sender, PaintEventArgs e)
-        {
-            this.panelPaiement.BringToFront();
         }
 
         private async Task LoadEmployeesAsync()
@@ -66,11 +63,9 @@ namespace GestionPersonnel.View.Controls
                         EmplyeId = selectedEmployee.EmployeID
                     };
 
-                    // Check if there is already a salary base record for the selected employee
                     var existingSalaryBases = await _paymentController.GetSalaryBasesByEmployeeIdAsync(selectedEmployee.EmployeID);
                     if (existingSalaryBases.Count > 0)
                     {
-                        // If a record exists, update it
                         var existingSalairesBase = existingSalaryBases[0];
                         existingSalairesBase.SalaireBase = salaireBase;
                         existingSalairesBase.TypePaiementID = selectedTypePaiement.TypePaiementID;
@@ -80,7 +75,6 @@ namespace GestionPersonnel.View.Controls
                     }
                     else
                     {
-                        // If no record exists, add a new one
                         await _paymentController.AddSalaryBaseAsync(salairesBase);
                         MessageBox.Show("Record added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -188,7 +182,6 @@ namespace GestionPersonnel.View.Controls
                     int tableWidth = (int)page.Width - 40;
                     int columnWidth = tableWidth / 3;
 
-                    // Draw header
                     gfx.DrawRectangle(XBrushes.LightGray, 20, yPos, tableWidth, 20);
                     gfx.DrawString("Description", headerFont, XBrushes.Black, new XRect(20, yPos, columnWidth, 20), XStringFormats.Center);
                     gfx.DrawString("Montant", headerFont, XBrushes.Black, new XRect(20 + columnWidth, yPos, columnWidth, 20), XStringFormats.Center);
@@ -278,6 +271,26 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
+        private void DateEntrerEmployes_ValueChanged(object sender, EventArgs e)
+        {
+        }
+        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
+        {
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+        }
+        private void label5_Click(object sender, EventArgs e)
+        {
+        }
+        private void label9_Click(object sender, EventArgs e)
+        {
+        }
+        private void panelPaiement_Paint(object sender, EventArgs e)
+        {
+        }
+
+
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             panelPaiement.Visible = false;
@@ -333,41 +346,6 @@ namespace GestionPersonnel.View.Controls
                     MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void tabpaiement_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void UPaiement_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DateEntrerEmployes_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
