@@ -1163,6 +1163,12 @@ namespace GestionPersonnel.View
             guna2DataGridView1.RowTemplate.Height = 50;
             guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             guna2DataGridView1.AllowUserToAddRows = false;
+            guna2DataGridView1.AllowUserToDeleteRows = false;
+            guna2DataGridView1.AllowUserToOrderColumns = false;
+            guna2DataGridView1.AllowUserToResizeColumns = false;
+            guna2DataGridView1.AllowUserToResizeRows = false;
+            
+
             // 
             // UEmployes
             // 
