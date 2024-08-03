@@ -23,6 +23,7 @@ namespace GestionPersonnel.View.Controls
             _avancesStorage = new AvanceStorage(connectionString);
             _employeeStorage = new EmployeStorage(connectionString);
             InitializeComponent();
+            palenHistoriqueAetD.Visible = false;
         }
 
         private async void Udettes_Load(object sender, EventArgs e)
@@ -96,13 +97,13 @@ namespace GestionPersonnel.View.Controls
             DettesGrid.Rows.Clear();
             int i = 0;
             foreach (var paiment in paimentsInfos)
-            {
+            {i++;
                 var row = new DataGridViewRow();
                 row.CreateCells(DettesGrid);
                 row.SetValues(i, paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances, paiment.EmployeID);
                 row.Tag = paiment.EmployeID; 
                 DettesGrid.Rows.Add(row);
-                i++;
+                
             }
         }
 
@@ -256,7 +257,7 @@ namespace GestionPersonnel.View.Controls
             try
             {
                 var debts = await _dettesStorage.GetByEmployeId(employeID);
-                var advances = await _avancesStorage.GetByEmployeId(employeID);
+                var avances = await _avancesStorage.GetByEmployeId(employeID);
 
                 if (guna2DataGridView1 == null || guna2DataGridView2 == null)
                 {
@@ -266,15 +267,17 @@ namespace GestionPersonnel.View.Controls
 
                 guna2DataGridView1.Rows.Clear();
                 guna2DataGridView2.Rows.Clear();
-
+                int countDettes= 0;
                 foreach (var debt in debts)
                 {
-                    guna2DataGridView1.Rows.Add(debt.DetteID, debt.Montant, debt.Date);
+                    countDettes++;
+                    guna2DataGridView1.Rows.Add(countDettes, debt.Montant, debt.Date);
                 }
-
-                foreach (var advance in advances)
+                int countAvance = 0;
+                foreach (var avanc in avances)
                 {
-                    guna2DataGridView2.Rows.Add( advance.AvanceID, advance.Montant, advance.Date);
+                    countAvance++;
+                    guna2DataGridView2.Rows.Add( countAvance, avanc.Montant, avanc.Date);
                 }
             }
             catch (Exception ex)
