@@ -38,12 +38,12 @@ namespace GestionPersonnel.View
         {
             await RefreshData();
         }
-
+        
         private async Task RefreshData()
         {
             try
             {
-                DateTime specificDate = new DateTime(2024, 8, 1);
+                DateTime specificDate = DateTime.Now; 
                 
                 int totalEmployees = await _employeeStorage.GetTotalNumberOfEmployees();
                 label11.Text = totalEmployees.ToString();
