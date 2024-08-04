@@ -31,5 +31,40 @@ namespace GestionPersonnel.View.Controls
         {
 
         }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            panelAddEquipe.Visible = true;
+            panelUpdateEquipe.Visible = false;
+
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            panelUpdateEquipe.Visible = true;
+            panelAddEquipe.Visible = false;
+
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            panelAddEquipe.Visible = false;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            panelUpdateEquipe.Visible = false;
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
