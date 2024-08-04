@@ -393,14 +393,12 @@ namespace GestionPersonnel.View.Controls
 
                     int employeeIdForDette = (int)guna2ComboBox3.SelectedValue;
 
-
                      DateTime datemantant = DateTime.Now;
                     await _SalaireStorage.UpdateDette(employeeIdForDette, montantDette, datemantant);
                     MessageBox.Show(datemantant.ToString() , "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
-               // MessageBox.Show("Dette ajoutées avec succès!"+, "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                await LoadDebtDetails();
+                     await LoadDebtDetails();
             }
             catch (FormatException)
             {
