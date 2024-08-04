@@ -106,6 +106,8 @@
             label9 = new Label();
             pictureBox2 = new PictureBox();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            checkedListBox3 = new CheckedListBox();
+            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)tabequipe).BeginInit();
             paneladdpost.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -230,6 +232,8 @@
             // 
             paneladdpost.BackColor = Color.FromArgb(239, 239, 208);
             paneladdpost.BorderRadius = 3;
+            paneladdpost.Controls.Add(checkedListBox3);
+            paneladdpost.Controls.Add(label13);
             paneladdpost.Controls.Add(guna2Button1);
             paneladdpost.Controls.Add(guna2TextBox1);
             paneladdpost.Controls.Add(label3);
@@ -257,12 +261,13 @@
             guna2Button1.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(398, 413);
+            guna2Button1.Location = new Point(398, 614);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Button1.Size = new Size(158, 37);
             guna2Button1.TabIndex = 107;
             guna2Button1.Text = "Ajouter Post";
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // guna2TextBox1
             // 
@@ -576,7 +581,7 @@
             panelUpdateEquipe.Controls.Add(label9);
             panelUpdateEquipe.Controls.Add(pictureBox2);
             panelUpdateEquipe.CustomizableEdges = customizableEdges29;
-            panelUpdateEquipe.Location = new Point(763, 127);
+            panelUpdateEquipe.Location = new Point(778, 124);
             panelUpdateEquipe.Name = "panelUpdateEquipe";
             panelUpdateEquipe.ShadowDecoration.CustomizableEdges = customizableEdges30;
             panelUpdateEquipe.Size = new Size(613, 682);
@@ -733,6 +738,28 @@
             guna2Button4.Text = "Mise a Jour Equipe";
             guna2Button4.Click += guna2Button4_Click;
             // 
+            // checkedListBox3
+            // 
+            checkedListBox3.BackColor = Color.FromArgb(239, 239, 208);
+            checkedListBox3.BorderStyle = BorderStyle.None;
+            checkedListBox3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            checkedListBox3.FormattingEnabled = true;
+            checkedListBox3.Items.AddRange(new object[] { "Member1", "Member2", "Member3", "Member4" });
+            checkedListBox3.Location = new Point(69, 429);
+            checkedListBox3.Name = "checkedListBox3";
+            checkedListBox3.Size = new Size(495, 135);
+            checkedListBox3.TabIndex = 120;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label13.Location = new Point(56, 395);
+            label13.Name = "label13";
+            label13.Size = new Size(321, 25);
+            label13.TabIndex = 119;
+            label13.Text = "Choisi Les Membre Qui Finit le Post";
+            // 
             // Uequipe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -803,5 +830,7 @@
         private CheckedListBox checkedListBox2;
         private Label label12;
         private Panel panel3;
+        private CheckedListBox checkedListBox3;
+        private Label label13;
     }
 }
