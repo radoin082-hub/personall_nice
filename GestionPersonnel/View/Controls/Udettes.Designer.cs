@@ -63,15 +63,6 @@
             AddButton = new Button();
             DettesSearch = new Guna.UI2.WinForms.Guna2TextBox();
             DettesGrid = new Guna.UI2.WinForms.Guna2DataGridView();
-            N = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Prenom = new DataGridViewTextBoxColumn();
-            Fonction = new DataGridViewTextBoxColumn();
-            TotaleDette = new DataGridViewTextBoxColumn();
-            MontantRetiree = new DataGridViewTextBoxColumn();
-            TotalAvances = new DataGridViewTextBoxColumn();
-            modifierColumn = new DataGridViewButtonColumn();
-            employeIDColumn = new DataGridViewTextBoxColumn();
             Modifier = new DataGridViewButtonColumn();
             panelDetteAvance = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panel5 = new Panel();
@@ -119,6 +110,14 @@
             pictureBox3 = new PictureBox();
             label7 = new Label();
             label6 = new Label();
+            N = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Prenom = new DataGridViewTextBoxColumn();
+            Fonction = new DataGridViewTextBoxColumn();
+            TotaleDette = new DataGridViewTextBoxColumn();
+            MontantRetiree = new DataGridViewTextBoxColumn();
+            TotalAvances = new DataGridViewTextBoxColumn();
+            employeIDColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)DettesGrid).BeginInit();
             panelDetteAvance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -135,7 +134,7 @@
             AddButton.Anchor = AnchorStyles.None;
             AddButton.BackColor = Color.FromArgb(45, 81, 210);
             AddButton.ForeColor = Color.White;
-            AddButton.Location = new Point(1140, 15);
+            AddButton.Location = new Point(1164, 39);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(192, 50);
             AddButton.TabIndex = 1;
@@ -161,7 +160,7 @@
             DettesSearch.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             DettesSearch.IconLeftSize = new Size(18, 18);
             DettesSearch.IconRight = (Image)resources.GetObject("DettesSearch.IconRight");
-            DettesSearch.Location = new Point(13, 15);
+            DettesSearch.Location = new Point(37, 39);
             DettesSearch.Margin = new Padding(5, 6, 5, 6);
             DettesSearch.Name = "DettesSearch";
             DettesSearch.PasswordChar = '\0';
@@ -192,7 +191,7 @@
             DettesGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             DettesGrid.ColumnHeadersHeight = 46;
             DettesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { N, Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, modifierColumn, employeIDColumn });
+            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { N, Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, employeIDColumn });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -202,14 +201,14 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             DettesGrid.DefaultCellStyle = dataGridViewCellStyle3;
             DettesGrid.GridColor = Color.Gray;
-            DettesGrid.Location = new Point(14, 78);
+            DettesGrid.Location = new Point(38, 102);
             DettesGrid.Name = "DettesGrid";
             DettesGrid.ReadOnly = true;
             DettesGrid.RowHeadersVisible = false;
             DettesGrid.RowHeadersWidth = 51;
-            DettesGrid.RowTemplate.Height = 50;
+            DettesGrid.RowTemplate.Height = 70;
             DettesGrid.ScrollBars = ScrollBars.Vertical;
-            DettesGrid.Size = new Size(1390, 741);
+            DettesGrid.Size = new Size(1300, 741);
             DettesGrid.TabIndex = 0;
             DettesGrid.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             DettesGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -229,70 +228,11 @@
             DettesGrid.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             DettesGrid.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             DettesGrid.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            DettesGrid.ThemeStyle.RowsStyle.Height = 50;
+            DettesGrid.ThemeStyle.RowsStyle.Height = 70;
             DettesGrid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DettesGrid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             DettesGrid.CellContentClick += DettesGrid_CellContentClick_1;
             DettesGrid.CellPainting += showiconedit;
-            // 
-            // N
-            // 
-            N.HeaderText = "N°";
-            N.MinimumWidth = 6;
-            N.Name = "N";
-            N.ReadOnly = true;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            // 
-            // Prenom
-            // 
-            Prenom.HeaderText = "Prenom";
-            Prenom.MinimumWidth = 6;
-            Prenom.Name = "Prenom";
-            Prenom.ReadOnly = true;
-            // 
-            // Fonction
-            // 
-            Fonction.HeaderText = "Fonction";
-            Fonction.MinimumWidth = 6;
-            Fonction.Name = "Fonction";
-            Fonction.ReadOnly = true;
-            // 
-            // TotaleDette
-            // 
-            TotaleDette.HeaderText = "Totale Dette";
-            TotaleDette.MinimumWidth = 6;
-            TotaleDette.Name = "TotaleDette";
-            TotaleDette.ReadOnly = true;
-            // 
-            // MontantRetiree
-            // 
-            MontantRetiree.HeaderText = "Montant Retiree";
-            MontantRetiree.MinimumWidth = 6;
-            MontantRetiree.Name = "MontantRetiree";
-            MontantRetiree.ReadOnly = true;
-            // 
-            // TotalAvances
-            // 
-            TotalAvances.HeaderText = "Totale Avances";
-            TotalAvances.MinimumWidth = 6;
-            TotalAvances.Name = "TotalAvances";
-            TotalAvances.ReadOnly = true;
-            // 
-            // modifierColumn
-            // 
-            modifierColumn.Name = "modifierColumn";
-            modifierColumn.ReadOnly = true;
-            // 
-            // employeIDColumn
-            // 
-            employeIDColumn.Name = "employeIDColumn";
-            employeIDColumn.ReadOnly = true;
             // 
             // Modifier
             // 
@@ -320,7 +260,7 @@
             panelDetteAvance.Controls.Add(guna2Button4);
             panelDetteAvance.Controls.Add(pictureBox2);
             panelDetteAvance.FillColor = Color.FromArgb(239, 239, 208);
-            panelDetteAvance.Location = new Point(731, 105);
+            panelDetteAvance.Location = new Point(755, 129);
             panelDetteAvance.Name = "panelDetteAvance";
             panelDetteAvance.Radius = 3;
             panelDetteAvance.ShadowColor = Color.Black;
@@ -372,7 +312,7 @@
             label1.ForeColor = Color.Black;
             label1.Location = new Point(66, 462);
             label1.Name = "label1";
-            label1.Size = new Size(103, 15);
+            label1.Size = new Size(129, 20);
             label1.TabIndex = 110;
             label1.Text = "Valuer de Avance";
             // 
@@ -406,7 +346,7 @@
             label3.ForeColor = Color.Black;
             label3.Location = new Point(63, 394);
             label3.Name = "label3";
-            label3.Size = new Size(59, 15);
+            label3.Size = new Size(76, 20);
             label3.TabIndex = 109;
             label3.Text = "Employes";
             // 
@@ -436,7 +376,7 @@
             guna2HtmlLabel2.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             guna2HtmlLabel2.Location = new Point(72, 336);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(125, 25);
+            guna2HtmlLabel2.Size = new Size(161, 32);
             guna2HtmlLabel2.TabIndex = 107;
             guna2HtmlLabel2.Text = "Ajouter Avance";
             // 
@@ -448,7 +388,7 @@
             Phuer.ForeColor = Color.Black;
             Phuer.Location = new Point(64, 212);
             Phuer.Name = "Phuer";
-            Phuer.Size = new Size(95, 15);
+            Phuer.Size = new Size(117, 20);
             Phuer.TabIndex = 105;
             Phuer.Text = "Valuer de Dette";
             // 
@@ -483,7 +423,7 @@
             label2.ForeColor = Color.Black;
             label2.Location = new Point(60, 145);
             label2.Name = "label2";
-            label2.Size = new Size(59, 15);
+            label2.Size = new Size(76, 20);
             label2.TabIndex = 104;
             label2.Text = "Employes";
             label2.Click += label2_Click;
@@ -514,7 +454,7 @@
             guna2HtmlLabel1.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             guna2HtmlLabel1.Location = new Point(72, 90);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(113, 25);
+            guna2HtmlLabel1.Size = new Size(144, 32);
             guna2HtmlLabel1.TabIndex = 94;
             guna2HtmlLabel1.Text = "Ajouter Dette";
             guna2HtmlLabel1.Click += guna2HtmlLabel1_Click;
@@ -562,7 +502,7 @@
             panelMontant.Controls.Add(guna2ComboBox3);
             panelMontant.Controls.Add(pictureBox1);
             panelMontant.FillColor = Color.FromArgb(239, 239, 208);
-            panelMontant.Location = new Point(731, 108);
+            panelMontant.Location = new Point(755, 132);
             panelMontant.Name = "panelMontant";
             panelMontant.Radius = 3;
             panelMontant.ShadowColor = Color.Black;
@@ -586,7 +526,7 @@
             guna2HtmlLabel3.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             guna2HtmlLabel3.Location = new Point(57, 114);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(259, 25);
+            guna2HtmlLabel3.Size = new Size(335, 32);
             guna2HtmlLabel3.TabIndex = 113;
             guna2HtmlLabel3.Text = "Mesa a Jour de Montant Retiree";
             // 
@@ -616,7 +556,7 @@
             label4.ForeColor = Color.Black;
             label4.Location = new Point(63, 283);
             label4.Name = "label4";
-            label4.Size = new Size(95, 15);
+            label4.Size = new Size(117, 20);
             label4.TabIndex = 115;
             label4.Text = "Valuer de Dette";
             // 
@@ -650,7 +590,7 @@
             label5.ForeColor = Color.Black;
             label5.Location = new Point(60, 202);
             label5.Name = "label5";
-            label5.Size = new Size(59, 15);
+            label5.Size = new Size(76, 20);
             label5.TabIndex = 114;
             label5.Text = "Employes";
             // 
@@ -692,7 +632,7 @@
             button1.FlatAppearance.BorderColor = Color.White;
             button1.FlatAppearance.BorderSize = 0;
             button1.ForeColor = Color.White;
-            button1.Location = new Point(985, 13);
+            button1.Location = new Point(1009, 37);
             button1.Name = "button1";
             button1.Size = new Size(137, 50);
             button1.TabIndex = 102;
@@ -738,7 +678,7 @@
             label12.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label12.Location = new Point(168, 149);
             label12.Name = "label12";
-            label12.Size = new Size(60, 20);
+            label12.Size = new Size(76, 25);
             label12.TabIndex = 104;
             label12.Text = "label12";
             // 
@@ -749,7 +689,7 @@
             label11.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label11.Location = new Point(141, 113);
             label11.Name = "label11";
-            label11.Size = new Size(60, 20);
+            label11.Size = new Size(76, 25);
             label11.TabIndex = 103;
             label11.Text = "label11";
             // 
@@ -784,7 +724,7 @@
             label10.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label10.Location = new Point(84, 148);
             label10.Name = "label10";
-            label10.Size = new Size(68, 20);
+            label10.Size = new Size(88, 25);
             label10.TabIndex = 100;
             label10.Text = "Prenom:";
             // 
@@ -795,7 +735,7 @@
             label9.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label9.Location = new Point(84, 113);
             label9.Name = "label9";
-            label9.Size = new Size(48, 20);
+            label9.Size = new Size(61, 25);
             label9.TabIndex = 99;
             label9.Text = "Nom:";
             // 
@@ -831,7 +771,6 @@
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
-            guna2DataGridView1.RowTemplate.Height = 29;
             guna2DataGridView1.Size = new Size(490, 188);
             guna2DataGridView1.TabIndex = 98;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
@@ -907,7 +846,6 @@
             guna2DataGridView2.Name = "guna2DataGridView2";
             guna2DataGridView2.RowHeadersVisible = false;
             guna2DataGridView2.RowHeadersWidth = 51;
-            guna2DataGridView2.RowTemplate.Height = 29;
             guna2DataGridView2.Size = new Size(490, 188);
             guna2DataGridView2.TabIndex = 97;
             guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
@@ -958,7 +896,7 @@
             label8.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label8.Location = new Point(403, 27);
             label8.Name = "label8";
-            label8.Size = new Size(275, 25);
+            label8.Size = new Size(353, 32);
             label8.TabIndex = 94;
             label8.Text = "Historique de Avance et dette";
             label8.Click += label8_Click;
@@ -982,7 +920,7 @@
             label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label7.Location = new Point(810, 218);
             label7.Name = "label7";
-            label7.Size = new Size(60, 25);
+            label7.Size = new Size(76, 32);
             label7.TabIndex = 1;
             label7.Text = "Dette";
             label7.Click += label7_Click;
@@ -994,14 +932,95 @@
             label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label6.Location = new Point(203, 218);
             label6.Name = "label6";
-            label6.Size = new Size(76, 25);
+            label6.Size = new Size(96, 32);
             label6.TabIndex = 0;
             label6.Text = "Avance";
             label6.Click += label6_Click;
             // 
+            // N
+            // 
+            N.HeaderText = "N°";
+            N.MinimumWidth = 6;
+            N.Name = "N";
+            N.ReadOnly = true;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            // 
+            // Prenom
+            // 
+            Prenom.HeaderText = "Prenom";
+            Prenom.MinimumWidth = 6;
+            Prenom.Name = "Prenom";
+            Prenom.ReadOnly = true;
+            // 
+            // Fonction
+            // 
+            Fonction.HeaderText = "Fonction";
+            Fonction.MinimumWidth = 6;
+            Fonction.Name = "Fonction";
+            Fonction.ReadOnly = true;
+            // 
+            // TotaleDette
+            // 
+            TotaleDette.HeaderText = "Totale Dette";
+            TotaleDette.MinimumWidth = 6;
+            TotaleDette.Name = "TotaleDette";
+            TotaleDette.ReadOnly = true;
+            // 
+            // MontantRetiree
+            // 
+            MontantRetiree.HeaderText = "Montant Retiree";
+            MontantRetiree.MinimumWidth = 6;
+            MontantRetiree.Name = "MontantRetiree";
+            MontantRetiree.ReadOnly = true;
+            // 
+            // TotalAvances
+            // 
+            TotalAvances.HeaderText = "Totale Avances";
+            TotalAvances.MinimumWidth = 6;
+            TotalAvances.Name = "TotalAvances";
+            TotalAvances.ReadOnly = true;
+            // 
+            // employeIDColumn
+            // 
+            employeIDColumn.HeaderText = "employeIDColumn";
+            employeIDColumn.MinimumWidth = 6;
+            employeIDColumn.Name = "employeIDColumn";
+            employeIDColumn.ReadOnly = true;
+            employeIDColumn.Visible = false;
+
+            Image supprimerIconPath = Properties.Resources.icons8_show_100;
+            DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
+            {
+                Name = "ModifierColumn",
+                HeaderText = "",
+                Tag = supprimerIconPath,
+                FillWeight = 23,
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Padding = new Padding(0),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            };
+            DettesGrid.Columns.Add(modifierColumn);
+
+            DettesGrid.CellPainting += showiconedit;
+            DettesGrid.RowTemplate.Height = 50;
+            DettesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DettesGrid.AllowUserToAddRows = false;
+            DettesGrid.AllowUserToDeleteRows = false;
+            DettesGrid.AllowUserToOrderColumns = false;
+            DettesGrid.AllowUserToResizeColumns = false;
+            DettesGrid.AllowUserToResizeRows = false;
+            // 
             // Udettes
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.White;
@@ -1015,7 +1034,7 @@
             Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Udettes";
-            Size = new Size(1423, 853);
+            Size = new Size(1470, 900);
             Load += Udettes_Load;
             ((System.ComponentModel.ISupportInitialize)DettesGrid).EndInit();
             panelDetteAvance.ResumeLayout(false);
@@ -1091,7 +1110,6 @@
         private DataGridViewTextBoxColumn TotaleDette;
         private DataGridViewTextBoxColumn MontantRetiree;
         private DataGridViewTextBoxColumn TotalAvances;
-        private DataGridViewButtonColumn modifierColumn;
         private DataGridViewTextBoxColumn employeIDColumn;
     }
 }
