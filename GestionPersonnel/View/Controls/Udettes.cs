@@ -8,6 +8,8 @@ using GestionPersonnel.Models.Avances;
 using GestionPersonnel.Models.Employees;
 using GestionPersonnel.Storages.AvancesStorages;
 using GestionPersonnel.Storages.EmployeesStorages;
+using GestionPersonnel.Storages.SalairesStorages;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GestionPersonnel.View.Controls
 {
@@ -16,12 +18,15 @@ namespace GestionPersonnel.View.Controls
         private readonly DetteStorage _dettesStorage;
         private readonly AvanceStorage _avancesStorage;
         private readonly EmployeStorage _employeeStorage;
+        private readonly SalaireStorage _SalaireStorage;
 
         public Udettes(string connectionString)
         {
             _dettesStorage = new DetteStorage(connectionString);
             _avancesStorage = new AvanceStorage(connectionString);
             _employeeStorage = new EmployeStorage(connectionString);
+            _SalaireStorage = new SalaireStorage(connectionString);
+
             InitializeComponent();
             palenHistoriqueAetD.Visible = false;
         }
@@ -85,6 +90,11 @@ namespace GestionPersonnel.View.Controls
                 guna2ComboBox2.DisplayMember = "FullName";
                 guna2ComboBox2.ValueMember = "EmployeID";
                 guna2ComboBox2.SelectedIndex = -1;
+                guna2ComboBox3.DataSource = employees;
+                guna2ComboBox3.DisplayMember = "FullName";
+                guna2ComboBox3.ValueMember = "EmployeID";
+                guna2ComboBox3.SelectedIndex = -1;
+
             }
             catch (Exception ex)
             {
@@ -97,13 +107,14 @@ namespace GestionPersonnel.View.Controls
             DettesGrid.Rows.Clear();
             int i = 0;
             foreach (var paiment in paimentsInfos)
-            {i++;
+            {
+                i++;
                 var row = new DataGridViewRow();
                 row.CreateCells(DettesGrid);
                 row.SetValues(i, paiment.Nom, paiment.Prenom, paiment.NomFonction, paiment.TotaleDette, paiment.MontantRetrait, paiment.TotaleAvances, paiment.EmployeID);
-                row.Tag = paiment.EmployeID; 
+                row.Tag = paiment.EmployeID;
                 DettesGrid.Rows.Add(row);
-                
+
             }
         }
 
@@ -223,20 +234,20 @@ namespace GestionPersonnel.View.Controls
             {
                 try
                 {
-              
+
                     var row = DettesGrid.Rows[e.RowIndex];
                     int employeID = (int)row.Tag;
 
-             
+
                     palenHistoriqueAetD.Visible = true;
 
                     await DisplayEmployeeDebtAndAdvances(employeID);
 
-                    var employee = await _employeeStorage.GetById(employeID); 
+                    var employee = await _employeeStorage.GetById(employeID);
                     if (employee != null)
                     {
-                        label11.Text = employee.Nom; 
-                        label12.Text = employee.Prenom; 
+                        label11.Text = employee.Nom;
+                        label12.Text = employee.Prenom;
                     }
                     else
                     {
@@ -267,7 +278,7 @@ namespace GestionPersonnel.View.Controls
 
                 guna2DataGridView1.Rows.Clear();
                 guna2DataGridView2.Rows.Clear();
-                int countDettes= 0;
+                int countDettes = 0;
                 foreach (var debt in debts)
                 {
                     countDettes++;
@@ -277,7 +288,7 @@ namespace GestionPersonnel.View.Controls
                 foreach (var avanc in avances)
                 {
                     countAvance++;
-                    guna2DataGridView2.Rows.Add( countAvance, avanc.Montant, avanc.Date);
+                    guna2DataGridView2.Rows.Add(countAvance, avanc.Montant, avanc.Date);
                 }
             }
             catch (Exception ex)
@@ -347,6 +358,60 @@ namespace GestionPersonnel.View.Controls
 
         private void DettesSearch_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void panelMontant_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void guna2Button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(guna2TextBox3.Text))
+                {
+                    MessageBox.Show("Veuillez saisir un montant de dette ou d'avance valide.", "erreur de validation",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(guna2TextBox3.Text))
+                {
+                    if (!decimal.TryParse(guna2TextBox3.Text, out decimal montantDette))
+                    {
+                        MessageBox.Show("Veuillez saisir une valeur numérique valide pour le montant de la Dette.",
+                            "erreur de validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    int employeeIdForDette = (int)guna2ComboBox3.SelectedValue;
+
+
+                     DateTime datemantant = DateTime.Now;
+                    await _SalaireStorage.UpdateDette(employeeIdForDette, montantDette, datemantant);
+                    MessageBox.Show(datemantant.ToString() , "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+               // MessageBox.Show("Dette ajoutées avec succès!"+, "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await LoadDebtDetails();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(
+                    "Veuillez saisir des valeurs numériques valides pour les montants des dettes et des avances.",
+                    "Erreur d'entrée", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur s'est programm lors de l'ajout de la dette et de l'avance: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

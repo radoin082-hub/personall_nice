@@ -45,9 +45,9 @@ namespace GestionPersonnel.Services
             return await _salaireStorage.GetSalariesByMonth(mois);
         }
 
-        public async Task UpdateDetteAsync(int employeeId, decimal dette)
+        public async Task UpdateDetteAsync(int employeeId, decimal dette,DateTime mois)
         {
-            await _salaireStorage.UpdateDette(employeeId, dette);
+            await _salaireStorage.UpdateDette(employeeId, dette,mois);
         }
     }
 }

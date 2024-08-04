@@ -25,7 +25,7 @@ namespace GestionPersonnel.Storages.SalairesStorages
         private const string _insertQuery = "INSERT INTO Salaires (EmployeID, Mois, Salaire, Primes, Avances, Dettes, SalaireNet, TypePaiementID) VALUES (@EmployeID, @Mois, @Salaire, @Primes, @Avances, @Dettes, @SalaireNet, @TypePaiementID); SELECT SCOPE_IDENTITY();";
         private const string _updateQuery = "UPDATE Salaires SET EmployeID = @EmployeID, Mois = @Mois, Salaire = @Salaire, Primes = @Primes, Avances = @Avances, Dettes = @Dettes, SalaireNet = @SalaireNet, TypePaiementID = @TypePaiementID WHERE SalaireID = @SalaireID;";
         private const string _deleteQuery = "DELETE FROM Salaires WHERE SalaireID = @SalaireID;";
-        private const string _updateSalarireDetteQuery = "UPDATE Salaires SET Dettes = @Dettes WHERE EmployeID = @EmployeID;";
+        private const string _updateSalarireDetteQuery = "UPDATE Salaires SET Dettes = @Dettes WHERE EmployeID = @EmployeID AND Year(Mois)=Year(@Mois) And Month(Mois)=Month(@Mois);";
         private static Salaire GetSalaireFromDataRow(DataRow row)
         {
             return new Salaire
@@ -157,12 +157,13 @@ namespace GestionPersonnel.Storages.SalairesStorages
             return salaires;
         }
 
-        public async Task UpdateDette(int employeeid, Decimal dette)
+        public async Task UpdateDette(int employeeid, Decimal dette,DateTime mois)
         {
             await using var connection = new SqlConnection(_connectionString);
             SqlCommand cmd = new(_updateSalarireDetteQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", employeeid);
             cmd.Parameters.AddWithValue("@Dettes", dette);
+            cmd.Parameters.AddWithValue("@Mois", mois);
             connection.Open();
             await cmd.ExecuteNonQueryAsync();
         }

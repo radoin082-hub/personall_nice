@@ -13,6 +13,6 @@ namespace GestionPersonnel.Services
         Task UpdateSalaireAsync(Salaire salaire);
         Task DeleteSalaireAsync(int id);
         Task<List<SalaireDetail>> GetSalariesByMonthAsync(DateTime mois);
-        Task UpdateDetteAsync(int employeeId, decimal dette);
+        Task UpdateDetteAsync(int employeeId, decimal dette,DateTime mois);
     }
 }
