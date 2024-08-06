@@ -423,7 +423,7 @@
             // 
             Mainpanel.Anchor = AnchorStyles.None;
             Mainpanel.BackColor = SystemColors.WindowFrame;
-            Mainpanel.Location = new Point(223, 87);
+            Mainpanel.Location = new Point(223, 135);
             Mainpanel.Name = "Mainpanel";
             Mainpanel.Size = new Size(1429, 930);
             Mainpanel.TabIndex = 2;
@@ -447,6 +447,7 @@
             Name = "Mainpage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestion Personnel";
+            WindowState = FormWindowState.Maximized;
             Load += Mainpage_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

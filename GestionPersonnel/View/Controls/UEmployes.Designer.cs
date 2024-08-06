@@ -1103,30 +1103,35 @@ namespace GestionPersonnel.View
             dataGridViewTextBoxColumn9.HeaderText = "N°";
             dataGridViewTextBoxColumn9.MinimumWidth = 6;
             dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn10
             // 
             dataGridViewTextBoxColumn10.HeaderText = "Nom";
             dataGridViewTextBoxColumn10.MinimumWidth = 6;
             dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            dataGridViewTextBoxColumn10.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn11
             // 
             dataGridViewTextBoxColumn11.HeaderText = "Prenom";
             dataGridViewTextBoxColumn11.MinimumWidth = 6;
             dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            dataGridViewTextBoxColumn11.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn12
             // 
             dataGridViewTextBoxColumn12.HeaderText = "N° Securite Sociale";
             dataGridViewTextBoxColumn12.MinimumWidth = 6;
             dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            dataGridViewTextBoxColumn12.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn13
             // 
             dataGridViewTextBoxColumn13.HeaderText = "Fonction";
             dataGridViewTextBoxColumn13.MinimumWidth = 6;
             dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            dataGridViewTextBoxColumn13.ReadOnly = true;
             // 
             // modifierColumn
             // 
@@ -1167,7 +1172,7 @@ namespace GestionPersonnel.View
             guna2DataGridView1.AllowUserToOrderColumns = false;
             guna2DataGridView1.AllowUserToResizeColumns = false;
             guna2DataGridView1.AllowUserToResizeRows = false;
-            
+
 
             // 
             // UEmployes

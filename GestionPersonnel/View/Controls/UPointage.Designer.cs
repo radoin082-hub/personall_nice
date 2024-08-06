@@ -898,48 +898,58 @@ namespace GestionPersonnel.View.Controls
             Num.HeaderText = "N°";
             Num.MinimumWidth = 6;
             Num.Name = "Num";
+            Num.Width = 50;
+            Num.ReadOnly = true;
             // 
             // Nom
             // 
             Nom.HeaderText = "Nom";
             Nom.MinimumWidth = 6;
             Nom.Name = "Nom";
+            Nom.ReadOnly = true;
             // 
             // Prenom
             // 
             Prenom.HeaderText = "Prenom";
             Prenom.MinimumWidth = 6;
             Prenom.Name = "Prenom";
+            Prenom.ReadOnly = true;
             // 
             // Fonction
             // 
             Fonction.HeaderText = "Fonction";
             Fonction.MinimumWidth = 6;
             Fonction.Name = "Fonction";
+            Fonction.ReadOnly = true;
+
             // 
             // Status
             // 
             Status.HeaderText = "Status";
             Status.MinimumWidth = 6;
             Status.Name = "Status";
+            Status.ReadOnly = true;
             // 
             // Heur
             // 
             Heur.HeaderText = "Heur";
             Heur.MinimumWidth = 6;
             Heur.Name = "Heur";
+            Heur.ReadOnly = true;
             // 
             // Pourcentage
             // 
             Pourcentage.HeaderText = "Pourcentage";
             Pourcentage.MinimumWidth = 6;
             Pourcentage.Name = "Pourcentage";
+            Pourcentage.ReadOnly = true;
             // 
             // Remarque
             // 
             Remarque.HeaderText = "Remarque";
             Remarque.MinimumWidth = 6;
             Remarque.Name = "Remarque";
+            Remarque.ReadOnly = true;
             // 
             // EmployeID
             // 

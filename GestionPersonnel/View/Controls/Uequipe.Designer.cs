@@ -176,24 +176,29 @@
             N.HeaderText = "N°";
             N.MinimumWidth = 6;
             N.Name = "N";
+            N.Width = 50;
+            N.ReadOnly = true;
             // 
             // Nom_Equipe
             // 
             Nom_Equipe.HeaderText = "Nom_Equipe";
             Nom_Equipe.MinimumWidth = 6;
             Nom_Equipe.Name = "Nom_Equipe";
+            Nom_Equipe.ReadOnly = true;
             // 
             // Chef_Equipe
             // 
             Chef_Equipe.HeaderText = "Chef_Equipe";
             Chef_Equipe.MinimumWidth = 6;
             Chef_Equipe.Name = "Chef_Equipe";
+            Chef_Equipe.ReadOnly = true;
             // 
             // Number_Post
             // 
             Number_Post.HeaderText = "Number_Post";
             Number_Post.MinimumWidth = 6;
             Number_Post.Name = "Number_Post";
+            Number_Post.ReadOnly = true;
             // 
             // Option
             // 

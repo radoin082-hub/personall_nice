@@ -85,7 +85,6 @@ namespace GestionPersonnel.View.Controls
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             pictureBox2 = new PictureBox();
             tabpaiement = new Guna.UI2.WinForms.Guna2DataGridView();
-            GeneratePdf = new DataGridViewButtonColumn();
             Num = new DataGridViewTextBoxColumn();
             NomEmploye = new DataGridViewTextBoxColumn();
             PrenomEmploye = new DataGridViewTextBoxColumn();
@@ -96,6 +95,8 @@ namespace GestionPersonnel.View.Controls
             Avances = new DataGridViewTextBoxColumn();
             Dettes = new DataGridViewTextBoxColumn();
             SalaireNet = new DataGridViewTextBoxColumn();
+            displayprint = new DataGridViewButtonColumn();
+            GeneratePdf = new DataGridViewButtonColumn();
             panelPaiement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -529,7 +530,7 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tabpaiement.ColumnHeadersHeight = 46;
             tabpaiement.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tabpaiement.Columns.AddRange(new DataGridViewColumn[] { Num, NomEmploye, PrenomEmploye, NomFonction, TypePaiement, Salaire, Primes, Avances, Dettes, SalaireNet });
+            tabpaiement.Columns.AddRange(new DataGridViewColumn[] { Num, NomEmploye, PrenomEmploye, NomFonction, TypePaiement, Salaire, Primes, Avances, Dettes, SalaireNet, displayprint });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
@@ -543,8 +544,8 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.Name = "tabpaiement";
             tabpaiement.RowHeadersVisible = false;
             tabpaiement.RowHeadersWidth = 51;
-            tabpaiement.RowTemplate.Height = 55;
-            tabpaiement.Size = new Size(1426, 102);
+            tabpaiement.RowTemplate.Height = 50;
+            tabpaiement.Size = new Size(1426, 683);
             tabpaiement.TabIndex = 102;
             tabpaiement.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tabpaiement.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -564,11 +565,89 @@ namespace GestionPersonnel.View.Controls
             tabpaiement.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             tabpaiement.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             tabpaiement.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            tabpaiement.ThemeStyle.RowsStyle.Height = 55;
+            tabpaiement.ThemeStyle.RowsStyle.Height = 50;
             tabpaiement.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tabpaiement.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             tabpaiement.CellContentClick += tabpaiement_CellContentClick;
             tabpaiement.CellPainting += showiconedit;
+            // 
+            // Num
+            // 
+            Num.HeaderText = "N°";
+            Num.MinimumWidth = 6;
+            Num.Name = "Num";
+            Num.Width = 50;
+            Num.ReadOnly = true;
+            // 
+            // NomEmploye
+            // 
+            NomEmploye.HeaderText = "Nom";
+            NomEmploye.MinimumWidth = 6;
+            NomEmploye.Name = "NomEmploye";
+            NomEmploye.ReadOnly = true;
+            // 
+            // PrenomEmploye
+            // 
+            PrenomEmploye.HeaderText = "Prenom";
+            PrenomEmploye.MinimumWidth = 6;
+            PrenomEmploye.Name = "PrenomEmploye";
+            PrenomEmploye.ReadOnly = true;
+            // 
+            // NomFonction
+            // 
+            NomFonction.HeaderText = "Fonction";
+            NomFonction.MinimumWidth = 6;
+            NomFonction.Name = "NomFonction";
+            NomFonction.ReadOnly = true;
+            // 
+            // TypePaiement
+            // 
+            TypePaiement.HeaderText = "Type Paiement";
+            TypePaiement.MinimumWidth = 6;
+            TypePaiement.Name = "TypePaiement";
+            TypePaiement.Width = 200;
+            TypePaiement.ReadOnly = true;
+            // 
+            // Salaire
+            // 
+            Salaire.HeaderText = "Salaire";
+            Salaire.MinimumWidth = 6;
+            Salaire.Name = "Salaire";
+            Salaire.ReadOnly = true;
+            // 
+            // Primes
+            // 
+            Primes.HeaderText = "Primes";
+            Primes.MinimumWidth = 6;
+            Primes.Name = "Primes";
+            Primes.ReadOnly = true;
+            // 
+            // Avances
+            // 
+            Avances.HeaderText = "Avances";
+            Avances.MinimumWidth = 6;
+            Avances.Name = "Avances";
+            Avances.ReadOnly = true;
+            // 
+            // Dettes
+            // 
+            Dettes.HeaderText = "Dettes";
+            Dettes.MinimumWidth = 6;
+            Dettes.Name = "Dettes";
+            Dettes.ReadOnly = true;
+            // 
+            // SalaireNet
+            // 
+            SalaireNet.HeaderText = "SalaireNet";
+            SalaireNet.MinimumWidth = 6;
+            SalaireNet.Name = "SalaireNet";
+            SalaireNet.ReadOnly = true;
+            // 
+            // displayprint
+            // 
+            displayprint.MinimumWidth = 6;
+            displayprint.Name = "displayprint";
+            displayprint.Tag = (Image)Properties.Resources.icons8_print_50;
             // 
             // GeneratePdf
             // 
@@ -577,100 +656,17 @@ namespace GestionPersonnel.View.Controls
             GeneratePdf.Name = "GeneratePdf";
             GeneratePdf.Width = 125;
             // 
-            // Num
-            // 
-            Num.HeaderText = "N°";
-            Num.MinimumWidth = 6;
-            Num.Name = "Num";
-            // 
-            // NomEmploye
-            // 
-            NomEmploye.HeaderText = "Nom";
-            NomEmploye.MinimumWidth = 6;
-            NomEmploye.Name = "NomEmploye";
-            // 
-            // PrenomEmploye
-            // 
-            PrenomEmploye.HeaderText = "Prenom";
-            PrenomEmploye.MinimumWidth = 6;
-            PrenomEmploye.Name = "PrenomEmploye";
-            // 
-            // NomFonction
-            // 
-            NomFonction.HeaderText = "Fonction";
-            NomFonction.MinimumWidth = 6;
-            NomFonction.Name = "NomFonction";
-            // 
-            // TypePaiement
-            // 
-            TypePaiement.HeaderText = "Type Paiement";
-            TypePaiement.MinimumWidth = 6;
-            TypePaiement.Name = "TypePaiement";
-            // 
-            // Salaire
-            // 
-            Salaire.HeaderText = "Salaire";
-            Salaire.MinimumWidth = 6;
-            Salaire.Name = "Salaire";
-            // 
-            // Primes
-            // 
-            Primes.HeaderText = "Primes";
-            Primes.MinimumWidth = 6;
-            Primes.Name = "Primes";
-            // 
-            // Avances
-            // 
-            Avances.HeaderText = "Avances";
-            Avances.MinimumWidth = 6;
-            Avances.Name = "Avances";
-            // 
-            // Dettes
-            // 
-            Dettes.HeaderText = "Dettes";
-            Dettes.MinimumWidth = 6;
-            Dettes.Name = "Dettes";
-            // 
-            // SalaireNet
-            // 
-            SalaireNet.HeaderText = "SalaireNet";
-            SalaireNet.MinimumWidth = 6;
-            SalaireNet.Name = "SalaireNet";
-            Image printicon = Properties.Resources.icons8_print_50;
-            var displayprint = new DataGridViewButtonColumn
-            {
-                Name = "GeneratePdf",
-                HeaderText = "",
-                Tag = printicon,
-                FillWeight = 23,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Padding = new Padding(0),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter
-                }
-            };
-            tabpaiement.Columns.Add(displayprint);
-
-            // Set event handlers
-            tabpaiement.CellPainting += showiconedit;
-            tabpaiement.CellContentClick += tabpaiement_CellContentClick;
-
-            // Configure DataGridView appearance
-            tabpaiement.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            tabpaiement.RowTemplate.Height = 50;
-            tabpaiement.AllowUserToAddRows = false;
-            // 
             // UPaiement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(tabpaiement);
             Controls.Add(panelPaiement);
             Controls.Add(searchBtn);
             Controls.Add(DateEntrerEmployes);
             Controls.Add(guna2TextBox1);
             Controls.Add(guna2Button2);
+            Controls.Add(tabpaiement);
             Name = "UPaiement";
             Size = new Size(1429, 901);
             panelPaiement.ResumeLayout(false);
@@ -729,5 +725,6 @@ namespace GestionPersonnel.View.Controls
         private DataGridViewTextBoxColumn Avances;
         private DataGridViewTextBoxColumn Dettes;
         private DataGridViewTextBoxColumn SalaireNet;
+        private DataGridViewButtonColumn displayprint;
     }
 }
