@@ -23,7 +23,7 @@ namespace GestionPersonnel
                 if (selectionForm.ShowDialog() == DialogResult.OK)
                 {
                     string selectedConnectionString = selectionForm.SelectedConnectionString;
-                    Application.Run(new Loginpage());
+                    Application.Run(new Mainpage(selectedConnectionString));
                 }
                 else
                 {

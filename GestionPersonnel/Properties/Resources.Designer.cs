@@ -109,6 +109,16 @@ namespace GestionPersonnel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap debtB {
+            get {
+                object obj = ResourceManager.GetObject("debtB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap engineer {
             get {
                 object obj = ResourceManager.GetObject("engineer", resourceCulture);
@@ -129,9 +139,29 @@ namespace GestionPersonnel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap engineerB {
+            get {
+                object obj = ResourceManager.GetObject("engineerB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap engineers {
             get {
                 object obj = ResourceManager.GetObject("engineers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap engineersB {
+            get {
+                object obj = ResourceManager.GetObject("engineersB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -162,6 +192,16 @@ namespace GestionPersonnel.Properties {
         internal static System.Drawing.Bitmap home_1 {
             get {
                 object obj = ResourceManager.GetObject("home_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap homeB {
+            get {
+                object obj = ResourceManager.GetObject("homeB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -259,9 +299,39 @@ namespace GestionPersonnel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logout {
+            get {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoutB {
+            get {
+                object obj = ResourceManager.GetObject("logoutB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap magnifying_glass {
             get {
                 object obj = ResourceManager.GetObject("magnifying-glass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu__1_ {
+            get {
+                object obj = ResourceManager.GetObject("menu (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -299,6 +369,16 @@ namespace GestionPersonnel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap payB {
+            get {
+                object obj = ResourceManager.GetObject("payB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pictureBox1 {
             get {
                 object obj = ResourceManager.GetObject("pictureBox1", resourceCulture);
@@ -312,6 +392,16 @@ namespace GestionPersonnel.Properties {
         internal static System.Drawing.Bitmap to_do_list {
             get {
                 object obj = ResourceManager.GetObject("to_do_list", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap to_do_listB {
+            get {
+                object obj = ResourceManager.GetObject("to-do-listB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LiveCharts;
 using GestionPersonnel.View.Controls;
+using GestionPersonnel.Properties;
+using Bunifu.UI.WinForms.Helpers.Transitions;
+
 
 namespace GestionPersonnel.View
 {
@@ -22,6 +25,8 @@ namespace GestionPersonnel.View
         private readonly UPaiement ucpaiement;
         private readonly Udettes ucdettes;
         private readonly Uequipe ucequipe;
+        private readonly Resources s;
+
 
 
 
@@ -36,9 +41,41 @@ namespace GestionPersonnel.View
             ucpointage = new UPointage(connectionString);
             ucpaiement = new UPaiement(connectionString);
             ucequipe = new Uequipe();
+            // resources = new Resources(typeof(Mainpage());
 
         }
 
+        private void reset_color_button()
+        {
+
+            btnDashboard.Checked = false;
+            btnDashboard.FillColor = Color.FromArgb(26, 101, 158);
+            btnDashboard.ForeColor = Color.White;
+            btnDashboard.Image = Properties.Resources.home__1_;
+
+            btnEmploye.FillColor = Color.FromArgb(26, 101, 158);
+            btnEmploye.ForeColor = Color.White;
+            btnEmploye.Image = Properties.Resources.engineer;
+
+            btnEquipe.FillColor = Color.FromArgb(26, 101, 158);
+            btnEquipe.ForeColor = Color.White;
+            btnEquipe.Image = Properties.Resources.engineers;
+
+            btnPointage.FillColor = Color.FromArgb(26, 101, 158);
+            btnPointage.ForeColor = Color.White;
+            btnPointage.Image = Properties.Resources.to_do_list;
+
+            btnPay.FillColor = Color.FromArgb(26, 101, 158);
+            btnPay.ForeColor = Color.White;
+            btnPay.Image = Properties.Resources.pay;
+
+
+            btnDette.FillColor = Color.FromArgb(26, 101, 158);
+            btnDette.ForeColor = Color.White;
+            btnDette.Image = Properties.Resources.debt;
+
+
+        }
 
         private void udashboard1_Load(object sender, EventArgs e)
         {
@@ -156,27 +193,38 @@ namespace GestionPersonnel.View
 
         private void guna2Button3_Click(object sender, EventArgs e)
         {
+
             Mainpanel.Controls.Clear();
-            Mainpanel.Controls.Add(ucdettes);
-            ucemployes.Dock = DockStyle.Fill;
-            ucemployes.RefreshData();
+            Mainpanel.Controls.Add(ucpointage);
+            ucpointage.Dock = DockStyle.Fill;
+
+            reset_color_button();
+
+            btnPointage.FillColor = Color.White;
+            btnPointage.ForeColor = Color.FromArgb(26, 101, 158);
+            btnPointage.Image = Properties.Resources.to_do_listB;
         }
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
             Mainpanel.Controls.Clear();
-            Mainpanel.Controls.Add(ucemployes);
-            ucemployes.Dock = DockStyle.Fill;
-            ucemployes.RefreshData();
+            Mainpanel.Controls.Add(ucdashboard);
+            ucdashboard.Dock = DockStyle.Fill;
+
+            reset_color_button();
+
+            btnDashboard.FillColor = Color.White;
+            btnDashboard.ForeColor = Color.FromArgb(26, 101, 158);
+            btnDashboard.Image = Properties.Resources.homeB;
+
+
 
         }
 
         private void ajouteremploye_Click(object sender, EventArgs e)
         {
-            Mainpanel.Controls.Clear();
-            Mainpanel.Controls.Add(ucdashboard);
-            ucdashboard.Dock = DockStyle.Fill;
 
+            sidebarTimer.Start();
         }
 
         private void Mainpanel_Paint(object sender, PaintEventArgs e)
@@ -186,7 +234,7 @@ namespace GestionPersonnel.View
 
         private void guna2Button5_Click(object sender, EventArgs e)
         {
-            sidebarTimer.Start();
+
         }
 
         bool a;
@@ -227,9 +275,18 @@ namespace GestionPersonnel.View
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+
             Mainpanel.Controls.Clear();
-            Mainpanel.Controls.Add(ucpointage);
-            ucpointage.Dock = DockStyle.Fill;
+            Mainpanel.Controls.Add(ucemployes);
+            ucemployes.Dock = DockStyle.Fill;
+            ucemployes.RefreshData();
+
+            reset_color_button();
+
+           btnEmploye.FillColor = Color.White;
+            btnEmploye.ForeColor = Color.FromArgb(26, 101, 158);
+            btnEmploye.Image = Properties.Resources.engineerB;
+
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -241,17 +298,52 @@ namespace GestionPersonnel.View
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             Mainpanel.Controls.Clear();
-            Mainpanel.Controls.Add(ucpaiement);
-            ucpaiement.Dock = DockStyle.Fill;
+            Mainpanel.Controls.Add(ucequipe);
+            ucequipe.Dock = DockStyle.Fill;
+
+            reset_color_button();
+
+            btnEquipe.FillColor = Color.White;
+            btnEquipe.ForeColor = Color.FromArgb(26, 101, 158);
+            btnEquipe.Image = Properties.Resources.engineersB;
+
         }
 
 
 
         private void guna2Button5_Click_2(object sender, EventArgs e)
         {
+
+
             Mainpanel.Controls.Clear();
-            Mainpanel.Controls.Add(ucequipe);
-            ucequipe.Dock = DockStyle.Fill;
+            Mainpanel.Controls.Add(ucpaiement);
+            ucpaiement.Dock = DockStyle.Fill;
+
+            reset_color_button();
+
+            btnPay.FillColor = Color.White;
+            btnPay.ForeColor = Color.FromArgb(26, 101, 158);
+            btnPay.Image = Properties.Resources.payB;
+        }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
+            Mainpanel.Controls.Clear();
+            Mainpanel.Controls.Add(ucdettes);
+            ucemployes.Dock = DockStyle.Fill;
+            ucemployes.RefreshData();
+
+            reset_color_button();
+
+            btnDette.FillColor = Color.White;
+            btnDette.ForeColor = Color.FromArgb(26, 101, 158);
+            btnDette.Image = Properties.Resources.debtB;
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+
+           
         }
     }
 }
