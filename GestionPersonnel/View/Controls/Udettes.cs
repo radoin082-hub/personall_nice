@@ -393,12 +393,12 @@ namespace GestionPersonnel.View.Controls
 
                     int employeeIdForDette = (int)guna2ComboBox3.SelectedValue;
 
-                     DateTime datemantant = DateTime.Now;
+                    DateTime datemantant = DateTime.Now;
                     await _SalaireStorage.UpdateDette(employeeIdForDette, montantDette, datemantant);
-                    MessageBox.Show(datemantant.ToString() , "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(datemantant.ToString(), "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
-                     await LoadDebtDetails();
+                await LoadDebtDetails();
             }
             catch (FormatException)
             {
@@ -410,6 +410,11 @@ namespace GestionPersonnel.View.Controls
             {
                 MessageBox.Show($"Une erreur s'est programm lors de l'ajout de la dette et de l'avance: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }

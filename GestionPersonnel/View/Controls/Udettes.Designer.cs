@@ -60,10 +60,12 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            AddButton = new Button();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DettesSearch = new Guna.UI2.WinForms.Guna2TextBox();
             DettesGrid = new Guna.UI2.WinForms.Guna2DataGridView();
-            Modifier = new DataGridViewButtonColumn();
             panelDetteAvance = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panel5 = new Panel();
             panel4 = new Panel();
@@ -89,7 +91,6 @@
             label5 = new Label();
             guna2ComboBox3 = new Guna.UI2.WinForms.Guna2ComboBox();
             pictureBox1 = new PictureBox();
-            button1 = new Button();
             palenHistoriqueAetD = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             label12 = new Label();
             label11 = new Label();
@@ -110,6 +111,8 @@
             pictureBox3 = new PictureBox();
             label7 = new Label();
             label6 = new Label();
+            button1 = new Guna.UI2.WinForms.Guna2Button();
+            AddButton = new Guna.UI2.WinForms.Guna2Button();
             N = new DataGridViewTextBoxColumn();
             Nom = new DataGridViewTextBoxColumn();
             Prenom = new DataGridViewTextBoxColumn();
@@ -128,19 +131,6 @@
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
-            // 
-            // AddButton
-            // 
-            AddButton.Anchor = AnchorStyles.None;
-            AddButton.BackColor = Color.FromArgb(45, 81, 210);
-            AddButton.ForeColor = Color.White;
-            AddButton.Location = new Point(1164, 39);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(192, 50);
-            AddButton.TabIndex = 1;
-            AddButton.Text = "Ajouter Dette ou Avance";
-            AddButton.UseVisualStyleBackColor = false;
-            AddButton.Click += AddButton_Click;
             // 
             // DettesSearch
             // 
@@ -168,7 +158,7 @@
             DettesSearch.PlaceholderText = "Search";
             DettesSearch.SelectedText = "";
             DettesSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            DettesSearch.Size = new Size(461, 50);
+            DettesSearch.Size = new Size(461, 43);
             DettesSearch.TabIndex = 2;
             DettesSearch.TextChanged += DettesSearch_TextChanged;
             // 
@@ -206,7 +196,7 @@
             DettesGrid.ReadOnly = true;
             DettesGrid.RowHeadersVisible = false;
             DettesGrid.RowHeadersWidth = 51;
-            DettesGrid.RowTemplate.Height = 70;
+            DettesGrid.RowTemplate.Height = 50;
             DettesGrid.ScrollBars = ScrollBars.Vertical;
             DettesGrid.Size = new Size(1300, 741);
             DettesGrid.TabIndex = 0;
@@ -228,17 +218,11 @@
             DettesGrid.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             DettesGrid.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             DettesGrid.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            DettesGrid.ThemeStyle.RowsStyle.Height = 70;
+            DettesGrid.ThemeStyle.RowsStyle.Height = 50;
             DettesGrid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DettesGrid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             DettesGrid.CellContentClick += DettesGrid_CellContentClick_1;
             DettesGrid.CellPainting += showiconedit;
-            // 
-            // Modifier
-            // 
-            Modifier.MinimumWidth = 6;
-            Modifier.Name = "Modifier";
-            Modifier.Width = 125;
             // 
             // panelDetteAvance
             // 
@@ -273,7 +257,7 @@
             // panel5
             // 
             panel5.BackColor = Color.Black;
-            panel5.Location = new Point(72, 370);
+            panel5.Location = new Point(72, 406);
             panel5.Name = "panel5";
             panel5.Size = new Size(173, 3);
             panel5.TabIndex = 114;
@@ -297,7 +281,7 @@
             guna2Button1.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(348, 299);
+            guna2Button1.Location = new Point(348, 297);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Button1.Size = new Size(219, 37);
@@ -308,11 +292,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(66, 462);
+            label1.Location = new Point(59, 496);
             label1.Name = "label1";
-            label1.Size = new Size(129, 20);
+            label1.Size = new Size(165, 25);
             label1.TabIndex = 110;
             label1.Text = "Valuer de Avance";
             // 
@@ -329,7 +313,7 @@
             guna2TextBox1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2TextBox1.ForeColor = Color.Black;
             guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(59, 488);
+            guna2TextBox1.Location = new Point(59, 524);
             guna2TextBox1.Margin = new Padding(4, 6, 4, 6);
             guna2TextBox1.Name = "guna2TextBox1";
             guna2TextBox1.PasswordChar = '\0';
@@ -342,11 +326,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(63, 394);
+            label3.Location = new Point(59, 425);
             label3.Name = "label3";
-            label3.Size = new Size(76, 20);
+            label3.Size = new Size(96, 25);
             label3.TabIndex = 109;
             label3.Text = "Employes";
             // 
@@ -364,7 +348,7 @@
             guna2ComboBox2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2ComboBox2.ForeColor = Color.FromArgb(20, 157, 213);
             guna2ComboBox2.ItemHeight = 30;
-            guna2ComboBox2.Location = new Point(59, 416);
+            guna2ComboBox2.Location = new Point(59, 452);
             guna2ComboBox2.Name = "guna2ComboBox2";
             guna2ComboBox2.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2ComboBox2.Size = new Size(508, 36);
@@ -374,7 +358,7 @@
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            guna2HtmlLabel2.Location = new Point(72, 336);
+            guna2HtmlLabel2.Location = new Point(72, 372);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(161, 32);
             guna2HtmlLabel2.TabIndex = 107;
@@ -384,11 +368,11 @@
             // 
             Phuer.AutoSize = true;
             Phuer.BackColor = Color.Transparent;
-            Phuer.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Phuer.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             Phuer.ForeColor = Color.Black;
-            Phuer.Location = new Point(64, 212);
+            Phuer.Location = new Point(59, 207);
             Phuer.Name = "Phuer";
-            Phuer.Size = new Size(117, 20);
+            Phuer.Size = new Size(149, 25);
             Phuer.TabIndex = 105;
             Phuer.Text = "Valuer de Dette";
             // 
@@ -419,11 +403,11 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(60, 145);
+            label2.Location = new Point(59, 137);
             label2.Name = "label2";
-            label2.Size = new Size(76, 20);
+            label2.Size = new Size(96, 25);
             label2.TabIndex = 104;
             label2.Text = "Employes";
             label2.Click += label2_Click;
@@ -470,7 +454,7 @@
             guna2Button4.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button4.ForeColor = Color.White;
-            guna2Button4.Location = new Point(348, 584);
+            guna2Button4.Location = new Point(348, 582);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2Button4.Size = new Size(219, 37);
@@ -523,10 +507,10 @@
             // guna2HtmlLabel3
             // 
             guna2HtmlLabel3.BackColor = Color.Transparent;
-            guna2HtmlLabel3.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            guna2HtmlLabel3.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             guna2HtmlLabel3.Location = new Point(57, 114);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(335, 32);
+            guna2HtmlLabel3.Size = new Size(344, 33);
             guna2HtmlLabel3.TabIndex = 113;
             guna2HtmlLabel3.Text = "Mesa a Jour de Montant Retiree";
             // 
@@ -552,11 +536,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(63, 283);
+            label4.Location = new Point(56, 279);
             label4.Name = "label4";
-            label4.Size = new Size(117, 20);
+            label4.Size = new Size(149, 25);
             label4.TabIndex = 115;
             label4.Text = "Valuer de Dette";
             // 
@@ -586,11 +570,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(60, 202);
+            label5.Location = new Point(56, 193);
             label5.Name = "label5";
-            label5.Size = new Size(76, 20);
+            label5.Size = new Size(96, 25);
             label5.TabIndex = 114;
             label5.Text = "Employes";
             // 
@@ -624,21 +608,6 @@
             pictureBox1.TabIndex = 92;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click_1;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.None;
-            button1.BackColor = Color.FromArgb(45, 81, 210);
-            button1.FlatAppearance.BorderColor = Color.White;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(1009, 37);
-            button1.Name = "button1";
-            button1.Size = new Size(137, 50);
-            button1.TabIndex = 102;
-            button1.Text = "Montant Retiree";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
             // 
             // palenHistoriqueAetD
             // 
@@ -937,6 +906,46 @@
             label6.Text = "Avance";
             label6.Click += label6_Click;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BorderRadius = 3;
+            button1.CustomizableEdges = customizableEdges23;
+            button1.DisabledState.BorderColor = Color.DarkGray;
+            button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            button1.FillColor = Color.FromArgb(45, 81, 210);
+            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(861, 39);
+            button1.Name = "button1";
+            button1.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            button1.Size = new Size(218, 43);
+            button1.TabIndex = 115;
+            button1.Text = "Montant Retiree";
+            button1.Click += button1_Click;
+            // 
+            // AddButton
+            // 
+            AddButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AddButton.BorderRadius = 3;
+            AddButton.CustomizableEdges = customizableEdges25;
+            AddButton.DisabledState.BorderColor = Color.DarkGray;
+            AddButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            AddButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            AddButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            AddButton.FillColor = Color.FromArgb(45, 81, 210);
+            AddButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            AddButton.ForeColor = Color.White;
+            AddButton.Location = new Point(1097, 39);
+            AddButton.Name = "AddButton";
+            AddButton.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            AddButton.Size = new Size(241, 43);
+            AddButton.TabIndex = 116;
+            AddButton.Text = "Ajouter Dette ou Avance";
+            AddButton.Click += AddButton_Click;
+            // 
             // N
             // 
             N.HeaderText = "N°";
@@ -993,7 +1002,9 @@
             employeIDColumn.Name = "employeIDColumn";
             employeIDColumn.ReadOnly = true;
             employeIDColumn.Visible = false;
-
+            //
+            //modifierColumn
+            //
             Image supprimerIconPath = Properties.Resources.icons8_show_100;
             DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
             {
@@ -1008,28 +1019,19 @@
                 }
             };
             DettesGrid.Columns.Add(modifierColumn);
-
-            DettesGrid.CellPainting += showiconedit;
-            DettesGrid.RowTemplate.Height = 50;
-            DettesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DettesGrid.AllowUserToAddRows = false;
-            DettesGrid.AllowUserToDeleteRows = false;
-            DettesGrid.AllowUserToOrderColumns = false;
-            DettesGrid.AllowUserToResizeColumns = false;
-            DettesGrid.AllowUserToResizeRows = false;
-            // 
+            //
             // Udettes
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.White;
-            Controls.Add(palenHistoriqueAetD);
-            Controls.Add(panelMontant);
-            Controls.Add(button1);
-            Controls.Add(panelDetteAvance);
-            Controls.Add(DettesSearch);
             Controls.Add(AddButton);
+            Controls.Add(button1);
+            Controls.Add(DettesSearch);
+            Controls.Add(panelMontant);
+            Controls.Add(palenHistoriqueAetD);
+            Controls.Add(panelDetteAvance);
             Controls.Add(DettesGrid);
             Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             Margin = new Padding(3, 2, 3, 2);
@@ -1053,12 +1055,9 @@
 
         #endregion
         private DataGridViewTextBoxColumn MontantDeMois;
-        private Button AddButton;
         private Guna.UI2.WinForms.Guna2TextBox DettesSearch;
         private Guna.UI2.WinForms.Guna2DataGridView DettesGrid;
         private Guna.UI2.WinForms.Guna2ShadowPanel panelDetteAvance;
-        private DataGridViewButtonColumn Modifier;
-        private Button button1;
         private Guna.UI2.WinForms.Guna2ShadowPanel panelMontant;
         private PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
@@ -1103,6 +1102,8 @@
         private Panel panel4;
         private Panel panel5;
         private Panel panel6;
+        private Guna.UI2.WinForms.Guna2Button button1;
+        private Guna.UI2.WinForms.Guna2Button AddButton;
         private DataGridViewTextBoxColumn N;
         private DataGridViewTextBoxColumn Nom;
         private DataGridViewTextBoxColumn Prenom;
