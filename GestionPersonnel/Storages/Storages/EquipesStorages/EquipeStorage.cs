@@ -72,15 +72,25 @@ namespace GestionPersonnel.Storages.EquipeStorages
         // Méthode pour ajouter une nouvelle Equipe à la base de données
         public async Task<int> Add(Equipe equipe)
         {
-            await using var connection = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(InsertQuery, connection);
+            if (equipe == null) throw new ArgumentNullException(nameof(equipe));
 
-            cmd.Parameters.AddWithValue("@NomEquipe", equipe.NomEquipe);
+            await using var connection = new SqlConnection(_connectionString);
+            await using var cmd = new SqlCommand(InsertQuery, connection);
+
+            cmd.Parameters.AddWithValue("@NomEquipe", equipe.NomEquipe ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@ChefEquipeID", equipe.ChefEquipeID);
 
-            await connection.OpenAsync();
-            var id = await cmd.ExecuteScalarAsync();
-            return Convert.ToInt32(id);
+            try
+            {
+                await connection.OpenAsync();
+                var result = await cmd.ExecuteScalarAsync();
+                return Convert.ToInt32(result);
+            }
+            catch (SqlException ex)
+            {
+                // Log exception details here
+                throw new Exception("An error occurred while adding the team.", ex);
+            }
         }
 
         // Méthode pour mettre à jour une Equipe dans la base de données
