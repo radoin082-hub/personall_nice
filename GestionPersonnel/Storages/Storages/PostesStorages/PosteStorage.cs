@@ -53,10 +53,10 @@ namespace GestionPersonnel.Storages.Storages.PostesStorages
 
                 // Calculer la somme des postes complets pour chaque employé
                 string selectSumPosteCompleteQuery = @"
-                    SELECT [IdEmploye], SUM([IdPosteComplete]) AS TotalePostes
-                    FROM [db_aa9d4f_gestionpersonnel].[dbo].[EmployePoste]
-                    WHERE YEAR([Date]) = @Year AND MONTH([Date]) = @Month
-                    GROUP BY [IdEmploye];";
+                         SELECT [IdEmploye], COUNT(*) AS TotalePostes
+                         FROM [db_aa9d4f_gestionpersonnel].[dbo].[EmployePoste]
+                         WHERE YEAR([Date]) = @Year AND MONTH([Date]) = @Month
+                         GROUP BY [IdEmploye];";
 
                 using (SqlCommand command = new SqlCommand(selectSumPosteCompleteQuery, connection))
                 {
