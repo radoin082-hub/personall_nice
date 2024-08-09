@@ -40,12 +40,18 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
+            guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            pictureBox2 = new PictureBox();
+            label4 = new Label();
+            label3 = new Label();
             panelCardTotaleArgent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             panelCardNomberEmplyes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            guna2ShadowPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // panelCardTotaleArgent
@@ -55,20 +61,20 @@
             panelCardTotaleArgent.Controls.Add(label6);
             panelCardTotaleArgent.Controls.Add(label7);
             panelCardTotaleArgent.FillColor = Color.MediumSeaGreen;
-            panelCardTotaleArgent.Location = new Point(533, 75);
+            panelCardTotaleArgent.Location = new Point(362, 90);
             panelCardTotaleArgent.Name = "panelCardTotaleArgent";
             panelCardTotaleArgent.Radius = 3;
             panelCardTotaleArgent.ShadowColor = Color.Black;
             panelCardTotaleArgent.ShadowDepth = 40;
-            panelCardTotaleArgent.Size = new Size(407, 189);
+            panelCardTotaleArgent.Size = new Size(353, 165);
             panelCardTotaleArgent.TabIndex = 9;
             // 
             // pictureBox8
             // 
             pictureBox8.Image = Properties.Resources.money;
-            pictureBox8.Location = new Point(271, 28);
+            pictureBox8.Location = new Point(246, 32);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(106, 94);
+            pictureBox8.Size = new Size(85, 75);
             pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox8.TabIndex = 0;
             pictureBox8.TabStop = false;
@@ -78,7 +84,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft JhengHei UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(32, 56);
+            label6.Location = new Point(16, 55);
             label6.Name = "label6";
             label6.Size = new Size(224, 36);
             label6.TabIndex = 2;
@@ -90,7 +96,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(32, 116);
+            label7.Location = new Point(16, 120);
             label7.Name = "label7";
             label7.Size = new Size(190, 32);
             label7.TabIndex = 1;
@@ -104,21 +110,21 @@
             panelCardNomberEmplyes.Controls.Add(label11);
             panelCardNomberEmplyes.Controls.Add(label10);
             panelCardNomberEmplyes.FillColor = Color.RoyalBlue;
-            panelCardNomberEmplyes.Location = new Point(60, 75);
+            panelCardNomberEmplyes.Location = new Point(3, 89);
             panelCardNomberEmplyes.Name = "panelCardNomberEmplyes";
             panelCardNomberEmplyes.Radius = 3;
             panelCardNomberEmplyes.ShadowColor = Color.Black;
             panelCardNomberEmplyes.ShadowDepth = 40;
-            panelCardNomberEmplyes.Size = new Size(407, 189);
+            panelCardNomberEmplyes.Size = new Size(353, 165);
             panelCardNomberEmplyes.TabIndex = 8;
             panelCardNomberEmplyes.Paint += guna2ShadowPanel1_Paint;
             // 
             // pictureBox7
             // 
             pictureBox7.Image = Properties.Resources.engineer;
-            pictureBox7.Location = new Point(271, 28);
+            pictureBox7.Location = new Point(232, 28);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(106, 94);
+            pictureBox7.Size = new Size(85, 75);
             pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox7.TabIndex = 0;
             pictureBox7.TabStop = false;
@@ -141,7 +147,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(29, 116);
+            label10.Location = new Point(16, 116);
             label10.Name = "label10";
             label10.Size = new Size(224, 32);
             label10.TabIndex = 1;
@@ -154,21 +160,21 @@
             guna2ShadowPanel1.Controls.Add(pictureBox1);
             guna2ShadowPanel1.Controls.Add(label1);
             guna2ShadowPanel1.Controls.Add(label2);
-            guna2ShadowPanel1.FillColor = Color.Tomato;
-            guna2ShadowPanel1.Location = new Point(991, 75);
+            guna2ShadowPanel1.FillColor = Color.Red;
+            guna2ShadowPanel1.Location = new Point(1076, 90);
             guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             guna2ShadowPanel1.Radius = 3;
             guna2ShadowPanel1.ShadowColor = Color.Black;
             guna2ShadowPanel1.ShadowDepth = 40;
-            guna2ShadowPanel1.Size = new Size(407, 189);
+            guna2ShadowPanel1.Size = new Size(353, 165);
             guna2ShadowPanel1.TabIndex = 10;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.debt;
-            pictureBox1.Location = new Point(271, 28);
+            pictureBox1.Location = new Point(253, 32);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(106, 94);
+            pictureBox1.Size = new Size(85, 75);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -178,7 +184,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft JhengHei UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(32, 56);
+            label1.Location = new Point(11, 61);
             label1.Name = "label1";
             label1.Size = new Size(224, 36);
             label1.TabIndex = 2;
@@ -189,22 +195,70 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(32, 116);
+            label2.Location = new Point(11, 121);
             label2.Name = "label2";
             label2.Size = new Size(198, 32);
             label2.TabIndex = 1;
             label2.Text = "Totale des Dette";
+            // 
+            // guna2ShadowPanel2
+            // 
+            guna2ShadowPanel2.BackColor = Color.Transparent;
+            guna2ShadowPanel2.Controls.Add(label3);
+            guna2ShadowPanel2.Controls.Add(pictureBox2);
+            guna2ShadowPanel2.Controls.Add(label4);
+            guna2ShadowPanel2.FillColor = Color.FromArgb(255, 128, 0);
+            guna2ShadowPanel2.Location = new Point(717, 90);
+            guna2ShadowPanel2.Name = "guna2ShadowPanel2";
+            guna2ShadowPanel2.Radius = 3;
+            guna2ShadowPanel2.ShadowColor = Color.Black;
+            guna2ShadowPanel2.ShadowDepth = 40;
+            guna2ShadowPanel2.Size = new Size(353, 165);
+            guna2ShadowPanel2.TabIndex = 11;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.pay;
+            pictureBox2.Location = new Point(253, 31);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(85, 75);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(11, 120);
+            label4.Name = "label4";
+            label4.Size = new Size(218, 32);
+            label4.TabIndex = 1;
+            label4.Text = "Totale des Avance";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft JhengHei UI", 16.2F, FontStyle.Bold);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(11, 56);
+            label3.Name = "label3";
+            label3.Size = new Size(224, 36);
+            label3.TabIndex = 2;
+            label3.Text = "0000000.00 DA";
             // 
             // Udashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(guna2ShadowPanel2);
             Controls.Add(guna2ShadowPanel1);
             Controls.Add(panelCardTotaleArgent);
             Controls.Add(panelCardNomberEmplyes);
             Name = "Udashboard";
-            Size = new Size(1423, 853);
+            Size = new Size(1437, 853);
             Load += Udashboard_Load;
             panelCardTotaleArgent.ResumeLayout(false);
             panelCardTotaleArgent.PerformLayout();
@@ -215,6 +269,9 @@
             guna2ShadowPanel1.ResumeLayout(false);
             guna2ShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            guna2ShadowPanel2.ResumeLayout(false);
+            guna2ShadowPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -233,5 +290,9 @@
         private PictureBox pictureBox1;
         private Label label1;
         private Label label2;
+        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
+        private PictureBox pictureBox2;
+        private Label label4;
+        private Label label3;
     }
 }
