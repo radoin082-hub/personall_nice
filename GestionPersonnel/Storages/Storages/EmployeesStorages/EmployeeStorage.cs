@@ -37,6 +37,14 @@ namespace GestionPersonnel.Storages.EmployeesStorages
         private const string _updateQuery = "UPDATE Employes SET Nom = @Nom, Prenom = @Prenom, DateDeNaissance = @DateDeNaissance, NSecuriteSocial = @NSecuriteSocial, Adresse = @Adresse, GroupSanguin = @GroupSanguin, NTelephone = @NTelephone, FonctionID = @FonctionID, DateEntree = @DateEntree, DateSortie = @DateSortie, SitiationFamiliale = @SitiationFamiliale, Photo = @Photo WHERE EmployeID = @EmployeID;";
         private const string _deleteQuery = "UPDATE Employes SET status = 0, DateSortie = @DateSortie WHERE EmployeID = @EmployeID;";
 
+        private const string _selectByFunctionIdQuery = @"
+            SELECT E.EmployeID, E.Nom, E.Prenom, E.DateDeNaissance, E.NSecuriteSocial, E.Adresse, E.GroupSanguin, 
+                   E.NTelephone, E.FonctionID, E.DateEntree, E.DateSortie, E.SitiationFamiliale, 
+                   E.Photo, F.NomFonction
+            FROM Employes E
+            INNER JOIN Fonctions F ON E.FonctionID = F.FonctionID
+            WHERE E.FonctionID = @FonctionID AND E.status = 1";
+
         private static Employee GetEmployeFromDataRow(DataRow row)
         {
             return new Employee
@@ -55,10 +63,8 @@ namespace GestionPersonnel.Storages.EmployeesStorages
                 SitiationFamiliale = (string)row["SitiationFamiliale"],
                 Photo = row["Photo"] as byte[],
                 FonctionName = row["NomFonction"].ToString()
-
             };
         }
-
 
         public async Task<List<Employee>> GetAll()
         {
@@ -68,7 +74,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             DataTable dataTable = new();
             SqlDataAdapter da = new(cmd);
 
-            connection.Open();
+            await connection.OpenAsync();
             da.Fill(dataTable);
 
             return (from DataRow row in dataTable.Rows select GetEmployeFromDataRow(row)).ToList();
@@ -84,7 +90,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             DataTable dataTable = new();
             SqlDataAdapter da = new(cmd);
 
-            connection.Open();
+            await connection.OpenAsync();
             da.Fill(dataTable);
 
             return dataTable.Rows.Count == 0 ? null : GetEmployeFromDataRow(dataTable.Rows[0]);
@@ -107,7 +113,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             cmd.Parameters.AddWithValue("@SitiationFamiliale", employe.SitiationFamiliale);
             cmd.Parameters.AddWithValue("@Photo", employe.Photo ?? (object)DBNull.Value);
 
-            connection.Open();
+            await connection.OpenAsync();
             var id = await cmd.ExecuteScalarAsync();
             employe.EmployeID = Convert.ToInt32(id);
         }
@@ -130,7 +136,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             cmd.Parameters.AddWithValue("@Photo", employe.Photo ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@EmployeID", employe.EmployeID);
 
-            connection.Open();
+            await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
         }
 
@@ -140,8 +146,8 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             SqlCommand cmd = new(_deleteQuery, connection);
             cmd.Parameters.AddWithValue("@EmployeID", id);
             cmd.Parameters.AddWithValue("@DateSortie", DateTime.Now);
-            
-            connection.Open();
+
+            await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
         }
 
@@ -155,7 +161,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             param.Direction = ParameterDirection.Output;
             cmd.Parameters.Add(param);
 
-            connection.Open();
+            await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
 
             return (int)cmd.Parameters["@nombreTotalEmployes"].Value;
@@ -177,7 +183,7 @@ namespace GestionPersonnel.Storages.EmployeesStorages
                 param.Scale = 2;
                 cmd.Parameters.Add(param);
 
-                connection.Open();
+                await connection.OpenAsync();
                 await cmd.ExecuteNonQueryAsync();
 
                 // Check if the output parameter value is DBNull or NULL
@@ -194,60 +200,19 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             }
         }
 
-        public async Task<List<Employee>> GetEmployeesByDate(/*DateTime date*/)
+        public async Task<List<Employee>> GetEmployeesByFunctionId(int fonctionId)
         {
-            string query = @"
-        SELECT E.EmployeID, E.Nom, E.Prenom, E.DateDeNaissance, E.NSecuriteSocial, E.Adresse, E.GroupSanguin, E.NTelephone, E.FonctionID, E.DateEntree, E.DateSortie, E.SitiationFamiliale, E.Photo, F.NomFonction
-        FROM Employes E
-        INNER JOIN Fonctions F ON E.FonctionID = F.FonctionID
-        
-    "; 
+            await using var connection = new SqlConnection(_connectionString);
+            SqlCommand cmd = new(_selectByFunctionIdQuery, connection);
+            cmd.Parameters.AddWithValue("@FonctionID", fonctionId);
 
-            List<Employee> employees = new List<Employee>();
+            DataTable dataTable = new();
+            SqlDataAdapter da = new(cmd);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                SqlCommand cmd = new SqlCommand(query, connection);
-               
-                await connection.OpenAsync();
+            await connection.OpenAsync();
+            da.Fill(dataTable);
 
-                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                {
-                    while (reader.Read())
-                    {
-                        Employee employee = new Employee
-                        {
-                            EmployeID = (int)reader["EmployeID"],
-                            Nom = (string)reader["Nom"],
-                            Prenom = (string)reader["Prenom"],
-                            DateDeNaissance = (DateTime)reader["DateDeNaissance"],
-                            NSecuriteSocial = (string)reader["NSecuriteSocial"],
-                            Adresse = (string)reader["Adresse"],
-                            GroupSanguin = (string)reader["GroupSanguin"],
-                            NTelephone = (string)reader["NTelephone"],
-                            FonctionID = (int)reader["FonctionID"],
-                            DateEntree = (DateTime)reader["DateEntree"],
-                            DateSortie = reader["DateSortie"] != DBNull.Value ? (DateTime)reader["DateSortie"] : (DateTime?)null,
-                            SitiationFamiliale = (string)reader["SitiationFamiliale"],
-                            Photo = reader["Photo"] != DBNull.Value ? (byte[])reader["Photo"] : null,
-                            FonctionName = (string)reader["NomFonction"] ,// Assign the function name
-                            
-
-                        };
-
-                        // Add employee to the list
-                        employees.Add(employee);
-                    }
-                }
-            }
-
-            return employees;
+            return (from DataRow row in dataTable.Rows select GetEmployeFromDataRow(row)).ToList();
         }
-
-
-
-
-
     }
-
 }
