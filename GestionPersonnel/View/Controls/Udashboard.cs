@@ -38,18 +38,18 @@ namespace GestionPersonnel.View
         {
             await RefreshData();
         }
-        
+
         private async Task RefreshData()
         {
             try
             {
-                DateTime specificDate = DateTime.Now; 
-                
+                DateTime specificDate = DateTime.Now;
+
                 int totalEmployees = await _employeeStorage.GetTotalNumberOfEmployees();
                 label11.Text = totalEmployees.ToString();
 
                 decimal totalSalary = await _employeeStorage.GetTotalSalaryForMonth(specificDate);
-                label6.Text = $"{totalSalary}"+" DA";
+                label6.Text = $"{totalSalary}" + " DA";
                 decimal totalAdvances = await _detteStorage.GetTotalDettes();
                 label1.Text = $"{totalAdvances}" + " DA";
             }
@@ -74,7 +74,12 @@ namespace GestionPersonnel.View
         private void timer1_Tick(object sender, EventArgs e) { }
 
         private void label6_Click(object sender, EventArgs e) { }
-        
+
         private void label11_Click(object sender, EventArgs e) { }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

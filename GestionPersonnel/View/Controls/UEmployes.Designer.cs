@@ -75,6 +75,8 @@ namespace GestionPersonnel.View
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges43 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges44 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges45 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges46 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -122,6 +124,7 @@ namespace GestionPersonnel.View
             panelajouteremploye = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panel1 = new Panel();
             label5 = new Label();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             panelajouterfonction = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panel3 = new Panel();
             label8 = new Label();
@@ -169,7 +172,7 @@ namespace GestionPersonnel.View
             guna2TextBox1.ForeColor = Color.FromArgb(45, 81, 210);
             guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox1.IconRight = (Image)resources.GetObject("guna2TextBox1.IconRight");
-            guna2TextBox1.Location = new Point(4, 53);
+            guna2TextBox1.Location = new Point(0, 6);
             guna2TextBox1.Margin = new Padding(4, 6, 4, 6);
             guna2TextBox1.Name = "guna2TextBox1";
             guna2TextBox1.PasswordChar = '\0';
@@ -286,7 +289,7 @@ namespace GestionPersonnel.View
             guna2Button1.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(1221, 53);
+            guna2Button1.Location = new Point(1218, 6);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Button1.Size = new Size(218, 43);
@@ -297,6 +300,7 @@ namespace GestionPersonnel.View
             // photoProfileEmployes
             // 
             photoProfileEmployes.Image = (Image)resources.GetObject("photoProfileEmployes.Image");
+            photoProfileEmployes.InitialImage = Resources.engineer;
             photoProfileEmployes.Location = new Point(438, 124);
             photoProfileEmployes.Name = "photoProfileEmployes";
             photoProfileEmployes.Size = new Size(158, 149);
@@ -316,7 +320,7 @@ namespace GestionPersonnel.View
             photoProfileBtn.FillColor = Color.FromArgb(45, 81, 210);
             photoProfileBtn.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             photoProfileBtn.ForeColor = Color.White;
-            photoProfileBtn.Location = new Point(438, 279);
+            photoProfileBtn.Location = new Point(438, 288);
             photoProfileBtn.Name = "photoProfileBtn";
             photoProfileBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
             photoProfileBtn.Size = new Size(158, 35);
@@ -502,15 +506,17 @@ namespace GestionPersonnel.View
             // 
             GroupeSanguinEmployes.AccessibleDescription = "";
             GroupeSanguinEmployes.BackColor = Color.White;
-            GroupeSanguinEmployes.BorderColor = Color.FromArgb(213, 218, 223);
+            GroupeSanguinEmployes.BorderColor = Color.FromArgb(239, 239, 208);
             GroupeSanguinEmployes.BorderRadius = 3;
             GroupeSanguinEmployes.CustomizableEdges = customizableEdges17;
             GroupeSanguinEmployes.DrawMode = DrawMode.OwnerDrawFixed;
+            GroupeSanguinEmployes.DropDownHeight = 85;
             GroupeSanguinEmployes.DropDownStyle = ComboBoxStyle.DropDownList;
             GroupeSanguinEmployes.FocusedColor = Color.FromArgb(94, 148, 255);
             GroupeSanguinEmployes.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             GroupeSanguinEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GroupeSanguinEmployes.ForeColor = Color.FromArgb(20, 157, 213);
+            GroupeSanguinEmployes.ForeColor = Color.Black;
+            GroupeSanguinEmployes.IntegralHeight = false;
             GroupeSanguinEmployes.ItemHeight = 30;
             GroupeSanguinEmployes.Items.AddRange(new object[] { "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-" });
             GroupeSanguinEmployes.Location = new Point(325, 494);
@@ -575,11 +581,13 @@ namespace GestionPersonnel.View
             SituationFamilialeEmployes.BorderRadius = 3;
             SituationFamilialeEmployes.CustomizableEdges = customizableEdges21;
             SituationFamilialeEmployes.DrawMode = DrawMode.OwnerDrawFixed;
+            SituationFamilialeEmployes.DropDownHeight = 85;
             SituationFamilialeEmployes.DropDownStyle = ComboBoxStyle.DropDownList;
             SituationFamilialeEmployes.FocusedColor = Color.FromArgb(94, 148, 255);
             SituationFamilialeEmployes.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             SituationFamilialeEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            SituationFamilialeEmployes.ForeColor = Color.FromArgb(20, 157, 213);
+            SituationFamilialeEmployes.ForeColor = Color.Black;
+            SituationFamilialeEmployes.IntegralHeight = false;
             SituationFamilialeEmployes.ItemHeight = 30;
             SituationFamilialeEmployes.Items.AddRange(new object[] { "Celibataire", "Marie", "Divorce" });
             SituationFamilialeEmployes.Location = new Point(325, 574);
@@ -668,11 +676,13 @@ namespace GestionPersonnel.View
             FonctionEmployes.BorderRadius = 3;
             FonctionEmployes.CustomizableEdges = customizableEdges27;
             FonctionEmployes.DrawMode = DrawMode.OwnerDrawFixed;
+            FonctionEmployes.DropDownHeight = 190;
             FonctionEmployes.DropDownStyle = ComboBoxStyle.DropDownList;
             FonctionEmployes.FocusedColor = Color.FromArgb(94, 148, 255);
             FonctionEmployes.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             FonctionEmployes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            FonctionEmployes.ForeColor = Color.FromArgb(20, 157, 213);
+            FonctionEmployes.ForeColor = Color.Black;
+            FonctionEmployes.IntegralHeight = false;
             FonctionEmployes.ItemHeight = 30;
             FonctionEmployes.Location = new Point(13, 494);
             FonctionEmployes.Name = "FonctionEmployes";
@@ -743,14 +753,15 @@ namespace GestionPersonnel.View
             panelajouteremploye.Controls.Add(nomEmployes);
             panelajouteremploye.Controls.Add(photoProfileBtn);
             panelajouteremploye.Controls.Add(photoProfileEmployes);
+            panelajouteremploye.Controls.Add(guna2Panel1);
             panelajouteremploye.FillColor = Color.FromArgb(239, 239, 208);
-            panelajouteremploye.Location = new Point(807, 166);
+            panelajouteremploye.Location = new Point(800, 102);
             panelajouteremploye.Name = "panelajouteremploye";
             panelajouteremploye.Radius = 3;
             panelajouteremploye.ShadowColor = Color.Black;
             panelajouteremploye.ShadowDepth = 0;
             panelajouteremploye.ShadowShift = 0;
-            panelajouteremploye.Size = new Size(629, 689);
+            panelajouteremploye.Size = new Size(636, 698);
             panelajouteremploye.TabIndex = 3;
             panelajouteremploye.Visible = false;
             panelajouteremploye.Paint += guna2ShadowPanel1_Paint;
@@ -773,6 +784,18 @@ namespace GestionPersonnel.View
             label5.TabIndex = 103;
             label5.Text = "Ajouter Employe";
             // 
+            // guna2Panel1
+            // 
+            guna2Panel1.BorderColor = Color.Black;
+            guna2Panel1.BorderRadius = 3;
+            guna2Panel1.BorderThickness = 3;
+            guna2Panel1.CustomizableEdges = customizableEdges31;
+            guna2Panel1.Location = new Point(428, 107);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            guna2Panel1.Size = new Size(178, 175);
+            guna2Panel1.TabIndex = 105;
+            // 
             // panelajouterfonction
             // 
             panelajouterfonction.BackColor = Color.Transparent;
@@ -792,7 +815,7 @@ namespace GestionPersonnel.View
             panelajouterfonction.Controls.Add(pictureBox2);
             panelajouterfonction.Controls.Add(addfonction);
             panelajouterfonction.FillColor = Color.FromArgb(239, 239, 208);
-            panelajouterfonction.Location = new Point(807, 166);
+            panelajouterfonction.Location = new Point(804, 120);
             panelajouterfonction.Name = "panelajouterfonction";
             panelajouterfonction.Radius = 3;
             panelajouterfonction.ShadowColor = Color.Black;
@@ -864,7 +887,7 @@ namespace GestionPersonnel.View
             // modifier_fuction
             // 
             modifier_fuction.BorderRadius = 3;
-            modifier_fuction.CustomizableEdges = customizableEdges31;
+            modifier_fuction.CustomizableEdges = customizableEdges33;
             modifier_fuction.DefaultText = "";
             modifier_fuction.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             modifier_fuction.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -880,14 +903,14 @@ namespace GestionPersonnel.View
             modifier_fuction.PasswordChar = '\0';
             modifier_fuction.PlaceholderText = "";
             modifier_fuction.SelectedText = "";
-            modifier_fuction.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            modifier_fuction.ShadowDecoration.CustomizableEdges = customizableEdges34;
             modifier_fuction.Size = new Size(561, 36);
             modifier_fuction.TabIndex = 103;
             // 
             // guna2Button5
             // 
             guna2Button5.BorderRadius = 3;
-            guna2Button5.CustomizableEdges = customizableEdges33;
+            guna2Button5.CustomizableEdges = customizableEdges35;
             guna2Button5.DisabledState.BorderColor = Color.DarkGray;
             guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -897,7 +920,7 @@ namespace GestionPersonnel.View
             guna2Button5.ForeColor = Color.White;
             guna2Button5.Location = new Point(456, 598);
             guna2Button5.Name = "guna2Button5";
-            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges36;
             guna2Button5.Size = new Size(150, 37);
             guna2Button5.TabIndex = 101;
             guna2Button5.Text = "Modifier";
@@ -920,17 +943,19 @@ namespace GestionPersonnel.View
             display_function.BackColor = Color.White;
             display_function.BorderColor = Color.FromArgb(213, 218, 223);
             display_function.BorderRadius = 3;
-            display_function.CustomizableEdges = customizableEdges35;
+            display_function.CustomizableEdges = customizableEdges37;
             display_function.DrawMode = DrawMode.OwnerDrawFixed;
+            display_function.DropDownHeight = 80;
             display_function.DropDownStyle = ComboBoxStyle.DropDownList;
             display_function.FocusedColor = Color.FromArgb(94, 148, 255);
             display_function.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             display_function.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            display_function.ForeColor = Color.FromArgb(20, 157, 213);
+            display_function.ForeColor = Color.Black;
+            display_function.IntegralHeight = false;
             display_function.ItemHeight = 30;
             display_function.Location = new Point(40, 455);
             display_function.Name = "display_function";
-            display_function.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            display_function.ShadowDecoration.CustomizableEdges = customizableEdges38;
             display_function.Size = new Size(561, 36);
             display_function.TabIndex = 99;
             display_function.SelectedIndexChanged += display_function_SelectedIndexChanged;
@@ -952,7 +977,7 @@ namespace GestionPersonnel.View
             guna2Button3.BorderColor = Color.FromArgb(45, 81, 210);
             guna2Button3.BorderRadius = 3;
             guna2Button3.BorderThickness = 2;
-            guna2Button3.CustomizableEdges = customizableEdges37;
+            guna2Button3.CustomizableEdges = customizableEdges39;
             guna2Button3.DisabledState.BorderColor = Color.DarkGray;
             guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -962,7 +987,7 @@ namespace GestionPersonnel.View
             guna2Button3.ForeColor = Color.FromArgb(45, 81, 210);
             guna2Button3.Location = new Point(258, 598);
             guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges40;
             guna2Button3.Size = new Size(150, 37);
             guna2Button3.TabIndex = 98;
             guna2Button3.Text = "Supprimer";
@@ -971,7 +996,7 @@ namespace GestionPersonnel.View
             // guna2Button4
             // 
             guna2Button4.BorderRadius = 3;
-            guna2Button4.CustomizableEdges = customizableEdges39;
+            guna2Button4.CustomizableEdges = customizableEdges41;
             guna2Button4.DisabledState.BorderColor = Color.DarkGray;
             guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -981,7 +1006,7 @@ namespace GestionPersonnel.View
             guna2Button4.ForeColor = Color.White;
             guna2Button4.Location = new Point(410, 281);
             guna2Button4.Name = "guna2Button4";
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges42;
             guna2Button4.Size = new Size(196, 37);
             guna2Button4.TabIndex = 93;
             guna2Button4.Text = "New Confirmation";
@@ -1001,7 +1026,7 @@ namespace GestionPersonnel.View
             // addfonction
             // 
             addfonction.BorderRadius = 3;
-            addfonction.CustomizableEdges = customizableEdges41;
+            addfonction.CustomizableEdges = customizableEdges43;
             addfonction.DefaultText = "";
             addfonction.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             addfonction.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -1017,7 +1042,7 @@ namespace GestionPersonnel.View
             addfonction.PasswordChar = '\0';
             addfonction.PlaceholderText = "";
             addfonction.SelectedText = "";
-            addfonction.ShadowDecoration.CustomizableEdges = customizableEdges42;
+            addfonction.ShadowDecoration.CustomizableEdges = customizableEdges44;
             addfonction.Size = new Size(565, 36);
             addfonction.TabIndex = 75;
             addfonction.TextChanged += guna2TextBox6_TextChanged;
@@ -1026,7 +1051,7 @@ namespace GestionPersonnel.View
             // 
             guna2Button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2Button2.BorderRadius = 3;
-            guna2Button2.CustomizableEdges = customizableEdges43;
+            guna2Button2.CustomizableEdges = customizableEdges45;
             guna2Button2.DisabledState.BorderColor = Color.DarkGray;
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1034,9 +1059,9 @@ namespace GestionPersonnel.View
             guna2Button2.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button2.ForeColor = Color.White;
-            guna2Button2.Location = new Point(988, 53);
+            guna2Button2.Location = new Point(983, 6);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges44;
+            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges46;
             guna2Button2.Size = new Size(218, 43);
             guna2Button2.TabIndex = 4;
             guna2Button2.Text = "Ajouter Fonction";
@@ -1045,6 +1070,9 @@ namespace GestionPersonnel.View
             // guna2DataGridView1
             // 
             guna2DataGridView1.AllowUserToAddRows = false;
+            guna2DataGridView1.AllowUserToDeleteRows = false;
+            guna2DataGridView1.AllowUserToResizeColumns = false;
+            guna2DataGridView1.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -1067,12 +1095,12 @@ namespace GestionPersonnel.View
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(4, 121);
+            guna2DataGridView1.Location = new Point(0, 58);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
             guna2DataGridView1.RowTemplate.Height = 50;
-            guna2DataGridView1.Size = new Size(1437, 877);
+            guna2DataGridView1.Size = new Size(1437, 700);
             guna2DataGridView1.TabIndex = 100;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -1180,12 +1208,12 @@ namespace GestionPersonnel.View
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(panelajouteremploye);
-            Controls.Add(panelajouterfonction);
-            Controls.Add(guna2DataGridView1);
             Controls.Add(guna2Button2);
             Controls.Add(guna2Button1);
             Controls.Add(guna2TextBox1);
+            Controls.Add(panelajouterfonction);
+            Controls.Add(guna2DataGridView1);
+            Controls.Add(panelajouteremploye);
             Name = "UEmployes";
             Size = new Size(1444, 998);
             Load += UEmployes_Load_1;
@@ -1252,7 +1280,6 @@ namespace GestionPersonnel.View
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Label label3;
         private Guna.UI2.WinForms.Guna2TextBox modifier_fuction;
-        private Label label4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
@@ -1271,5 +1298,7 @@ namespace GestionPersonnel.View
         private Label label6;
         private Panel panel3;
         private Label label8;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Label label4;
     }
 }
