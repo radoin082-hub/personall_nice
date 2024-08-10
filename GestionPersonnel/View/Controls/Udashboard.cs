@@ -53,8 +53,7 @@ namespace GestionPersonnel.View
                 label11.Text = totalEmployees.ToString();
 
                 decimal totalSalary = await _employeeStorage.GetTotalSalaryForMonth(specificDate);
-                label6.Text = $"{totalSalary} DA";
-
+                label6.Text = $"{totalSalary}" + " DA";
                 decimal totalAdvances = await _detteStorage.GetTotalDettes();
                 label1.Text = $"{totalAdvances} DA";
             }
@@ -87,14 +86,9 @@ namespace GestionPersonnel.View
 
         private void label11_Click(object sender, EventArgs e) { }
 
-        private void sparkLine1_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            // Add code to handle sparkLine1 click event
-        }
 
-        private void clock1_Click(object sender, EventArgs e)
-        {
-            // Add code to handle clock1 click event if needed
         }
     }
 }

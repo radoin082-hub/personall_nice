@@ -74,7 +74,7 @@
             panel2.Controls.Add(label5);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1623, 84);
+            panel2.Size = new Size(1858, 84);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             // 
@@ -134,11 +134,11 @@
             sidebar.Controls.Add(btnPay);
             sidebar.Controls.Add(btnDette);
             sidebar.Controls.Add(btnDeconnecter);
-            sidebar.Location = new Point(0, 82);
-            sidebar.MaximumSize = new Size(220, 81700);
+            sidebar.Location = new Point(0, 83);
+            sidebar.MaximumSize = new Size(219, 81700);
             sidebar.MinimumSize = new Size(90, 0);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(220, 932);
+            sidebar.Size = new Size(219, 812);
             sidebar.TabIndex = 0;
             sidebar.Paint += sidebar_Paint;
             // 
@@ -422,10 +422,10 @@
             // Mainpanel
             // 
             Mainpanel.Anchor = AnchorStyles.None;
-            Mainpanel.BackColor = SystemColors.WindowFrame;
-            Mainpanel.Location = new Point(223, 135);
+            Mainpanel.BackColor = Color.White;
+            Mainpanel.Location = new Point(224, 90);
             Mainpanel.Name = "Mainpanel";
-            Mainpanel.Size = new Size(1429, 930);
+            Mainpanel.Size = new Size(1437, 805);
             Mainpanel.TabIndex = 2;
             Mainpanel.Paint += Mainpanel_Paint;
             // 
@@ -438,12 +438,12 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1623, 1016);
+            ClientSize = new Size(1680, 898);
             Controls.Add(Mainpanel);
             Controls.Add(sidebar);
             Controls.Add(panel2);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(1620, 918);
+            MinimumSize = new Size(1437, 730);
             Name = "Mainpage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestion Personnel";
