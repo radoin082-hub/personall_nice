@@ -233,5 +233,6 @@
         private PictureBox pictureBox1;
         private Label label1;
         private Label label2;
+        private Syncfusion.Windows.Forms.Chart.SparkLine sparkLine1;
     }
 }

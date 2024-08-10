@@ -1,7 +1,5 @@
 ﻿using GestionPersonnel.Storages.EmployeesStorages;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.Configuration;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +12,7 @@ namespace GestionPersonnel.View
         private readonly string _connectionString;
 
         private System.Windows.Forms.Timer refreshTimer;
+        private System.Windows.Forms.Timer clockTimer;
         private readonly EmployeStorage _employeeStorage;
         private readonly DetteStorage _detteStorage;
 
@@ -28,35 +27,46 @@ namespace GestionPersonnel.View
         private async void Udashboard_Load(object sender, EventArgs e)
         {
             this.refreshTimer = new System.Windows.Forms.Timer();
-            this.refreshTimer.Interval = 1;
+            this.refreshTimer.Interval = 60000; // 1 minute interval for data refresh
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             refreshTimer.Start();
             await RefreshData();
+
+            this.clockTimer = new System.Windows.Forms.Timer();
+            this.clockTimer.Interval = 1000; // 1 second interval for clock update
+            this.clockTimer.Tick += new System.EventHandler(this.clockTimer_Tick);
+            clockTimer.Start();
         }
 
         private async void refreshTimer_Tick(object sender, EventArgs e)
         {
             await RefreshData();
         }
-        
+
         private async Task RefreshData()
         {
             try
             {
-                DateTime specificDate = DateTime.Now; 
-                
+                DateTime specificDate = DateTime.Now;
+
                 int totalEmployees = await _employeeStorage.GetTotalNumberOfEmployees();
                 label11.Text = totalEmployees.ToString();
 
                 decimal totalSalary = await _employeeStorage.GetTotalSalaryForMonth(specificDate);
-                label6.Text = $"{totalSalary}"+" DA";
+                label6.Text = $"{totalSalary} DA";
+
                 decimal totalAdvances = await _detteStorage.GetTotalDettes();
-                label1.Text = $"{totalAdvances}" + " DA";
+                label1.Text = $"{totalAdvances} DA";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"ALL data null: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void clockTimer_Tick(object sender, EventArgs e)
+        {
+           // clock1.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e) { }
@@ -74,7 +84,17 @@ namespace GestionPersonnel.View
         private void timer1_Tick(object sender, EventArgs e) { }
 
         private void label6_Click(object sender, EventArgs e) { }
-        
+
         private void label11_Click(object sender, EventArgs e) { }
+
+        private void sparkLine1_Click(object sender, EventArgs e)
+        {
+            // Add code to handle sparkLine1 click event
+        }
+
+        private void clock1_Click(object sender, EventArgs e)
+        {
+            // Add code to handle clock1 click event if needed
+        }
     }
 }
