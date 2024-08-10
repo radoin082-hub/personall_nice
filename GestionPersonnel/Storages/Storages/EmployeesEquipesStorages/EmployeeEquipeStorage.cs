@@ -21,6 +21,7 @@ namespace GestionPersonnel.Storages.EmployeeEquipeStorages
         private const string SelectAllQuery = "SELECT * FROM EmployeeEquipe";
         private const string SelectByIdQuery = "SELECT * FROM EmployeeEquipe WHERE EmployeeEquipeID = @id";
         private const string InsertQuery = "INSERT INTO EmployeeEquipe (EmployeeID, EquipeeID) VALUES (@EmployeeID, @EquipeeID); SELECT SCOPE_IDENTITY();";
+        private const string InsertMultipleQuery = "INSERT INTO EmployeeEquipe (EmployeeID, EquipeeID) VALUES (@EmployeeID, @EquipeeID);SELECT SCOPE_IDENTITY();";
         private const string UpdateQuery = "UPDATE EmployeeEquipe SET EmployeeID = @EmployeeID, EquipeeID = @EquipeeID WHERE EmployeeEquipeID = @EmployeeEquipeID;";
         private const string DeleteQuery = "DELETE FROM EmployeeEquipe WHERE EmployeeEquipeID = @EmployeeEquipeID;";
 
@@ -82,6 +83,24 @@ namespace GestionPersonnel.Storages.EmployeeEquipeStorages
             var id = await cmd.ExecuteScalarAsync();
             return Convert.ToInt32(id);
         }
+
+        // Méthode pour ajouter plusieurs EmployeeEquipe à la base de données
+        public async Task AddEmpolyeesEquipe(int equipeId, List<int> employeeIds)
+        {
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand(InsertMultipleQuery, connection);
+
+            await connection.OpenAsync();
+
+            foreach (var employeeId in employeeIds)
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
+                cmd.Parameters.AddWithValue("@EquipeeID", equipeId);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
 
         // Méthode pour mettre à jour un EmployeeEquipe dans la base de données
         public async Task Update(EmployeeEquipe employeeEquipe)
