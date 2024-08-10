@@ -1120,6 +1120,7 @@ namespace GestionPersonnel.View
             dataGridViewTextBoxColumn9.HeaderText = "N°";
             dataGridViewTextBoxColumn9.MinimumWidth = 6;
             dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            dataGridViewTextBoxColumn9.Width = 60;
             dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn10

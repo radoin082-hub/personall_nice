@@ -87,7 +87,7 @@ namespace GestionPersonnel.View.Controls
             MontantRetiree = new DataGridViewTextBoxColumn();
             TotalAvances = new DataGridViewTextBoxColumn();
             employeIDColumn = new DataGridViewTextBoxColumn();
-   
+
             panelDetteAvance = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panel8 = new Panel();
             panel5 = new Panel();
@@ -265,6 +265,7 @@ namespace GestionPersonnel.View.Controls
             N.MinimumWidth = 6;
             N.Name = "N";
             N.ReadOnly = true;
+            N.Width = 60;
             // 
             // Nom
             // 

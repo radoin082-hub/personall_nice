@@ -898,7 +898,7 @@ namespace GestionPersonnel.View.Controls
             Num.HeaderText = "N°";
             Num.MinimumWidth = 6;
             Num.Name = "Num";
-            Num.Width = 50;
+            Num.Width = 60;
             Num.ReadOnly = true;
             // 
             // Nom

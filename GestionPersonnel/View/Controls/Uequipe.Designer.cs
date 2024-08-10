@@ -72,6 +72,8 @@
             Option = new DataGridViewButtonColumn();
             EquipeSearch = new Guna.UI2.WinForms.Guna2TextBox();
             paneladdpost = new Guna.UI2.WinForms.Guna2GradientPanel();
+            checkedListBox3 = new CheckedListBox();
+            label13 = new Label();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             label3 = new Label();
@@ -106,8 +108,6 @@
             label9 = new Label();
             pictureBox2 = new PictureBox();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            checkedListBox3 = new CheckedListBox();
-            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)tabequipe).BeginInit();
             paneladdpost.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -146,7 +146,7 @@
             tabequipe.RowHeadersVisible = false;
             tabequipe.RowHeadersWidth = 55;
             tabequipe.RowTemplate.Height = 55;
-            tabequipe.Size = new Size(1377, 574);
+            tabequipe.Size = new Size(1400, 574);
             tabequipe.TabIndex = 1;
             tabequipe.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tabequipe.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -176,8 +176,8 @@
             N.HeaderText = "N°";
             N.MinimumWidth = 6;
             N.Name = "N";
-            N.Width = 50;
             N.ReadOnly = true;
+            N.Width = 60;
             // 
             // Nom_Equipe
             // 
@@ -230,7 +230,7 @@
             EquipeSearch.PlaceholderText = "Search";
             EquipeSearch.SelectedText = "";
             EquipeSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            EquipeSearch.Size = new Size(422, 52);
+            EquipeSearch.Size = new Size(422, 43);
             EquipeSearch.TabIndex = 3;
             // 
             // paneladdpost
@@ -254,6 +254,28 @@
             paneladdpost.Size = new Size(601, 682);
             paneladdpost.TabIndex = 4;
             paneladdpost.Paint += paneladdpost_Paint;
+            // 
+            // checkedListBox3
+            // 
+            checkedListBox3.BackColor = Color.FromArgb(239, 239, 208);
+            checkedListBox3.BorderStyle = BorderStyle.None;
+            checkedListBox3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            checkedListBox3.FormattingEnabled = true;
+            checkedListBox3.Items.AddRange(new object[] { "Member1", "Member2", "Member3", "Member4" });
+            checkedListBox3.Location = new Point(69, 429);
+            checkedListBox3.Name = "checkedListBox3";
+            checkedListBox3.Size = new Size(495, 135);
+            checkedListBox3.TabIndex = 120;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label13.Location = new Point(56, 395);
+            label13.Name = "label13";
+            label13.Size = new Size(321, 25);
+            label13.TabIndex = 119;
+            label13.Text = "Choisi Les Membre Qui Finit le Post";
             // 
             // guna2Button1
             // 
@@ -378,7 +400,7 @@
             guna2Button2.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button2.ForeColor = Color.White;
-            guna2Button2.Location = new Point(1173, 24);
+            guna2Button2.Location = new Point(1147, 24);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges12;
             guna2Button2.Size = new Size(218, 43);
@@ -586,7 +608,7 @@
             panelUpdateEquipe.Controls.Add(label9);
             panelUpdateEquipe.Controls.Add(pictureBox2);
             panelUpdateEquipe.CustomizableEdges = customizableEdges29;
-            panelUpdateEquipe.Location = new Point(778, 124);
+            panelUpdateEquipe.Location = new Point(798, 124);
             panelUpdateEquipe.Name = "panelUpdateEquipe";
             panelUpdateEquipe.ShadowDecoration.CustomizableEdges = customizableEdges30;
             panelUpdateEquipe.Size = new Size(613, 682);
@@ -735,35 +757,13 @@
             guna2Button4.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button4.ForeColor = Color.White;
-            guna2Button4.Location = new Point(940, 24);
+            guna2Button4.Location = new Point(914, 24);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges32;
             guna2Button4.Size = new Size(218, 43);
             guna2Button4.TabIndex = 7;
             guna2Button4.Text = "Mise a Jour Equipe";
             guna2Button4.Click += guna2Button4_Click;
-            // 
-            // checkedListBox3
-            // 
-            checkedListBox3.BackColor = Color.FromArgb(239, 239, 208);
-            checkedListBox3.BorderStyle = BorderStyle.None;
-            checkedListBox3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            checkedListBox3.FormattingEnabled = true;
-            checkedListBox3.Items.AddRange(new object[] { "Member1", "Member2", "Member3", "Member4" });
-            checkedListBox3.Location = new Point(69, 429);
-            checkedListBox3.Name = "checkedListBox3";
-            checkedListBox3.Size = new Size(495, 135);
-            checkedListBox3.TabIndex = 120;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            label13.Location = new Point(56, 395);
-            label13.Name = "label13";
-            label13.Size = new Size(321, 25);
-            label13.TabIndex = 119;
-            label13.Text = "Choisi Les Membre Qui Finit le Post";
             // 
             // Uequipe
             // 
