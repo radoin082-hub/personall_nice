@@ -41,9 +41,9 @@
             label1 = new Label();
             label2 = new Label();
             guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            label3 = new Label();
             pictureBox2 = new PictureBox();
             label4 = new Label();
-            label3 = new Label();
             panelCardTotaleArgent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             panelCardNomberEmplyes.SuspendLayout();
@@ -216,6 +216,17 @@
             guna2ShadowPanel2.Size = new Size(353, 165);
             guna2ShadowPanel2.TabIndex = 11;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft JhengHei UI", 16.2F, FontStyle.Bold);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(11, 56);
+            label3.Name = "label3";
+            label3.Size = new Size(224, 36);
+            label3.TabIndex = 2;
+            label3.Text = "0000000.00 DA";
+            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.pay;
@@ -236,17 +247,6 @@
             label4.Size = new Size(218, 32);
             label4.TabIndex = 1;
             label4.Text = "Totale des Avance";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Microsoft JhengHei UI", 16.2F, FontStyle.Bold);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(11, 56);
-            label3.Name = "label3";
-            label3.Size = new Size(224, 36);
-            label3.TabIndex = 2;
-            label3.Text = "0000000.00 DA";
             // 
             // Udashboard
             // 

@@ -130,7 +130,6 @@ namespace GestionPersonnel.View
             label8 = new Label();
             panel2 = new Panel();
             label6 = new Label();
-            label4 = new Label();
             label3 = new Label();
             modifier_fuction = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
@@ -148,6 +147,7 @@ namespace GestionPersonnel.View
             dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
+            panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)photoProfileEmployes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelajouteremploye.SuspendLayout();
@@ -799,11 +799,11 @@ namespace GestionPersonnel.View
             // panelajouterfonction
             // 
             panelajouterfonction.BackColor = Color.Transparent;
+            panelajouterfonction.Controls.Add(panel4);
             panelajouterfonction.Controls.Add(panel3);
             panelajouterfonction.Controls.Add(label8);
             panelajouterfonction.Controls.Add(panel2);
             panelajouterfonction.Controls.Add(label6);
-            panelajouterfonction.Controls.Add(label4);
             panelajouterfonction.Controls.Add(label3);
             panelajouterfonction.Controls.Add(modifier_fuction);
             panelajouterfonction.Controls.Add(guna2Button5);
@@ -862,17 +862,6 @@ namespace GestionPersonnel.View
             label6.TabIndex = 105;
             label6.Text = "Ajouter Fonction";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.ForeColor = SystemColors.ControlDarkDark;
-            label4.Location = new Point(9, 324);
-            label4.Name = "label4";
-            label4.Size = new Size(597, 20);
-            label4.TabIndex = 104;
-            label4.Text = "__________________________________________________________________________________________________";
-            label4.Click += label4_Click;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -880,9 +869,9 @@ namespace GestionPersonnel.View
             label3.ForeColor = Color.Black;
             label3.Location = new Point(44, 502);
             label3.Name = "label3";
-            label3.Size = new Size(178, 25);
+            label3.Size = new Size(173, 25);
             label3.TabIndex = 102;
-            label3.Text = "Fonction Modifier ";
+            label3.Text = "Fonction Modifier";
             // 
             // modifier_fuction
             // 
@@ -1059,12 +1048,12 @@ namespace GestionPersonnel.View
             guna2Button2.FillColor = Color.FromArgb(45, 81, 210);
             guna2Button2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2Button2.ForeColor = Color.White;
-            guna2Button2.Location = new Point(983, 6);
+            guna2Button2.Location = new Point(944, 6);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges46;
-            guna2Button2.Size = new Size(218, 43);
+            guna2Button2.Size = new Size(257, 43);
             guna2Button2.TabIndex = 4;
-            guna2Button2.Text = "Ajouter Fonction";
+            guna2Button2.Text = "Ajouter / Modifier Fonction";
             guna2Button2.Click += guna2Button2_Click;
             // 
             // guna2DataGridView1
@@ -1200,8 +1189,14 @@ namespace GestionPersonnel.View
             guna2DataGridView1.AllowUserToOrderColumns = false;
             guna2DataGridView1.AllowUserToResizeColumns = false;
             guna2DataGridView1.AllowUserToResizeRows = false;
-
-
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Black;
+            panel4.Location = new Point(34, 348);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(581, 2);
+            panel4.TabIndex = 109;
             // 
             // UEmployes
             // 
@@ -1299,6 +1294,6 @@ namespace GestionPersonnel.View
         private Panel panel3;
         private Label label8;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Label label4;
+        private Panel panel4;
     }
 }

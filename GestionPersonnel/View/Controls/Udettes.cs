@@ -138,6 +138,8 @@ namespace GestionPersonnel.View.Controls
         {
             panelDetteAvance.Visible = true;
             panelMontant.Visible = false;
+            panelFicheAvance.Visible = false;
+
         }
         //Avance Add
         private async void guna2Button4_Click(object sender, EventArgs e)
@@ -303,6 +305,7 @@ namespace GestionPersonnel.View.Controls
         private void button1_Click(object sender, EventArgs e)
         {
             panelDetteAvance.Visible = false;
+            panelFicheAvance.Visible = false;
             panelMontant.Visible = true;
         }
 
@@ -414,6 +417,24 @@ namespace GestionPersonnel.View.Controls
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            panelFicheAvance.Visible = false;
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            panelFicheAvance.Visible = true;
+            panelDetteAvance.Visible = false;
+            panelMontant.Visible = false;
+
+        }
+
+        private void guna2DataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
