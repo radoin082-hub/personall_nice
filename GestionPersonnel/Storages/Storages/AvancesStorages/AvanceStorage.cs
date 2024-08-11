@@ -24,7 +24,9 @@ namespace GestionPersonnel.Storages.AvancesStorages
         private const string UpdateQuery = "UPDATE Avances SET EmployeID = @EmployeID, Montant = @Montant, " +
                                            "Date = @Date WHERE AvanceID = @AvanceID;";
         private const string DeleteQuery = "DELETE FROM Avances WHERE AvanceID = @AvanceID;";
-        private const string SelectByDate = "SELECT * FROM Avances WHERE Year(Date) = Year(@Date) And Month(Date) = Month(@Date)";
+        private const string SelectByDate = "SELECT * FROM Avances WHERE Date=@Date";
+        private const string SelectTotaleAvances = "SELECT SUM(Montant)  FROM Avances WHERE YEAR(Date) = YEAR(@Date) AND MONTH(Date) = MONTH(@Date);";
+
 
         private static Avance GetAvanceFromDataRow(DataRow row)
         {
@@ -149,5 +151,26 @@ namespace GestionPersonnel.Storages.AvancesStorages
 
             return avances;
         }
+        public async Task<decimal> GetTotale(DateTime date)
+        {
+            decimal totaleAvances = 0m;
+
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand( SelectTotaleAvances,connection);
+
+            cmd.Parameters.AddWithValue("@Date", date);
+
+            await connection.OpenAsync();
+
+            var result = await cmd.ExecuteScalarAsync();
+
+            if (result != null && result != DBNull.Value)
+            {
+                totaleAvances = Convert.ToDecimal(result);
+            }
+
+            return totaleAvances;
+        }
+
     }
 }
