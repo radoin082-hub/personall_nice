@@ -24,6 +24,9 @@ namespace GestionPersonnel.Storages.AvancesStorages
         private const string UpdateQuery = "UPDATE Avances SET EmployeID = @EmployeID, Montant = @Montant, " +
                                            "Date = @Date WHERE AvanceID = @AvanceID;";
         private const string DeleteQuery = "DELETE FROM Avances WHERE AvanceID = @AvanceID;";
+        private const string SelectByDate = "SELECT * FROM Avances WHERE Date=@Date";
+        private const string SelectTotaleAvances = "SELECT SUM(Montant)  FROM Avances WHERE YEAR(Date) = YEAR(@Date) AND MONTH(Date) = MONTH(@Date);";
+
 
         private static Avance GetAvanceFromDataRow(DataRow row)
         {
@@ -126,5 +129,48 @@ namespace GestionPersonnel.Storages.AvancesStorages
             await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
         }
+
+        public async Task<List<Avance>> GetByDate(DateTime date)
+        {
+            var avances = new List<Avance>();
+
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand(SelectByDate, connection);
+            cmd.Parameters.AddWithValue("@Date", date);
+
+            var dataTable = new DataTable();
+            var da = new SqlDataAdapter(cmd);
+
+            await connection.OpenAsync();
+            da.Fill(dataTable);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                avances.Add(GetAvanceFromDataRow(row));
+            }
+
+            return avances;
+        }
+        public async Task<decimal> GetTotale(DateTime date)
+        {
+            decimal totaleAvances = 0m;
+
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand( SelectTotaleAvances,connection);
+
+            cmd.Parameters.AddWithValue("@Date", date);
+
+            await connection.OpenAsync();
+
+            var result = await cmd.ExecuteScalarAsync();
+
+            if (result != null && result != DBNull.Value)
+            {
+                totaleAvances = Convert.ToDecimal(result);
+            }
+
+            return totaleAvances;
+        }
+
     }
 }
