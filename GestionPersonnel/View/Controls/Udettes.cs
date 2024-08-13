@@ -10,6 +10,16 @@ using GestionPersonnel.Storages.AvancesStorages;
 using GestionPersonnel.Storages.EmployeesStorages;
 using GestionPersonnel.Storages.SalairesStorages;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using iText.Layout.Properties;
+using System.IO;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using Image = System.Drawing.Image;
+
+using iText.Kernel.Colors;
+
+//using iText.Layout.Element;
 
 namespace GestionPersonnel.View.Controls
 {
@@ -184,7 +194,6 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
-        //Dette Add
         private async void guna2Button1_Click(object sender, EventArgs e)
         {
             try
@@ -433,10 +442,118 @@ namespace GestionPersonnel.View.Controls
             panelMontant.Visible = false;
 
         }
+        private void DisplayDataButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private async Task LoadDataByDate(DateTime date)
+        {
+            try
+            {
+                DateTime selectedDateOnly = date.Date;
+
+                var avances = await _avancesStorage.GetByDate(selectedDateOnly);
+                UpdateTabFicheAvance(avances);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur s'est produite lors du chargement des données: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private async void UpdateTabFicheAvance(List<Avance> avances)
+        {
+            tabFicheAvance.Rows.Clear();
+            int i = 0;
+            foreach (var avance in avances)
+            {
+                i++;
+
+                var employee = await _employeeStorage.GetById(avance.EmployeID);
+
+                if (employee != null)
+                {
+                    tabFicheAvance.Rows.Add(i, employee.Nom, employee.Prenom, avance.Montant);
+                }
+                else
+                {
+                    tabFicheAvance.Rows.Add(i, "Unknown", "Unknown", avance.Montant);
+                }
+            }
+        }
+
+        private async void searchBtn_Click(object sender, EventArgs e)
+        {
+            DateTime selectedDate = guna2DateTimePicker1.Value.Date;
+            await LoadDataByDate(selectedDate);
+        }
+
+
 
         private void guna2DataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
+        private void guna2Button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                    saveFileDialog.Title = "Save PDF File";
+                    saveFileDialog.FileName = $"Avance_raport{DateTime.Now:MMMMdyyyy}.pdf";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string pdfFilePath = saveFileDialog.FileName;
+
+                        using (PdfWriter writer = new PdfWriter(pdfFilePath))
+                        {
+                            using (PdfDocument pdf = new PdfDocument(writer))
+                            {
+                                Document document = new Document(pdf);
+
+                                string formattedDate = DateTime.Now.ToString("MMMM d, yyyy");
+
+                                document.Add(new Paragraph($"Rapport des avances - {formattedDate}").SetBold().SetFontSize(16));
+
+                                Table table = new Table(UnitValue.CreatePercentArray(new float[] { 1, 2, 2, 2 })).UseAllAvailableWidth();
+
+                                var grayColor = new iText.Kernel.Colors.DeviceRgb(169, 169, 169);
+
+                                // Add header cells with gray background color
+                                table.AddHeaderCell(new Cell().Add(new Paragraph("N°")).SetBackgroundColor(grayColor).SetBold());
+                                table.AddHeaderCell(new Cell().Add(new Paragraph("Nom")).SetBackgroundColor(grayColor).SetBold());
+                                table.AddHeaderCell(new Cell().Add(new Paragraph("Prenom")).SetBackgroundColor(grayColor).SetBold());
+                                table.AddHeaderCell(new Cell().Add(new Paragraph("Montant")).SetBackgroundColor(grayColor).SetBold());
+
+                                foreach (DataGridViewRow row in tabFicheAvance.Rows)
+                                {
+                                    if (row.IsNewRow) continue;
+                                    table.AddCell(row.Cells[0].Value?.ToString() ?? "");
+                                    table.AddCell(row.Cells[1].Value?.ToString() ?? "");
+                                    table.AddCell(row.Cells[2].Value?.ToString() ?? "");
+                                    table.AddCell(row.Cells[3].Value?.ToString() ?? "");
+                                }
+
+                                document.Add(table);
+                            }
+                        }
+
+                        MessageBox.Show($"PDF generated successfully at {pdfFilePath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while generating the PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
     }
 }

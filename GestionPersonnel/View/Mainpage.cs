@@ -40,7 +40,7 @@ namespace GestionPersonnel.View
             ucdettes = new Udettes(connectionString);
             ucpointage = new UPointage(connectionString);
             ucpaiement = new UPaiement(connectionString);
-            ucequipe = new Uequipe();
+            ucequipe = new Uequipe(connectionString);
             // resources = new Resources(typeof(Mainpage());
 
         }

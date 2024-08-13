@@ -18,7 +18,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
         public async Task<List<Fonction>> GetAll()
         {
             var fonctions = new List<Fonction>();
-            string query = "SELECT FonctionID, NomFonction FROM Fonctions"; // Ensure this matches your table name
+            string query = "SELECT FonctionID, NomFonction FROM Fonctions"; 
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -41,7 +41,7 @@ namespace GestionPersonnel.Storages.FonctionsStorages
 
         public async Task Add(Fonction fonction)
         {
-            string query = "INSERT INTO Fonctions (NomFonction) VALUES (@NomFonction)"; // Ensure this matches your table name
+            string query = "INSERT INTO Fonctions (NomFonction) VALUES (@NomFonction)"; 
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {

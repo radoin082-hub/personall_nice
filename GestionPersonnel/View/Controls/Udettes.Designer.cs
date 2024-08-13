@@ -87,7 +87,7 @@ namespace GestionPersonnel.View.Controls
             MontantRetiree = new DataGridViewTextBoxColumn();
             TotalAvances = new DataGridViewTextBoxColumn();
             employeIDColumn = new DataGridViewTextBoxColumn();
-
+            modifierColumn = new DataGridViewButtonColumn();
             panelDetteAvance = new Guna.UI2.WinForms.Guna2ShadowPanel();
             panel8 = new Panel();
             panel5 = new Panel();
@@ -212,7 +212,7 @@ namespace GestionPersonnel.View.Controls
             DettesGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             DettesGrid.ColumnHeadersHeight = 46;
             DettesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { N, Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, employeIDColumn });
+            DettesGrid.Columns.AddRange(new DataGridViewColumn[] { N, Nom, Prenom, Fonction, TotaleDette, MontantRetiree, TotalAvances, employeIDColumn, modifierColumn });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
@@ -265,7 +265,6 @@ namespace GestionPersonnel.View.Controls
             N.MinimumWidth = 6;
             N.Name = "N";
             N.ReadOnly = true;
-            N.Width = 60;
             // 
             // Nom
             // 
@@ -283,24 +282,6 @@ namespace GestionPersonnel.View.Controls
             // 
             // Fonction
             // 
-            //
-            //modifierColumn
-            //
-            Image supprimerIconPath = Properties.Resources.icons8_show_100;
-            DataGridViewButtonColumn modifierColumn = new DataGridViewButtonColumn
-            {
-                Name = "ModifierColumn",
-                HeaderText = "",
-                Tag = supprimerIconPath,
-                FillWeight = 23,
-                DefaultCellStyle = new DataGridViewCellStyle()
-                {
-                    Padding = new Padding(0),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter
-                }
-            };
-            DettesGrid.Columns.Add(modifierColumn);
-            //
             Fonction.HeaderText = "Fonction";
             Fonction.MinimumWidth = 6;
             Fonction.Name = "Fonction";
@@ -866,6 +847,7 @@ namespace GestionPersonnel.View.Controls
             searchBtn.ShadowDecoration.CustomizableEdges = customizableEdges22;
             searchBtn.Size = new Size(51, 43);
             searchBtn.TabIndex = 120;
+            searchBtn.Click += searchBtn_Click;
             // 
             // guna2DateTimePicker1
             // 
@@ -919,6 +901,7 @@ namespace GestionPersonnel.View.Controls
             guna2Button5.Size = new Size(171, 43);
             guna2Button5.TabIndex = 117;
             guna2Button5.Text = "Gerer Fiche PDF";
+            guna2Button5.Click += guna2Button5_Click;
             // 
             // pictureBox4
             // 
@@ -1294,13 +1277,13 @@ namespace GestionPersonnel.View.Controls
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.White;
+            Controls.Add(panelFicheAvance);
+            Controls.Add(panelDetteAvance);
             Controls.Add(guna2Button3);
             Controls.Add(AddButton);
             Controls.Add(button1);
             Controls.Add(DettesSearch);
-            Controls.Add(panelFicheAvance);
             Controls.Add(palenHistoriqueAetD);
-            Controls.Add(panelDetteAvance);
             Controls.Add(panelMontant);
             Controls.Add(DettesGrid);
             Font = new Font("Segoe UI", 9F, FontStyle.Bold);

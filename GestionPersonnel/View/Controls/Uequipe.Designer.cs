@@ -177,7 +177,6 @@
             N.MinimumWidth = 6;
             N.Name = "N";
             N.ReadOnly = true;
-            N.Width = 60;
             // 
             // Nom_Equipe
             // 
@@ -471,6 +470,7 @@
             guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2TextBox2.Size = new Size(500, 36);
             guna2TextBox2.TabIndex = 120;
+            guna2TextBox2.TextChanged += guna2TextBox2_TextChanged;
             // 
             // label8
             // 
@@ -523,6 +523,7 @@
             guna2ComboBox1.ShadowDecoration.CustomizableEdges = customizableEdges18;
             guna2ComboBox1.Size = new Size(508, 36);
             guna2ComboBox1.TabIndex = 116;
+            guna2ComboBox1.SelectedIndexChanged += guna2ComboBox1_SelectedIndexChanged_1;
             // 
             // label6
             // 
@@ -770,15 +771,16 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(panelUpdateEquipe);
             Controls.Add(guna2Button4);
             Controls.Add(panelAddEquipe);
             Controls.Add(guna2Button2);
             Controls.Add(paneladdpost);
             Controls.Add(EquipeSearch);
             Controls.Add(tabequipe);
+            Controls.Add(panelUpdateEquipe);
             Name = "Uequipe";
             Size = new Size(1417, 901);
+            Load += Uequipe_Load_1;
             ((System.ComponentModel.ISupportInitialize)tabequipe).EndInit();
             paneladdpost.ResumeLayout(false);
             paneladdpost.PerformLayout();
