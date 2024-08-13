@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionPersonnel.Storages.AvancesStorages;
 using GestionPersonnel.Storages.DettesStorages;
 
 namespace GestionPersonnel.View
@@ -14,6 +15,7 @@ namespace GestionPersonnel.View
         private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.Timer clockTimer;
         private readonly EmployeStorage _employeeStorage;
+        private readonly AvanceStorage _avanceStorage;
         private readonly DetteStorage _detteStorage;
 
         public Udashboard(string connectionString)
@@ -21,6 +23,7 @@ namespace GestionPersonnel.View
             _connectionString = connectionString;
             InitializeComponent();
             _detteStorage = new DetteStorage(connectionString);
+            _avanceStorage = new AvanceStorage(connectionString);
             _employeeStorage = new EmployeStorage(connectionString);
         }
 
@@ -54,8 +57,10 @@ namespace GestionPersonnel.View
 
                 decimal totalSalary = await _employeeStorage.GetTotalSalaryForMonth(specificDate);
                 label6.Text = $"{totalSalary}" + " DA";
-                decimal totalAdvances = await _detteStorage.GetTotalDettes();
-                label1.Text = $"{totalAdvances} DA";
+                decimal totalDette = await _detteStorage.GetTotalDettes();
+                label1.Text = $"{totalDette} DA";
+                decimal totalAdvances = await _avanceStorage.GetTotale(specificDate);
+                label3.Text = $"{totalAdvances} DA";
             }
             catch (Exception ex)
             {
