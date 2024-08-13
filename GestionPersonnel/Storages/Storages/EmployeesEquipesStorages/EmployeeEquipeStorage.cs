@@ -1,4 +1,5 @@
-﻿using GestionPersonnel.Models.EmplyeeEquipe;
+﻿using GestionPersonnel.Models.Employees;
+using GestionPersonnel.Models.EmplyeeEquipe;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -131,6 +132,40 @@ namespace GestionPersonnel.Storages.EmployeeEquipeStorages
 
             await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task<List<Employee>> GetEmployeesByEquipeId(int equipeId)
+        {
+            var employees = new List<Employee>();
+
+            var query = @"
+                SELECT e.EmployeID, e.Nom, e.Prenom
+                FROM Employes e
+                INNER JOIN EmployeEquipes ee ON e.EmployeID = ee.EmployeID
+                WHERE ee.EquipeID = @EquipeID";
+
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@EquipeID", equipeId);
+
+                await connection.OpenAsync();
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var employee = new Employee
+                        {
+                            EmployeID = reader.GetInt32(reader.GetOrdinal("EmployeID")),
+                            Nom = reader.GetString(reader.GetOrdinal("Nom")),
+                            Prenom = reader.GetString(reader.GetOrdinal("Prenom"))
+                        };
+                        employees.Add(employee);
+                    }
+                }
+            }
+
+            return employees;
         }
     }
 }

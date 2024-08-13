@@ -636,6 +636,7 @@
             guna2Button5.Size = new Size(165, 37);
             guna2Button5.TabIndex = 123;
             guna2Button5.Text = "Modifie Equipe";
+            guna2Button5.Click += guna2Button5_Click;
             // 
             // checkedListBox2
             // 
@@ -643,10 +644,9 @@
             checkedListBox2.BorderStyle = BorderStyle.None;
             checkedListBox2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             checkedListBox2.FormattingEnabled = true;
-            checkedListBox2.Items.AddRange(new object[] { "Member1", "Member2", "Member3", "Member4" });
             checkedListBox2.Location = new Point(60, 365);
             checkedListBox2.Name = "checkedListBox2";
-            checkedListBox2.Size = new Size(495, 135);
+            checkedListBox2.Size = new Size(495, 216);
             checkedListBox2.TabIndex = 122;
             // 
             // label12

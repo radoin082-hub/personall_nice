@@ -30,14 +30,15 @@ namespace GestionPersonnel.View.Controls
             _fonctionStorage = new FonctionStorage(connectionString);
             InitializeComponent();
             InitializeDefaultSelections();
-            
-             
+
+
         }
 
         private async void Uequipe_Load_1(object sender, EventArgs e)
         {
             await LoadFunctionsAsync();
-            await PopulateComboBoxAsync(); // Ensure this is called to populate guna2ComboBox2
+            await PopulateComboBoxAsync();
+
         }
 
         private async Task LoadFunctionsAsync()
@@ -94,6 +95,7 @@ namespace GestionPersonnel.View.Controls
                     MessageBox.Show("No function or employee selected.");
                     return;
                 }
+
 
                 string nom = selectedEmployee.Nom.Trim();
                 string prenom = selectedEmployee.Prenom.Trim();
@@ -172,19 +174,19 @@ namespace GestionPersonnel.View.Controls
         {
             if (guna2ComboBox2.SelectedValue is int equipeId)
             {
-                await LoadChefAsync(equipeId);
+                await LoadAllEquipeAsync(equipeId);
             }
         }
 
-        private async Task LoadChefAsync(int equipeId)
+        private async Task LoadAllEquipeAsync(int equipeId)
         {
-            
+
             try
             {
-                var equipe = await _equipeStorage.GetById(equipeId);
-                var chef = await _employeeStorage.GetById(equipe.ChefEquipeID);
 
-                guna2ComboBox4.DataSource = new List<Employee> { chef };
+                var equips = await _employeeStorage.GetAll();
+
+                guna2ComboBox4.DataSource = equips;
                 guna2ComboBox4.DisplayMember = "FullName";
                 guna2ComboBox4.ValueMember = "EmployeID";
             }
@@ -196,10 +198,10 @@ namespace GestionPersonnel.View.Controls
 
         private async Task PopulateComboBoxAsync()
         {
-            
+
             try
             {
-          
+
                 var equipes = await _equipeStorage.GetAll();
                 guna2ComboBox2.DataSource = equipes;
                 guna2ComboBox2.DisplayMember = "NomEquipe";
@@ -221,8 +223,95 @@ namespace GestionPersonnel.View.Controls
         {
             if (guna2ComboBox2.SelectedValue is int equipeId)
             {
-                await LoadChefAsync(equipeId);
+                await LoadAllEquipeAsync(equipeId);
+                await LoadEmployeesForEquipeAsync(equipeId);
+            }
+
+        }
+
+        private async Task LoadEmployeesForEquipeAsync(int equipeId)
+        {
+            try
+            {
+                // Retrieve all employees
+                var allEmployees = await _employeeStorage.GetAll();
+
+                // Retrieve employees in the selected team
+                var employeesInEquipe = await _employeeEquipeStorage.GetEmployeesByEquipeId(equipeId);
+
+                // Set the data source for the CheckedListBox
+                checkedListBox2.DataSource = allEmployees;
+                checkedListBox2.DisplayMember = "FullName";
+                checkedListBox2.ValueMember = "EmployeID";
+
+                // Check the employees who are already in the selected team
+                foreach (var employee in allEmployees)
+                {
+                    checkedListBox2.SetItemChecked(checkedListBox2.Items.IndexOf(employee),
+                        employeesInEquipe.Any(e => e.EmployeID == employee.EmployeID));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading employees for the team: {ex.Message}");
             }
         }
+
+
+        private async void guna2Button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Retrieve selected team and new chef
+                var selectedEquipe = (Equipe)guna2ComboBox2.SelectedItem;
+                var newChef = (Employee)guna2ComboBox4.SelectedItem;
+
+                if (selectedEquipe == null || newChef == null)
+                {
+                    MessageBox.Show("Please select a valid team and chef.");
+                    return;
+                }
+
+                string newEquipeName = guna2TextBox2.Text.Trim();
+                if (string.IsNullOrEmpty(newEquipeName))
+                {
+                    MessageBox.Show("Please enter the new team name.");
+                    return;
+                }
+
+                // Retrieve the employee IDs from checkedListBox2
+                var checkedEmployeeIds = checkedListBox2.CheckedItems
+                    .Cast<Employee>()
+                    .Select(e => e.EmployeID)
+                    .ToList();
+
+                // Update the team with the new name and chef
+                selectedEquipe.NomEquipe = newEquipeName;
+                selectedEquipe.ChefEquipeID = newChef.EmployeID;
+
+                await _equipeStorage.Update(selectedEquipe);
+
+                // Remove existing employees from the team
+                await _equipeStorage.de(selectedEquipe.EquipeID);
+
+                // Add new employees to the team
+                foreach (var employeeId in checkedEmployeeIds)
+                {
+                    await _employeeEquipeStorage.Add(new EmployeeEquipe
+                    {
+                        EmployeeID = employeeId,
+                        EquipeeID = selectedEquipe.EquipeID
+                    });
+                }
+
+                MessageBox.Show("Team updated successfully.");
+                ClearInputs();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while updating the team: {ex.Message}");
+            }
+        }
+
     }
 }
