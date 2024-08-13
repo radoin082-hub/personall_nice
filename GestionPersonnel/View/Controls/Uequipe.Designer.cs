@@ -169,7 +169,6 @@
             tabequipe.ThemeStyle.RowsStyle.Height = 55;
             tabequipe.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tabequipe.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-           
             // 
             // N
             // 
@@ -292,7 +291,6 @@
             guna2Button1.Size = new Size(158, 37);
             guna2Button1.TabIndex = 107;
             guna2Button1.Text = "Ajouter Post";
-         
             // 
             // guna2TextBox1
             // 
@@ -384,7 +382,6 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 94;
             pictureBox3.TabStop = false;
-        
             // 
             // guna2Button2
             // 
@@ -469,7 +466,6 @@
             guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2TextBox2.Size = new Size(500, 36);
             guna2TextBox2.TabIndex = 120;
-         
             // 
             // label8
             // 
@@ -492,7 +488,6 @@
             checkedListBox1.Name = "checkedListBox1";
             checkedListBox1.Size = new Size(495, 135);
             checkedListBox1.TabIndex = 118;
-          
             // 
             // label7
             // 
@@ -614,6 +609,7 @@
             panelUpdateEquipe.ShadowDecoration.CustomizableEdges = customizableEdges30;
             panelUpdateEquipe.Size = new Size(613, 682);
             panelUpdateEquipe.TabIndex = 8;
+            panelUpdateEquipe.Paint += panelUpdateEquipe_Paint;
             // 
             // panel3
             // 
@@ -682,6 +678,7 @@
             guna2ComboBox4.ShadowDecoration.CustomizableEdges = customizableEdges26;
             guna2ComboBox4.Size = new Size(508, 36);
             guna2ComboBox4.TabIndex = 120;
+            guna2ComboBox4.SelectedIndexChanged += guna2ComboBox4_SelectedIndexChanged;
             // 
             // label11
             // 
@@ -712,6 +709,7 @@
             guna2ComboBox2.ShadowDecoration.CustomizableEdges = customizableEdges28;
             guna2ComboBox2.Size = new Size(508, 36);
             guna2ComboBox2.TabIndex = 118;
+            guna2ComboBox2.SelectedIndexChanged += guna2ComboBox2_SelectedIndexChanged;
             // 
             // label10
             // 
@@ -732,7 +730,6 @@
             label9.Size = new Size(238, 32);
             label9.TabIndex = 105;
             label9.Text = "Mise a Jour  Equipe";
-           
             // 
             // pictureBox2
             // 
@@ -772,12 +769,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(guna2Button4);
-            Controls.Add(panelAddEquipe);
             Controls.Add(guna2Button2);
-            Controls.Add(paneladdpost);
             Controls.Add(EquipeSearch);
-            Controls.Add(tabequipe);
             Controls.Add(panelUpdateEquipe);
+            Controls.Add(panelAddEquipe);
+            Controls.Add(paneladdpost);
+            Controls.Add(tabequipe);
             Name = "Uequipe";
             Size = new Size(1417, 901);
             Load += Uequipe_Load_1;

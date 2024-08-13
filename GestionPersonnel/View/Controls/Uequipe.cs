@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestionPersonnel.Models.Fonctions;
+using Guna.UI2.WinForms;
 
 namespace GestionPersonnel.View.Controls
 {
@@ -28,11 +29,15 @@ namespace GestionPersonnel.View.Controls
             _employeeStorage = new EmployeStorage(connectionString);
             _fonctionStorage = new FonctionStorage(connectionString);
             InitializeComponent();
+            InitializeDefaultSelections();
+            
+             
         }
 
         private async void Uequipe_Load_1(object sender, EventArgs e)
         {
             await LoadFunctionsAsync();
+            await PopulateComboBoxAsync(); // Ensure this is called to populate guna2ComboBox2
         }
 
         private async Task LoadFunctionsAsync()
@@ -60,7 +65,6 @@ namespace GestionPersonnel.View.Controls
                 guna2ComboBox3.DisplayMember = "FullName";
                 guna2ComboBox3.ValueMember = "EmployeID";
 
-                
                 checkedListBox1.DataSource = employees;
                 checkedListBox1.DisplayMember = "FullName";
                 checkedListBox1.ValueMember = "EmployeID";
@@ -82,7 +86,6 @@ namespace GestionPersonnel.View.Controls
 
             try
             {
-                
                 var selectedFunction = (Fonction)guna2ComboBox1.SelectedItem;
                 var selectedEmployee = (Employee)guna2ComboBox3.SelectedItem;
 
@@ -92,12 +95,9 @@ namespace GestionPersonnel.View.Controls
                     return;
                 }
 
-    
-                string nom = selectedEmployee.Nom.Trim(); 
-                string prenom = selectedEmployee.Prenom.Trim(); 
-
-          
-                string nomFonction = selectedFunction.NomFonction.Trim(); 
+                string nom = selectedEmployee.Nom.Trim();
+                string prenom = selectedEmployee.Prenom.Trim();
+                string nomFonction = selectedFunction.NomFonction.Trim();
 
                 int? chefId = await _employeeStorage.GetEmployeeIdByName(nom, prenom, nomFonction);
 
@@ -111,10 +111,7 @@ namespace GestionPersonnel.View.Controls
 
                 foreach (var item in checkedListBox1.CheckedItems)
                 {
-   
                     int employeeId = ((Employee)item).EmployeID;
-
-               
                     await _employeeEquipeStorage.Add(new EmployeeEquipe { EmployeeID = employeeId, EquipeeID = equipeId });
                 }
 
@@ -127,18 +124,19 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
-
-
-
-
-
         private void ClearInputs()
         {
             guna2TextBox2.Clear();
             guna2ComboBox1.SelectedIndex = -1;
+            guna2ComboBox2.SelectedIndex = -1;
+            guna2ComboBox4.SelectedIndex = -1;
             checkedListBox1.ClearSelected();
         }
-
+        private void InitializeDefaultSelections()
+        {
+            guna2ComboBox2.SelectedIndex = -1;
+            guna2ComboBox4.SelectedIndex = -1;
+        }
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
@@ -164,14 +162,67 @@ namespace GestionPersonnel.View.Controls
 
         private async void guna2ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            
             if (guna2ComboBox1.SelectedValue is int functionId)
             {
                 await LoadEmployeesAsync(functionId);
             }
         }
-      
-      
+
+        private async void guna2ComboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (guna2ComboBox2.SelectedValue is int equipeId)
+            {
+                await LoadChefAsync(equipeId);
+            }
+        }
+
+        private async Task LoadChefAsync(int equipeId)
+        {
+            
+            try
+            {
+                var equipe = await _equipeStorage.GetById(equipeId);
+                var chef = await _employeeStorage.GetById(equipe.ChefEquipeID);
+
+                guna2ComboBox4.DataSource = new List<Employee> { chef };
+                guna2ComboBox4.DisplayMember = "FullName";
+                guna2ComboBox4.ValueMember = "EmployeID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading the chef details: {ex.Message}");
+            }
+        }
+
+        private async Task PopulateComboBoxAsync()
+        {
+            
+            try
+            {
+          
+                var equipes = await _equipeStorage.GetAll();
+                guna2ComboBox2.DataSource = equipes;
+                guna2ComboBox2.DisplayMember = "NomEquipe";
+                guna2ComboBox2.ValueMember = "EquipeID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while populating the combo box: {ex.Message}");
+            }
+        }
+
+        private async void panelUpdateEquipe_Paint(object sender, EventArgs e)
+        {
+            guna2ComboBox2.SelectedIndex = -1;
+
+        }
+
+        private async void guna2ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (guna2ComboBox2.SelectedValue is int equipeId)
+            {
+                await LoadChefAsync(equipeId);
+            }
+        }
     }
 }
-
