@@ -169,7 +169,7 @@
             tabequipe.ThemeStyle.RowsStyle.Height = 55;
             tabequipe.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tabequipe.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            tabequipe.CellContentClick += guna2DataGridView2_CellContentClick;
+           
             // 
             // N
             // 
@@ -252,7 +252,6 @@
             paneladdpost.ShadowDecoration.CustomizableEdges = customizableEdges10;
             paneladdpost.Size = new Size(601, 682);
             paneladdpost.TabIndex = 4;
-            paneladdpost.Paint += paneladdpost_Paint;
             // 
             // checkedListBox3
             // 
@@ -293,7 +292,7 @@
             guna2Button1.Size = new Size(158, 37);
             guna2Button1.TabIndex = 107;
             guna2Button1.Text = "Ajouter Post";
-            guna2Button1.Click += guna2Button1_Click;
+         
             // 
             // guna2TextBox1
             // 
@@ -385,7 +384,7 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 94;
             pictureBox3.TabStop = false;
-            pictureBox3.Click += pictureBox3_Click;
+        
             // 
             // guna2Button2
             // 
@@ -470,7 +469,7 @@
             guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2TextBox2.Size = new Size(500, 36);
             guna2TextBox2.TabIndex = 120;
-            guna2TextBox2.TextChanged += guna2TextBox2_TextChanged;
+         
             // 
             // label8
             // 
@@ -493,6 +492,7 @@
             checkedListBox1.Name = "checkedListBox1";
             checkedListBox1.Size = new Size(495, 135);
             checkedListBox1.TabIndex = 118;
+          
             // 
             // label7
             // 
@@ -732,7 +732,7 @@
             label9.Size = new Size(238, 32);
             label9.TabIndex = 105;
             label9.Text = "Mise a Jour  Equipe";
-            label9.Click += label9_Click;
+           
             // 
             // pictureBox2
             // 

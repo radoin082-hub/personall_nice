@@ -18,11 +18,11 @@ namespace GestionPersonnel.Storages.EquipeStorages
         }
 
         // Constantes pour les requêtes SQL
-        private const string SelectAllQuery = "SELECT * FROM Equipe";
-        private const string SelectByIdQuery = "SELECT * FROM Equipe WHERE EquipeID = @id";
-        private const string InsertQuery = "INSERT INTO Equipe (NomEquipe, ChefEquipeID) VALUES (@NomEquipe, @ChefEquipeID); SELECT SCOPE_IDENTITY();";
-        private const string UpdateQuery = "UPDATE Equipe SET NomEquipe = @NomEquipe, ChefEquipeID = @ChefEquipeID WHERE EquipeID = @EquipeID;";
-        private const string DeleteQuery = "DELETE FROM Equipe WHERE EquipeID = @EquipeID;";
+        private const string SelectAllQuery = "SELECT * FROM Equipes";
+        private const string SelectByIdQuery = "SELECT * FROM Equipes WHERE EquipeID = @id";
+        private const string InsertQuery = "INSERT INTO Equipes (NomEquipe, ChefEquipeID) VALUES (@NomEquipe, @ChefEquipeID); SELECT SCOPE_IDENTITY();";
+        private const string UpdateQuery = "UPDATE Equipes SET NomEquipe = @NomEquipe, ChefEquipeID = @ChefEquipeID WHERE EquipeID = @EquipeID;";
+        private const string DeleteQuery = "DELETE FROM Equipes WHERE EquipeID = @EquipeID;";
 
         // Méthode pour mapper une DataRow à un objet Equipe
         private static Equipe GetEquipeFromDataRow(DataRow row)

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionPersonnel.Models.Fonctions;
 
 namespace GestionPersonnel.View.Controls
 {
@@ -59,6 +60,7 @@ namespace GestionPersonnel.View.Controls
                 guna2ComboBox3.DisplayMember = "FullName";
                 guna2ComboBox3.ValueMember = "EmployeID";
 
+                
                 checkedListBox1.DataSource = employees;
                 checkedListBox1.DisplayMember = "FullName";
                 checkedListBox1.ValueMember = "EmployeID";
@@ -68,8 +70,6 @@ namespace GestionPersonnel.View.Controls
                 MessageBox.Show($"An error occurred while loading employees: {ex.Message}");
             }
         }
-
-
 
         private async void guna2Button3_Click(object sender, EventArgs e)
         {
@@ -82,12 +82,39 @@ namespace GestionPersonnel.View.Controls
 
             try
             {
-                int chefEquipeID = (int)guna2ComboBox1.SelectedValue;
-                int equipeId = await _equipeStorage.Add(new Equipe { NomEquipe = equipeName, ChefEquipeID = chefEquipeID });
+                
+                var selectedFunction = (Fonction)guna2ComboBox1.SelectedItem;
+                var selectedEmployee = (Employee)guna2ComboBox3.SelectedItem;
+
+                if (selectedFunction == null || selectedEmployee == null)
+                {
+                    MessageBox.Show("No function or employee selected.");
+                    return;
+                }
+
+    
+                string nom = selectedEmployee.Nom.Trim(); 
+                string prenom = selectedEmployee.Prenom.Trim(); 
+
+          
+                string nomFonction = selectedFunction.NomFonction.Trim(); 
+
+                int? chefId = await _employeeStorage.GetEmployeeIdByName(nom, prenom, nomFonction);
+
+                if (chefId == null)
+                {
+                    MessageBox.Show("Chef de l'équipe not found.");
+                    return;
+                }
+
+                int equipeId = await _equipeStorage.Add(new Equipe { NomEquipe = equipeName, ChefEquipeID = chefId.Value });
 
                 foreach (var item in checkedListBox1.CheckedItems)
                 {
+   
                     int employeeId = ((Employee)item).EmployeID;
+
+               
                     await _employeeEquipeStorage.Add(new EmployeeEquipe { EmployeeID = employeeId, EquipeeID = equipeId });
                 }
 
@@ -100,6 +127,11 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
+
+
+
+
+
         private void ClearInputs()
         {
             guna2TextBox2.Clear();
@@ -107,13 +139,6 @@ namespace GestionPersonnel.View.Controls
             checkedListBox1.ClearSelected();
         }
 
-        private async void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (guna2ComboBox1.SelectedValue is int functionId)
-            {
-                await LoadEmployeesAsync(functionId);
-            }
-        }
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
@@ -136,37 +161,17 @@ namespace GestionPersonnel.View.Controls
         {
             panelUpdateEquipe.Visible = false;
         }
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void guna2DataGridView2_CellContentClick(object sender, EventArgs e)
-        {
-
-        }
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void paneladdpost_Paint(object sender, EventArgs e)
-        {
-
-        }
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private async void guna2ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            
             if (guna2ComboBox1.SelectedValue is int functionId)
             {
                 await LoadEmployeesAsync(functionId);
             }
         }
+      
+      
     }
 }
+

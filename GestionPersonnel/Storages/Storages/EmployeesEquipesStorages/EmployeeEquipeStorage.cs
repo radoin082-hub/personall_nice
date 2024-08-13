@@ -18,12 +18,18 @@ namespace GestionPersonnel.Storages.EmployeeEquipeStorages
         }
 
         // Constantes pour les requêtes SQL
-        private const string SelectAllQuery = "SELECT * FROM EmployeeEquipe";
-        private const string SelectByIdQuery = "SELECT * FROM EmployeeEquipe WHERE EmployeeEquipeID = @id";
-        private const string InsertQuery = "INSERT INTO EmployeeEquipe (EmployeeID, EquipeeID) VALUES (@EmployeeID, @EquipeeID); SELECT SCOPE_IDENTITY();";
-        private const string InsertMultipleQuery = "INSERT INTO EmployeeEquipe (EmployeeID, EquipeeID) VALUES (@EmployeeID, @EquipeeID);SELECT SCOPE_IDENTITY();";
-        private const string UpdateQuery = "UPDATE EmployeeEquipe SET EmployeeID = @EmployeeID, EquipeeID = @EquipeeID WHERE EmployeeEquipeID = @EmployeeEquipeID;";
-        private const string DeleteQuery = "DELETE FROM EmployeeEquipe WHERE EmployeeEquipeID = @EmployeeEquipeID;";
+       
+        private const string SelectAllQuery = "SELECT * FROM EmployeEquipes";
+        
+        private const string SelectByIdQuery = "SELECT * FROM EmployeEquipes WHERE EmployeEquipeID = @id";
+        
+        private const string InsertQuery = "INSERT INTO EmployeEquipes (EmployeID, EquipeID) VALUES (@EmployeeID, @EquipeeID); SELECT SCOPE_IDENTITY();";
+        
+        private const string InsertMultipleQuery = "INSERT INTO EmployeEquipes (EmployeID, EquipeID) VALUES (@EmployeeID, @EquipeeID);SELECT SCOPE_IDENTITY();";
+        
+        private const string UpdateQuery = "UPDATE EmployeEquipes SET EmployeID = @EmployeeID, EquipeID = @EquipeeID WHERE EmployeEquipeID = @EmployeeEquipeID;";
+        
+        private const string DeleteQuery = "DELETE FROM EmployeEquipes WHERE EmployeEquipeID = @EmployeeEquipeID;";
 
         // Méthode pour mapper une DataRow à un objet EmployeeEquipe
         private static EmployeeEquipe GetEmployeeEquipeFromDataRow(DataRow row)

@@ -45,6 +45,15 @@ namespace GestionPersonnel.Storages.EmployeesStorages
             INNER JOIN Fonctions F ON E.FonctionID = F.FonctionID
             WHERE E.FonctionID = @FonctionID AND E.status = 1";
 
+        private const string _selectEmployeeIdByNameAndFunctionQuery = @"
+    SELECT E.EmployeID
+    FROM Employes E
+    INNER JOIN Fonctions F ON E.FonctionID = F.FonctionID
+    WHERE E.Nom = @Nom AND E.Prenom = @Prenom AND F.NomFonction = @NomFonction";
+
+     
+
+
         private static Employee GetEmployeFromDataRow(DataRow row)
         {
             return new Employee
@@ -214,5 +223,26 @@ namespace GestionPersonnel.Storages.EmployeesStorages
 
             return (from DataRow row in dataTable.Rows select GetEmployeFromDataRow(row)).ToList();
         }
+        public async Task<int?> GetEmployeeIdByName(string nom, string prenom, string nomFonction)
+        {
+            await using var connection = new SqlConnection(_connectionString);
+            SqlCommand cmd = new(_selectEmployeeIdByNameAndFunctionQuery, connection);
+            cmd.Parameters.AddWithValue("@Nom", nom);
+            cmd.Parameters.AddWithValue("@Prenom", prenom);
+            cmd.Parameters.AddWithValue("@NomFonction", nomFonction);
+
+            await connection.OpenAsync();
+
+            var result = await cmd.ExecuteScalarAsync();
+
+            // Check if result is DBNull
+            if (result == DBNull.Value || result == null)
+            {
+                return null; // Employee not found
+            }
+
+            return Convert.ToInt32(result); // Return the EmployeeID
+        }
+
     }
 }
