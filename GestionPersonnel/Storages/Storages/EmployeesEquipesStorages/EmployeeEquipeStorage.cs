@@ -30,16 +30,16 @@ namespace GestionPersonnel.Storages.EmployeeEquipeStorages
         
         private const string UpdateQuery = "UPDATE EmployeEquipes SET EmployeID = @EmployeeID, EquipeID = @EquipeeID WHERE EmployeEquipeID = @EmployeeEquipeID;";
         
-        private const string DeleteQuery = "DELETE FROM EmployeEquipes WHERE EmployeEquipeID = @EmployeeEquipeID;";
+        private const string DeleteQuery = "DELETE FROM EmployeEquipes WHERE EmployeEquipeID = @EmployeeEquipeID";
 
         // Méthode pour mapper une DataRow à un objet EmployeeEquipe
         private static EmployeeEquipe GetEmployeeEquipeFromDataRow(DataRow row)
         {
             return new EmployeeEquipe
             {
-                EmployeeEquipeID = (int)row["EmployeeEquipeID"],
-                EmployeeID = (int)row["EmployeeID"],
-                EquipeeID = (int)row["EquipeeID"]
+                EmployeeEquipeID = (int)row["EmployeEquipeID"],
+                EmployeeID = (int)row["EmployeID"],
+                EquipeeID = (int)row["EquipeID"]
             };
         }
 

@@ -771,10 +771,10 @@
             Controls.Add(guna2Button4);
             Controls.Add(guna2Button2);
             Controls.Add(EquipeSearch);
-            Controls.Add(panelUpdateEquipe);
             Controls.Add(panelAddEquipe);
             Controls.Add(paneladdpost);
             Controls.Add(tabequipe);
+            Controls.Add(panelUpdateEquipe);
             Name = "Uequipe";
             Size = new Size(1417, 901);
             Load += Uequipe_Load_1;

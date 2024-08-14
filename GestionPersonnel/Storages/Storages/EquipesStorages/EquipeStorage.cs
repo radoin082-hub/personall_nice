@@ -23,6 +23,7 @@ namespace GestionPersonnel.Storages.EquipeStorages
         private const string InsertQuery = "INSERT INTO Equipes (NomEquipe, ChefEquipeID) VALUES (@NomEquipe, @ChefEquipeID); SELECT SCOPE_IDENTITY();";
         private const string UpdateQuery = "UPDATE Equipes SET NomEquipe = @NomEquipe, ChefEquipeID = @ChefEquipeID WHERE EquipeID = @EquipeID;";
         private const string DeleteQuery = "DELETE FROM Equipes WHERE EquipeID = @EquipeID;";
+        private const string UpdateChefEquipeQuery = "UPDATE Equipes SET ChefEquipeID = @ChefEquipeID WHERE EquipeID = @EquipeID;";
 
         // Méthode pour mapper une DataRow à un objet Equipe
         private static Equipe GetEquipeFromDataRow(DataRow row)
@@ -102,6 +103,17 @@ namespace GestionPersonnel.Storages.EquipeStorages
             cmd.Parameters.AddWithValue("@NomEquipe", equipe.NomEquipe);
             cmd.Parameters.AddWithValue("@ChefEquipeID", equipe.ChefEquipeID);
             cmd.Parameters.AddWithValue("@EquipeID", equipe.EquipeID);
+
+            await connection.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+        }
+        public async Task UpdateChefEquipeById(int equipeId, int chefEquipeId)
+        {
+            await using var connection = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand(UpdateChefEquipeQuery, connection);
+
+            cmd.Parameters.AddWithValue("@EquipeID", equipeId);
+            cmd.Parameters.AddWithValue("@ChefEquipeID", chefEquipeId);
 
             await connection.OpenAsync();
             await cmd.ExecuteNonQueryAsync();

@@ -96,20 +96,10 @@ namespace GestionPersonnel.View.Controls
                     return;
                 }
 
+                int chefId = selectedEmployee.EmployeID;
 
-                string nom = selectedEmployee.Nom.Trim();
-                string prenom = selectedEmployee.Prenom.Trim();
-                string nomFonction = selectedFunction.NomFonction.Trim();
-
-                int? chefId = await _employeeStorage.GetEmployeeIdByName(nom, prenom, nomFonction);
-
-                if (chefId == null)
-                {
-                    MessageBox.Show("Chef de l'équipe not found.");
-                    return;
-                }
-
-                int equipeId = await _equipeStorage.Add(new Equipe { NomEquipe = equipeName, ChefEquipeID = chefId.Value });
+              
+                int equipeId = await _equipeStorage.Add(new Equipe { NomEquipe = equipeName, ChefEquipeID = chefId });
 
                 foreach (var item in checkedListBox1.CheckedItems)
                 {
@@ -125,6 +115,7 @@ namespace GestionPersonnel.View.Controls
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
+
 
         private void ClearInputs()
         {
@@ -151,7 +142,7 @@ namespace GestionPersonnel.View.Controls
             panelUpdateEquipe.Visible = true;
             panelAddEquipe.Visible = false;
         }
-
+        
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             panelAddEquipe.Visible = false;
@@ -170,25 +161,34 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
-        private async void guna2ComboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        private void guna2ComboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (guna2ComboBox2.SelectedValue is int equipeId)
+            var selectedItem = guna2ComboBox4.SelectedItem as Employee;
+            if (selectedItem != null)
             {
-                await LoadAllEquipeAsync(equipeId);
+                Console.WriteLine($"Selected Employee: {selectedItem.FullName}");
             }
         }
 
         private async Task LoadAllEquipeAsync(int equipeId)
         {
-
             try
             {
-
-                var equips = await _employeeStorage.GetAll();
-
-                guna2ComboBox4.DataSource = equips;
+                var employees = await _employeeStorage.GetAll();
+                guna2ComboBox4.DataSource = employees;
                 guna2ComboBox4.DisplayMember = "FullName";
                 guna2ComboBox4.ValueMember = "EmployeID";
+
+                var equipe = await _equipeStorage.GetById(equipeId);
+
+                if (equipe.ChefEquipeID.HasValue)
+                {
+                    guna2ComboBox4.SelectedValue = equipe.ChefEquipeID.Value;
+                }
+                else
+                {
+                    guna2ComboBox4.SelectedIndex = -1; 
+                }
             }
             catch (Exception ex)
             {
@@ -196,12 +196,13 @@ namespace GestionPersonnel.View.Controls
             }
         }
 
+
+
         private async Task PopulateComboBoxAsync()
         {
 
             try
             {
-
                 var equipes = await _equipeStorage.GetAll();
                 guna2ComboBox2.DataSource = equipes;
                 guna2ComboBox2.DisplayMember = "NomEquipe";
@@ -216,6 +217,7 @@ namespace GestionPersonnel.View.Controls
         private async void panelUpdateEquipe_Paint(object sender, EventArgs e)
         {
             guna2ComboBox2.SelectedIndex = -1;
+            guna2ComboBox4.SelectedIndex = -1;
 
         }
 
@@ -233,18 +235,17 @@ namespace GestionPersonnel.View.Controls
         {
             try
             {
-                // Retrieve all employees
                 var allEmployees = await _employeeStorage.GetAll();
 
-                // Retrieve employees in the selected team
+         
                 var employeesInEquipe = await _employeeEquipeStorage.GetEmployeesByEquipeId(equipeId);
 
-                // Set the data source for the CheckedListBox
+               
                 checkedListBox2.DataSource = allEmployees;
                 checkedListBox2.DisplayMember = "FullName";
                 checkedListBox2.ValueMember = "EmployeID";
 
-                // Check the employees who are already in the selected team
+                
                 foreach (var employee in allEmployees)
                 {
                     checkedListBox2.SetItemChecked(checkedListBox2.Items.IndexOf(employee),
@@ -262,7 +263,7 @@ namespace GestionPersonnel.View.Controls
         {
             try
             {
-                // Retrieve selected team and new chef
+
                 var selectedEquipe = (Equipe)guna2ComboBox2.SelectedItem;
                 var newChef = (Employee)guna2ComboBox4.SelectedItem;
 
@@ -272,36 +273,44 @@ namespace GestionPersonnel.View.Controls
                     return;
                 }
 
-                string newEquipeName = guna2TextBox2.Text.Trim();
-                if (string.IsNullOrEmpty(newEquipeName))
-                {
-                    MessageBox.Show("Please enter the new team name.");
-                    return;
-                }
+                // Update the team's chef
+                await _equipeStorage.UpdateChefEquipeById(selectedEquipe.EquipeID, newChef.EmployeID);
 
-                // Retrieve the employee IDs from checkedListBox2
+               
+                var currentTeamMembers = await _employeeEquipeStorage.GetAll(); 
+                var currentTeamMemberIds = currentTeamMembers
+                    .Where(e => e.EquipeeID == selectedEquipe.EquipeID)
+                    .Select(e => e.EmployeeID)
+                    .ToList();
+
+              
                 var checkedEmployeeIds = checkedListBox2.CheckedItems
                     .Cast<Employee>()
                     .Select(e => e.EmployeID)
                     .ToList();
 
-                // Update the team with the new name and chef
-                selectedEquipe.NomEquipe = newEquipeName;
-                selectedEquipe.ChefEquipeID = newChef.EmployeID;
+             
+                var employeesToAdd = checkedEmployeeIds.Except(currentTeamMemberIds).ToList();
 
-                await _equipeStorage.Update(selectedEquipe);
+            
+                var employeesToRemove = currentTeamMemberIds.Except(checkedEmployeeIds).ToList();
 
-                // Remove existing employees from the team
-                await _equipeStorage.de(selectedEquipe.EquipeID);
-
-                // Add new employees to the team
-                foreach (var employeeId in checkedEmployeeIds)
+             
+                if (employeesToAdd.Any())
                 {
-                    await _employeeEquipeStorage.Add(new EmployeeEquipe
+                    await _employeeEquipeStorage.AddEmpolyeesEquipe(selectedEquipe.EquipeID, employeesToAdd);
+                }
+
+          
+                foreach (var employeeId in employeesToRemove)
+                {
+                    var employeeEquipe = currentTeamMembers
+                        .FirstOrDefault(e => e.EmployeeID == employeeId && e.EquipeeID == selectedEquipe.EquipeID);
+
+                    if (employeeEquipe != null)
                     {
-                        EmployeeID = employeeId,
-                        EquipeeID = selectedEquipe.EquipeID
-                    });
+                        await _employeeEquipeStorage.Delete(employeeEquipe.EmployeeEquipeID);
+                    }
                 }
 
                 MessageBox.Show("Team updated successfully.");
@@ -312,6 +321,10 @@ namespace GestionPersonnel.View.Controls
                 MessageBox.Show($"An error occurred while updating the team: {ex.Message}");
             }
         }
+
+
+
+
 
     }
 }
